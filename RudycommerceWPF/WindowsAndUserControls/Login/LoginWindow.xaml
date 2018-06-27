@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Login"
         mc:Ignorable="d"
         Title="{DynamicResource ResourceKey=TODO}" Height="500" Width="600" ResizeMode="NoResize"
-        Background="Beige" Closed="Window_Closing" WindowStartupLocation="CenterScreen">
+        Background="Beige" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <ResourceDictionary>

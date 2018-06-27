@@ -48,14 +48,72 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Data\RudyDbContext.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\DesktopUsers\DesktopUser.cs" />
+    <Compile Include="Entities\Language.cs" />
+    <Compile Include="Entities\Products\Categories\Category.cs" />
+    <Compile Include="Entities\Products\Categories\CategorySpecification.cs" />
+    <Compile Include="Entities\Products\Categories\LocalizedCategory.cs" />
+    <Compile Include="Entities\Products\Products\LocalizedProduct.cs" />
+    <Compile Include="Entities\Products\Products\Product.cs" />
+    <Compile Include="Entities\Products\Products\ProductImage.cs" />
+    <Compile Include="Entities\Products\Specifications\LocalizedEnumValue.cs" />
+    <Compile Include="Entities\Products\Specifications\Specification.cs" />
+    <Compile Include="Entities\Products\Specifications\SpecificationEnum.cs" />
+    <Compile Include="Migrations\201806271849094_initTest1ToMany.cs" />
+    <Compile Include="Migrations\201806271849094_initTest1ToMany.Designer.cs">
+      <DependentUpon>201806271849094_initTest1ToMany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271850542_initTest1ToMany1.cs" />
+    <Compile Include="Migrations\201806271850542_initTest1ToMany1.Designer.cs">
+      <DependentUpon>201806271850542_initTest1ToMany1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271906059_productsImages.cs" />
+    <Compile Include="Migrations\201806271906059_productsImages.Designer.cs">
+      <DependentUpon>201806271906059_productsImages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271938420_catspec.cs" />
+    <Compile Include="Migrations\201806271938420_catspec.Designer.cs">
+      <DependentUpon>201806271938420_catspec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271947422_locenumv.cs" />
+    <Compile Include="Migrations\201806271947422_locenumv.Designer.cs">
+      <DependentUpon>201806271947422_locenumv.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806271951536_locprod.cs" />
+    <Compile Include="Migrations\201806271951536_locprod.Designer.cs">
+      <DependentUpon>201806271951536_locprod.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entities\" />
+    <Folder Include="Repositories\BaseRepo\" />
+    <Folder Include="Repositories\IRepo\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201806271849094_initTest1ToMany.resx">
+      <DependentUpon>201806271849094_initTest1ToMany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271850542_initTest1ToMany1.resx">
+      <DependentUpon>201806271850542_initTest1ToMany1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271906059_productsImages.resx">
+      <DependentUpon>201806271906059_productsImages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271938420_catspec.resx">
+      <DependentUpon>201806271938420_catspec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271947422_locenumv.resx">
+      <DependentUpon>201806271947422_locenumv.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806271951536_locprod.resx">
+      <DependentUpon>201806271951536_locprod.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
