@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.27703.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RudycommerceWPF", "RudycommerceWPF\RudycommerceWPF.csproj", "{7556DFE1-3BE4-4A83-BC7C-1DA52D2064BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RudycommerceLib", "RudycommerceLib\RudycommerceLib.csproj", "{3C6F82E9-154E-4D72-8532-B3D812B6F768}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RudycommerceData", "RudycommerceData\RudycommerceData.csproj", "{10FDE5A4-0FF2-402B-BC6D-3D8230CACE95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{7556DFE1-3BE4-4A83-BC7C-1DA52D2064BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7556DFE1-3BE4-4A83-BC7C-1DA52D2064BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7556DFE1-3BE4-4A83-BC7C-1DA52D2064BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C6F82E9-154E-4D72-8532-B3D812B6F768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C6F82E9-154E-4D72-8532-B3D812B6F768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C6F82E9-154E-4D72-8532-B3D812B6F768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C6F82E9-154E-4D72-8532-B3D812B6F768}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10FDE5A4-0FF2-402B-BC6D-3D8230CACE95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10FDE5A4-0FF2-402B-BC6D-3D8230CACE95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10FDE5A4-0FF2-402B-BC6D-3D8230CACE95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10FDE5A4-0FF2-402B-BC6D-3D8230CACE95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,158 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:RudycommerceWPF.Styles"
+                    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls">
+
+    <Style x:Key="UserControlGrid" TargetType="Grid">
+        <Setter Property="Margin" Value="0,10,0,0"/>
+    </Style>
+
+    <Style x:Key="GridBelowTabItem" TargetType="Grid">
+        <Setter Property="Background" Value="Beige"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+    </Style>
+
+    <Style x:Key="FormLabel" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="HorizontalContentAlignment" Value="Right"/>
+        <Setter Property="Margin" Value="0,20,0,0"/>
+        <Setter Property="Padding" Value="0,-5,0,-5"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Height" Value="30"/>
+    </Style>
+
+    <Style x:Key="TitleLabel" TargetType="Label" BasedOn="{StaticResource ResourceKey=FormLabel}">
+        <Setter Property="Margin" Value="0,10,0,30"/>
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="FormInputTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="0,20,0,0"/>
+        <Setter Property="Height" Value="30"/>
+    </Style>
+
+    <Style x:Key="SmallDataGrid" TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+        <Setter Property="Margin" Value="20"/>
+        <Setter Property="AutoGenerateColumns" Value="False"/>
+        <Setter Property="CanUserAddRows" Value="False"/>
+        <Setter Property="CanUserDeleteRows" Value="False"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="RowHeight" Value="30"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="AlternatingRowBackground" Value="Gray"/>
+        <Setter Property="CellStyle" Value="{StaticResource ResourceKey=DataGridBorder}"/>
+    </Style>
+
+    <Style x:Key="DataGridBorder" TargetType="DataGridCell">
+        <Setter Property="BorderBrush" Value="White" />
+        <Setter Property="BorderThickness" Value="0,0,1,0" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="OverviewDataGrid" TargetType="DataGrid" BasedOn="{StaticResource ResourceKey=SmallDataGrid}">
+        <Setter Property="Margin" Value="20,20,20,0"/>
+    </Style>
+
+    <Style x:Key="FormInputCheckBox" TargetType="CheckBox" BasedOn="{StaticResource {x:Type CheckBox}}">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="10,20,0,0"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Padding" Value="0,-5,0,-5"/>
+        <!--<Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Border x:Name="Border" Background="Red" BorderBrush="Red"/>
+                        </BulletDecorator.Bullet>
+                    </BulletDecorator>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>-->
+    </Style>
+
+    <Style x:Key="FormSubmitCancelButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Margin" Value="20"/>
+    </Style>
+
+    <Style x:Key="FormInputComboBox" TargetType="ComboBox" BasedOn="{StaticResource {x:Type ComboBox}}">
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="0,20,0,0"/>
+        <Setter Property="Height" Value="30"/>
+    </Style>
+
+
+
+    <!-- NavigationWindow -->
+
+
+
+    <Style x:Key="NavigationTabItemTitle" TargetType="Label" BasedOn="{StaticResource ResourceKey=FormLabel}">
+        <Setter Property="FontSize" Value="24"/>
+        <Setter Property="Margin" Value="0,0,0,60"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <Style TargetType="Controls:Tile">
+        <Setter Property="Height" Value="150"/>
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="Margin" Value="40,0,40,0"/>
+        <Setter Property="Background" Value="SteelBlue"/>
+    </Style>
+
+    <Style x:Key="SeperatorBelowTopTabs" TargetType="Separator" BasedOn="{StaticResource {x:Type Separator}}">
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Margin" Value="50,0,50,0"/>
+    </Style>
+
+    <Style x:Key="NavigationTabScroll" TargetType="ScrollViewer" BasedOn="{StaticResource {x:Type ScrollViewer}}">
+        <Setter Property="Margin" Value="0,5,0,0"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Content.Visibility, ElementName=userControlProducts}" Value="Collapsed">
+                <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Content.Visibility, ElementName=userControlProducts}" Value="Visible">
+                <Setter Property="VerticalScrollBarVisibility" Value="Disabled"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="SeperatorTileRegion" TargetType="Separator" BasedOn="{StaticResource {x:Type Separator}}">
+        <Setter Property="Opacity" Value="0.30"/>
+        <Setter Property="Margin" Value="50,-40,50,40"/>
+    </Style>
+
+    <Style x:Key="ImageInTile" TargetType="Image">
+        <Setter Property="Margin" Value="40"/>
+    </Style>
+
+    <Style x:Key="LabelTileRegion" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+        <Setter Property="Margin" Value="50,-40,0,0"/>
+        <Setter Property="FontSize" Value="22"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Opacity" Value="0.50"/>
+    </Style>
+
+    <Style x:Key="NaviStackBelowTab" TargetType="StackPanel">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Margin" Value="0,20,0,0"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+    </Style>
+
+    <Style x:Key="NaviWrapTileRegion" TargetType="WrapPanel">
+        <Setter Property="Margin" Value="0,0,0,80"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+</ResourceDictionary>
