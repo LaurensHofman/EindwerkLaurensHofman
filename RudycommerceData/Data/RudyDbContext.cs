@@ -22,6 +22,8 @@ namespace RudycommerceData.Data
 
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<LocalizedProduct> LocalizedProducts { get; set; }
+        public DbSet<Values_ProductSpecifications> Values_ProductSpecifications { get; set; }
 
         #endregion
 
@@ -38,6 +40,7 @@ namespace RudycommerceData.Data
         public DbSet<Specification> Specifications { get; set; }
         public DbSet<SpecificationEnum> SpecificationEnums { get; set; }
         public DbSet<LocalizedEnumValue> LocalizedEnumValues { get; set; }
+        public DbSet<LocalizedSpecification> LocalizedSpecifications { get; set; }
 
         #endregion
 
@@ -119,6 +122,45 @@ namespace RudycommerceData.Data
                 .HasMany(l => l.LocalizedProducts)
                 .WithRequired()
                 .HasForeignKey(lp => lp.LanguageID);
+
+            #endregion
+
+            #region Specifications to Languages
+
+            modelBuilder.Entity<LocalizedSpecification>()
+                .HasKey(ls => new { ls.PropertyID, ls.LanguageID });
+
+            modelBuilder.Entity<Specification>()
+                .HasMany(s => s.LocalizedSpecifications)
+                .WithRequired()
+                .HasForeignKey(ls => ls.PropertyID);
+
+            modelBuilder.Entity<Language>()
+                .HasMany(l => l.LocalizedSpecifications)
+                .WithRequired()
+                .HasForeignKey(ls => ls.LanguageID);
+
+            #endregion
+
+            #region Values ProductSpecifications
+
+            modelBuilder.Entity<Values_ProductSpecifications>()
+                .HasKey(vps => new { vps.ProductID, vps.SpecificationID, vps.LanguageID });
+
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.Values_ProductSpecifications)
+                .WithRequired()
+                .HasForeignKey(vps => vps.ProductID);
+
+            modelBuilder.Entity<Specification>()
+                .HasMany(s => s.Values_ProductSpecifications)
+                .WithRequired()
+                .HasForeignKey(vps => vps.SpecificationID);
+
+            modelBuilder.Entity<Language>()
+                .HasMany(l => l.Values_ProductSpecifications)
+                .WithRequired()
+                .HasForeignKey(vps => vps.LanguageID);
 
             #endregion
         }

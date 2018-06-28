@@ -57,7 +57,9 @@
     <Compile Include="Entities\Products\Products\LocalizedProduct.cs" />
     <Compile Include="Entities\Products\Products\Product.cs" />
     <Compile Include="Entities\Products\Products\ProductImage.cs" />
+    <Compile Include="Entities\Products\Products\Values_ProductSpecifications.cs" />
     <Compile Include="Entities\Products\Specifications\LocalizedEnumValue.cs" />
+    <Compile Include="Entities\Products\Specifications\LocalizedSpecification.cs" />
     <Compile Include="Entities\Products\Specifications\Specification.cs" />
     <Compile Include="Entities\Products\Specifications\SpecificationEnum.cs" />
     <Compile Include="Migrations\201806271849094_initTest1ToMany.cs" />
@@ -84,13 +86,32 @@
     <Compile Include="Migrations\201806271951536_locprod.Designer.cs">
       <DependentUpon>201806271951536_locprod.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806281012346_locspec.cs" />
+    <Compile Include="Migrations\201806281012346_locspec.Designer.cs">
+      <DependentUpon>201806281012346_locspec.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201806281106392_valuesprodspec.cs" />
+    <Compile Include="Migrations\201806281106392_valuesprodspec.Designer.cs">
+      <DependentUpon>201806281106392_valuesprodspec.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\BaseRepo\BaseRepository.cs" />
+    <Compile Include="Repositories\BaseRepo\IBaseRepository.cs" />
+    <Compile Include="Repositories\IRepo\ICategoryRepository.cs" />
+    <Compile Include="Repositories\IRepo\IDesktopUserRepository.cs" />
+    <Compile Include="Repositories\IRepo\ILanguageRepository.cs" />
+    <Compile Include="Repositories\IRepo\IProductImageRepository.cs" />
+    <Compile Include="Repositories\IRepo\IProductRepository.cs" />
+    <Compile Include="Repositories\IRepo\ISpecificationRepository.cs" />
+    <Compile Include="Repositories\Repo\CategoryRepository.cs" />
+    <Compile Include="Repositories\Repo\DesktopUserRepository.cs" />
+    <Compile Include="Repositories\Repo\LanguageRepository.cs" />
+    <Compile Include="Repositories\Repo\ProductImageRepository.cs" />
+    <Compile Include="Repositories\Repo\ProductRepository.cs" />
+    <Compile Include="Repositories\Repo\SpecificationRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Repositories\BaseRepo\" />
-    <Folder Include="Repositories\IRepo\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
@@ -113,6 +134,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806271951536_locprod.resx">
       <DependentUpon>201806271951536_locprod.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281012346_locspec.resx">
+      <DependentUpon>201806281012346_locspec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806281106392_valuesprodspec.resx">
+      <DependentUpon>201806281106392_valuesprodspec.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
