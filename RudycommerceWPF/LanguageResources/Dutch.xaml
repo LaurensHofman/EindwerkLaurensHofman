@@ -11,9 +11,15 @@
     <system:String x:Key="Password">Wachtwoord</system:String>
     <system:String x:Key="NewUser">Nieuwe gebruiker</system:String>
     <system:String x:Key="Cancel">Annuleer</system:String>
+    <system:String x:Key="AdminUserFormTitle">Beheerdersaccount aanmaken</system:String>
+    <system:String x:Key="PreferredLanguage">Voorkeurstaal</system:String>
+    <system:String x:Key="FirstName">Voornaam</system:String>
+    <system:String x:Key="LastName">Achternaam</system:String>
+    <system:String x:Key="Email">Email</system:String>
+    <system:String x:Key="Save">Opslaan</system:String>
+    <system:String x:Key="NewUserFormTitle">Nieuwe gebruiker aanmaken</system:String>
+    <system:String x:Key="NavigationWindowTitle">Rudycommerce</system:String>
     <!--<system:String x:Key="Save">Opslaan</system:String>
-    <system:String x:Key="Save">Opslaan</system:String>
-    <system:String x:Key="Save">Opslaan</system:String>
     <system:String x:Key="Save">Opslaan</system:String>
     <system:String x:Key="Save">Opslaan</system:String>
     <system:String x:Key="Save">Opslaan</system:String>

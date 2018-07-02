@@ -1,4 +1,5 @@
-﻿using RudycommerceData.Entities;
+﻿using MahApps.Metro.Controls;
+using RudycommerceData.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Windows;
 
 namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
 {
-    public abstract class LanguageWindow : System.Windows.Window
+    public abstract class LanguageWindow : MetroWindow
     {
         protected Language _preferredLanguage;
 

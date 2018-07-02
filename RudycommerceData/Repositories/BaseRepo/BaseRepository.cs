@@ -17,6 +17,11 @@ namespace RudycommerceData.Repositories.BaseRepo
             _context = new RudyDbContext();
         }
 
+        public IQueryable<T> GetAllQueryable()
+        {
+            return _context.Set<T>().AsQueryable();
+        }
+
         public async Task<T> AddAsync(T entity)
         {
             _context.Set<T>().Add(entity);

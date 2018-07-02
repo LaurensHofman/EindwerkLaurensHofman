@@ -10,6 +10,6 @@ namespace RudycommerceData.Repositories.IRepo
 {
     public interface IDesktopUserRepository: IBaseRepository<DesktopUser>
     {
-
+        Task<DesktopUser> FindByUsernameAsync(string username);
     }
 }

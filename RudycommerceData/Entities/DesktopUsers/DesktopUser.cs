@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace RudycommerceData.Entities.DesktopUsers
         public string FirstName { get; set; }
 
         [Required]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         public Language PreferredLanguage { get; set; }
@@ -36,6 +38,11 @@ namespace RudycommerceData.Entities.DesktopUsers
         public override bool IsNew()
         {
             return this.ID <= 0;
+        }
+
+        public override string ToString()
+        {
+            return this.FirstName + " " + this.LastName;
         }
 
     }

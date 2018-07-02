@@ -1,0 +1,49 @@
+﻿<base:LanguageWindow
+    xmlns:base="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts" 
+    x:Class="RudycommerceWPF.WindowsAndUserControls.NavigationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:ribbon="clr-namespace:System.Windows.Controls.Ribbon;assembly=System.Windows.Controls.Ribbon"
+    mc:Ignorable="d" Background="Beige"
+        Title="{DynamicResource ResourceKey=NavigationWindowTitle}" WindowState="Maximized">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="Controls:MetroAnimatedSingleRowTabControl" BasedOn="{StaticResource {x:Type Controls:MetroAnimatedSingleRowTabControl}}">
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            </Style>
+
+            <Style TargetType="TabItem" BasedOn="{StaticResource {x:Type TabItem}}">
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="Background" Value="Beige"/>
+                <Setter Property="Controls:ControlsHelper.HeaderFontWeight" Value="SemiBold"/>
+                <Setter Property="Padding" Value="25,0,25,0"/>
+                <Setter Property="Height" Value="39"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="BorderThickness" Value="1,0,1,0"/>
+            </Style>
+
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <ribbon:Ribbon />
+        </Grid>
+        <Grid Grid.Row="1"></Grid>
+    </Grid>
+</base:LanguageWindow>

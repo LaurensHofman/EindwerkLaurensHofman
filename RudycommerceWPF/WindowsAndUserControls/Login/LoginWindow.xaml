@@ -79,11 +79,11 @@
                         </Label>
                     </StackPanel>
                     <StackPanel Grid.Column="1">
-                        <TextBox Height="30" VerticalContentAlignment="Center" Width="250" Margin="0,20,0,0" x:Name="txtUsername"/>
+                        <TextBox Text="{Binding Path=DesktopLogin.Username}" Height="30" VerticalContentAlignment="Center" Width="250" Margin="0,20,0,0" x:Name="txtUsername"/>
                         <PasswordBox Height="30" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="222" 
                                      Margin="0,20,0,0" x:Name="pwdPassword" PasswordChanged="pwdPassword_PasswordChanged"/>
                         <TextBox Height="30" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="222" Margin="0,20,0,0" 
-                                 Visibility="Collapsed" x:Name="txtPasswordVisible" TextChanged="txtPasswordVisible_TextChanged"/>
+                                 Visibility="Collapsed" FontSize="18" x:Name="txtPasswordVisible" TextChanged="txtPasswordVisible_TextChanged"/>
                         <Button x:Name="btnShowHidePwd" Margin="110,-30,-110,30" Background="White" Width="30" Height="30" Click="btnShowHidePwd_Click"
                                 BorderBrush="Black">
                             <DynamicResource ResourceKey="Show"></DynamicResource>

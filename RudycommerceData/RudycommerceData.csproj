@@ -95,6 +95,7 @@
       <DependentUpon>201806281106392_valuesprodspec.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\DesktopLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepo\BaseRepository.cs" />
     <Compile Include="Repositories\BaseRepo\IBaseRepository.cs" />
@@ -111,7 +112,12 @@
     <Compile Include="Repositories\Repo\ProductRepository.cs" />
     <Compile Include="Repositories\Repo\SpecificationRepository.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\RudycommerceLib\RudycommerceLib.csproj">
+      <Project>{3c6f82e9-154e-4d72-8532-b3d812b6f768}</Project>
+      <Name>RudycommerceLib</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />

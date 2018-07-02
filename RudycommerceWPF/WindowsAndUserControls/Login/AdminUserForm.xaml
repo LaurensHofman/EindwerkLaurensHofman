@@ -1,0 +1,119 @@
+﻿<base:LanguageWindow
+    xmlns:base="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts" x:Class="RudycommerceWPF.WindowsAndUserControls.Login.AdminUserForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Login"
+        mc:Ignorable="d"
+        Title="{DynamicResource ResourceKey=AdminUserFormTitle}" Height="500" Width="600" Background="Beige" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <Image x:Key="Show" Source="/Resources/Icons/32_EyeOpen.png" Height="16" Width="16" />
+            <Image x:Key="Hide" Source="/Resources/Icons/32_EyeClose.png" Height="16" Width="16"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/LanguageResources/Dutch.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid x:Name="grdUserForm" Margin="0,0,0,0">
+        <StackPanel>
+            <Label FontSize="20" Content="{DynamicResource ResourceKey=AdminUserFormTitle}" 
+                   HorizontalContentAlignment="Center" Height="50" Foreground="Black"/>
+            <WrapPanel>
+                <Grid HorizontalAlignment="Center" Width="550">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+
+                        <Label x:Name="lblPrefLang" FontSize="18" HorizontalContentAlignment="Right" Height="40" Margin="0,20,0,-15" Foreground="Black">
+                            <TextBlock>
+                <TextBlock Text="{DynamicResource ResourceKey=PreferredLanguage}"/>
+                <TextBlock Text=": "/>
+            </TextBlock>
+                        </Label>
+                        <Label FontSize="18" HorizontalContentAlignment="Right" Height="30" Margin="0,20,0,0" Foreground="Black">
+                            <TextBlock>
+                            <TextBlock Text="{DynamicResource ResourceKey=FirstName}"/>
+                            <TextBlock Text=": "/>
+                        </TextBlock>
+                        </Label>
+                        <Label FontSize="18" HorizontalContentAlignment="Right" Height="30" Margin="0,20,0,0" Foreground="Black">
+                            <TextBlock>
+                <TextBlock Text="{DynamicResource ResourceKey=LastName}"/>
+                <TextBlock Text=": "/>
+            </TextBlock>
+                        </Label>
+                        <Label FontSize="18" HorizontalContentAlignment="Right" Height="30" Margin="0,20,0,0" Foreground="Black">
+                            <TextBlock>
+                <TextBlock Text="{DynamicResource ResourceKey=Username}"/>
+                <TextBlock Text=": "/>
+            </TextBlock>
+                        </Label>
+                        <Label FontSize="18" HorizontalContentAlignment="Right" Height="30" Margin="0,20,0,0" Foreground="Black">
+                            <TextBlock>
+                <TextBlock Text="{DynamicResource ResourceKey=Email}"/>
+                <TextBlock Text=": "/>
+            </TextBlock>
+                        </Label>
+                        <Label FontSize="18" HorizontalContentAlignment="Right" Height="30" Margin="0,20,0,0" Foreground="Black">
+                            <TextBlock>
+                <TextBlock Text="{DynamicResource ResourceKey=Password}"/>
+                <TextBlock Text=": "/>
+            </TextBlock>
+                        </Label>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <WrapPanel Margin="0,20,0,-10" Height="40" x:Name="languageSelector">
+                            <WrapPanel.Resources>
+                                <Style x:Key="Flag" TargetType="RadioButton">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsChecked" Value="False">
+                                            <Setter Property="Opacity" Value="1"/>
+                                        </Trigger>
+                                        <Trigger Property="IsChecked" Value="True">
+                                            <Setter Property="BorderBrush" Value="Black"/>
+                                            <Setter Property="BorderThickness" Value="3"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="RadioButton">
+                                                <Border BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="Transparent"
+                                    CornerRadius="20">
+                                                    <Image Source="{Binding Path=Content, RelativeSource={RelativeSource TemplatedParent}}"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </WrapPanel.Resources>
+                            <RadioButton x:Name="rbPreferNL" GroupName="Lang"  Content="/Resources/Icons/32_NL.png" Style="{StaticResource Flag}" Margin="10,0,10,0" Width="40" Height="40" Checked="RadioButton_Checked"/>
+                            <RadioButton x:Name="rbPreferEN" GroupName="Lang" Content="/Resources/Icons/32_EN.png" Style="{StaticResource Flag}" Margin="10,0,10,0" Width="40" Height="40" Checked="RadioButton_Checked"/>
+                        </WrapPanel>
+                        <TextBox Text="{Binding Path=NewDesktopUser.FirstName}" FontSize="18" VerticalContentAlignment="Center" Height="30" Margin="0,20,0,0" TextWrapping="Wrap" Width="280"/>
+                        <TextBox Text="{Binding Path=NewDesktopUser.LastName}" FontSize="18" VerticalContentAlignment="Center" Height="30" Margin="0,20,0,0" TextWrapping="Wrap" Width="280"/>
+                        <TextBox Text="{Binding Path=NewDesktopUser.Username}" FontSize="18" VerticalContentAlignment="Center" Height="30" Margin="0,20,0,0" TextWrapping="Wrap" Width="280"/>
+                        <TextBox Text="{Binding Path=NewDesktopUser.Email}" FontSize="18" VerticalContentAlignment="Center" Height="30" Margin="0,20,0,0" TextWrapping="Wrap" Width="280"/>
+                        <PasswordBox x:Name="pwdPassword" VerticalContentAlignment="Center" Height="30" Margin="0,20,0,0" Width="280" 
+                                     PasswordChanged="pwdPassword_PasswordChanged"/>
+                        <TextBox x:Name="txtPasswordVisible" VerticalContentAlignment="Center" Height="30" Margin="0,20,0,0" Width="280" 
+                                 TextChanged="txtPasswordVisible_TextChanged" Visibility="Collapsed"/>
+                        <Button x:Name="btnShowHidePwd" Margin="125,-30,-125,30" FontSize="18" Background="White" Width="30" Height="30" Click="btnShowHidePwd_Click"
+                                BorderBrush="Black">
+                            <DynamicResource ResourceKey="Show"></DynamicResource>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </WrapPanel>
+            <Button x:Name="btnSave" FontSize="16" Content="{DynamicResource ResourceKey=Save}" Width="120" Margin="0,40,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Click="btnSave_Click"/>
+
+        </StackPanel>
+    </Grid>
+</base:LanguageWindow>

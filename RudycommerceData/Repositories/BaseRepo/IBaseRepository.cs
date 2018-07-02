@@ -8,6 +8,8 @@ namespace RudycommerceData.Repositories.BaseRepo
 {
     public interface IBaseRepository<T>
     {
+        IQueryable<T> GetAllQueryable();
+
         Task<T> GetAsync(int ID);
 
         Task<List<T>> GetAllAsync();
