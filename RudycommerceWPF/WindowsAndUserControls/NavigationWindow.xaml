@@ -32,18 +32,148 @@
                 <Setter Property="BorderThickness" Value="1,0,1,0"/>
             </Style>
 
+            <Style x:Key="ToolbarButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                <Setter Property="BorderThickness" Value="0,0,0,0"/>
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <!--<Setter Property="Margin" Value="10,0,10,0"/>-->
+                <Setter Property="Padding" Value="15,7,15,7"/>
+            </Style>
+
+            <Style x:Key="ToolbarGreyLabel" TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="#B7B7B7"/>
+            </Style>
+
+            <Style x:Key="ToolbarIcon" TargetType="Image">
+                <Setter Property="Width" Value="32"/>
+                <Setter Property="Height" Value="32"/>
+            </Style>
+
+            <Style x:Key="ToolbarStack" TargetType="StackPanel">
+                <Setter Property="Margin" Value="20,0,20,0"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <ribbon:Ribbon />
+
+            <DockPanel Background="#252525">
+                <ToolBarTray DockPanel.Dock="Top">
+                    <ToolBar FontSize="18">
+                        <StackPanel Style="{StaticResource ToolbarStack}">
+                            <WrapPanel>
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource OrderOverviewTT}">
+                                    <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
+                                </Button>
+                            </WrapPanel>
+                            <Label Style="{StaticResource ToolbarGreyLabel}" Content="{DynamicResource Orders}"/>
+                        </StackPanel>
+
+                        <Separator/>
+
+                        <StackPanel Style="{StaticResource ToolbarStack}">
+                            <WrapPanel>
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewProductTT}">
+                                    <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
+                                </Button>
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource ProductOverviewTT}">
+                                    <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
+                                </Button>
+                            </WrapPanel>
+                            <Label Style="{StaticResource ToolbarGreyLabel}" Content="{DynamicResource Products}"/>
+                        </StackPanel>
+
+                        <Separator/>
+
+                        <StackPanel Style="{StaticResource ToolbarStack}">
+                            <WrapPanel>
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewCategoryTT}">
+                                    <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
+                                </Button>
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource CategoryOverviewTT}">
+                                    <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
+                                </Button>
+                            </WrapPanel>
+                            <Label Style="{StaticResource ToolbarGreyLabel}" Content="{DynamicResource Categories}"/>
+                        </StackPanel>
+
+                        <Separator/>
+
+                        <StackPanel Style="{StaticResource ToolbarStack}">
+                            <WrapPanel>
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewSpecificationTT}">
+                                    <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
+                                </Button>
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource SpecificationOverviewTT}">
+                                    <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
+                                </Button>
+                            </WrapPanel>
+                            <Label Style="{StaticResource ToolbarGreyLabel}" Content="{DynamicResource Specifications}"/>
+                        </StackPanel>
+
+                        <Separator/>
+
+                        <StackPanel Style="{StaticResource ToolbarStack}">
+                            <WrapPanel>
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewLanguageTT}">
+                                    <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
+                                </Button>
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource LanguageOverviewTT}">
+                                    <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
+                                </Button>
+                            </WrapPanel>
+                            <Label Style="{StaticResource ToolbarGreyLabel}" Content="{DynamicResource Languages}"/>
+                        </StackPanel>
+
+                        <Separator/>
+
+                        <StackPanel x:Name="stackDesktopUser" Visibility="Collapsed" Style="{StaticResource ToolbarStack}">
+                            <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource EmployeeOverviewTT}">
+                                <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
+                            </Button>
+                            <Label Style="{StaticResource ToolbarGreyLabel}" Content="{DynamicResource Employees}"/>
+                        </StackPanel>
+
+                        <Separator/>
+
+                        <StackPanel Style="{StaticResource ToolbarStack}">
+                            <Button Style="{StaticResource ToolbarButton}" HorizontalAlignment="Right" Click="menuSettings">
+                                 <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/64_CogwheelSettings_WHITE.png"/>
+                            </Button>
+                            <Label Style="{StaticResource ToolbarGreyLabel}" Content="{DynamicResource Settings}"/>
+                        </StackPanel>
+
+                        <Separator />
+                    </ToolBar>
+
+                </ToolBarTray>
+
+            </DockPanel>
+
         </Grid>
-        <Grid Grid.Row="1"></Grid>
+
+
+        <Grid x:Name="UserControls" Grid.Row="1">
+            
+            <ContentControl x:Name="ccOrders" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccProducts" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccCategories" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccSpecifications" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccLanguages" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccUsers" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccSettings" Visibility="Collapsed"/>
+
+        </Grid>
     </Grid>
 </base:LanguageWindow>

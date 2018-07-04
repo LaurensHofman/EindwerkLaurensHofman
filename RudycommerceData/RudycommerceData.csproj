@@ -94,6 +94,14 @@
     <Compile Include="Migrations\201806281106392_valuesprodspec.Designer.cs">
       <DependentUpon>201806281106392_valuesprodspec.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807041458218_BaseEntityProductImage.cs" />
+    <Compile Include="Migrations\201807041458218_BaseEntityProductImage.Designer.cs">
+      <DependentUpon>201807041458218_BaseEntityProductImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807041507408_langIDUser.cs" />
+    <Compile Include="Migrations\201807041507408_langIDUser.Designer.cs">
+      <DependentUpon>201807041507408_langIDUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DesktopLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -146,6 +154,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806281106392_valuesprodspec.resx">
       <DependentUpon>201806281106392_valuesprodspec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807041458218_BaseEntityProductImage.resx">
+      <DependentUpon>201807041458218_BaseEntityProductImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807041507408_langIDUser.resx">
+      <DependentUpon>201807041507408_langIDUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -15,15 +15,42 @@
     <system:String x:Key="PreferredLanguage">Voorkeurstaal</system:String>
     <system:String x:Key="FirstName">Voornaam</system:String>
     <system:String x:Key="LastName">Achternaam</system:String>
-    <system:String x:Key="Email">Email</system:String>
+    <system:String x:Key="Email">E-mail</system:String>
     <system:String x:Key="Save">Opslaan</system:String>
     <system:String x:Key="NewUserFormTitle">Nieuwe gebruiker aanmaken</system:String>
     <system:String x:Key="NavigationWindowTitle">Rudycommerce</system:String>
-    <!--<system:String x:Key="Save">Opslaan</system:String>
-    <system:String x:Key="Save">Opslaan</system:String>
-    <system:String x:Key="Save">Opslaan</system:String>
-    <system:String x:Key="Save">Opslaan</system:String>
-    <system:String x:Key="Save">Opslaan</system:String>
-    <system:String x:Key="Save">Opslaan</system:String>-->
+    
+    <!--  TT = Tooltip -->
+    <system:String x:Key="OrderOverviewTT">Toont het overzicht van alle recent gemaakte bestellingen.</system:String>
+    <system:String x:Key="Orders">Bestellingen</system:String>
+    <system:String x:Key="NewProductTT">Maak een nieuw product aan.</system:String>
+    <system:String x:Key="ProductOverviewTT">Toont het overzicht van alle producten.</system:String>
+    <system:String x:Key="Products">Producten</system:String>
+    <system:String x:Key="NewCategoryTT">Maak een nieuwe productcategorie aan.</system:String>
+    <system:String x:Key="CategoryOverviewTT">Toont het overzicht van alle productcategorieën.</system:String>
+    <system:String x:Key="Categories">Categorieën</system:String>
+    <system:String x:Key="NewSpecificationTT">Maak een nieuwe productspecificatie aan.</system:String>
+    <system:String x:Key="SpecificationOverviewTT">Toont het overzicht van de productspecificaties.</system:String>
+    <system:String x:Key="Specifications">Specificaties</system:String>
+    <system:String x:Key="NewLanguageTT">Maak een nieuwe ondersteunde taal aan voor de website.</system:String>
+    <system:String x:Key="LanguageOverviewTT">Toont het overzicht van de ondersteunde talen voor de website.</system:String>
+    <system:String x:Key="Languages">Talen</system:String>
+    <system:String x:Key="EmployeeOverviewTT">Toont het overzicht van de werknemers voor deze applicatie.</system:String>
+    <system:String x:Key="Employees">Werknemers</system:String>
+    <system:String x:Key="Settings">Instellingen</system:String>
+    
+    <!-- wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww -->
+
+    <system:String x:Key="ManageAccount">Account instellingen</system:String>
+    <!--<system:String x:Key="Settings">Instellingen</system:String>
+    <system:String x:Key="Settings">Instellingen</system:String>
+    <system:String x:Key="Settings">Instellingen</system:String>
+    <system:String x:Key="Settings">Instellingen</system:String>
+    <system:String x:Key="Settings">Instellingen</system:String>
+    <system:String x:Key="Settings">Instellingen</system:String>
+    <system:String x:Key="Settings">Instellingen</system:String>
+    <system:String x:Key="Settings">Instellingen</system:String>
+    <system:String x:Key="Settings">Instellingen</system:String>-->
+
 
 </ResourceDictionary>

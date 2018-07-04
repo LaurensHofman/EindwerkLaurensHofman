@@ -1,5 +1,44 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:RudycommerceWPF.LanguageResources">
-    
+                    xmlns:local="clr-namespace:RudycommerceWPF.LanguageResources"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!--<system:String x:Key="Save">Opslaan</system:String>-->
+
+
+    <system:String x:Key="LoginINF">Login</system:String>
+    <system:String x:Key="Username">Username</system:String>
+    <system:String x:Key="Password">Password</system:String>
+    <system:String x:Key="NewUser">New user</system:String>
+    <system:String x:Key="Cancel">Cancel</system:String>
+    <system:String x:Key="AdminUserFormTitle">Create admin account</system:String>
+    <system:String x:Key="PreferredLanguage">Preferred language</system:String>
+    <system:String x:Key="FirstName">First name</system:String>
+    <system:String x:Key="LastName">Last name</system:String>
+    <system:String x:Key="Email">Email</system:String>
+    <system:String x:Key="Save">Save</system:String>
+    <system:String x:Key="NewUserFormTitle">Create new user</system:String>
+    <system:String x:Key="NavigationWindowTitle">Rudycommerce</system:String>
+
+    <!--  TT = Tooltip -->
+    <system:String x:Key="OrderOverviewTT">Shows the overview of all recently made orders.</system:String>
+    <system:String x:Key="Orders">Orders</system:String>
+    <system:String x:Key="NewProductTT">Create a new product.</system:String>
+    <system:String x:Key="ProductOverviewTT">Shows the overview of all products.</system:String>
+    <system:String x:Key="Products">Products</system:String>
+    <system:String x:Key="NewCategoryTT">Create a new product category.</system:String>
+    <system:String x:Key="CategoryOverviewTT">Shows the overview of all product categories.</system:String>
+    <system:String x:Key="Categories">Categories</system:String>
+    <system:String x:Key="NewSpecificationTT">Create a new product specification.</system:String>
+    <system:String x:Key="SpecificationOverviewTT">Shows the overview of all product specifications.</system:String>
+    <system:String x:Key="Specifications">Specifications</system:String>
+    <system:String x:Key="NewLanguageTT">Create a new supported language for the website.</system:String>
+    <system:String x:Key="LanguageOverviewTT">Shows the overview of all the supported languages for the website.</system:String>
+    <system:String x:Key="Languages">Languages</system:String>
+    <system:String x:Key="EmployeeOverviewTT">Shows the overview of all employees for this application.</system:String>
+    <system:String x:Key="Employees">Employees</system:String>
+    <system:String x:Key="Settings">Settings</system:String>
+
+    <!-- wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww -->
+
 </ResourceDictionary>

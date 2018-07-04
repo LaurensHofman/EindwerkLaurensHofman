@@ -8,11 +8,8 @@ using System.Threading.Tasks;
 
 namespace RudycommerceData.Entities.Products.Products
 {
-    public class ProductImage
+    public class ProductImage : BaseEntity<int>
     {
-        [Key]
-        public int ID { get; set; }
-
         [Required]
         public int Order { get; set; }
 
@@ -21,5 +18,10 @@ namespace RudycommerceData.Entities.Products.Products
 
         [NotMapped]
         public string FileLocation { get; set; }
+
+        public override bool IsNew()
+        {
+            return this.ID <= 0;
+        }
     }
 }

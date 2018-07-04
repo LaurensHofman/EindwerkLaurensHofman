@@ -1,4 +1,5 @@
 ﻿using RudycommerceData.Data;
+using RudycommerceData.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace RudycommerceData.Repositories.BaseRepo
 {
-    public class BaseRepository<T> : IBaseRepository<T> where T: class
+    public class BaseRepository<T> : IBaseRepository<T> where T: BaseEntity<int>
     {
         protected readonly RudyDbContext _context;
 
@@ -50,11 +51,18 @@ namespace RudycommerceData.Repositories.BaseRepo
 
         public async Task<T> UpdateAsync(T entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+            var original = await GetAsync(entity.ID);
 
-            await _context.SaveChangesAsync();
+            if (original != null)
+            {
+                _context.Entry(original).CurrentValues.SetValues(entity);
 
-            return entity;
+                await _context.SaveChangesAsync();
+
+                return entity;
+            }
+
+            return null;
         }
 
         public async Task<bool> AnyAsync()

@@ -24,7 +24,8 @@ namespace RudycommerceData.Entities.DesktopUsers
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        public Language PreferredLanguage { get; set; }
+        public int? PreferredLanguageID { get; set; }
+        public virtual Language PreferredLanguage { get; set; }
 
         [Required]
         public string Username { get; set; }

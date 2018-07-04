@@ -80,6 +80,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="WindowsAndUserControls\Abstracts\LanguageUserControl.cs" />
     <Compile Include="WindowsAndUserControls\Abstracts\LanguageWindow.cs" />
     <Compile Include="WindowsAndUserControls\Login\AdminUserForm.xaml.cs">
       <DependentUpon>AdminUserForm.xaml</DependentUpon>
@@ -92,6 +93,9 @@
     </Compile>
     <Compile Include="WindowsAndUserControls\NavigationWindow.xaml.cs">
       <DependentUpon>NavigationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsAndUserControls\Users\AccountSettings.xaml.cs">
+      <DependentUpon>AccountSettings.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -114,7 +118,7 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
@@ -134,7 +138,6 @@
   <ItemGroup>
     <Folder Include="WindowsAndUserControls\Languages\" />
     <Folder Include="WindowsAndUserControls\Products\" />
-    <Folder Include="WindowsAndUserControls\Users\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="LanguageResources\Dutch.xaml">
@@ -165,6 +168,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowsAndUserControls\Users\AccountSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\256_Add.png" />
@@ -187,6 +194,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="64_Controller.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\256_ListWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\256_AddWhite.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
