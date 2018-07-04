@@ -97,6 +97,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maak deze taal de nieuwe standaardtaal?.
+        /// </summary>
+        public static string MBContMakeLangDefault {
+            get {
+                return ResourceManager.GetString("MBContMakeLangDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bent u zeker dat u de applicatie wil sluiten?.
         /// </summary>
         public static string MBExitContent {
@@ -111,6 +120,15 @@ namespace RudycommerceLib.Properties {
         public static string MBExitTitle {
             get {
                 return ResourceManager.GetString("MBExitTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nieuwe standaardtaal.
+        /// </summary>
+        public static string MBTitleMakeLangDefault {
+            get {
+                return ResourceManager.GetString("MBTitleMakeLangDefault", resourceCulture);
             }
         }
         

@@ -33,12 +33,12 @@ namespace RudycommerceData.Entities
         
         [Index(IsUnique = true)]
         [Required]
-        [StringLength(3, MinimumLength = 3)]
+        [StringLength(2, MinimumLength = 2)]
         public string ISO { get; set; }
         
         public bool IsDesktopLanguage { get; set; }
         
-        public bool IsActive { get; set; }
+        //public bool IsActive { get; set; }
         
         public bool IsDefault { get; set; }
 
@@ -49,7 +49,7 @@ namespace RudycommerceData.Entities
 
         public Language()
         {
-            IsActive = true;
+
         }
     }
 }

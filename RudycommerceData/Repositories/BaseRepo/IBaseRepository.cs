@@ -14,12 +14,14 @@ namespace RudycommerceData.Repositories.BaseRepo
 
         Task<List<T>> GetAllAsync();
 
-        Task<T> AddAsync(T entity);
+        T AddAsync(T entity);
 
         Task<T> UpdateAsync(T entity);
 
-        Task DeleteAsync(T entity);
+        void DeleteAsync(T entity);
 
         Task<bool> AnyAsync();
+
+        Task<int> SaveChangesAsync();
     }
 }

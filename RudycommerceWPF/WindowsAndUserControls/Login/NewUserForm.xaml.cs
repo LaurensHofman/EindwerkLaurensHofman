@@ -120,7 +120,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             {
                 NewDesktopUser.EncryptedPassword = Encryption.EncryptPassword(NewDesktopUser.Salt, pwdPassword.Password);
 
-                NewDesktopUser = await _userRepo.AddAsync(NewDesktopUser);
+                NewDesktopUser = _userRepo.AddAsync(NewDesktopUser);
+                await _userRepo.SaveChangesAsync();
 
                 SendMailToAdmin();
                 SendMailToNewUser();

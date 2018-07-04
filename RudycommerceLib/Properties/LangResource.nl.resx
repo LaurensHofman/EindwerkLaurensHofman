@@ -129,11 +129,17 @@
   <data name="ErrSaveFailedTitle" xml:space="preserve">
     <value>Opslaan mislukt</value>
   </data>
+  <data name="MBContMakeLangDefault" xml:space="preserve">
+    <value>Maak deze taal de nieuwe standaardtaal?</value>
+  </data>
   <data name="MBExitContent" xml:space="preserve">
     <value>Bent u zeker dat u de applicatie wil sluiten?</value>
   </data>
   <data name="MBExitTitle" xml:space="preserve">
     <value>Applicatie sluiten?</value>
+  </data>
+  <data name="MBTitleMakeLangDefault" xml:space="preserve">
+    <value>Nieuwe standaardtaal</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Naam</value>

@@ -126,7 +126,7 @@
 
                         <StackPanel Style="{StaticResource ToolbarStack}">
                             <WrapPanel>
-                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewLanguageTT}">
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewLanguageTT}" Click="menuAddLanguage">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
                                 </Button>
                                 <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource LanguageOverviewTT}">
@@ -139,7 +139,7 @@
                         <Separator/>
 
                         <StackPanel x:Name="stackDesktopUser" Visibility="Collapsed" Style="{StaticResource ToolbarStack}">
-                            <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource EmployeeOverviewTT}">
+                            <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource EmployeeOverviewTT}" Click="menuDesktopUserOverview">
                                 <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
                             </Button>
                             <Label Style="{StaticResource ToolbarGreyLabel}" Content="{DynamicResource Employees}"/>
@@ -148,7 +148,7 @@
                         <Separator/>
 
                         <StackPanel Style="{StaticResource ToolbarStack}">
-                            <Button Style="{StaticResource ToolbarButton}" HorizontalAlignment="Right" Click="menuSettings">
+                            <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource SettingsTT}" Click="menuSettings">
                                  <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/64_CogwheelSettings_WHITE.png"/>
                             </Button>
                             <Label Style="{StaticResource ToolbarGreyLabel}" Content="{DynamicResource Settings}"/>

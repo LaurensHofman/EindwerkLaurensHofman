@@ -3,6 +3,7 @@ using RudycommerceData.Entities.DesktopUsers;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
 using RudycommerceWPF.WindowsAndUserControls.Abstracts;
+using RudycommerceWPF.WindowsAndUserControls.Languages;
 using RudycommerceWPF.WindowsAndUserControls.Users;
 using System;
 using System.Collections.Generic;
@@ -87,36 +88,7 @@ namespace RudycommerceWPF.WindowsAndUserControls
 
             Thread.CurrentThread.CurrentUICulture = ci;
         }
-
-        private void menuSettings(object sender, RoutedEventArgs e)
-        {
-            HideAllUserControls();
-
-            if (ccSettings.Content == null || (ccSettings.Content as AccountSettings).Visibility == Visibility.Collapsed)
-            {
-                AccountSettings _content = new AccountSettings();
-
-                _content.OnAccountSave += ApplySettings;
-
-                ccSettings.Content = _content;
-            }
-            
-            ccSettings.Visibility = Visibility.Visible;
-            (ccSettings.Content as AccountSettings).Visibility = Visibility.Visible;
-        }
-
-        private async void ApplySettings(DesktopUser desktopUser)
-        {
-            _preferredLanguage = await _langRepo.GetAsync((int)desktopUser.PreferredLanguageID) ;
-
-            SetLanguageDictionary();
-
-            foreach (ContentControl contentControl in UserControls.Children)
-            {
-                contentControl.Content = null;
-            }
-        }
-
+                
         private void ShowUserControl<langUC>(ContentControl contentControl) where langUC : LanguageUserControl, new()
         {
             // Gets the User control (<Type>) that has to be shown, and defines it as a UserControl (inheritence from :LanguageUserControl)
@@ -148,6 +120,45 @@ namespace RudycommerceWPF.WindowsAndUserControls
             {
                 contentControl.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void menuSettings(object sender, RoutedEventArgs e)
+        {
+            HideAllUserControls();
+
+            if (ccSettings.Content == null || (ccSettings.Content as AccountSettings).Visibility == Visibility.Collapsed)
+            {
+                AccountSettings _content = new AccountSettings();
+
+                _content.OnAccountSave += ApplySettings;
+
+                ccSettings.Content = _content;
+            }
+
+            ccSettings.Visibility = Visibility.Visible;
+            (ccSettings.Content as AccountSettings).Visibility = Visibility.Visible;
+        }
+
+        private async void ApplySettings(DesktopUser desktopUser)
+        {
+            _preferredLanguage = await _langRepo.GetAsync((int)desktopUser.PreferredLanguageID);
+
+            SetLanguageDictionary();
+
+            foreach (ContentControl contentControl in UserControls.Children)
+            {
+                contentControl.Content = null;
+            }
+        }
+
+        private void menuDesktopUserOverview(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void menuAddLanguage(object sender, RoutedEventArgs e)
+        {
+            ShowUserControl<LanguageForm>(ccLanguages);
         }
     }
 }

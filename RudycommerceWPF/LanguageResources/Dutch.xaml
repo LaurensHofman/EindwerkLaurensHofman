@@ -41,16 +41,14 @@
     
     <!-- wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww -->
 
-    <system:String x:Key="ManageAccount">Account instellingen</system:String>
-    <!--<system:String x:Key="Settings">Instellingen</system:String>
-    <system:String x:Key="Settings">Instellingen</system:String>
-    <system:String x:Key="Settings">Instellingen</system:String>
-    <system:String x:Key="Settings">Instellingen</system:String>
-    <system:String x:Key="Settings">Instellingen</system:String>
-    <system:String x:Key="Settings">Instellingen</system:String>
-    <system:String x:Key="Settings">Instellingen</system:String>
-    <system:String x:Key="Settings">Instellingen</system:String>
-    <system:String x:Key="Settings">Instellingen</system:String>-->
-
+    <system:String x:Key="ManageAccountTitle">Account instellingen</system:String>
+    <system:String x:Key="UpdateLanguageTitle">Taal wijzigen</system:String>
+    <system:String x:Key="NewLanguageTitle">Nieuwe taal</system:String>
+    <system:String x:Key="LocalName">Lokale naam</system:String>
+    <system:String x:Key="DutchName">Nederlandse naam</system:String>
+    <system:String x:Key="EnglishName">Engelse naam</system:String>
+    <system:String x:Key="ISOCode">ISO-code</system:String>
+    <system:String x:Key="IsLanguageDefault">Is deze de standaardtaal?</system:String>
+    <system:String x:Key="SettingsTT">Wijzig de voorkeuren van de gebruiker.</system:String>
 
 </ResourceDictionary>

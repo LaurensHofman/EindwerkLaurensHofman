@@ -114,6 +114,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Users
 
             _currentUser.PreferredLanguageID = _preferredLanguage.ID;
             await _userRepo.UpdateAsync(_currentUser);
+            await _userRepo.SaveChangesAsync();
             OnAccountSave(_currentUser);
         }
 

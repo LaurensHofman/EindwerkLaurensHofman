@@ -129,11 +129,17 @@
   <data name="ErrSaveFailedTitle" xml:space="preserve">
     <value>Save failed</value>
   </data>
+  <data name="MBContMakeLangDefault" xml:space="preserve">
+    <value>Make this language the new default one?</value>
+  </data>
   <data name="MBExitContent" xml:space="preserve">
     <value>Are you sure you want to close the application?</value>
   </data>
   <data name="MBExitTitle" xml:space="preserve">
     <value>Close application</value>
+  </data>
+  <data name="MBTitleMakeLangDefault" xml:space="preserve">
+    <value>New default language</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>

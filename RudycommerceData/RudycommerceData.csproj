@@ -102,6 +102,14 @@
     <Compile Include="Migrations\201807041507408_langIDUser.Designer.cs">
       <DependentUpon>201807041507408_langIDUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807041924282_langnotactive.cs" />
+    <Compile Include="Migrations\201807041924282_langnotactive.Designer.cs">
+      <DependentUpon>201807041924282_langnotactive.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807042012035_langiso2.cs" />
+    <Compile Include="Migrations\201807042012035_langiso2.Designer.cs">
+      <DependentUpon>201807042012035_langiso2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DesktopLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -160,6 +168,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807041507408_langIDUser.resx">
       <DependentUpon>201807041507408_langIDUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807041924282_langnotactive.resx">
+      <DependentUpon>201807041924282_langnotactive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807042012035_langiso2.resx">
+      <DependentUpon>201807042012035_langiso2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

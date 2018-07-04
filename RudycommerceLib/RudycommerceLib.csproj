@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomExceptions\CustomExceptions.cs" />
     <Compile Include="MessageBox\MessageBoxManager.cs" />
     <Compile Include="Notify\GmailNotifier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

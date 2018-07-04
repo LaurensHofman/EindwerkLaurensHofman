@@ -23,20 +23,16 @@ namespace RudycommerceData.Repositories.BaseRepo
             return _context.Set<T>().AsQueryable();
         }
 
-        public async Task<T> AddAsync(T entity)
+        public T AddAsync(T entity)
         {
             _context.Set<T>().Add(entity);
-
-            await _context.SaveChangesAsync();
 
             return entity;
         }
 
-        public async Task DeleteAsync(T entity)
+        public void DeleteAsync(T entity)
         {
             _context.Set<T>().Remove(entity);
-
-            await _context.SaveChangesAsync();
         }
 
         public async Task<List<T>> GetAllAsync()
@@ -57,8 +53,6 @@ namespace RudycommerceData.Repositories.BaseRepo
             {
                 _context.Entry(original).CurrentValues.SetValues(entity);
 
-                await _context.SaveChangesAsync();
-
                 return entity;
             }
 
@@ -68,6 +62,11 @@ namespace RudycommerceData.Repositories.BaseRepo
         public async Task<bool> AnyAsync()
         {
             return await _context.Set<T>().AnyAsync();
+        }
+
+        public async Task<int> SaveChangesAsync()
+        {
+            return await _context.SaveChangesAsync();
         }
     }
 }

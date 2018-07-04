@@ -82,6 +82,9 @@
     </Compile>
     <Compile Include="WindowsAndUserControls\Abstracts\LanguageUserControl.cs" />
     <Compile Include="WindowsAndUserControls\Abstracts\LanguageWindow.cs" />
+    <Compile Include="WindowsAndUserControls\Languages\LanguageForm.xaml.cs">
+      <DependentUpon>LanguageForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsAndUserControls\Login\AdminUserForm.xaml.cs">
       <DependentUpon>AdminUserForm.xaml</DependentUpon>
     </Compile>
@@ -136,7 +139,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="WindowsAndUserControls\Languages\" />
     <Folder Include="WindowsAndUserControls\Products\" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +151,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Styles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsAndUserControls\Languages\LanguageForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

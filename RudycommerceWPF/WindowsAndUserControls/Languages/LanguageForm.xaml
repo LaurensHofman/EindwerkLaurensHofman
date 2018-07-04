@@ -1,0 +1,71 @@
+﻿<base:LanguageUserControl
+    xmlns:base="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts" x:Class="RudycommerceWPF.WindowsAndUserControls.Languages.LanguageForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Languages"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid x:Name="grdLanguageForm" Style="{StaticResource UserControlGrid}">
+        <StackPanel HorizontalAlignment="Stretch">
+            <Label x:Name="lblTitle" Content="Title placeholder" Style="{StaticResource TitleLabel}"/>
+
+            <WrapPanel HorizontalAlignment="Center">
+
+                <StackPanel HorizontalAlignment="Center">
+                    <Label x:Name="lblLocalName" Style="{StaticResource FormLabel}">
+                        <TextBlock>
+                    <TextBlock Text="{DynamicResource ResourceKey=LocalName}"/>
+                    <TextBlock Text=": "/>
+                </TextBlock>
+                    </Label>
+                    <Label x:Name="lblDutchName" Style="{StaticResource FormLabel}">
+                        <TextBlock>
+                    <TextBlock Text="{DynamicResource ResourceKey=DutchName}"/>
+                    <TextBlock Text=": "/>
+                </TextBlock>
+                    </Label>
+                    <Label x:Name="lblEnglishName" Style="{StaticResource FormLabel}">
+                        <TextBlock>
+                    <TextBlock Text="{DynamicResource ResourceKey=EnglishName}"/>
+                    <TextBlock Text=": "/>
+                </TextBlock>
+                    </Label>
+                    <Label x:Name="lblISO" Style="{StaticResource FormLabel}">
+                        <TextBlock>
+                    <TextBlock Text="{DynamicResource ResourceKey=ISOCode}"/>
+                    <TextBlock Text=": "/>
+                </TextBlock>
+                    </Label>
+                    <!--<Label x:Name="lblIsActive" Content="{DynamicResource ResourceKey=IsLanguageActive}" Style="{StaticResource FormLabel}"/>-->
+                    <Label x:Name="lblIsDefault" Content="{DynamicResource ResourceKey=IsLanguageDefault}" Style="{StaticResource FormLabel}"/>
+
+                </StackPanel>
+                <StackPanel x:Name="stackInput">
+                    <TextBox x:Name="txtLocalName" Text="{Binding Path=LanguageModel.LocalName}" Style="{StaticResource FormInputTextBox}" Width="200"/>
+                    <TextBox x:Name="txtDutchName" Text="{Binding Path=LanguageModel.DutchName}" Style="{StaticResource FormInputTextBox}" Width="200"/>
+                    <TextBox x:Name="txtEnglishName" Text="{Binding Path=LanguageModel.EnglishName}" Style="{StaticResource FormInputTextBox}" Width="200"/>
+                    <TextBox x:Name="txtISO" Text="{Binding Path=LanguageModel.ISO}" VerticalAlignment="Top" Style="{StaticResource FormInputTextBox}" Width="50" MaxLength="2"/>
+                    <!--<CheckBox x:Name="cbxIsActive" IsChecked="{Binding Path=Model.IsActive}" Style="{StaticResource FormInputCheckBox}" Click="cbxIsActive_Click"/>-->
+                    <CheckBox x:Name="cbxIsDefault" IsChecked="{Binding Path=LanguageModel.IsDefault}" Style="{StaticResource FormInputCheckBox}"/>
+
+                </StackPanel>
+            </WrapPanel>
+            <WrapPanel HorizontalAlignment="Right">
+                <Button x:Name="btnCancel" Content="{DynamicResource Cancel}" Style="{StaticResource FormSubmitCancelButton}" Click="btnCancel_Click"/>
+                <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource FormSubmitCancelButton}" Click="btnSave_Click"/>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</base:LanguageUserControl>
