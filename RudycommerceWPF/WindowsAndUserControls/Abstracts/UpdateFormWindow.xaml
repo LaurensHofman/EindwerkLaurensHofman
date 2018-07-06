@@ -1,0 +1,13 @@
+﻿<base:LanguageWindow x:Class="RudycommerceWPF.WindowsAndUserControls.Abstracts.UpdateFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts"
+        xmlns:base="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts"
+        mc:Ignorable="d"
+        Background="Beige" Height="700" Width="700" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <ContentControl x:Name="contentControl"/>
+    </Grid>
+</base:LanguageWindow>

@@ -25,7 +25,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Users
     /// <summary>
     /// Interaction logic for AccountSettings.xaml
     /// </summary>
-    public partial class AccountSettings : LanguageUserControl
+    public partial class AccountSettings : MultilingualUserControl
     {
         public delegate void AccountSaved(DesktopUser desktopUser);
         public event AccountSaved OnAccountSave;

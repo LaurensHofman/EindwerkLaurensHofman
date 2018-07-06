@@ -80,10 +80,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="WindowsAndUserControls\Abstracts\LanguageUserControl.cs" />
+    <Compile Include="WindowsAndUserControls\Abstracts\FormUserControl.cs" />
+    <Compile Include="WindowsAndUserControls\Abstracts\MultilingualUserControl.cs" />
     <Compile Include="WindowsAndUserControls\Abstracts\LanguageWindow.cs" />
+    <Compile Include="WindowsAndUserControls\Abstracts\OverviewUserControl.cs" />
+    <Compile Include="WindowsAndUserControls\Abstracts\UpdateFormWindow.xaml.cs">
+      <DependentUpon>UpdateFormWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsAndUserControls\Languages\LanguageForm.xaml.cs">
       <DependentUpon>LanguageForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsAndUserControls\Languages\LanguageOverview.xaml.cs">
+      <DependentUpon>LanguageOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsAndUserControls\Login\AdminUserForm.xaml.cs">
       <DependentUpon>AdminUserForm.xaml</DependentUpon>
@@ -96,6 +104,12 @@
     </Compile>
     <Compile Include="WindowsAndUserControls\NavigationWindow.xaml.cs">
       <DependentUpon>NavigationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsAndUserControls\Products\Brand\BrandForm.xaml.cs">
+      <DependentUpon>BrandForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsAndUserControls\Products\Brand\BrandOverview.xaml.cs">
+      <DependentUpon>BrandOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsAndUserControls\Users\AccountSettings.xaml.cs">
       <DependentUpon>AccountSettings.xaml</DependentUpon>
@@ -139,7 +153,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="WindowsAndUserControls\Products\" />
+    <Folder Include="WindowsAndUserControls\Products\Category\" />
+    <Folder Include="WindowsAndUserControls\Products\Product\" />
+    <Folder Include="WindowsAndUserControls\Products\Specification\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="LanguageResources\Dutch.xaml">
@@ -154,7 +170,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowsAndUserControls\Abstracts\UpdateFormWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowsAndUserControls\Languages\LanguageForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsAndUserControls\Languages\LanguageOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -171,6 +195,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowsAndUserControls\NavigationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsAndUserControls\Products\Brand\BrandForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsAndUserControls\Products\Brand\BrandOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -206,6 +238,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\256_AddWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\256_RefreshWhite.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

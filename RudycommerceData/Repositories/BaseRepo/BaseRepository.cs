@@ -23,14 +23,14 @@ namespace RudycommerceData.Repositories.BaseRepo
             return _context.Set<T>().AsQueryable();
         }
 
-        public T AddAsync(T entity)
+        public T Add(T entity)
         {
             _context.Set<T>().Add(entity);
 
             return entity;
         }
 
-        public void DeleteAsync(T entity)
+        public void Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
         }
@@ -67,6 +67,11 @@ namespace RudycommerceData.Repositories.BaseRepo
         public async Task<int> SaveChangesAsync()
         {
             return await _context.SaveChangesAsync();
+        }
+
+        public T Get(int ID)
+        {
+            return _context.Set<T>().Find(ID);
         }
     }
 }

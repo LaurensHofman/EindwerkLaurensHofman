@@ -71,7 +71,8 @@
             <DockPanel Background="#252525">
                 <ToolBarTray DockPanel.Dock="Top">
                     <ToolBar FontSize="18">
-                        <StackPanel Style="{StaticResource ToolbarStack}">
+                        
+                        <StackPanel x:Name="stackOrders" Style="{StaticResource ToolbarStack}">
                             <WrapPanel>
                                 <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource OrderOverviewTT}">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
@@ -82,7 +83,7 @@
 
                         <Separator/>
 
-                        <StackPanel Style="{StaticResource ToolbarStack}">
+                        <StackPanel x:Name="stackProducts" Style="{StaticResource ToolbarStack}">
                             <WrapPanel>
                                 <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewProductTT}">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
@@ -96,7 +97,21 @@
 
                         <Separator/>
 
-                        <StackPanel Style="{StaticResource ToolbarStack}">
+                        <StackPanel x:Name="stackBrand" Style="{StaticResource ToolbarStack}">
+                            <WrapPanel>
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewBrandTT}" Click="menuAddBrand">
+                                    <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
+                                </Button>
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource BrandOverviewTT}" Click="menuBrandOverview">
+                                    <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
+                                </Button>
+                            </WrapPanel>
+                            <Label Style="{StaticResource ToolbarGreyLabel}" Content="{DynamicResource Brands}"/>
+                        </StackPanel>
+
+                        <Separator/>
+
+                        <StackPanel x:Name="stackCategory" Style="{StaticResource ToolbarStack}">
                             <WrapPanel>
                                 <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewCategoryTT}">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
@@ -110,7 +125,7 @@
 
                         <Separator/>
 
-                        <StackPanel Style="{StaticResource ToolbarStack}">
+                        <StackPanel x:Name="stackSpecification" Style="{StaticResource ToolbarStack}">
                             <WrapPanel>
                                 <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewSpecificationTT}">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
@@ -124,12 +139,12 @@
 
                         <Separator/>
 
-                        <StackPanel Style="{StaticResource ToolbarStack}">
+                        <StackPanel x:Name="stackLanguages" Style="{StaticResource ToolbarStack}">
                             <WrapPanel>
                                 <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewLanguageTT}" Click="menuAddLanguage">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
                                 </Button>
-                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource LanguageOverviewTT}">
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource LanguageOverviewTT}" Click="menuLanguageOverview">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
                                 </Button>
                             </WrapPanel>
@@ -147,7 +162,7 @@
 
                         <Separator/>
 
-                        <StackPanel Style="{StaticResource ToolbarStack}">
+                        <StackPanel x:Name="stackSettings" Style="{StaticResource ToolbarStack}">
                             <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource SettingsTT}" Click="menuSettings">
                                  <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/64_CogwheelSettings_WHITE.png"/>
                             </Button>
@@ -167,11 +182,24 @@
         <Grid x:Name="UserControls" Grid.Row="1">
             
             <ContentControl x:Name="ccOrders" Visibility="Collapsed"/>
-            <ContentControl x:Name="ccProducts" Visibility="Collapsed"/>
-            <ContentControl x:Name="ccCategories" Visibility="Collapsed"/>
-            <ContentControl x:Name="ccSpecifications" Visibility="Collapsed"/>
-            <ContentControl x:Name="ccLanguages" Visibility="Collapsed"/>
+            
+            <ContentControl x:Name="ccProductForm" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccProductOverview" Visibility="Collapsed"/>
+
+            <ContentControl x:Name="ccBrandForm" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccBrandOverview" Visibility="Collapsed"/>
+
+            <ContentControl x:Name="ccCategoryForm" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccCategoryOverview" Visibility="Collapsed"/>
+            
+            <ContentControl x:Name="ccSpecificationForm" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccSpecificationOverview" Visibility="Collapsed"/>
+            
+            <ContentControl x:Name="ccLanguageForm" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccLanguageOverview" Visibility="Collapsed"/>
+            
             <ContentControl x:Name="ccUsers" Visibility="Collapsed"/>
+            
             <ContentControl x:Name="ccSettings" Visibility="Collapsed"/>
 
         </Grid>

@@ -1,15 +1,17 @@
 ﻿using RudycommerceData.Entities;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
 namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
 {
-    public class LanguageUserControl : UserControl
+    public abstract class MultilingualUserControl : UserControl
     {
         protected Language _preferredLanguage;
 
@@ -37,6 +39,28 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
             dict.Source = new Uri(langDictionary, UriKind.Relative);
 
             this.Resources.MergedDictionaries.Add(dict);
+
+            CultureInfo ci;
+
+            switch (_preferredLanguage.LocalName)
+            {
+                case "Nederlands":
+                    ci = CultureInfo.CreateSpecificCulture("nl");
+                    break;
+
+                case "English":
+                    ci = CultureInfo.CreateSpecificCulture("en");
+                    break;
+
+                default:
+                    ci = CultureInfo.CreateSpecificCulture("nl");
+                    break;
+            };
+
+            Thread.CurrentThread.CurrentUICulture = ci;
+            Thread.CurrentThread.CurrentCulture = ci;
+            CultureInfo.DefaultThreadCurrentCulture = ci;
+            CultureInfo.DefaultThreadCurrentUICulture = ci;
         }
     }
 }

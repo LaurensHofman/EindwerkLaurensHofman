@@ -13,11 +13,11 @@ namespace RudycommerceData.Entities
 {
     public class Language : BaseEntity<int>
     {
-        public virtual ICollection<LocalizedCategory> LocalizedCategories { get; set; }
-        public virtual ICollection<LocalizedEnumValue> LocalizedEnumValues { get; set; }
-        public virtual ICollection<LocalizedProduct> LocalizedProducts { get; set; }
-        public virtual ICollection<LocalizedSpecification> LocalizedSpecifications { get; set; }
-        public virtual ICollection<Values_ProductSpecifications> Values_ProductSpecifications { get; set; }
+        public ICollection<LocalizedCategory> LocalizedCategories { get; set; }
+        public ICollection<LocalizedEnumValue> LocalizedEnumValues { get; set; }
+        public ICollection<LocalizedProduct> LocalizedProducts { get; set; }
+        public ICollection<LocalizedSpecification> LocalizedSpecifications { get; set; }
+        public ICollection<Values_ProductSpecifications> Values_ProductSpecifications { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -47,9 +47,15 @@ namespace RudycommerceData.Entities
             return this.ID <= 0;
         }
 
+        public override string ToString()
+        {
+            return this.LocalName;
+        }
+
         public Language()
         {
-
+            this.IsDefault = false;
+            this.IsDesktopLanguage = false;
         }
     }
 }

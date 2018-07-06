@@ -54,6 +54,7 @@
     <Compile Include="Entities\Products\Categories\Category.cs" />
     <Compile Include="Entities\Products\Categories\CategorySpecification.cs" />
     <Compile Include="Entities\Products\Categories\LocalizedCategory.cs" />
+    <Compile Include="Entities\Products\Products\Brand.cs" />
     <Compile Include="Entities\Products\Products\LocalizedProduct.cs" />
     <Compile Include="Entities\Products\Products\Product.cs" />
     <Compile Include="Entities\Products\Products\ProductImage.cs" />
@@ -109,6 +110,10 @@
     <Compile Include="Migrations\201807042012035_langiso2.cs" />
     <Compile Include="Migrations\201807042012035_langiso2.Designer.cs">
       <DependentUpon>201807042012035_langiso2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807061145408_brand.cs" />
+    <Compile Include="Migrations\201807061145408_brand.Designer.cs">
+      <DependentUpon>201807061145408_brand.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DesktopLogin.cs" />
@@ -174,6 +179,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807042012035_langiso2.resx">
       <DependentUpon>201807042012035_langiso2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807061145408_brand.resx">
+      <DependentUpon>201807061145408_brand.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

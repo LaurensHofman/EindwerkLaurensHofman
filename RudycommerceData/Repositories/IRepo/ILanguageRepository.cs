@@ -10,6 +10,8 @@ namespace RudycommerceData.Repositories.IRepo
 {
     public interface ILanguageRepository: IBaseRepository<Language>
     {
+        Task<Language> MakeNewDefaultLanguage(Language newDefault);
 
+        Task<Language> SwapDefaultLanguages(Language newDefault);
     }
 }

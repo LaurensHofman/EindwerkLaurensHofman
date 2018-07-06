@@ -50,5 +50,13 @@
     <system:String x:Key="ISOCode">ISO-code</system:String>
     <system:String x:Key="IsLanguageDefault">Is deze de standaardtaal?</system:String>
     <system:String x:Key="SettingsTT">Wijzig de voorkeuren van de gebruiker.</system:String>
-
+    <system:String x:Key="LanguageOverview">Overzicht talen</system:String>
+    <system:String x:Key="MakeLangDefault">Maak deze standaardtaal</system:String>
+    <system:String x:Key="DefaultLanguageHeader">Standaardtaal?</system:String>
+    <system:String x:Key="Delete">Verwijder</system:String>
+    <system:String x:Key="NewBrandTT">Voeg een nieuw productmerk toe.</system:String>
+    <system:String x:Key="BrandOverviewTT">Toont het overzicht van de productmerken.</system:String>
+    <system:String x:Key="Brands">Merken</system:String>
+    <system:String x:Key="Brand">Merk</system:String>
+    
 </ResourceDictionary>

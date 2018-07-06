@@ -129,6 +129,12 @@
   <data name="ErrSaveFailedTitle" xml:space="preserve">
     <value>Save failed</value>
   </data>
+  <data name="MBContentDeleteLanguage" xml:space="preserve">
+    <value>Are you sure that you want to delete the language '{0}'?</value>
+  </data>
+  <data name="MBContentNewDefaultLang" xml:space="preserve">
+    <value>Are you sure that u want to make '{0}' the new default language?</value>
+  </data>
   <data name="MBContMakeLangDefault" xml:space="preserve">
     <value>Make this language the new default one?</value>
   </data>
@@ -138,8 +144,14 @@
   <data name="MBExitTitle" xml:space="preserve">
     <value>Close application</value>
   </data>
+  <data name="MBTitleDeleteObj" xml:space="preserve">
+    <value>Delete '{0}'?</value>
+  </data>
   <data name="MBTitleMakeLangDefault" xml:space="preserve">
     <value>New default language</value>
+  </data>
+  <data name="MBTitleNewDefaultLang" xml:space="preserve">
+    <value>'{0}' as new default language?</value>
   </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>

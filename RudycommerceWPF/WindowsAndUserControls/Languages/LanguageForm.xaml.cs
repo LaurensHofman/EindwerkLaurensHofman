@@ -24,7 +24,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
     /// <summary>
     /// Interaction logic for LanguageForm.xaml
     /// </summary>
-    public partial class LanguageForm : LanguageUserControl
+    public partial class LanguageForm : FormUserControl
     {
         // TODO Validation (incl. 2 letter ISO)
 
@@ -38,8 +38,25 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
         public LanguageForm(Language languageModel)
         {
             InitializeComponent();
+            InitializeWindow(languageModel);
+        }
 
-            _updatingPage = ! languageModel.IsNew();
+        public LanguageForm(int ID)
+        {
+            InitializeComponent();
+
+            _langRepo = new LanguageRepository();
+
+            Language lang = _langRepo.Get(ID);
+
+            btnCancel.Visibility = Visibility.Collapsed;
+
+            InitializeWindow(lang);
+        }
+
+        private void InitializeWindow(Language languageModel)
+        {
+            _updatingPage = !languageModel.IsNew();
 
             _langRepo = new LanguageRepository();
 
@@ -63,6 +80,11 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
         {
             try
             {
+                if (LanguageModel.LocalName == "Nederlands" || LanguageModel.LocalName == "English")
+                {
+                    LanguageModel.IsDesktopLanguage = true;
+                }
+
                 if (ValidateModel())
                 {
                     if (LanguageModel.IsDefault)
@@ -74,11 +96,10 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
                             if (MessageBox.Show(LangResource.MBContMakeLangDefault, LangResource.MBTitleMakeLangDefault,
                             MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                             {
-                                lang.IsDefault = false;
-                                await _langRepo.UpdateAsync(lang);
-                                _langRepo.AddAsync(LanguageModel);
-
+                                await _langRepo.MakeNewDefaultLanguage(LanguageModel);
                                 await _langRepo.SaveChangesAsync();
+
+                                TriggerSaveEvent();
                             }
                             else
                             {
@@ -87,14 +108,12 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
                         }
                         else
                         {
-                            _langRepo.AddAsync(LanguageModel);
-                            await _langRepo.SaveChangesAsync();
+                            await SaveModel();
                         }
                     }
                     else
                     {
-                        _langRepo.AddAsync(LanguageModel);
-                        await _langRepo.SaveChangesAsync();
+                        await SaveModel();
                     }
                 }                
             }
@@ -104,6 +123,17 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
                 throw;
             }
         }
+
+        private async Task SaveModel()
+        {
+            _langRepo.Add(LanguageModel);
+            await _langRepo.SaveChangesAsync();
+
+            Visibility = Visibility.Collapsed;
+
+            TriggerSaveEvent();
+        }
+
 
         private bool ValidateModel()
         {

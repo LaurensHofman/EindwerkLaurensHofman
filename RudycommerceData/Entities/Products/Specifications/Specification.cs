@@ -18,8 +18,8 @@ namespace RudycommerceData.Entities.Products.Specifications
 
         public virtual ICollection<SpecificationEnum> Enumerations { get; set; }
         public virtual ICollection<LocalizedSpecification> LocalizedSpecifications { get; set; }
-        public virtual ICollection<CategorySpecification> CategorySpecifications { get; set; }
-        public virtual ICollection<Values_ProductSpecifications> Values_ProductSpecifications { get; set; }
+        public ICollection<CategorySpecification> CategorySpecifications { get; set; }
+        public ICollection<Values_ProductSpecifications> Values_ProductSpecifications { get; set; }
 
         public override bool IsNew()
         {

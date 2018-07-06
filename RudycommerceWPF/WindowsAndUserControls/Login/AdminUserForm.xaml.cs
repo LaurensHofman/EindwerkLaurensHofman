@@ -76,7 +76,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
                 try
                 {
-                    NewDesktopUser = _userRepo.AddAsync(NewDesktopUser);
+                    NewDesktopUser = _userRepo.Add(NewDesktopUser);
                     await _userRepo.SaveChangesAsync();
                 }
                 catch (Exception)

@@ -97,6 +97,24 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bent u zeker dat u de taal &apos;{0}&apos; wil verwijderen?.
+        /// </summary>
+        public static string MBContentDeleteLanguage {
+            get {
+                return ResourceManager.GetString("MBContentDeleteLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bent u zeker dat u &apos;{0}&apos; de nieuwe standaardtaal wil maken?.
+        /// </summary>
+        public static string MBContentNewDefaultLang {
+            get {
+                return ResourceManager.GetString("MBContentNewDefaultLang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maak deze taal de nieuwe standaardtaal?.
         /// </summary>
         public static string MBContMakeLangDefault {
@@ -124,11 +142,29 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Verwijder &apos;{0}&apos;?.
+        /// </summary>
+        public static string MBTitleDeleteObj {
+            get {
+                return ResourceManager.GetString("MBTitleDeleteObj", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nieuwe standaardtaal.
         /// </summary>
         public static string MBTitleMakeLangDefault {
             get {
                 return ResourceManager.GetString("MBTitleMakeLangDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &apos;{0}&apos; als standaardtaal?.
+        /// </summary>
+        public static string MBTitleNewDefaultLang {
+            get {
+                return ResourceManager.GetString("MBTitleNewDefaultLang", resourceCulture);
             }
         }
         

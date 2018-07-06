@@ -2,8 +2,10 @@
 using RudycommerceData.Entities.DesktopUsers;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
+using RudycommerceLib.Properties;
 using RudycommerceWPF.WindowsAndUserControls.Abstracts;
 using RudycommerceWPF.WindowsAndUserControls.Languages;
+using RudycommerceWPF.WindowsAndUserControls.Products.Brand;
 using RudycommerceWPF.WindowsAndUserControls.Users;
 using System;
 using System.Collections.Generic;
@@ -17,6 +19,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -46,14 +49,19 @@ namespace RudycommerceWPF.WindowsAndUserControls
             _langRepo = new LanguageRepository();
 
             InitializeWindow(userID);
+
+            SetLanguageDictionary();
         }
 
-        private async Task InitializeWindow(int userID)
+        private void InitializeWindow(int userID)
         {
-            _currentUser = await _userRepo.GetAsync(userID);
+            _currentUser = _userRepo.Get(userID);
             Properties.Settings.Default.CurrentUser = _currentUser;
+            _preferredLanguage = _currentUser.PreferredLanguage;
 
             EnableUserTab();
+
+            SetLanguageDictionary();
         }
 
         private void EnableUserTab()
@@ -64,37 +72,17 @@ namespace RudycommerceWPF.WindowsAndUserControls
                 stackDesktopUser.Visibility = Visibility.Visible;
             }
         }
+       
+        #region Methods to show the user controls
 
-        protected override void SetLanguageDictionary()
-        {
-            base.SetLanguageDictionary();
-
-            CultureInfo ci;
-
-            switch (_preferredLanguage.LocalName)
-            {
-                case "Nederlands":
-                    ci = CultureInfo.CreateSpecificCulture("nl");
-                    break;
-
-                case "English":
-                    ci = CultureInfo.CreateSpecificCulture("en");
-                    break;
-
-                default:
-                    ci = CultureInfo.CreateSpecificCulture("nl");
-                    break;
-            };
-
-            Thread.CurrentThread.CurrentUICulture = ci;
-        }
-                
-        private void ShowUserControl<langUC>(ContentControl contentControl) where langUC : LanguageUserControl, new()
+        private void ShowFormUserControl<formUC, overviewUC>(ContentControl formContentControl, ContentControl overviewContentControl)
+                                    where formUC : FormUserControl, new()
+                                    where overviewUC : OverviewUserControl, new()
         {
             // Gets the User control (<Type>) that has to be shown, and defines it as a UserControl (inheritence from :LanguageUserControl)
             // and makes sure its instantiatable ( new() ).
             // Gets the ContentControl in which to show the new UserControl.
-            
+
             // First hides all the ContentControls.
             HideAllUserControls();
 
@@ -102,16 +90,51 @@ namespace RudycommerceWPF.WindowsAndUserControls
             // If the contentControl's content hasn't yet been defined, make a new UserControl.
             // If the contentControl's content has been hidden (by a cancel click), then make a new UserControl as well.
             // Else: act normal (show the userControl). This allows it to work a little bit as tabs, the content is not lost when switching back and forth.
-            if (contentControl.Content == null || (contentControl.Content as langUC).Visibility == Visibility.Collapsed)
+
+            if (formContentControl.Content == null || (formContentControl.Content as formUC).Visibility == Visibility.Collapsed)
             {
-                langUC _content = new langUC();
+                formUC _content = new formUC();
+
+                _content.thisContentControl = overviewContentControl;
+
+                _content.SaveEvent += GoToOverview<overviewUC>;
+
+                formContentControl.Content = _content;
+            }
+
+            // Make the ContentControl and the UserControl visible
+            formContentControl.Visibility = Visibility.Visible;
+            (formContentControl.Content as formUC).Visibility = Visibility.Visible;
+        }
+
+        private void ShowOverviewUserControl<ToBeShownUC>(ContentControl contentControl) where ToBeShownUC : OverviewUserControl, new()
+        {
+            // Gets the User control (<Type>) that has to be shown, and defines it as a UserControl (inheritence from :LanguageUserControl)
+            // and makes sure its instantiatable ( new() ).
+            // Gets the ContentControl in which to show the new UserControl.
+
+            // First hides all the ContentControls.
+            HideAllUserControls();
+
+            // Checks if the ContentControl has content (or if the content is visible (which is done by the cancel click inside the userControl)
+            // If the contentControl's content hasn't yet been defined, make a new UserControl.
+            // If the contentControl's content has been hidden (by a cancel click), then make a new UserControl as well.
+            // Else: act normal (show the userControl). This allows it to work a little bit as tabs, the content is not lost when switching back and forth.
+            if (contentControl.Content == null || (contentControl.Content as ToBeShownUC).Visibility == Visibility.Collapsed)
+            {
+                ToBeShownUC _content = new ToBeShownUC();
 
                 contentControl.Content = _content;
             }
 
             // Make the ContentControl and the UserControl visible
             contentControl.Visibility = Visibility.Visible;
-            (contentControl.Content as langUC).Visibility = Visibility.Visible;
+            (contentControl.Content as ToBeShownUC).Visibility = Visibility.Visible;
+        }
+
+        private void GoToOverview<overviewUC>(ContentControl contentControl) where overviewUC : OverviewUserControl, new()
+        {
+            ShowOverviewUserControl<overviewUC>(contentControl);
         }
 
         private void HideAllUserControls()
@@ -121,6 +144,10 @@ namespace RudycommerceWPF.WindowsAndUserControls
                 contentControl.Visibility = Visibility.Collapsed;
             }
         }
+
+        #endregion
+
+        #region User settings
 
         private void menuSettings(object sender, RoutedEventArgs e)
         {
@@ -151,14 +178,59 @@ namespace RudycommerceWPF.WindowsAndUserControls
             }
         }
 
+        #endregion
+
+        #region Desktop users
+
         private void menuDesktopUserOverview(object sender, RoutedEventArgs e)
         {
 
         }
 
+        #endregion
+
+        #region Languages
+
         private void menuAddLanguage(object sender, RoutedEventArgs e)
         {
-            ShowUserControl<LanguageForm>(ccLanguages);
+            ShowFormUserControl<LanguageForm, LanguageOverview>(ccLanguageForm, ccLanguageOverview);
         }
+
+        private void menuLanguageOverview(object sender, RoutedEventArgs e)
+        {
+            ShowOverviewUserControl<LanguageOverview>(ccLanguageOverview);
+        }
+
+        #endregion
+
+        #region Products and others
+
+        #region Brands
+
+        private void menuAddBrand(object sender, RoutedEventArgs e)
+        {
+            ShowFormUserControl<BrandForm, BrandOverview>(ccBrandForm, ccBrandOverview);
+        }
+
+        private void menuBrandOverview(object sender, RoutedEventArgs e)
+        {
+            ShowOverviewUserControl<BrandOverview>(ccBrandOverview);
+        }
+
+        #endregion
+
+        #region Categories
+
+        #endregion
+
+        #region Specifications
+
+        #endregion
+
+        #region Products
+
+        #endregion
+
+        #endregion
     }
 }

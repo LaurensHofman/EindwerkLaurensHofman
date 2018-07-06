@@ -20,7 +20,7 @@ namespace RudycommerceData.Entities.Products.Products
 
         public int? EnumValueID { get; set; }
 
-        public SpecificationEnum EnumerationValue { get; set; }
+        public virtual SpecificationEnum EnumerationValue { get; set; }
 
         [NotMapped]
         public string DisplayValue { get; set; }

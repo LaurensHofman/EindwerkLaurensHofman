@@ -1,4 +1,4 @@
-﻿<base:LanguageUserControl
+﻿<base:MultilingualUserControl
     xmlns:base="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts" x:Class="RudycommerceWPF.WindowsAndUserControls.Users.AccountSettings"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -69,4 +69,4 @@
 
         </StackPanel>
     </Grid>
-</base:LanguageUserControl>
+</base:MultilingualUserControl>
