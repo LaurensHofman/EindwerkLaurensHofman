@@ -25,6 +25,8 @@ namespace RudycommerceData.Data
         public DbSet<LocalizedProduct> LocalizedProducts { get; set; }
         public DbSet<Values_ProductSpecifications> Values_ProductSpecifications { get; set; }
 
+        public DbSet<Brand> Brands { get; set; }
+
         #endregion
 
         #region Categories
@@ -163,6 +165,16 @@ namespace RudycommerceData.Data
                 .HasForeignKey(vps => vps.LanguageID);
 
             #endregion
+
+            #region Spec
+
+            modelBuilder.Entity<SpecificationEnum>()
+                .HasRequired<Specification>(enums => enums.Specification)
+                .WithMany(spp => spp.Enumerations)
+                .HasForeignKey<int>(enums => enums.SpecificationID);
+
+            #endregion
+
         }
     }
 }

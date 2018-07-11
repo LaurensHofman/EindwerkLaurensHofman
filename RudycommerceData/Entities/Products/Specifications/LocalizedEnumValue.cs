@@ -15,5 +15,10 @@ namespace RudycommerceData.Entities.Products.Specifications
 
         [Required]
         public string Value { get; set; }
+
+        public override string ToString()
+        {
+            return $"Enum: {Value}";
+        }
     }
 }

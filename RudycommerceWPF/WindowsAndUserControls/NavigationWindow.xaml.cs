@@ -5,7 +5,8 @@ using RudycommerceData.Repositories.Repo;
 using RudycommerceLib.Properties;
 using RudycommerceWPF.WindowsAndUserControls.Abstracts;
 using RudycommerceWPF.WindowsAndUserControls.Languages;
-using RudycommerceWPF.WindowsAndUserControls.Products.Brand;
+using RudycommerceWPF.WindowsAndUserControls.Products.Brands;
+using RudycommerceWPF.WindowsAndUserControls.Products.Specifications;
 using RudycommerceWPF.WindowsAndUserControls.Users;
 using System;
 using System.Collections.Generic;
@@ -93,11 +94,12 @@ namespace RudycommerceWPF.WindowsAndUserControls
 
             if (formContentControl.Content == null || (formContentControl.Content as formUC).Visibility == Visibility.Collapsed)
             {
-                formUC _content = new formUC();
+                formUC _content = new formUC
+                {
+                    thisContentControl = overviewContentControl
+                };
 
-                _content.thisContentControl = overviewContentControl;
-
-                _content.SaveEvent += GoToOverview<overviewUC>;
+                _content.CreateEvent += GoToOverview<overviewUC>;
 
                 formContentControl.Content = _content;
             }
@@ -125,6 +127,10 @@ namespace RudycommerceWPF.WindowsAndUserControls
                 ToBeShownUC _content = new ToBeShownUC();
 
                 contentControl.Content = _content;
+            }
+            else
+            {
+                (contentControl.Content as ToBeShownUC).LoadDataGridData();
             }
 
             // Make the ContentControl and the UserControl visible
@@ -224,6 +230,16 @@ namespace RudycommerceWPF.WindowsAndUserControls
         #endregion
 
         #region Specifications
+
+        private void menuAddSpecification(object sender, RoutedEventArgs e)
+        {
+            ShowFormUserControl<SpecificationForm, SpecificationOverview>(ccSpecificationForm, ccSpecificationOverview);
+        }
+
+        private void menuSpecificationOverview(object sender, RoutedEventArgs e)
+        {
+            ShowOverviewUserControl<SpecificationOverview>(ccSpecificationOverview);
+        }
 
         #endregion
 

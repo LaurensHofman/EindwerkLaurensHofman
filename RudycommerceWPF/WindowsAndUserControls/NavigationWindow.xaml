@@ -71,16 +71,14 @@
             <DockPanel Background="#252525">
                 <ToolBarTray DockPanel.Dock="Top">
                     <ToolBar FontSize="18">
-                        
+
                         <StackPanel x:Name="stackOrders" Style="{StaticResource ToolbarStack}">
-                            <WrapPanel>
-                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource OrderOverviewTT}">
-                                    <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
-                                </Button>
-                            </WrapPanel>
+                            <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource OrderOverviewTT}">
+                                <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
+                            </Button>
                             <Label Style="{StaticResource ToolbarGreyLabel}" Content="{DynamicResource Orders}"/>
                         </StackPanel>
-
+                        
                         <Separator/>
 
                         <StackPanel x:Name="stackProducts" Style="{StaticResource ToolbarStack}">
@@ -97,7 +95,7 @@
 
                         <Separator/>
 
-                        <StackPanel x:Name="stackBrand" Style="{StaticResource ToolbarStack}">
+                        <StackPanel x:Name="stackBrand" Style="{StaticResource ToolbarStack}" Background="Green">
                             <WrapPanel>
                                 <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewBrandTT}" Click="menuAddBrand">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
@@ -127,10 +125,10 @@
 
                         <StackPanel x:Name="stackSpecification" Style="{StaticResource ToolbarStack}">
                             <WrapPanel>
-                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewSpecificationTT}">
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewSpecificationTT}" Click="menuAddSpecification">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
                                 </Button>
-                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource SpecificationOverviewTT}">
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource SpecificationOverviewTT}" Click="menuSpecificationOverview">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
                                 </Button>
                             </WrapPanel>
@@ -139,7 +137,7 @@
 
                         <Separator/>
 
-                        <StackPanel x:Name="stackLanguages" Style="{StaticResource ToolbarStack}">
+                        <StackPanel x:Name="stackLanguages" Style="{StaticResource ToolbarStack}" Background="Green">
                             <WrapPanel>
                                 <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewLanguageTT}" Click="menuAddLanguage">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
@@ -162,7 +160,7 @@
 
                         <Separator/>
 
-                        <StackPanel x:Name="stackSettings" Style="{StaticResource ToolbarStack}">
+                        <StackPanel x:Name="stackSettings" Style="{StaticResource ToolbarStack}" Background="Green">
                             <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource SettingsTT}" Click="menuSettings">
                                  <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/64_CogwheelSettings_WHITE.png"/>
                             </Button>

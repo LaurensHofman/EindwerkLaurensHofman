@@ -1,0 +1,126 @@
+﻿<base:FormUserControl
+    xmlns:base="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts" x:Class="RudycommerceWPF.WindowsAndUserControls.Products.Specifications.SpecificationForm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Products.Specifications"
+    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+    mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid x:Name="grdSpecificProductPropertyForm" Style="{StaticResource UserControlGrid}">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            
+        <StackPanel HorizontalAlignment="Stretch">
+
+            <Label x:Name="lblTitle" Style="{StaticResource ResourceKey=TitleLabel}" Content="Title placeholder"/>
+
+            <Controls:MetroAnimatedSingleRowTabControl x:Name="TabControlLanguages" Margin="0,20,0,0">
+                <Controls:MetroAnimatedSingleRowTabControl.Resources>
+                    <Style TargetType="{x:Type TabPanel}">
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                    </Style>
+                </Controls:MetroAnimatedSingleRowTabControl.Resources>
+
+                <!-- content will be created in c# code -->
+
+            </Controls:MetroAnimatedSingleRowTabControl>
+
+
+            <WrapPanel Margin="0,10,0,0" HorizontalAlignment="Center">
+                <StackPanel>
+                    <Label x:Name="lblIsBool" Content="{DynamicResource ResourceKey=IsSpecificationBool}"
+                           HorizontalContentAlignment="Right" Style="{StaticResource ResourceKey=FormLabel}"/>
+
+                    <Label x:Name="lblIsMultilingual" Content="{DynamicResource ResourceKey=IsSpecificationML}"
+                           HorizontalAlignment="Right">
+                        <Label.Style>
+                            <Style TargetType="Label" BasedOn="{StaticResource ResourceKey=FormLabel}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=SpecModel.IsBool}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
+
+                    <Label x:Name="lblIsEnum" Content="{DynamicResource ResourceKey=IsSpecificationEnum}" HorizontalAlignment="Right">
+                        <Label.Style>
+                            <Style TargetType="Label" BasedOn="{StaticResource ResourceKey=FormLabel}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=SpecModel.IsBool}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Label.Style>
+                    </Label>
+                </StackPanel>
+                <StackPanel>
+                    <CheckBox x:Name="cbIsBool" IsChecked="{Binding Path=SpecModel.IsBool}" Checked="BoolChecked" Unchecked="BoolChecked"
+                              Style="{StaticResource FormInputCheckBox}"/>
+
+                    <CheckBox x:Name="cbIsMultilingual" IsChecked="{Binding Path=SpecModel.IsMultilingual}" Checked="MLChecked" Unchecked="MLChecked">
+                        <CheckBox.Style>
+                            <Style TargetType="CheckBox" BasedOn="{StaticResource ResourceKey=FormInputCheckBox}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=SpecModel.IsBool}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </CheckBox.Style>
+                    </CheckBox>
+
+                    <CheckBox x:Name="cbIsEnum" IsChecked="{Binding Path=SpecModel.IsEnumeration}" Checked="EnumChecked" Unchecked="EnumChecked">
+                        <CheckBox.Style>
+                            <Style TargetType="CheckBox" BasedOn="{StaticResource ResourceKey=FormInputCheckBox}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Path=SpecModel.IsBool}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </CheckBox.Style>
+                    </CheckBox>
+                </StackPanel>
+            </WrapPanel>
+            
+            <WrapPanel HorizontalAlignment="Center">
+                <StackPanel x:Name="listboxHere">
+                    <DataGrid x:Name="dgEnumeration" HorizontalAlignment="Center" Width="500" CanUserSortColumns="False" Visibility="Collapsed" CanUserReorderColumns="False">
+                        <DataGrid.Style>
+                            <Style BasedOn="{StaticResource ResourceKey=SmallDataGrid}" TargetType="DataGrid">
+                                
+                            </Style>
+                        </DataGrid.Style>
+                    </DataGrid>
+
+                    <Button x:Name="btnAdd" Width="40" Margin="20,-20,20,0" HorizontalAlignment="Right" Padding="-10" FontSize="20" Visibility="Collapsed" VerticalContentAlignment="Center" Content="+" Click="AddEnumRow">
+                        <Button.Style>
+                            <Style BasedOn="{StaticResource ResourceKey=FormSubmitCancelButton}" TargetType="Button">
+                                
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+            </WrapPanel>
+            <WrapPanel Margin="0,10,0,0" HorizontalAlignment="Right">
+                <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnCancel_Click"/>
+                <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnSubmit_Click"/>
+            </WrapPanel>
+        </StackPanel>
+
+
+        </ScrollViewer>
+    </Grid>
+</base:FormUserControl>

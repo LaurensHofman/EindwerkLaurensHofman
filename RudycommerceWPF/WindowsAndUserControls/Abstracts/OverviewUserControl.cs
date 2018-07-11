@@ -19,8 +19,17 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
 
             FormUC form = (FormUC)Activator.CreateInstance(typeof(FormUC), (int)ID);
 
+            form.UpdateEvent += Updated;
+
             UpdateFormWindow win = new UpdateFormWindow(form);
             win.Show();
+        }
+
+        public abstract void LoadDataGridData();
+
+        private void Updated()
+        {
+            LoadDataGridData();
         }
     }
 }

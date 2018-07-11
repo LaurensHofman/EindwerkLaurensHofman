@@ -38,8 +38,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             InitializeComponent();
 
             InitializeWindow();
-
-            SetLanguageDictionary();
         }
 
         private void InitializeWindow()
@@ -53,21 +51,23 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             LoadDataGridData();
         }
 
-        private async void LoadDataGridData()
+        public async override void LoadDataGridData()
         {
             _langRepo = new LanguageRepository();
 
-            LanguageList = new ObservableCollection<Language>(await _langRepo.GetAllAsync());
-            
+            LanguageList = new ObservableCollection<Language>(await _langRepo.GetAllAsync());            
+
             BindData();
         }
 
         private void BindData()
         {
-            dgLanguageOverview.ItemsSource = LanguageList
-                .OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.IsDesktopLanguage).ThenBy(x => x.ISO);
-            dgLanguageOverview.DataContext = LanguageList
-                .OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.IsDesktopLanguage).ThenBy(x => x.ISO);
+            LanguageList.OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.IsDesktopLanguage).ThenBy(x => x.ISO);
+
+            dgLanguageOverview.ItemsSource = LanguageList;
+            //.OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.IsDesktopLanguage).ThenBy(x => x.ISO);
+            dgLanguageOverview.DataContext = LanguageList;
+            //.OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.IsDesktopLanguage).ThenBy(x => x.ISO);
         }
         
         private async void dgLanguageOverview_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
@@ -92,7 +92,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             LoadDataGridData();
         }
 
-        private async void DeleteLanguage(object sender, RoutedEventArgs e)
+        private async void Delete(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -128,6 +128,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
                 throw;
             }            
+        }
+
+        private void Update(object sender, RoutedEventArgs e)
+        {
+            Language lang = ((FrameworkElement)sender).DataContext as Language;
+
+            ShowUpdateForm<LanguageForm>(lang.ID);
         }
 
         private async void MakeLangDefault(object sender, RoutedEventArgs e)

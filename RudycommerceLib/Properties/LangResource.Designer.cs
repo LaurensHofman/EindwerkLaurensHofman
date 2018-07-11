@@ -97,11 +97,29 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bent u zeker dat u het merk &apos;{0}&apos; wil verwijderen?.
+        /// </summary>
+        public static string MBContentDeleteBrand {
+            get {
+                return ResourceManager.GetString("MBContentDeleteBrand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bent u zeker dat u de taal &apos;{0}&apos; wil verwijderen?.
         /// </summary>
         public static string MBContentDeleteLanguage {
             get {
                 return ResourceManager.GetString("MBContentDeleteLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bent u zeker dat u de productspecificatie &apos;{0}&apos; wil verwijderen?.
+        /// </summary>
+        public static string MBContentDeleteSpec {
+            get {
+                return ResourceManager.GetString("MBContentDeleteSpec", resourceCulture);
             }
         }
         

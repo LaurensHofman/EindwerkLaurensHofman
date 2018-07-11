@@ -31,5 +31,10 @@ namespace RudycommerceData.Entities.Products.Specifications
             IsMultilingual = true;
             Enumerations = new List<SpecificationEnum>();
         }
+
+        public override string ToString()
+        {
+            return $"ML:{IsMultilingual.ToString()}/Bool:{IsBool.ToString()}/Enum:{IsEnumeration.ToString()}";
+        }
     }
 }

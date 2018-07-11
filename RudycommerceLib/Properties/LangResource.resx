@@ -171,4 +171,10 @@
   <data name="Yes" xml:space="preserve">
     <value>Ja</value>
   </data>
+  <data name="MBContentDeleteBrand" xml:space="preserve">
+    <value>Bent u zeker dat u het merk '{0}' wil verwijderen?</value>
+  </data>
+  <data name="MBContentDeleteSpec" xml:space="preserve">
+    <value>Bent u zeker dat u de productspecificatie '{0}' wil verwijderen?</value>
+  </data>
 </root>

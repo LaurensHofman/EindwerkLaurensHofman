@@ -1,10 +1,10 @@
 ﻿<base:OverviewUserControl
-    xmlns:base="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts" x:Class="RudycommerceWPF.WindowsAndUserControls.Languages.LanguageOverview"
+    xmlns:base="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts" x:Class="RudycommerceWPF.WindowsAndUserControls.Products.Specifications.SpecificationOverview"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Languages"
+             xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Products.Specifications"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -23,7 +23,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Style="{StaticResource TitleLabel}" Content="{DynamicResource LanguageOverview}"/>
+        <Label Grid.Row="0" Style="{StaticResource TitleLabel}" Content="{DynamicResource SpecificationOverviewTitle}"/>
 
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="10,0,10,0">
             <Button Width="30" Height="30" Click="RefreshGrid">
@@ -31,71 +31,35 @@
             </Button>
         </WrapPanel>
 
-        <DataGrid x:Name="dgLanguageOverview" Grid.Row="2" RowEditEnding="dgLanguageOverview_RowEditEnding" Style="{StaticResource ResourceKey=OverviewDataGrid}" 
-                Height="Auto" VerticalAlignment="Top" ItemsSource="{Binding Path=LanguageList}">
-            <DataGrid.RowStyle>
-                <Style TargetType="{x:Type DataGridRow}">
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=IsDesktopLanguage}" Value="True">
-                            <Setter Property="Background" Value="LightBlue"></Setter>
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.RowStyle>
+        <DataGrid x:Name="dgSpecificationOverview" Grid.Row="2" Style="{StaticResource ResourceKey=OverviewDataGrid}" 
+                Height="Auto" VerticalAlignment="Top" ItemsSource="{Binding Path=SpecList}">
 
             <DataGrid.Columns>
 
-                <DataGridTextColumn Width="Auto" Binding="{Binding ISO, UpdateSourceTrigger=PropertyChanged}">
+                <DataGridTextColumn Width="Auto" Binding="{Binding Path=SpecName}" IsReadOnly="True">
                     <DataGridTextColumn.Header>
-                        <TextBlock Text="{DynamicResource ISOCode}"/>
+                        <TextBlock Text="{DynamicResource Name}"/>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
 
-                <DataGridTextColumn Width="Auto" Binding="{Binding LocalName, UpdateSourceTrigger=PropertyChanged}">
-                    <DataGridTextColumn.Header>
-                        <TextBlock Text="{DynamicResource LocalName}"/>
-                    </DataGridTextColumn.Header>
-                </DataGridTextColumn>
-
-                <DataGridTextColumn Width="Auto" Binding="{Binding DutchName, UpdateSourceTrigger=PropertyChanged}">
-                    <DataGridTextColumn.Header>
-                        <TextBlock Text="{DynamicResource DutchName}"/>
-                    </DataGridTextColumn.Header>
-                </DataGridTextColumn>
-
-                <DataGridTextColumn Width="Auto" Binding="{Binding EnglishName, UpdateSourceTrigger=PropertyChanged}">
-                    <DataGridTextColumn.Header>
-                        <TextBlock Text="{DynamicResource EnglishName}"/>
-                    </DataGridTextColumn.Header>
-                </DataGridTextColumn>
-
-                <DataGridCheckBoxColumn Width="Auto" Binding="{Binding IsDefault, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True">
+                <DataGridCheckBoxColumn Width="Auto" Binding="{Binding IsBool}" IsReadOnly="True">
                     <DataGridCheckBoxColumn.Header>
-                        <TextBlock Text="{DynamicResource DefaultLanguageHeader}"/>
+                        <TextBlock Text="{DynamicResource IsSpecificationBoolShort}"/>
                     </DataGridCheckBoxColumn.Header>
                 </DataGridCheckBoxColumn>
 
-                <DataGridTemplateColumn Width="Auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Click="MakeLangDefault">
-                                <Button.Style>
-                                    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding Path=IsDefault}" Value="True">
-                                                <Setter Property="Visibility" Value="Collapsed"></Setter>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                                <Button.Content>
-                                    <TextBlock Text="{DynamicResource MakeLangDefault}" Style="{DynamicResource DataGridButtonTextBlock}"></TextBlock>
-                                </Button.Content>
-                            </Button>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                
+                <DataGridCheckBoxColumn Width="Auto" Binding="{Binding IsML}" IsReadOnly="True">
+                    <DataGridCheckBoxColumn.Header>
+                        <TextBlock Text="{DynamicResource IsSpecificationMLShort}"/>
+                    </DataGridCheckBoxColumn.Header>
+                </DataGridCheckBoxColumn>
+
+                <DataGridCheckBoxColumn Width="Auto" Binding="{Binding IsEnum}" IsReadOnly="True">
+                    <DataGridCheckBoxColumn.Header>
+                        <TextBlock Text="{DynamicResource IsSpecificationEnumShort}"/>
+                    </DataGridCheckBoxColumn.Header>
+                </DataGridCheckBoxColumn>
+
                 <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -35,6 +35,11 @@ namespace RudycommerceData.Repositories.BaseRepo
             _context.Set<T>().Remove(entity);
         }
 
+        public void Delete(int entityID)
+        {
+            Delete(Get(entityID));
+        }
+
         public async Task<List<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();

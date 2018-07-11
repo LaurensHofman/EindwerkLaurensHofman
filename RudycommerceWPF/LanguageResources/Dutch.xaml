@@ -1,6 +1,5 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:RudycommerceWPF.LanguageResources"
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
 
     <!--<system:String x:Key="Save">Opslaan</system:String>-->
@@ -58,5 +57,22 @@
     <system:String x:Key="BrandOverviewTT">Toont het overzicht van de productmerken.</system:String>
     <system:String x:Key="Brands">Merken</system:String>
     <system:String x:Key="Brand">Merk</system:String>
-    
+    <system:String x:Key="Update">Wijzig</system:String>
+    <system:String x:Key="Name">Naam</system:String>
+    <system:String x:Key="BrandLogo">Logo</system:String>
+    <system:String x:Key="AddImage">Foto toevoegen</system:String>
+    <system:String x:Key="UpdateBrandTitle">Merk wijzigen</system:String>
+    <system:String x:Key="NewBrandTitle">Nieuw merk</system:String>
+    <system:String x:Key="BrandOverviewTitle">Merken overzicht</system:String>
+    <system:String x:Key="UpdateSpecificationTitle">Productspecificatie wijzigen</system:String>
+    <system:String x:Key="NewSpecificationTitle">Nieuwe productspecificatie</system:String>
+
+    <system:String x:Key="IsSpecificationML">Is de specificatie taalgevoelig?</system:String>
+    <system:String x:Key="IsSpecificationBool">Heeft de specificatie een Ja/Nee-waarde?</system:String>
+    <system:String x:Key="IsSpecificationEnum">Heeft de specificatie een lijst aan vaste waarden?</system:String>
+    <system:String x:Key="IsSpecificationMLShort">Taalgevoelig?</system:String>
+    <system:String x:Key="IsSpecificationBoolShort">Ja/Nee-waarde?</system:String>
+    <system:String x:Key="IsSpecificationEnumShort">Vaste waardenlijst?</system:String>
+
+    <system:String x:Key="SpecificationOverviewTitle">Overzicht productspecificaties</system:String>
 </ResourceDictionary>

@@ -1,4 +1,5 @@
 ﻿using RudycommerceData.Entities.Products.Products;
+using RudycommerceData.Repositories.BaseRepo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace RudycommerceData.Repositories.IRepo
 {
-    public interface IProductImageRepository
+    public interface IBrandRepository : IBaseRepository<Brand>
     {
-        Task<string> SaveImage(Brand brand);
+        Task<Brand> AddAsyncWithImage(Brand entity);
 
-        Task<string> SaveImage(Product product);
+        Task<Brand> UpdateAsyncWithImage(Brand entity);
     }
 }

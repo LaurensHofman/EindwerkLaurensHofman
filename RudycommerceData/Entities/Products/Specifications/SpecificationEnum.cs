@@ -13,9 +13,28 @@ namespace RudycommerceData.Entities.Products.Specifications
 
         public Specification Specification { get; set; }
 
+        public int SpecificationID { get; set; }
+
         [NotMapped]
         public string TemporaryNonMLValue { get; set; }
 
         public virtual ICollection<LocalizedEnumValue> LocalizedEnumValues { get; set; }
+
+        public SpecificationEnum()
+        {
+            LocalizedEnumValues = new List<LocalizedEnumValue>();
+        }
+
+        public override string ToString()
+        {
+            if (TemporaryNonMLValue == null)
+            {
+                return base.ToString();
+            }
+            else
+            {
+                return TemporaryNonMLValue;
+            }
+        }
     }
 }

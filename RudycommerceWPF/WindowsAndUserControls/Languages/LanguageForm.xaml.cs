@@ -31,8 +31,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
         public Language LanguageModel { get; set; }
         private ILanguageRepository _langRepo;
 
-        private bool _updatingPage = false;
-
         public LanguageForm() : this(new RudycommerceData.Entities.Language()) { }
 
         public LanguageForm(Language languageModel)
@@ -71,7 +69,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             SetTitle();
         }
 
-        private void SetTitle()
+        protected override void SetTitle()
         {
             lblTitle.SetResourceReference(ContentProperty, _updatingPage ? "UpdateLanguageTitle" : "NewLanguageTitle");
         }
@@ -91,7 +89,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
                     {
                         Language lang = _langRepo.GetAllQueryable().SingleOrDefault(x => x.IsDefault);
 
-                        if (lang != null)
+                        if (lang != null && lang.ISO != LanguageModel.ISO)
                         {
                             if (MessageBox.Show(LangResource.MBContMakeLangDefault, LangResource.MBTitleMakeLangDefault,
                             MessageBoxButton.YesNo) == MessageBoxResult.Yes)
@@ -115,7 +113,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
                     {
                         await SaveModel();
                     }
-                }                
+                }
             }
             catch (Exception)
             {
@@ -126,14 +124,23 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
         private async Task SaveModel()
         {
-            _langRepo.Add(LanguageModel);
-            await _langRepo.SaveChangesAsync();
+            if (_updatingPage)
+            {
+                await _langRepo.UpdateAsync(LanguageModel);
+                await _langRepo.SaveChangesAsync();
 
-            Visibility = Visibility.Collapsed;
+                TriggerSaveEvent();
+            }
+            else
+            {
+                _langRepo.Add(LanguageModel);
+                await _langRepo.SaveChangesAsync();
 
-            TriggerSaveEvent();
+                Visibility = Visibility.Collapsed;
+
+                TriggerSaveEvent();
+            }
         }
-
 
         private bool ValidateModel()
         {
@@ -144,10 +151,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
             return true;
         }
-
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            Visibility = Visibility.Collapsed;
-        }
+        
     }
 }
