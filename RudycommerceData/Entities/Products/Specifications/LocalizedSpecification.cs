@@ -9,7 +9,7 @@ namespace RudycommerceData.Entities.Products.Specifications
 {
     public class LocalizedSpecification
     {
-        public int PropertyID { get; set; }
+        public int SpecificationID { get; set; }
 
         public int LanguageID { get; set; }
 

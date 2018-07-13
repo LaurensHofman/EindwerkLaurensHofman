@@ -16,7 +16,18 @@ namespace RudycommerceData.Entities.Products.Categories
         public int DisplayOrder { get; set; }
 
         [NotMapped]
-        public string PropertyName { get; set; }
+        public string SpecificationName { get; set; }
 
+        public override string ToString()
+        {
+            if (SpecificationName != null)
+            {
+                return SpecificationName + $" ({DisplayOrder.ToString()})";
+            }
+            else
+            {
+                return base.ToString();
+            }
+        }
     }
 }

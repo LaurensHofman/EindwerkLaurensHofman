@@ -52,7 +52,11 @@ namespace RudycommerceData.Repositories.BaseRepo
 
         public async Task<T> UpdateAsync(T entity)
         {
-            var original = await GetAsync(entity.ID);
+            // Because otherwise the original is the same as the 'entity' because it's within the same context
+
+            //BaseRepository<T> repo = new BaseRepository<T>();
+
+            var original = await /*repo.*/GetAsync(entity.ID);
 
             if (original != null)
             {

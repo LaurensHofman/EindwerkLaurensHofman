@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
 {
@@ -31,5 +32,23 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
         {
             LoadDataGridData();
         }
+
+        protected Window GetParentWindow()
+        {
+            NavigationWindow myWindow = (NavigationWindow)Window.GetWindow(this);
+
+            return myWindow;
+        }
+
+        protected void RefreshGrid(object sender, RoutedEventArgs e)
+        {
+            LoadDataGridData();
+        }
+
+        protected abstract void Delete(object sender, RoutedEventArgs e);
+
+        protected abstract void Update(object sender, RoutedEventArgs e);
+
+        protected abstract void OpenForm(object sender, RoutedEventArgs e);
     }
 }

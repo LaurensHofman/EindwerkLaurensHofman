@@ -67,11 +67,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
             //.OrderBy(x => x.Name);
         }
 
-        private void RefreshGrid(object sender, RoutedEventArgs e)
-        {
-            LoadDataGridData();
-        }
-
         private async void dgBrandsOverview_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
             DataGridRow _dgRow = e.Row;
@@ -81,8 +76,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
             await _brandRepo.UpdateAsync(_changedValue);
             await _brandRepo.SaveChangesAsync();
         }
-
-        private async void Delete(object sender, RoutedEventArgs e)
+        
+        protected override async void Delete(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -120,11 +115,23 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
             }
         }
 
-        private void Update(object sender, RoutedEventArgs e)
+        protected override void Update(object sender, RoutedEventArgs e)
         {
             Brand brand = ((FrameworkElement)sender).DataContext as Brand;
 
             ShowUpdateForm<BrandForm>(brand.ID);
+        }
+
+        protected override void OpenForm(object sender, RoutedEventArgs e)
+        {
+            var myWindow = (NavigationWindow)GetParentWindow();
+
+            ContentControl form = myWindow.ccBrandForm;
+            ContentControl ov = myWindow.ccBrandOverview;
+
+            form.Content = null;
+
+            myWindow.ShowFormUserControl<BrandForm, BrandOverview>(form, ov);
         }
     }
 }

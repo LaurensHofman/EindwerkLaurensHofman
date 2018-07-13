@@ -41,7 +41,8 @@
                            HorizontalContentAlignment="Right" Style="{StaticResource ResourceKey=FormLabel}"/>
 
                     <Label x:Name="lblIsMultilingual" Content="{DynamicResource ResourceKey=IsSpecificationML}"
-                           HorizontalAlignment="Right">
+                           HorizontalAlignment="Right" Style="{StaticResource FormLabel}">
+                            <!--Trigger somehow not working in update page version
                         <Label.Style>
                             <Style TargetType="Label" BasedOn="{StaticResource ResourceKey=FormLabel}">
                                 <Style.Triggers>
@@ -50,10 +51,12 @@
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </Label.Style>
+                        </Label.Style>-->
                     </Label>
 
-                    <Label x:Name="lblIsEnum" Content="{DynamicResource ResourceKey=IsSpecificationEnum}" HorizontalAlignment="Right">
+                    <Label x:Name="lblIsEnum" Content="{DynamicResource ResourceKey=IsSpecificationEnum}" 
+                           HorizontalAlignment="Right" Style="{StaticResource FormLabel}">
+                        <!--Trigger somehow not working in update page
                         <Label.Style>
                             <Style TargetType="Label" BasedOn="{StaticResource ResourceKey=FormLabel}">
                                 <Style.Triggers>
@@ -62,14 +65,16 @@
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </Label.Style>
+                        </Label.Style>-->
                     </Label>
                 </StackPanel>
                 <StackPanel>
-                    <CheckBox x:Name="cbIsBool" IsChecked="{Binding Path=SpecModel.IsBool}" Checked="BoolChecked" Unchecked="BoolChecked"
+                        <CheckBox x:Name="cbIsBool" Checked="BoolChecked" Unchecked="BoolChecked"
                               Style="{StaticResource FormInputCheckBox}"/>
 
-                    <CheckBox x:Name="cbIsMultilingual" IsChecked="{Binding Path=SpecModel.IsMultilingual}" Checked="MLChecked" Unchecked="MLChecked">
+                    <CheckBox x:Name="cbIsMultilingual" Checked="MLChecked" Unchecked="MLChecked"
+                              Style="{StaticResource FormInputCheckBox}">
+                        <!--Trigger somehow not working in update page version
                         <CheckBox.Style>
                             <Style TargetType="CheckBox" BasedOn="{StaticResource ResourceKey=FormInputCheckBox}">
                                 <Style.Triggers>
@@ -78,11 +83,13 @@
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </CheckBox.Style>
+                        </CheckBox.Style>-->
                     </CheckBox>
 
-                    <CheckBox x:Name="cbIsEnum" IsChecked="{Binding Path=SpecModel.IsEnumeration}" Checked="EnumChecked" Unchecked="EnumChecked">
-                        <CheckBox.Style>
+                        <CheckBox x:Name="cbIsEnum" Checked="EnumChecked" Unchecked="EnumChecked"
+                                  Style="{StaticResource FormInputCheckBox}">
+                            <!--Trigger somehow not working in update page version
+                            <CheckBox.Style>
                             <Style TargetType="CheckBox" BasedOn="{StaticResource ResourceKey=FormInputCheckBox}">
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding Path=SpecModel.IsBool}" Value="True">
@@ -90,7 +97,7 @@
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
-                        </CheckBox.Style>
+                        </CheckBox.Style>-->
                     </CheckBox>
                 </StackPanel>
             </WrapPanel>
@@ -116,7 +123,7 @@
             </WrapPanel>
             <WrapPanel Margin="0,10,0,0" HorizontalAlignment="Right">
                 <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnCancel_Click"/>
-                <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnSubmit_Click"/>
+                <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnSave_Click"/>
             </WrapPanel>
         </StackPanel>
 

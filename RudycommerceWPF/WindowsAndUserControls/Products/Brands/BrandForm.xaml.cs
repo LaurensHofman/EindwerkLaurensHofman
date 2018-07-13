@@ -132,22 +132,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
             AddImageButton.Visibility = Visibility.Collapsed;
         }
 
-        private async void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (Validate())
-                {
-                    await SaveModel();
-                }
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
-
         private async Task SaveModel()
         {
             if (_updatingPage)
@@ -170,6 +154,22 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
             // TODO
 
             return true;
+        }
+
+        protected override async void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (Validate())
+                {
+                    await SaveModel();
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

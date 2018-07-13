@@ -42,8 +42,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
         private void InitializeWindow()
         {
-            _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
-
             SetLanguageDictionary();
             
             DataContext = this;
@@ -87,12 +85,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             }
         }
 
-        private void RefreshGrid(object sender, RoutedEventArgs e)
-        {
-            LoadDataGridData();
-        }
-
-        private async void Delete(object sender, RoutedEventArgs e)
+        protected async override void Delete(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -130,7 +123,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             }            
         }
 
-        private void Update(object sender, RoutedEventArgs e)
+        protected override void Update(object sender, RoutedEventArgs e)
         {
             Language lang = ((FrameworkElement)sender).DataContext as Language;
 
@@ -172,6 +165,18 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
                 throw;
             }
+        }
+
+        protected override void OpenForm(object sender, RoutedEventArgs e)
+        {
+            var myWindow = (NavigationWindow)GetParentWindow();
+
+            ContentControl form = myWindow.ccLanguageForm;
+            ContentControl ov = myWindow.ccLanguageOverview;
+
+            form.Content = null;
+
+            myWindow.ShowFormUserControl<LanguageForm, LanguageOverview>(form, ov);
         }
     }
 }

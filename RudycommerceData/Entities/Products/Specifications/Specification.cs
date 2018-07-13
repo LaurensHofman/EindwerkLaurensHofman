@@ -28,7 +28,6 @@ namespace RudycommerceData.Entities.Products.Specifications
 
         public Specification()
         {
-            IsMultilingual = true;
             Enumerations = new List<SpecificationEnum>();
         }
 

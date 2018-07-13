@@ -28,6 +28,16 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
     /// </summary>
     public partial class SpecificationForm : FormUserControl
     {
+
+        //
+        //
+        //
+        // Fix Checkbox madness
+        // Fix AddEnumRow (adds an item to the collection)
+        //
+        //
+        //
+
         public Specification SpecModel { get; set; }
 
         public List<Language> LanguageList { get; set; }
@@ -40,9 +50,11 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
         {
             InitializeComponent();
 
-            InitializeWindow();
+            SpecModel = new Specification();
 
-            InitializeCreateContent();
+            InitializeForm();
+
+            cbIsBool.IsChecked = true;
 
             DataContext = this;
         }
@@ -51,45 +63,20 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
         {
             InitializeComponent();
 
-            InitializeWindow();
+            _specRepo = new SpecificationRepository();
+
+            SpecModel = _specRepo.Get(ID);
+
+            _updatingPage = !SpecModel.IsNew();
+
+            InitializeForm();
             
-            InitializeUpdateContent(ID);
+            CheckCheckBoxes();
 
             DataContext = this;
         }
 
-        private async void InitializeUpdateContent(int ID)
-        {
-            LanguageList = await _langRepo.GetAllAsync();
-
-            SpecModel = _specRepo.Get(ID);
-
-            _updatingPage = true;
-
-            CheckCheckBoxes();
-
-            foreach (Language l in LanguageList)
-            {
-                CreateLocalizedTab(l);
-            }
-        }
-
-        private bool firstUpdateLoad = false;
-
-        private void CheckCheckBoxes()
-        {
-            firstUpdateLoad = true;
-
-            cbIsBool.IsChecked = SpecModel.IsBool;
-
-            cbIsMultilingual.IsChecked = SpecModel.IsMultilingual;
-
-            cbIsEnum.IsChecked = SpecModel.IsEnumeration;
-
-            firstUpdateLoad = false;
-        }
-
-        private void InitializeWindow()
+        private async void InitializeForm()
         {
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
 
@@ -97,16 +84,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
             _langRepo = new LanguageRepository();
             _specRepo = new SpecificationRepository();
-
-            SetTitle();
-        }
-
-        private async void InitializeCreateContent()
-        {
-            SpecModel = new Specification
-            {
-                IsBool = true
-            };
 
             LanguageList = await _langRepo.GetAllAsync();
 
@@ -116,8 +93,32 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             {
                 CreateLocalizedTab(l);
             }
+
+            SetTitle();
         }
 
+        private bool firstUpdateLoad = false;
+
+        private void CheckCheckBoxes()
+        {
+            // for some reason, all the binding is working, except the checkbox binding...
+            if (_updatingPage)
+            {
+                firstUpdateLoad = true;
+            }
+            
+            cbIsBool.IsChecked = SpecModel.IsBool;
+            
+            cbIsMultilingual.IsChecked = SpecModel.IsMultilingual;
+
+            cbIsEnum.IsChecked = SpecModel.IsEnumeration;
+
+            if (_updatingPage)
+            {
+                firstUpdateLoad = false;
+            }
+        }
+        
         #region Generating Tabs
 
         private Thickness _defaultMargin = new Thickness { Top = 20 };
@@ -298,19 +299,19 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             lblTitle.SetResourceReference(ContentProperty, _updatingPage ? "UpdateSpecificationTitle" : "NewSpecificationTitle");
         }
 
-        private void btnSubmit_Click(object sender, RoutedEventArgs e)
+        protected override void btnSave_Click(object sender, RoutedEventArgs e)
         {
             SaveModel();
         }
 
-        private void SaveModel()
+        private async void SaveModel()
         {
             if (_updatingPage)
             {
                 PrepareModelForSave();
 
-                _specRepo.UpdateAsync(SpecModel);
-                _specRepo.SaveChangesAsync();
+                await _specRepo.UpdateAsync(SpecModel);
+                await _specRepo.SaveChangesAsync();
 
                 TriggerSaveEvent();
             }
@@ -319,7 +320,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
                 PrepareModelForSave();         
 
                 _specRepo.Add(SpecModel);
-                _specRepo.SaveChangesAsync();
+                await _specRepo.SaveChangesAsync();
 
                 TriggerSaveEvent();
             }
@@ -327,13 +328,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
         private void PrepareModelForSave()
         {
-            if (SpecificationEnumList == null)
+            if (!SpecModel.IsEnumeration)
             {
 
             }
             else
             {
-                if (SpecModel.IsMultilingual == false && SpecModel.IsEnumeration == true)
+                if (SpecModel.IsMultilingual == false)
                 {
                     SpecModel.Enumerations = SpecificationEnumList.ToList();
 
@@ -354,6 +355,12 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
         private void EnumChecked(object sender, RoutedEventArgs e)
         {
+            // for some reason, all the bindings are working, except the checkboxes in update mode...
+            if (!firstUpdateLoad)
+            {
+                SpecModel.IsEnumeration = !SpecModel.IsEnumeration;
+            }            
+
             dgEnumeration.Visibility = SpecModel.IsEnumeration ? Visibility.Visible : Visibility.Collapsed;
             btnAdd.Visibility = SpecModel.IsEnumeration ? Visibility.Visible : Visibility.Collapsed;
 
@@ -369,6 +376,12 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
         private void MLChecked(object sender, RoutedEventArgs e)
         {
+            // for some reason, all the bindings are working, except the checkboxes in update mode...
+            if (!firstUpdateLoad)
+            {
+                SpecModel.IsMultilingual = !SpecModel.IsMultilingual;
+            }
+
             if (SpecModel.IsMultilingual == true)
             {
                 GenerateMultilingualDataGridColumns();
@@ -381,10 +394,29 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
         
         private void BoolChecked(object sender, RoutedEventArgs e)
         {
+            // for some reason, all the bindings are working, except the checkboxes in update mode...
+            if (!firstUpdateLoad)
+            {
+                SpecModel.IsBool = !SpecModel.IsBool;
+            }
+
             if (SpecModel.IsBool)
             {
-                SpecModel.IsMultilingual = false;
-                SpecModel.IsEnumeration = false;
+                cbIsEnum.IsChecked = false;
+                cbIsEnum.Visibility = Visibility.Collapsed;
+                lblIsEnum.Visibility = Visibility.Collapsed;
+
+                cbIsMultilingual.IsChecked = false;
+                cbIsMultilingual.Visibility = Visibility.Collapsed;
+                lblIsMultilingual.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                cbIsEnum.Visibility = Visibility.Visible;
+                lblIsEnum.Visibility = Visibility.Visible;
+                
+                cbIsMultilingual.Visibility = Visibility.Visible;
+                lblIsMultilingual.Visibility = Visibility.Visible;
             }
         }
 

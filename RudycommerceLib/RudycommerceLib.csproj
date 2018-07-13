@@ -60,6 +60,7 @@
       <DependentUpon>LangResource.nl.resx</DependentUpon>
     </Compile>
     <Compile Include="Security\Encryption.cs" />
+    <Compile Include="Utilities\ListUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Multilingual\" />

@@ -74,7 +74,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             lblTitle.SetResourceReference(ContentProperty, _updatingPage ? "UpdateLanguageTitle" : "NewLanguageTitle");
         }
 
-        private async void btnSave_Click(object sender, RoutedEventArgs e)
+        protected async override void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -150,7 +150,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             }
 
             return true;
-        }
-        
+        }        
     }
 }

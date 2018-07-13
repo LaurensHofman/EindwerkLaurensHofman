@@ -68,14 +68,14 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             BindData();
         }
         
-        private void Update(object sender, RoutedEventArgs e)
+        protected override void Update(object sender, RoutedEventArgs e)
         {
             SpecificationOverviewItem spec = ((FrameworkElement)sender).DataContext as SpecificationOverviewItem;
 
             ShowUpdateForm<SpecificationForm>(spec.ID);
         }
 
-        private async void Delete(object sender, RoutedEventArgs e)
+        protected override async void Delete(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -113,9 +113,16 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             }
         }
 
-        private void RefreshGrid(object sender, RoutedEventArgs e)
+        protected override void OpenForm(object sender, RoutedEventArgs e)
         {
-            LoadDataGridData();
+            var myWindow = (NavigationWindow)GetParentWindow();
+
+            ContentControl form = myWindow.ccSpecificationForm;
+            ContentControl ov = myWindow.ccSpecificationOverview;
+
+            form.Content = null;
+
+            myWindow.ShowFormUserControl<SpecificationForm, SpecificationOverview>(form, ov);
         }
     }
 }

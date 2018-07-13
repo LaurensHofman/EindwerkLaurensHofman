@@ -6,6 +6,7 @@ using RudycommerceLib.Properties;
 using RudycommerceWPF.WindowsAndUserControls.Abstracts;
 using RudycommerceWPF.WindowsAndUserControls.Languages;
 using RudycommerceWPF.WindowsAndUserControls.Products.Brands;
+using RudycommerceWPF.WindowsAndUserControls.Products.Categories;
 using RudycommerceWPF.WindowsAndUserControls.Products.Specifications;
 using RudycommerceWPF.WindowsAndUserControls.Users;
 using System;
@@ -76,7 +77,7 @@ namespace RudycommerceWPF.WindowsAndUserControls
        
         #region Methods to show the user controls
 
-        private void ShowFormUserControl<formUC, overviewUC>(ContentControl formContentControl, ContentControl overviewContentControl)
+        public void ShowFormUserControl<formUC, overviewUC>(ContentControl formContentControl, ContentControl overviewContentControl)
                                     where formUC : FormUserControl, new()
                                     where overviewUC : OverviewUserControl, new()
         {
@@ -227,6 +228,16 @@ namespace RudycommerceWPF.WindowsAndUserControls
 
         #region Categories
 
+        private void menuAddCategory(object sender, RoutedEventArgs e)
+        {
+            ShowFormUserControl<CategoryForm, CategoryOverview>(ccCategoryForm, ccCategoryOverview);
+        }
+
+        private void menuCategoryOverview(object sender, RoutedEventArgs e)
+        {
+            ShowOverviewUserControl<CategoryOverview>(ccCategoryOverview);
+        }
+
         #endregion
 
         #region Specifications
@@ -247,6 +258,6 @@ namespace RudycommerceWPF.WindowsAndUserControls
 
         #endregion
 
-        #endregion
+        #endregion                
     }
 }

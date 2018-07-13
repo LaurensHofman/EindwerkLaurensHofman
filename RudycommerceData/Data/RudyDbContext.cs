@@ -130,12 +130,12 @@ namespace RudycommerceData.Data
             #region Specifications to Languages
 
             modelBuilder.Entity<LocalizedSpecification>()
-                .HasKey(ls => new { ls.PropertyID, ls.LanguageID });
+                .HasKey(ls => new { ls.SpecificationID, ls.LanguageID });
 
             modelBuilder.Entity<Specification>()
                 .HasMany(s => s.LocalizedSpecifications)
                 .WithRequired()
-                .HasForeignKey(ls => ls.PropertyID);
+                .HasForeignKey(ls => ls.SpecificationID);
 
             modelBuilder.Entity<Language>()
                 .HasMany(l => l.LocalizedSpecifications)

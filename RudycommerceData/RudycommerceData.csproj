@@ -126,6 +126,10 @@
     <Compile Include="Migrations\201807111302324_sometest.Designer.cs">
       <DependentUpon>201807111302324_sometest.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807131041137_specIDname.cs" />
+    <Compile Include="Migrations\201807131041137_specIDname.Designer.cs">
+      <DependentUpon>201807131041137_specIDname.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\DesktopLogin.cs" />
     <Compile Include="Models\SpecificationOverviewItem.cs" />
@@ -199,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807111302324_sometest.resx">
       <DependentUpon>201807111302324_sometest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807131041137_specIDname.resx">
+      <DependentUpon>201807131041137_specIDname.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

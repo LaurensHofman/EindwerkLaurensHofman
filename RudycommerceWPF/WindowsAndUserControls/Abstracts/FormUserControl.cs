@@ -41,5 +41,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
                 CreateEvent(thisContentControl);
             }
         }
+
+        protected abstract void btnSave_Click(object sender, RoutedEventArgs e);
     }
 }

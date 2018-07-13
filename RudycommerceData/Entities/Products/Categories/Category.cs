@@ -20,5 +20,17 @@ namespace RudycommerceData.Entities.Products.Categories
         public virtual ICollection<LocalizedCategory> LocalizedCategories { get; set; }
 
         public virtual ICollection<CategorySpecification> CategorySpecifications { get; set; }
+
+        public override string ToString()
+        {
+            if (LocalizedName != null)
+            {
+                return LocalizedName;
+            }
+            else
+            {
+                return base.ToString();
+            }    
+        }
     }
 }

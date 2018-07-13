@@ -19,5 +19,24 @@ namespace RudycommerceData.Entities.Products.Categories
         [Required]
         public string PluralName { get; set; }
 
+        public override string ToString()
+        {
+            if (Name != null)
+            {
+                string tostring = Name;
+
+                if (PluralName != null)
+                {
+                    tostring += " (pl.: " + PluralName + ")";
+                }
+
+                return tostring;
+            }
+            else
+            {
+                return base.ToString();
+            }
+        }
+
     }
 }
