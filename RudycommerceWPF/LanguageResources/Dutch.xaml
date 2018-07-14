@@ -82,4 +82,8 @@
 
     <system:String x:Key="UpdateCategoryTitle">Categorie wijzigen</system:String>
     <system:String x:Key="NewCategoryTitle">Nieuwe categorie</system:String>
+    <system:String x:Key="CategoryOverview">Categorieën overzicht</system:String>
+
+    <system:String x:Key="PluralName">Naam in meervoud</system:String>
+    <system:String x:Key="SpecCount">Aantal specificaties</system:String>
 </ResourceDictionary>

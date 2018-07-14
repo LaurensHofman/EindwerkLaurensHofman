@@ -62,7 +62,7 @@
                         <StackPanel Grid.Column="0">
                             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{DynamicResource ResourceKey=AddSpecificationToCategory}" FontSize="18" Height="60" Foreground="Black"/>
 
-                            <DataGrid x:Name="dgSelectSpec" Style="{StaticResource ResourceKey=SmallDataGrid}" MaxHeight="500" Margin="50,0,50,0">
+                            <DataGrid x:Name="dgSelectSpec" Style="{StaticResource ResourceKey=SmallDataGrid}" Margin="50,0,50,0">
                                 <DataGrid.Columns>
                                     <DataGridTextColumn Binding="{Binding LookupName}" IsReadOnly="True" Width="*">
                                         <DataGridTextColumn.Header>
@@ -70,7 +70,7 @@
                                         </DataGridTextColumn.Header>
                                     </DataGridTextColumn>
 
-                                    <DataGridTemplateColumn Width="Auto" MinWidth="50">
+                                    <DataGridTemplateColumn Width="Auto" MinWidth="30">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button Click="AddProperty" Padding="0" Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
@@ -91,7 +91,7 @@
                             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{DynamicResource ResourceKey=CategorySpecifications}" FontSize="18" Height="60" Foreground="Black"/>
                             <DataGrid x:Name="dgCategorySpecifications" Style="{StaticResource ResourceKey=SmallDataGrid}" CanUserSortColumns="False" CanUserReorderColumns="False" MaxHeight="500" Margin="50,0,50,0">
                                 <DataGrid.Columns>
-                                    <DataGridTemplateColumn Width="Auto" MinWidth="50">
+                                    <DataGridTemplateColumn Width="Auto" MinWidth="30">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button Click="MovePropertyUp" Padding="0" Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
@@ -104,7 +104,7 @@
                                         </DataGridTemplateColumn.CellTemplate>
                                     </DataGridTemplateColumn>
 
-                                    <DataGridTemplateColumn Width="Auto" MinWidth="50">
+                                    <DataGridTemplateColumn Width="Auto" MinWidth="30">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button Click="MovePropertyDown" Padding="0" Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
@@ -118,7 +118,7 @@
                                     </DataGridTemplateColumn>
 
 
-                                    <DataGridTextColumn Binding="{Binding SpecificationName}" IsReadOnly="True" Width="*" MaxWidth="500">
+                                    <DataGridTextColumn Binding="{Binding SpecificationName}" IsReadOnly="True" Width="*">
                                         <DataGridTextColumn.Header>
                                             <TextBlock Text="{DynamicResource ResourceKey=AddedSpecificationsToCategory}" Typography.Capitals="SmallCaps"/>
                                         </DataGridTextColumn.Header>
@@ -130,7 +130,7 @@
                                         </DataGridCheckBoxColumn.Header>
                                     </DataGridCheckBoxColumn>-->
 
-                                    <DataGridTemplateColumn Width="Auto" MinWidth="50">
+                                    <DataGridTemplateColumn Width="Auto" MinWidth="30">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Button Click="RemoveProperty" Padding="0" Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">

@@ -50,13 +50,23 @@ namespace RudycommerceData.Repositories.BaseRepo
             return await _context.Set<T>().FindAsync(ID);
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public virtual async Task<T> UpdateAsync(T entity)
         {
-            // Because otherwise the original is the same as the 'entity' because it's within the same context
+            var original = await GetAsync(entity.ID);
 
-            //BaseRepository<T> repo = new BaseRepository<T>();
+            if (original != null)
+            {
+                _context.Entry(original).CurrentValues.SetValues(entity);
 
-            var original = await /*repo.*/GetAsync(entity.ID);
+                return entity;
+            }
+
+            return null;
+        }
+
+        public virtual T Update(T entity)
+        {
+            var original = Get(entity.ID);
 
             if (original != null)
             {

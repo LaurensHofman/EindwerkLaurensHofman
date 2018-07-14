@@ -84,7 +84,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
                 Brand ToBeDeleted = ((FrameworkElement)sender).DataContext as Brand;
 
                 string messageboxTitle = String.Format(LangResource.MBTitleDeleteObj, ToBeDeleted.Name);
-                string messageboxContent = String.Format(LangResource.MBContentDeleteBrand, ToBeDeleted.Name);
+                string messageboxContent = String.Format(LangResource.MBContentDeleteObj, LangResource.TheBrand.ToLower(), ToBeDeleted.Name);
 
                 MessageBoxManager.Yes = LangResource.Yes;
                 MessageBoxManager.No = LangResource.No;

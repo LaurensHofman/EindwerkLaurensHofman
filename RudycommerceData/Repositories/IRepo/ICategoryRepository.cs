@@ -1,4 +1,5 @@
 ﻿using RudycommerceData.Entities.Products.Categories;
+using RudycommerceData.Models;
 using RudycommerceData.Repositories.BaseRepo;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,6 @@ namespace RudycommerceData.Repositories.IRepo
 {
     public interface ICategoryRepository : IBaseRepository<Category>
     {
-
+        List<CategoryOverviewItem> GetCategoryOverview(int languageID);
     }
 }

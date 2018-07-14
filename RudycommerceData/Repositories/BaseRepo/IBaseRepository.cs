@@ -20,6 +20,8 @@ namespace RudycommerceData.Repositories.BaseRepo
 
         Task<T> UpdateAsync(T entity);
 
+        T Update(T entity);
+
         void Delete(T entity);
 
         void Delete(int entityID);

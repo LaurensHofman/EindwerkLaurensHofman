@@ -97,29 +97,11 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bent u zeker dat u het merk &apos;{0}&apos; wil verwijderen?.
+        ///   Looks up a localized string similar to Bent u zeker dat u {0} &apos;{1}&apos; wil verwijderen?.
         /// </summary>
-        public static string MBContentDeleteBrand {
+        public static string MBContentDeleteObj {
             get {
-                return ResourceManager.GetString("MBContentDeleteBrand", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bent u zeker dat u de taal &apos;{0}&apos; wil verwijderen?.
-        /// </summary>
-        public static string MBContentDeleteLanguage {
-            get {
-                return ResourceManager.GetString("MBContentDeleteLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Bent u zeker dat u de productspecificatie &apos;{0}&apos; wil verwijderen?.
-        /// </summary>
-        public static string MBContentDeleteSpec {
-            get {
-                return ResourceManager.GetString("MBContentDeleteSpec", resourceCulture);
+                return ResourceManager.GetString("MBContentDeleteObj", resourceCulture);
             }
         }
         
@@ -228,6 +210,42 @@ namespace RudycommerceLib.Properties {
         public static string PotentialValues {
             get {
                 return ResourceManager.GetString("PotentialValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to het merk.
+        /// </summary>
+        public static string TheBrand {
+            get {
+                return ResourceManager.GetString("TheBrand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to de categorie.
+        /// </summary>
+        public static string TheCategory {
+            get {
+                return ResourceManager.GetString("TheCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to de taal.
+        /// </summary>
+        public static string TheLanguage {
+            get {
+                return ResourceManager.GetString("TheLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to de productspecificatie.
+        /// </summary>
+        public static string TheSpec {
+            get {
+                return ResourceManager.GetString("TheSpec", resourceCulture);
             }
         }
         

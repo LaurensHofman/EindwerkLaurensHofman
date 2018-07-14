@@ -131,6 +131,7 @@
       <DependentUpon>201807131041137_specIDname.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\CategoryOverviewItem.cs" />
     <Compile Include="Models\DesktopLogin.cs" />
     <Compile Include="Models\SpecificationOverviewItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

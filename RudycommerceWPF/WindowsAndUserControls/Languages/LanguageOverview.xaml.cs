@@ -92,7 +92,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
                 Language ToBeDeleted = ((FrameworkElement)sender).DataContext as Language;
 
                 string messageboxTitle = String.Format(LangResource.MBTitleDeleteObj, ToBeDeleted.LocalName);
-                string messageboxContent = String.Format(LangResource.MBContentDeleteLanguage, ToBeDeleted.LocalName);
+                string messageboxContent = String.Format(LangResource.MBContentDeleteObj, LangResource.TheLanguage.ToLower(), ToBeDeleted.LocalName);
 
                 MessageBoxManager.Yes = LangResource.Yes;
                 MessageBoxManager.No = LangResource.No;

@@ -82,7 +82,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
                 SpecificationOverviewItem ToBeDeleted = ((FrameworkElement)sender).DataContext as SpecificationOverviewItem;
 
                 string messageboxTitle = String.Format(LangResource.MBTitleDeleteObj, ToBeDeleted.SpecName);
-                string messageboxContent = String.Format(LangResource.MBContentDeleteSpec, ToBeDeleted.SpecName);
+                string messageboxContent = String.Format(LangResource.MBContentDeleteObj, LangResource.TheSpec.ToLower(), ToBeDeleted.SpecName);
 
                 MessageBoxManager.Yes = LangResource.Yes;
                 MessageBoxManager.No = LangResource.No;

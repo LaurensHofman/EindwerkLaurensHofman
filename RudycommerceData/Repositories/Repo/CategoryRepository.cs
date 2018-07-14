@@ -1,16 +1,31 @@
 ﻿using RudycommerceData.Entities.Products.Categories;
+using RudycommerceData.Models;
 using RudycommerceData.Repositories.BaseRepo;
 using RudycommerceData.Repositories.IRepo;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace RudycommerceData.Repositories.Repo
 {
-    public class CategoryRepository: BaseRepository<Category>, ICategoryRepository
+    public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
+        public List<CategoryOverviewItem> GetCategoryOverview(int languageID)
+        {            
+            SqlParameter langID = new SqlParameter("@langID", languageID.ToString());
 
+            return _context.Database.SqlQuery<CategoryOverviewItem>("exec dbo.sprocGetCategoryOverview @langID", langID).ToList();
+        }
+
+        public override Category Update(Category entity)
+        {
+            _context.Categories.Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
+            return entity;
+        }
     }
 }

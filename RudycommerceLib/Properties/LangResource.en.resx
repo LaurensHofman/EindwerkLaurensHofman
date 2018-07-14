@@ -129,9 +129,6 @@
   <data name="ErrSaveFailedTitle" xml:space="preserve">
     <value>Save failed</value>
   </data>
-  <data name="MBContentDeleteLanguage" xml:space="preserve">
-    <value>Are you sure that you want to delete the language '{0}'?</value>
-  </data>
   <data name="MBContentNewDefaultLang" xml:space="preserve">
     <value>Are you sure that u want to make '{0}' the new default language?</value>
   </data>
@@ -171,10 +168,19 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
-  <data name="MBContentDeleteBrand" xml:space="preserve">
-    <value>Are you sure you want to delete the brand '{0}'?</value>
+  <data name="MBContentDeleteObj" xml:space="preserve">
+    <value>Are you sure you want to delete {0} '{1}'?</value>
   </data>
-  <data name="MBContentDeleteSpec" xml:space="preserve">
-    <value>Are you sure you want to delete the productspecification '{0}'?</value>
+  <data name="TheBrand" xml:space="preserve">
+    <value>the brand</value>
+  </data>
+  <data name="TheCategory" xml:space="preserve">
+    <value>the category</value>
+  </data>
+  <data name="TheLanguage" xml:space="preserve">
+    <value>the language</value>
+  </data>
+  <data name="TheSpec" xml:space="preserve">
+    <value>the productspecification</value>
   </data>
 </root>

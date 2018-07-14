@@ -44,9 +44,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
         {
             InitializeComponent();
 
-            CategoryModel = new Category();
-            CategoryModel.CategorySpecifications = new ObservableCollection<CategorySpecification>();
-            CategoryModel.LocalizedCategories = new List<LocalizedCategory>();
+            CategoryModel = new Category
+            {
+                CategorySpecifications = new ObservableCollection<CategorySpecification>(),
+                LocalizedCategories = new List<LocalizedCategory>()
+            };
+
+            _categoryRepo = new CategoryRepository();
 
             InitializeWindow();
 
@@ -55,9 +59,57 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
             FillSelectionDataGrid();
         }
 
+        public CategoryForm(int id)
+        {
+            InitializeComponent();
+
+            _categoryRepo = new CategoryRepository();
+
+            CategoryModel = _categoryRepo.Get(id);
+
+            InitializeWindow();
+
+
+            LoadUpdateWindow();
+        }
+
+        private async void LoadUpdateWindow()
+        {
+            GenerateTabs();
+
+            await FillSelectionDataGrid();
+
+            PrepareDataGrids();
+
+            BindCategorySpecificationsGrid();
+        }
+
+        private void PrepareDataGrids()
+        {
+            List<int> specIDs = new List<int>() ;
+
+            foreach (var catSpec in CategoryModel.CategorySpecifications)
+            {
+                specIDs.Add(catSpec.SpecificationID);
+            }
+
+            CategoryModel.CategorySpecifications = new ObservableCollection<CategorySpecification>();
+
+            foreach (int id in specIDs)
+            {
+                AddPropertyByID(id);
+            }
+        }
+
+        private void AddPropertyByID(int id)
+        {
+            LocalizedSpecification spec = SelectionSpecList.SingleOrDefault(x => x.SpecificationID == id);
+            AddSelectedSpecification(spec);
+            RemoveSelectedSpecificationFromList(spec);
+        }
+
         private void InitializeWindow()
         {
-            _categoryRepo = new CategoryRepository();
             _langRepo = new LanguageRepository();
             _specRepo = new SpecificationRepository();
 
@@ -72,7 +124,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
             SetTitle();
         }
 
-        private async void FillSelectionDataGrid()
+        private async Task FillSelectionDataGrid()
         {
             List<Specification> specs = await _specRepo.GetAllAsync();
 
@@ -92,10 +144,18 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
         {
             try
             {
-                //_categoryRepo.Add(CategoryModel);
-                //await _categoryRepo.SaveChangesAsync();
+                if (_updatingPage)
+                {
+                    _categoryRepo.Update(CategoryModel);
+                }
+                else
+                {
+                    _categoryRepo.Add(CategoryModel);
+                }
 
-                //TriggerSaveEvent();
+                await _categoryRepo.SaveChangesAsync();
+
+                TriggerSaveEvent();
             }
             catch (Exception)
             {
@@ -240,10 +300,15 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
         private StackPanel CreateRightStackPanelForInput(Language lang)
         {
-            LocalizedCategory locCat = new LocalizedCategory
+            LocalizedCategory locCat = CategoryModel.LocalizedCategories.SingleOrDefault(x => x.LanguageID == lang.ID);
+
+            if (locCat == null)
             {
-                LanguageID = lang.ID
-            };
+                locCat = new LocalizedCategory
+                {
+                    LanguageID = lang.ID
+                };
+            }
 
             StackPanel stackRight = new StackPanel();
 
@@ -358,8 +423,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
         private void BindCategorySpecificationsGrid()
         {
-            dgCategorySpecifications.ItemsSource = CategoryModel.CategorySpecifications;
-            dgCategorySpecifications.DataContext = CategoryModel.CategorySpecifications;
+            ObservableCollection<CategorySpecification> obsColl = new ObservableCollection<CategorySpecification>(CategoryModel.CategorySpecifications);
+            dgCategorySpecifications.ItemsSource = obsColl;
+            dgCategorySpecifications.DataContext = obsColl;
         }
 
         private void MovePropertyUp(object sender, RoutedEventArgs e)

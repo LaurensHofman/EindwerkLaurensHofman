@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts"
         xmlns:base="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts"
         mc:Ignorable="d"
-        Background="Beige" Height="700" Width="700" WindowStartupLocation="CenterScreen">
+        Background="Beige" Height="700" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
         <ContentControl x:Name="contentControl"/>
     </Grid>
