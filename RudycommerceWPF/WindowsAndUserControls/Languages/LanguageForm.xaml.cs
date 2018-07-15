@@ -3,6 +3,7 @@ using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
 using RudycommerceLib.CustomExceptions;
 using RudycommerceLib.Properties;
+using RudycommerceLib.Utilities;
 using RudycommerceWPF.WindowsAndUserControls.Abstracts;
 using System;
 using System.Collections.Generic;
@@ -117,8 +118,10 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             }
             catch (Exception)
             {
+                string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheCategory.ToLower());
+                string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.Category.ToLower()));
 
-                throw;
+                MessageBox.Show(content, title);
             }
         }
 
@@ -150,6 +153,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             }
 
             return true;
-        }        
+        }
     }
 }

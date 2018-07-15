@@ -70,6 +70,24 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Merk.
+        /// </summary>
+        public static string Brand {
+            get {
+                return ResourceManager.GetString("Brand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Categorie.
+        /// </summary>
+        public static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Beschrijving.
         /// </summary>
         public static string Description {
@@ -97,6 +115,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Taal.
+        /// </summary>
+        public static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bent u zeker dat u {0} &apos;{1}&apos; wil verwijderen?.
         /// </summary>
         public static string MBContentDeleteObj {
@@ -111,6 +138,15 @@ namespace RudycommerceLib.Properties {
         public static string MBContentNewDefaultLang {
             get {
                 return ResourceManager.GetString("MBContentNewDefaultLang", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Het opslaan van {0} is mislukt. Gelieve te controleren ofdat alles correct ingevuld is..
+        /// </summary>
+        public static string MBContentObjSaveFailed {
+            get {
+                return ResourceManager.GetString("MBContentObjSaveFailed", resourceCulture);
             }
         }
         
@@ -169,6 +205,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} opslaan mislukt..
+        /// </summary>
+        public static string MBTitleObjSaveFailed {
+            get {
+                return ResourceManager.GetString("MBTitleObjSaveFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Naam.
         /// </summary>
         public static string Name {
@@ -210,6 +255,15 @@ namespace RudycommerceLib.Properties {
         public static string PotentialValues {
             get {
                 return ResourceManager.GetString("PotentialValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Productspecificatie.
+        /// </summary>
+        public static string Specification {
+            get {
+                return ResourceManager.GetString("Specification", resourceCulture);
             }
         }
         

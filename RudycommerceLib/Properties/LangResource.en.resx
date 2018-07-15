@@ -183,4 +183,22 @@
   <data name="TheSpec" xml:space="preserve">
     <value>the productspecification</value>
   </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Category</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="MBContentObjSaveFailed" xml:space="preserve">
+    <value>Saving {0} has failed. Please verify if everything has been filled in correctly.</value>
+  </data>
+  <data name="MBTitleObjSaveFailed" xml:space="preserve">
+    <value>Saving {0} has failed.</value>
+  </data>
+  <data name="Specification" xml:space="preserve">
+    <value>Productspecification</value>
+  </data>
 </root>

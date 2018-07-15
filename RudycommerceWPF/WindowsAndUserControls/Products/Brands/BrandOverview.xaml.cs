@@ -48,7 +48,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
             LoadDataGridData();
         }
 
-        public async override void LoadDataGridData()
+        public override async void LoadDataGridData()
         {
             _brandRepo = new BrandRepository();
 

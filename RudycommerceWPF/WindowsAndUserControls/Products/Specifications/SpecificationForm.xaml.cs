@@ -4,6 +4,7 @@ using RudycommerceData.Entities.Products.Specifications;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
 using RudycommerceLib.Properties;
+using RudycommerceLib.Utilities;
 using RudycommerceWPF.WindowsAndUserControls.Abstracts;
 using System;
 using System.Collections.Generic;
@@ -28,15 +29,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
     /// </summary>
     public partial class SpecificationForm : FormUserControl
     {
-
         //
         //
-        //
-        // Fix Checkbox madness
-        // Fix AddEnumRow (adds an item to the collection)
-        //
+        // ERROR MESSAGE ON SAVE FAILED
+        // INTERFACES
         //
         //
+        
 
         public Specification SpecModel { get; set; }
 
@@ -301,7 +300,17 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
         protected override void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            SaveModel();
+            try
+            {
+                SaveModel();
+            }
+            catch (Exception)
+            {
+                string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheSpec.ToLower());
+                string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.Specification.ToLower()));
+
+                MessageBox.Show(content, title);
+            }
         }
 
         private async void SaveModel()

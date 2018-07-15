@@ -57,7 +57,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             dgSpecificationOverview.DataContext = SpecList;
         }
 
-        public async override void LoadDataGridData()
+        public override async void LoadDataGridData()
         {
             _specRepo = new SpecificationRepository();
 

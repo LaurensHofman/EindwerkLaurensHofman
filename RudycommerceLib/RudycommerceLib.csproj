@@ -61,6 +61,7 @@
     </Compile>
     <Compile Include="Security\Encryption.cs" />
     <Compile Include="Utilities\ListUtilities.cs" />
+    <Compile Include="Utilities\StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Multilingual\" />

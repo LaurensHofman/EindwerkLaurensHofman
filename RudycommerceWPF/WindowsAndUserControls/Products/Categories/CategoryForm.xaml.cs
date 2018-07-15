@@ -86,7 +86,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
         private void PrepareDataGrids()
         {
-            List<int> specIDs = new List<int>() ;
+            List<int> specIDs = new List<int>();
 
             foreach (var catSpec in CategoryModel.CategorySpecifications)
             {
@@ -128,7 +128,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
         {
             List<Specification> specs = await _specRepo.GetAllAsync();
 
-            List<LocalizedSpecification> locspecs = new List<LocalizedSpecification>() ;
+            List<LocalizedSpecification> locspecs = new List<LocalizedSpecification>();
 
             foreach (var spec in specs)
             {
@@ -138,7 +138,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
             SelectionSpecList = new ObservableCollection<LocalizedSpecification>(locspecs);
 
             BindSpecificationSelectionData();
-        }        
+        }
 
         protected override async void btnSave_Click(object sender, RoutedEventArgs e)
         {
@@ -157,10 +157,12 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
                 TriggerSaveEvent();
             }
-            catch (Exception)
+            catch (Exception)            
             {
+                string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheCategory.ToLower());
+                string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.Category.ToLower()));
 
-                throw;
+                MessageBox.Show(content, title);
             }
         }
 
@@ -414,7 +416,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
         }
 
         #endregion
-        
+
         private void BindSpecificationSelectionData()
         {
             dgSelectSpec.ItemsSource = SelectionSpecList.OrderBy(x => x.LookupName);

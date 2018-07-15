@@ -183,4 +183,22 @@
   <data name="TheSpec" xml:space="preserve">
     <value>de productspecificatie</value>
   </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Merk</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Taal</value>
+  </data>
+  <data name="MBContentObjSaveFailed" xml:space="preserve">
+    <value>Het opslaan van {0} is mislukt. Gelieve te controleren ofdat alles correct ingevuld is.</value>
+  </data>
+  <data name="MBTitleObjSaveFailed" xml:space="preserve">
+    <value>{0} opslaan mislukt.</value>
+  </data>
+  <data name="Specification" xml:space="preserve">
+    <value>Productspecificatie</value>
+  </data>
 </root>

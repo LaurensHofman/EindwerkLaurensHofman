@@ -133,6 +133,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             }
             catch (Exception)
             {
+                // TODO ERROR
+
                 pwdPassword.Password = null;
                 throw;
             }

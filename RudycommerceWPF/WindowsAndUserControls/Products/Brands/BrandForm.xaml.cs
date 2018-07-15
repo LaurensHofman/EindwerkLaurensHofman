@@ -1,6 +1,8 @@
 ﻿using RudycommerceData.Entities.Products.Products;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
+using RudycommerceLib.Properties;
+using RudycommerceLib.Utilities;
 using RudycommerceWPF.WindowsAndUserControls.Abstracts;
 using System;
 using System.Collections.Generic;
@@ -167,8 +169,10 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
             }
             catch (Exception)
             {
+                string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheBrand.ToLower());
+                string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.Brand.ToLower()));
 
-                throw;
+                MessageBox.Show(content, title);
             }
         }
     }

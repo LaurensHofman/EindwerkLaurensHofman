@@ -49,7 +49,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             LoadDataGridData();
         }
 
-        public async override void LoadDataGridData()
+        public override async void LoadDataGridData()
         {
             _langRepo = new LanguageRepository();
 

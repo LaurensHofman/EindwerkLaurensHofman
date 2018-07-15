@@ -186,6 +186,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             }
             else
             {
+                // TODO ERROR MESSAGE
+
                 MessageBox.Show("RIP");
             }
 
