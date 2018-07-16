@@ -52,6 +52,8 @@ namespace RudycommerceData.Repositories.BaseRepo
 
         public virtual async Task<T> UpdateAsync(T entity)
         {
+            entity.ModifiedAt = DateTime.Now;
+
             var original = await GetAsync(entity.ID);
 
             if (original != null)
@@ -66,6 +68,8 @@ namespace RudycommerceData.Repositories.BaseRepo
 
         public virtual T Update(T entity)
         {
+            entity.ModifiedAt = DateTime.Now;
+
             var original = Get(entity.ID);
 
             if (original != null)

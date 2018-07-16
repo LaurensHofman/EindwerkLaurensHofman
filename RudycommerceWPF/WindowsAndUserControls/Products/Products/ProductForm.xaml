@@ -123,6 +123,7 @@
 
                                             <ComboBox x:Name="cmbxBrands" Style="{StaticResource ResourceKey=FormInputComboBox}" Width="300" Padding="0,5,0,5" 
                                                 ItemsSource="{Binding Path=BrandsList}"
+                                                SelectedItem="{Binding Path=ProductModel.Brand}"
                                                 DisplayMemberPath="Name" SelectionChanged="cmbxBrands_SelectionChanged"/>
 
                                             <TextBox Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70" Text="{Binding ProductModel.UnitPrice}"/>

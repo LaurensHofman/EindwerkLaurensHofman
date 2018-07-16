@@ -20,5 +20,17 @@ namespace RudycommerceData.Entities.Products.Products
         {
             return this.ID <= 0;
         }
+
+        public override string ToString()
+        {
+            if (Name == null)
+            {
+                return base.ToString();
+            }
+            else
+            {
+                return Name;
+            }
+        }
     }
 }

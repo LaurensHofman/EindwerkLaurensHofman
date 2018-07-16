@@ -24,5 +24,24 @@ namespace RudycommerceData.Entities.Products.Products
 
         [NotMapped]
         public string DisplayValue { get; set; }
+
+        public override string ToString()
+        {
+            if (Value != null)
+            {
+                return Value;
+            }
+            else
+            {
+                if (DisplayValue != null)
+                {
+                    return DisplayValue;
+                }
+                else
+                {
+                    return base.ToString();
+                }
+            }
+        }
     }
 }

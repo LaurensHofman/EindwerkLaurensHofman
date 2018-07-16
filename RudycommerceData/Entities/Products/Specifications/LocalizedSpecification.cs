@@ -18,5 +18,10 @@ namespace RudycommerceData.Entities.Products.Specifications
 
         [DataType(DataType.MultilineText)]
         public string AdviceDescription { get; set; }
+
+        public override string ToString()
+        {
+            return LookupName;
+        }
     }
 }

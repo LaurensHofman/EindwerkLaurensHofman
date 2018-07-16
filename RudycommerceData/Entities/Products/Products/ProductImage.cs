@@ -23,5 +23,24 @@ namespace RudycommerceData.Entities.Products.Products
         {
             return this.ID <= 0;
         }
+
+        public override string ToString()
+        {
+            if (ImageURL != null)
+            {
+                return ImageURL + " " + Order.ToString();
+            }
+            else
+            {
+                if (FileLocation != null)
+                {
+                    return FileLocation + " " + Order.ToString();
+                }
+                else
+                {
+                    return base.ToString();
+                }
+            }
+        }
     }
 }

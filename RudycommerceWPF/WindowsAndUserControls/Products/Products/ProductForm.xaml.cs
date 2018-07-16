@@ -1,6 +1,7 @@
 ﻿using RudycommerceData.Entities;
 using RudycommerceData.Entities.Products.Categories;
 using RudycommerceData.Entities.Products.Products;
+using RudycommerceData.Entities.Products.Specifications;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
 using RudycommerceLib.Properties;
@@ -32,6 +33,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         public List<Category> CategoryList { get; set; }
         public List<Brand> BrandsList { get; set; }
 
+        private List<CategorySpecification> _catSpecList;
+        private List<Specification> _specificationsList;
         private List<Language> _languageList { get; set; }
 
         private ILanguageRepository _langRepo;
@@ -171,7 +174,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         }
         private void cmbxCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show((cmbxBrands.SelectedItem as Category).LocalizedName);
+            Category cat = cmbxBrands.SelectedItem as Category;
+
+            _catSpecList = cat.CategorySpecifications.ToList();
         }
 
         private void AddImage(object sender, RoutedEventArgs e)
@@ -181,7 +186,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
         private void cmbxBrands_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show((cmbxBrands.SelectedItem as Brand).Name);
         }
     }
 }
