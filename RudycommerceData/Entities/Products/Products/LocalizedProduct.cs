@@ -18,5 +18,17 @@ namespace RudycommerceData.Entities.Products.Products
 
         [Required]
         public string Description { get; set; }
+
+        public override string ToString()
+        {
+            if (this.Name == null)
+            {
+                return base.ToString();
+            }
+            else
+            {
+                return this.Name;
+            }
+        }
     }
 }

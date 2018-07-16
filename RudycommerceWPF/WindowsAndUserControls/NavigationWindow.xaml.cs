@@ -7,6 +7,7 @@ using RudycommerceWPF.WindowsAndUserControls.Abstracts;
 using RudycommerceWPF.WindowsAndUserControls.Languages;
 using RudycommerceWPF.WindowsAndUserControls.Products.Brands;
 using RudycommerceWPF.WindowsAndUserControls.Products.Categories;
+using RudycommerceWPF.WindowsAndUserControls.Products.Products;
 using RudycommerceWPF.WindowsAndUserControls.Products.Specifications;
 using RudycommerceWPF.WindowsAndUserControls.Users;
 using System;
@@ -256,8 +257,18 @@ namespace RudycommerceWPF.WindowsAndUserControls
 
         #region Products
 
+        private void menuAddProduct(object sender, RoutedEventArgs e)
+        {
+            ShowFormUserControl<ProductForm, ProductOverview>(ccProductForm, ccProductOverview);
+        }
+
+        private void menuProductOverview(object sender, RoutedEventArgs e)
+        {
+            ShowOverviewUserControl<ProductOverview>(ccProductOverview);
+        }
+
         #endregion
 
-        #endregion                
+        #endregion
     }
 }

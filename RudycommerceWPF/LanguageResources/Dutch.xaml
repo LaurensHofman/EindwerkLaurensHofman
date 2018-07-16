@@ -66,6 +66,8 @@
     <system:String x:Key="BrandOverviewTitle">Merken overzicht</system:String>
     <system:String x:Key="UpdateSpecificationTitle">Productspecificatie wijzigen</system:String>
     <system:String x:Key="NewSpecificationTitle">Nieuwe productspecificatie</system:String>
+    <system:String x:Key="UpdateProductTitle">Product wijzigen</system:String>
+    <system:String x:Key="NewProductTitle">Nieuw product</system:String>
 
     <system:String x:Key="IsSpecificationML">Is de specificatie taalgevoelig?</system:String>
     <system:String x:Key="IsSpecificationBool">Heeft de specificatie een Ja/Nee-waarde?</system:String>
@@ -86,4 +88,15 @@
 
     <system:String x:Key="PluralName">Naam in meervoud</system:String>
     <system:String x:Key="SpecCount">Aantal specificaties</system:String>
+
+    <system:String x:Key="SelectCategory">Categorie</system:String>
+    <system:String x:Key="InitialStock">Begin voorraad</system:String>
+    <system:String x:Key="UnitPrice">Eenheidsprijs</system:String>
+    <system:String x:Key="IsProductActive">Is product actief?</system:String>
+    <system:String x:Key="SelectBrand">Merk</system:String>
+
+    <system:String x:Key="MultilingualSpecifications">Meertalige specificaties</system:String>
+    <system:String x:Key="NonMultilingualSpecifications">Niet-meertalige specificaties</system:String>
+
+    <system:String x:Key="General">Algemeen</system:String>
 </ResourceDictionary>

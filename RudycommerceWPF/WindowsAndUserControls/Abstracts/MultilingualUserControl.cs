@@ -11,8 +11,13 @@ using System.Windows.Controls;
 
 namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
 {
-    public abstract class MultilingualUserControl : UserControl
+    public class MultilingualUserControl : UserControl
     {
+        public MultilingualUserControl()
+        {
+
+        }
+
         protected Language _preferredLanguage;
 
         protected virtual void SetLanguageDictionary()

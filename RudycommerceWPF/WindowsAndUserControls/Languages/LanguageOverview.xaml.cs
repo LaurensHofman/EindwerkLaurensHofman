@@ -42,6 +42,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
         private void InitializeWindow()
         {
+            _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
+
             SetLanguageDictionary();
             
             DataContext = this;

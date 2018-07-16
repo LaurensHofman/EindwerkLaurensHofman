@@ -117,6 +117,12 @@
     <Compile Include="WindowsAndUserControls\Products\Categories\CategoryOverview.xaml.cs">
       <DependentUpon>CategoryOverview.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowsAndUserControls\Products\Products\ProductForm.xaml.cs">
+      <DependentUpon>ProductForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsAndUserControls\Products\Products\ProductOverview.xaml.cs">
+      <DependentUpon>ProductOverview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsAndUserControls\Products\Specifications\SpecificationForm.xaml.cs">
       <DependentUpon>SpecificationForm.xaml</DependentUpon>
     </Compile>
@@ -164,9 +170,7 @@
       <Name>RudycommerceLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WindowsAndUserControls\Products\Products\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="LanguageResources\Dutch.xaml">
       <SubType>Designer</SubType>
@@ -221,6 +225,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowsAndUserControls\Products\Categories\CategoryOverview.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsAndUserControls\Products\Products\ProductForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsAndUserControls\Products\Products\ProductOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

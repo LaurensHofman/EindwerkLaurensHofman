@@ -147,8 +147,8 @@
                     </Grid>
                 </WrapPanel>
                 <WrapPanel HorizontalAlignment="Right">
-                    <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource FormSubmitCancelButton}" Click="btnCancel_Click"/>
-                    <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource FormSubmitCancelButton}" Click="btnSave_Click" />
+                    <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource FormCancelLinkButton}" Template="{StaticResource FormCancelLinkButtonTemp}" Click="btnCancel_Click"/>
+                    <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource FormSubmitButton}" Click="btnSave_Click" />
                 </WrapPanel>
             </StackPanel>
         </ScrollViewer>

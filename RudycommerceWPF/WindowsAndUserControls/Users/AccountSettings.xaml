@@ -63,8 +63,8 @@
                 </StackPanel>
             </WrapPanel>
             <WrapPanel Margin="0,40,0,0" HorizontalAlignment="Right">
-                <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource ResourceKey=FormSubmitCancelButton}" Click="btnCancel_Click"/>
-                <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Save}" Click="btnSave_Click" Style="{StaticResource ResourceKey=FormSubmitCancelButton}"/>
+                <Button x:Name="btnCancel" Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource ResourceKey=FormCancelLinkButton}" Template="{StaticResource FormCancelLinkButtonTemp}" Click="btnCancel_Click"/>
+                <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Save}" Click="btnSave_Click" Style="{StaticResource ResourceKey=FormSubmitButton}"/>
             </WrapPanel>
 
         </StackPanel>

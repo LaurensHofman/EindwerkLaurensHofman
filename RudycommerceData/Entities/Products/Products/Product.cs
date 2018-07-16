@@ -37,5 +37,26 @@ namespace RudycommerceData.Entities.Products.Products
         public virtual ICollection<ProductImage> Images { get; set; }
         public virtual ICollection<LocalizedProduct> LocalizedProducts { get; set; }
         public virtual ICollection<Values_ProductSpecifications> Values_ProductSpecifications { get; set; }
+
+        public override string ToString()
+        {
+            if (LocalizedProducts == null)
+            {
+                return base.ToString();
+            }
+            else
+            {
+                LocalizedProduct lp = LocalizedProducts.FirstOrDefault();
+
+                if (lp.Name == null)
+                {
+                    return base.ToString();
+                }
+                else
+                {
+                    return lp.Name;
+                }
+            }
+        }
     }
 }

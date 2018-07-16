@@ -92,8 +92,8 @@
                 </Grid>
             </WrapPanel>
             <Button x:Name="btnNewUser" Margin="0,0,0,0" HorizontalAlignment="Center" Content="{DynamicResource ResourceKey=NewUser}" 
-                    Click="btnNewUser_Click"  FontSize="16" Cursor="Hand">
-                <!--https://stackoverflow.com/questions/780426/link-button-in-wpf-->
+                    Click="btnNewUser_Click" Style="{StaticResource FormCancelLinkButton}" Template="{StaticResource FormCancelLinkButtonTemp}">
+                <!--https://stackoverflow.com/questions/780426/link-button-in-wpf--><!--
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <TextBlock TextDecorations="Underline">
@@ -110,7 +110,7 @@
                             </Trigger>
                         </Style.Triggers>
                     </Style>
-                </Button.Style>
+                </Button.Style>-->
             </Button>
             <WrapPanel HorizontalAlignment="Right" Margin="0,20,0,0">
                 <Button x:Name="btnExit" Content="{DynamicResource ResourceKey=Cancel}" FontSize="12" Width="120" Click="btnExit_Click"  Margin="20,0,20,0"/>

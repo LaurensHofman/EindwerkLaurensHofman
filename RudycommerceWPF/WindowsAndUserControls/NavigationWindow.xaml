@@ -83,10 +83,10 @@
 
                         <StackPanel x:Name="stackProducts" Style="{StaticResource ToolbarStack}">
                             <WrapPanel>
-                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewProductTT}">
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewProductTT}" Click="menuAddProduct">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
                                 </Button>
-                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource ProductOverviewTT}">
+                                <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource ProductOverviewTT}" Click="menuProductOverview">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_ListWhite.png"/>
                                 </Button>
                             </WrapPanel>
@@ -109,7 +109,7 @@
 
                         <Separator/>
 
-                        <StackPanel x:Name="stackCategory" Style="{StaticResource ToolbarStack}">
+                        <StackPanel x:Name="stackCategory" Style="{StaticResource ToolbarStack}" Background="Green">
                             <WrapPanel>
                                 <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewCategoryTT}" Click="menuAddCategory">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>
