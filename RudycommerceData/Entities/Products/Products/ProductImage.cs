@@ -28,13 +28,13 @@ namespace RudycommerceData.Entities.Products.Products
         {
             if (ImageURL != null)
             {
-                return ImageURL + " " + Order.ToString();
+                return "ORD: " + Order.ToString() + " URL: " + ImageURL;
             }
             else
             {
                 if (FileLocation != null)
                 {
-                    return FileLocation + " " + Order.ToString();
+                    return "ORD: " + Order.ToString() + " URL: " + FileLocation;
                 }
                 else
                 {

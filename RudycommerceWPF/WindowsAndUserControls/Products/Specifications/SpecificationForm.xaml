@@ -35,8 +35,12 @@
             </Controls:MetroAnimatedSingleRowTabControl>
 
 
-            <WrapPanel Margin="0,10,0,0" HorizontalAlignment="Center">
-                <StackPanel>
+            <Grid Margin="0,10,0,0" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0">
                     <Label x:Name="lblIsBool" Content="{DynamicResource ResourceKey=IsSpecificationBool}"
                            HorizontalContentAlignment="Right" Style="{StaticResource ResourceKey=FormLabel}"/>
 
@@ -68,7 +72,7 @@
                         </Label.Style>-->
                     </Label>
                 </StackPanel>
-                <StackPanel>
+                <StackPanel Grid.Column="1">
                         <CheckBox x:Name="cbIsBool" Checked="BoolChecked" Unchecked="BoolChecked"
                               Style="{StaticResource FormInputCheckBox}"/>
 
@@ -100,7 +104,7 @@
                         </CheckBox.Style>-->
                     </CheckBox>
                 </StackPanel>
-            </WrapPanel>
+            </Grid>
             
             <WrapPanel HorizontalAlignment="Center">
                 <StackPanel x:Name="listboxHere">

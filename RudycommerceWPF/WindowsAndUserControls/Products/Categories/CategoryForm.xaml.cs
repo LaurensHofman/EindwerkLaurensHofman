@@ -88,7 +88,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
         {
             List<int> specIDs = new List<int>();
 
-            foreach (var catSpec in CategoryModel.CategorySpecifications)
+            foreach (var catSpec in CategoryModel.CategorySpecifications.OrderBy(cs => cs.DisplayOrder))
             {
                 specIDs.Add(catSpec.SpecificationID);
             }

@@ -131,17 +131,16 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
         {
             MetroTabItem tabItem = CreateMetroTabItem(lang);
             Grid tabGrid = new Grid { Style = Application.Current.Resources["GridBelowTabItem"] as Style };
-
-            //Creates a wrappanel, so the stackpanel with the labels and the stackpanel with the input are nicely next to eachother
-            WrapPanel wrapForStacks = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Center };
+            tabGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star)});
+            tabGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
             StackPanel stackPanelLeft = CreateLeftStackPanelForLabels(lang);
+            tabGrid.Children.Add(stackPanelLeft);
+            Grid.SetColumn(stackPanelLeft, 0);
+
             StackPanel stackPanelRight = CreateRightStackPanelForInput(lang);
-
-            wrapForStacks.Children.Add(stackPanelLeft);
-            wrapForStacks.Children.Add(stackPanelRight);
-
-            tabGrid.Children.Add(wrapForStacks);
+            tabGrid.Children.Add(stackPanelRight);
+            Grid.SetColumn(stackPanelRight, 1);
 
             tabItem.Content = tabGrid;
 
@@ -192,9 +191,12 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
                 {
                     LanguageID = lang.ID
                 };
-            }                        
+            }
 
-            StackPanel stackRight = new StackPanel();
+            StackPanel stackRight = new StackPanel
+            {
+                HorizontalAlignment = HorizontalAlignment.Left
+            };
 
             TextBox txtName = new TextBox
             {
@@ -315,24 +317,32 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
         private async void SaveModel()
         {
-            if (_updatingPage)
+            try
             {
-                PrepareModelForSave();
+                if (_updatingPage)
+                {
+                    PrepareModelForSave();
 
-                await _specRepo.UpdateAsync(SpecModel);
-                await _specRepo.SaveChangesAsync();
+                    await _specRepo.UpdateAsync(SpecModel);
+                    await _specRepo.SaveChangesAsync();
 
-                TriggerSaveEvent();
+                    TriggerSaveEvent();
+                }
+                else
+                {
+                    PrepareModelForSave();
+
+                    _specRepo.Add(SpecModel);
+                    await _specRepo.SaveChangesAsync();
+
+                    TriggerSaveEvent();
+                }
             }
-            else
+            catch (Exception)
             {
-                PrepareModelForSave();         
 
-                _specRepo.Add(SpecModel);
-                await _specRepo.SaveChangesAsync();
-
-                TriggerSaveEvent();
-            }
+                throw;
+            }            
         }
 
         private void PrepareModelForSave()
@@ -454,6 +464,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
             dgEnumeration.Columns.Clear();
 
+            SetLanguageDictionary();
             TextBlock header = new TextBlock()
             {
                 Text = LangResource.PotentialValues

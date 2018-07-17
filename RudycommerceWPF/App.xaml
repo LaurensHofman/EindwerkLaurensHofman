@@ -5,6 +5,7 @@
              StartupUri="/WindowsAndUserControls/Login/LoginWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
+            <local:PercentageConverter x:Key="PercentageConverter"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/LanguageResources/Dutch.xaml"/>
                 <ResourceDictionary Source="/Styles/Styles.xaml"/>

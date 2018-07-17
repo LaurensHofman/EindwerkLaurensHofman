@@ -80,6 +80,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PercentageConverter.cs" />
     <Compile Include="WindowsAndUserControls\Abstracts\FormUserControl.cs" />
     <Compile Include="WindowsAndUserControls\Abstracts\MultilingualUserControl.cs" />
     <Compile Include="WindowsAndUserControls\Abstracts\LanguageWindow.cs" />

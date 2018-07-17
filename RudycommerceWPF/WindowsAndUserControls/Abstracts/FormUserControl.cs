@@ -24,7 +24,16 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
 
         protected void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            Visibility = Visibility.Collapsed;
+            if (_updatingPage)
+            {
+                Window win = (Window)Window.GetWindow(this);
+
+                win.Close();
+            }
+            else
+            {
+                Visibility = Visibility.Collapsed;
+            }            
         }
 
         protected void TriggerSaveEvent()

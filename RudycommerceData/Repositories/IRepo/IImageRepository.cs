@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RudycommerceData.Repositories.IRepo
 {
-    public interface IProductImageRepository
+    public interface IImageRepository
     {
         Task<string> SaveImage(Brand brand);
 

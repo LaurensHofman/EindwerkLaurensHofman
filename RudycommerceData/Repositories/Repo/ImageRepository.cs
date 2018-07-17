@@ -11,11 +11,11 @@ using CloudinaryDotNet.Actions;
 
 namespace RudycommerceData.Repositories.Repo
 {
-    public class ProductImageRepository : BaseRepository<ProductImage>, IProductImageRepository
+    public class ImageRepository : BaseRepository<ProductImage>, IImageRepository
     {
-        private Account MyAccount;
+        private readonly Account MyAccount;
 
-        public ProductImageRepository()
+        public ImageRepository()
         {
             MyAccount = new Account(
                 "dhgcdhtlx",
@@ -25,11 +25,29 @@ namespace RudycommerceData.Repositories.Repo
 
         public async Task<string> SaveImage(Brand brand)
         {
+            string path;
+
+            if (brand.LogoURL != null)
+            {
+                path = brand.LogoURL;
+            }
+            else
+            {
+                if (brand.LocalLogoPath != null)
+                {
+                    path = brand.LocalLogoPath;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
             Cloudinary cloudinary = new Cloudinary(MyAccount);
 
             var uploadParams = new ImageUploadParams()
             {
-                File = new FileDescription(brand.LocalLogoPath),
+                File = new FileDescription(path),
                 PublicId = $"ID{brand.ID}",
                 Overwrite = true,
                 Folder = $"Brands/{brand.ID.ToString()}"

@@ -20,7 +20,7 @@ namespace RudycommerceData.Repositories.Repo
                 {
                     _context.Brands.Add(entity);
 
-                    IProductImageRepository _imgRepo = new ProductImageRepository();
+                    IImageRepository _imgRepo = new ImageRepository();
 
                     entity.LogoURL = await _imgRepo.SaveImage(entity);
 
@@ -45,7 +45,7 @@ namespace RudycommerceData.Repositories.Repo
             {
                 try
                 {
-                    IProductImageRepository _imgRepo = new ProductImageRepository();
+                    IImageRepository _imgRepo = new ImageRepository();
 
                     entity.LogoURL = await _imgRepo.SaveImage(entity);
 

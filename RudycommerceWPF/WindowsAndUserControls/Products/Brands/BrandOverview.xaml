@@ -55,13 +55,13 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
 
-                <DataGridTemplateColumn Width="Auto" IsReadOnly="True">
+                <DataGridTemplateColumn Width="Auto" IsReadOnly="True" MaxWidth="250">
                     <DataGridTemplateColumn.Header>
                         <TextBlock Text="{DynamicResource BrandLogo}"/>
                     </DataGridTemplateColumn.Header>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding Path=LogoURL}" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="120" />
+                            <Image Source="{Binding Path=LogoURL}" Stretch="Fill" VerticalAlignment="Center" HorizontalAlignment="Center" MaxWidth="200" MaxHeight="120" Margin="10,0,10,0" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

@@ -89,7 +89,15 @@ namespace RudycommerceData.Repositories.BaseRepo
 
         public async Task<int> SaveChangesAsync()
         {
-            return await _context.SaveChangesAsync();
+            try
+            {
+                return await _context.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public T Get(int ID)
