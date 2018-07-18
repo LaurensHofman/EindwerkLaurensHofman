@@ -23,7 +23,7 @@ namespace RudycommerceData.Repositories.BaseRepo
             return _context.Set<T>().AsQueryable();
         }
 
-        public T Add(T entity)
+        public virtual T Add(T entity)
         {
             _context.Set<T>().Add(entity);
 

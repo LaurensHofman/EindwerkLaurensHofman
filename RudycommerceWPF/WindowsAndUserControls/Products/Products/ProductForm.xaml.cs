@@ -36,6 +36,10 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         // TODO Messagebox on changing category in update/create
         // TODO Changing back and forth between tabs
         //
+        
+        private readonly int _defaultHeight = 30;
+        private readonly int _defaultWidth = 300;
+        private readonly int _descriptionHeight = 200;
 
         public Product ProductModel { get; set; }
 
@@ -65,6 +69,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             SetTitle();
 
             TabItemColours();
+
+            _prodRepo = new ProductRepository();
 
             ProductModel = new Product
             {
@@ -156,7 +162,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 Width = _defaultWidth,
                 VerticalContentAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Left,
-                Margin = new Thickness(10,20,0,0),
+                Margin = new Thickness(0,20,0,0),
                 Height = _defaultHeight,
                 Padding = new Thickness(0,-5,0,-5)
             };
@@ -569,10 +575,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
         #region MLTab
 
-        private readonly int _defaultHeight = 30;
-        private readonly int _defaultWidth = 300;
-        private readonly int _descriptionHeight = 150;
-
         private void FillMultilingualTab()
         {
             TabControlLanguages.Items.Clear();
@@ -811,14 +813,27 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
         #endregion
 
-        protected override void btnSave_Click(object sender, RoutedEventArgs e)
+        protected override async void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                PrepareModelForSaving();
+                if (_updatingPage)
+                {
+
+                }
+                else
+                {
+                    PrepareModelForSaving();
+
+                    await _prodRepo.AddWithImagesAsync(ProductModel);
+
+                    TriggerSaveEvent();
+                }
             }
             catch (Exception)
             {
+                throw;
+
                 string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheProduct.ToLower());
                 string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.Product.ToLower()));
 
@@ -860,7 +875,11 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 }
             }
 
-            ProductModel.Values_ProductSpecifications.ToList().AddRange(tempList);
+            foreach (var tempItem in tempList)
+            {
+                ProductModel.Values_ProductSpecifications.Add(tempItem);
+            }
+
             ProductModel.Values_ProductSpecifications = ProductModel.Values_ProductSpecifications.OrderBy(x => x.SpecificationID).ToList();
         }
     }

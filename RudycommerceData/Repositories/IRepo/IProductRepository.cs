@@ -10,6 +10,6 @@ namespace RudycommerceData.Repositories.IRepo
 {
     public interface IProductRepository: IBaseRepository<Product>
     {
-
+        Task<Product> AddWithImagesAsync(Product entity);
     }
 }

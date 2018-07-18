@@ -53,16 +53,48 @@ namespace RudycommerceData.Repositories.Repo
                 Folder = $"Brands/{brand.ID.ToString()}"
             };
 
-            var uploadResult = await Task.FromResult(cloudinary.UploadAsync(uploadParams).Result);
+            var uploadResult = await cloudinary.UploadAsync(uploadParams);
 
             string url = uploadResult.Uri.ToString();
 
             return url;
         }
 
-        public Task<string> SaveImage(Product product)
+        public async Task<string> SaveImage(ProductImage img, int productID)
         {
-            throw new NotImplementedException();
+            string path;
+
+            if (img.ImageURL != null)
+            {
+                path = img.ImageURL;
+            }
+            else
+            {
+                if (img.FileLocation != null)
+                {
+                    path = img.FileLocation;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+            Cloudinary cloudinary = new Cloudinary(MyAccount);
+
+            var uploadParams = new ImageUploadParams()
+            {
+                File = new FileDescription(path),
+                PublicId = $"ID{productID}Ord{img.Order}",
+                Overwrite = true,
+                Folder = $"Brands/{productID}"
+            };
+
+            var uploadResult = await cloudinary.UploadAsync(uploadParams);
+
+            string url = uploadResult.Uri.ToString();
+
+            return url;
         }
     }
 }

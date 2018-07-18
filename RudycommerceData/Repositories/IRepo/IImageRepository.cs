@@ -11,6 +11,6 @@ namespace RudycommerceData.Repositories.IRepo
     {
         Task<string> SaveImage(Brand brand);
 
-        Task<string> SaveImage(Product product);
+        Task<string> SaveImage(ProductImage img, int productID);
     }
 }
