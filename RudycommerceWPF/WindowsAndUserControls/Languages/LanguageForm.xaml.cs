@@ -118,8 +118,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             }
             catch (Exception)
             {
-                string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheCategory.ToLower());
-                string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.Category.ToLower()));
+                string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheLanguage.ToLower());
+                string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.TheLanguage.ToLower()));
 
                 MessageBox.Show(content, title);
             }

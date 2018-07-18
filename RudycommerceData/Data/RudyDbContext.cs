@@ -23,7 +23,7 @@ namespace RudycommerceData.Data
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<LocalizedProduct> LocalizedProducts { get; set; }
-        public DbSet<Values_ProductSpecifications> Values_ProductSpecifications { get; set; }
+        public DbSet<Value_ProductSpecification> Values_ProductSpecifications { get; set; }
 
         public DbSet<Brand> Brands { get; set; }
 
@@ -146,7 +146,7 @@ namespace RudycommerceData.Data
 
             #region Values ProductSpecifications
 
-            modelBuilder.Entity<Values_ProductSpecifications>()
+            modelBuilder.Entity<Value_ProductSpecification>()
                 .HasKey(vps => new { vps.ProductID, vps.SpecificationID, vps.LanguageID });
 
             modelBuilder.Entity<Product>()

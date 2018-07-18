@@ -259,6 +259,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        public static string Product {
+            get {
+                return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Productspecificatie.
         /// </summary>
         public static string Specification {
@@ -291,6 +300,15 @@ namespace RudycommerceLib.Properties {
         public static string TheLanguage {
             get {
                 return ResourceManager.GetString("TheLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to het product.
+        /// </summary>
+        public static string TheProduct {
+            get {
+                return ResourceManager.GetString("TheProduct", resourceCulture);
             }
         }
         

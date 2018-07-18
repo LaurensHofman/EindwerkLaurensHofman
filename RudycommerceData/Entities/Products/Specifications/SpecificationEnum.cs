@@ -18,6 +18,9 @@ namespace RudycommerceData.Entities.Products.Specifications
         [NotMapped]
         public string TemporaryNonMLValue { get; set; }
 
+        [NotMapped]
+        public string LocalizedValue { get; set; }
+
         public virtual ICollection<LocalizedEnumValue> LocalizedEnumValues { get; set; }
 
         public SpecificationEnum()

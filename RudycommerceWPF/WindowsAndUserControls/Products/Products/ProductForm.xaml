@@ -119,12 +119,12 @@
                                         <StackPanel x:Name="GeneralInput" Grid.Row="1" Grid.Column="1">
 
 
-                                            <ComboBox x:Name="cmbxCategories" Style="{StaticResource ResourceKey=FormInputComboBox}" Width="300" Padding="0,5,0,5" 
+                                            <ComboBox x:Name="cmbxCategories" Style="{StaticResource ResourceKey=FormInputComboBox}" Width="300"
                                                 ItemsSource="{Binding Path=CategoryList}"
-                                                      SelectedItem="{Binding Path=ProductModel.Category}"
+                                                SelectedItem="{Binding Path=ProductModel.Category}"
                                                 DisplayMemberPath="LocalizedName" SelectionChanged="cmbxCategories_SelectionChanged"/>
 
-                                            <ComboBox x:Name="cmbxBrands" Style="{StaticResource ResourceKey=FormInputComboBox}" Width="300" Padding="0,5,0,5" 
+                                            <ComboBox x:Name="cmbxBrands" Style="{StaticResource ResourceKey=FormInputComboBox}" Width="300"
                                                 ItemsSource="{Binding Path=BrandsList}"
                                                 SelectedItem="{Binding Path=ProductModel.Brand}"
                                                 DisplayMemberPath="Name"/>
@@ -142,7 +142,7 @@
 
                                         </StackPanel>
                                     </Grid>
-                                    
+
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="1*"/>
@@ -199,16 +199,42 @@
                             </TabItem.Header>
 
                             <Grid x:Name="grdMultilingualProperties" Style="{StaticResource ResourceKey=GridBelowTabItem}">
-                                <Controls:MetroAnimatedSingleRowTabControl x:Name="TabControlLanguages" Margin="0,20,0,0">
-                                    <Controls:MetroAnimatedSingleRowTabControl.Resources>
-                                        <Style TargetType="{x:Type TabPanel}">
-                                            <Setter Property="HorizontalAlignment" Value="Center"/>
-                                        </Style>
-                                    </Controls:MetroAnimatedSingleRowTabControl.Resources>
+                                <StackPanel>
+                                    <Controls:MetroAnimatedSingleRowTabControl x:Name="TabControlLanguages" Margin="0,30,0,0">
+                                        <Controls:MetroAnimatedSingleRowTabControl.Resources>
+                                            <Style TargetType="{x:Type TabPanel}">
+                                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                                            </Style>
+                                        </Controls:MetroAnimatedSingleRowTabControl.Resources>
 
-                                    <!-- content will be created in c# code -->
+                                        <!-- content will be created in c# code -->
 
-                                </Controls:MetroAnimatedSingleRowTabControl>
+                                    </Controls:MetroAnimatedSingleRowTabControl>
+
+                                    <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                        <Button Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource ResourceKey=FormCancelLinkButton}" Template="{StaticResource FormCancelLinkButtonTemp}" Click="btnCancel_Click"/>
+
+                                        <Button Style="{StaticResource ResourceKey=FormSubmitButton}" Click="BackToGeneral">
+                                            <Button.Content>
+                                                <WrapPanel>
+                                                    <TextBlock Text=" &lt;&lt; "/>
+                                                    <TextBlock Text="{DynamicResource General}"/>
+                                                </WrapPanel>
+                                            </Button.Content>
+                                        </Button>
+                                        
+                                        <Button x:Name="btnSubmitML" Style="{StaticResource ResourceKey=FormSubmitButton}" Click="SubmitML">
+                                            <Button.Content>
+                                                <WrapPanel>
+                                                    <TextBlock Text="{DynamicResource NonMultilingualSpecifications}"/>
+                                                    <TextBlock Text=" >> "/>
+                                                </WrapPanel>
+                                            </Button.Content>
+                                        </Button>
+                                    </WrapPanel>
+                                    
+                                </StackPanel>
+
                             </Grid>
                         </TabItem>
 
@@ -225,17 +251,42 @@
                                     <TextBlock FontSize="22" Text="{DynamicResource NonMultilingualSpecifications}"/>
                                 </WrapPanel>
                             </TabItem.Header>
+                            <StackPanel>
+                                <Grid x:Name="grdNonMultilingualProperties" Style="{StaticResource ResourceKey=GridBelowTabItem}">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Grid.Column="0" x:Name="NonMLStackLeftLabels">
+                                        <!-- content in c# -->
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" x:Name="NonMLStackRightInput">
+                                        <!-- content in c# -->
+                                    </StackPanel>
 
-                            <Grid x:Name="grdNonMultilingualProperties" Style="{StaticResource ResourceKey=GridBelowTabItem}">
-                                <WrapPanel HorizontalAlignment="Center">
-                                    <StackPanel x:Name="NonMLStackLeftLabels">
-                                        <!-- content in c# -->
-                                    </StackPanel>
-                                    <StackPanel x:Name="NonMLStackRightInput">
-                                        <!-- content in c# -->
-                                    </StackPanel>
+                                </Grid>
+                                
+                                <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                                    <Button Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource ResourceKey=FormCancelLinkButton}" Template="{StaticResource FormCancelLinkButtonTemp}" Click="btnCancel_Click"/>
+
+                                    <Button Style="{StaticResource ResourceKey=FormSubmitButton}" Click="BackToML">
+                                        <Button.Content>
+                                            <WrapPanel>
+                                                <TextBlock Text=" &lt;&lt; "/>
+                                                <TextBlock Text="{DynamicResource MultilingualSpecifications}"/>
+                                            </WrapPanel>
+                                        </Button.Content>
+                                    </Button>
+
+                                    <Button Style="{StaticResource ResourceKey=FormSubmitButton}" Click="btnSave_Click">
+                                        <Button.Content>
+                                            <WrapPanel>
+                                                <TextBlock Text="{DynamicResource Save}"/>
+                                            </WrapPanel>
+                                        </Button.Content>
+                                    </Button>
                                 </WrapPanel>
-                            </Grid>
+                            </StackPanel>
                         </TabItem>
                     </Controls:MetroAnimatedSingleRowTabControl>
                 </StackPanel>

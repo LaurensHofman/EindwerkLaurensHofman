@@ -1,7 +1,9 @@
-﻿using RudycommerceData.Entities;
+﻿using MahApps.Metro.Controls;
+using RudycommerceData.Entities;
 using RudycommerceData.Entities.Products.Categories;
 using RudycommerceData.Entities.Products.Products;
 using RudycommerceData.Entities.Products.Specifications;
+using RudycommerceData.Models;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
 using RudycommerceLib.Properties;
@@ -14,6 +16,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -29,12 +32,17 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
     /// </summary>
     public partial class ProductForm : FormUserControl
     {
+        //
+        // TODO Messagebox on changing category in update/create
+        // TODO Changing back and forth between tabs
+        //
+
         public Product ProductModel { get; set; }
 
         public List<Category> CategoryList { get; set; }
         public List<Brand> BrandsList { get; set; }
 
-        private List<CategorySpecification> _catSpecList;
+        private List<NecessarySpecification> _necessarySpecList;
         private List<Specification> _specificationsList;
         private List<Language> _languageList { get; set; }
 
@@ -80,56 +88,12 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             _specificationsList = await _specRepo.GetAllAsync();
         }
 
-        private async void FillBrandDropdown()
-        {
-            _brandRepo = new BrandRepository();
-
-            BrandsList = (await _brandRepo.GetAllAsync()).OrderBy(x => x.Name).ToList();
-        }
-
-        private async void FillCategoryDropdown()
-        {
-            _catRepo = new CategoryRepository();
-
-            CategoryList = (await _catRepo.GetAllAsync());
-
-            foreach (var cat in CategoryList)
-            {
-                cat.LocalizedName = cat.LocalizedCategories.SingleOrDefault(x => x.LanguageID == _preferredLanguage.ID).Name;
-            }
-
-            CategoryList = CategoryList.OrderBy(x => x.LocalizedName).ToList();
-        }
-
-        private async void GenerateProductNameLabelsAndInputs()
-        {
-            _languageList = await _langRepo.GetAllAsync();
-
-            foreach (var lang in _languageList)
-            {
-                string labelContent = $"\"{lang.LocalName}\" {LangResource.Name} * : ";
-
-                AddFormLabel(lang, labelContent, GeneralNameLabels);
-
-
-                LocalizedProduct locProd = ProductModel.LocalizedProducts.SingleOrDefault(x => x.LanguageID == lang.ID);
-
-                if (locProd == null)
-                {
-                    locProd = new LocalizedProduct();
-                    ProductModel.LocalizedProducts.Add(locProd);
-                }
-
-                AddBindedTextBox(locProd, "Name", GeneralNameInputs);
-            }
-        }
-
-        private void AddBindedTextBox(object bindingSource, string bindingLocation, Panel parentElement)
+        private TextBox AddBindedTextBox(object bindingSource, string bindingLocation, Panel parentElement)
         {
             TextBox tb = new TextBox
             {
                 Style = Application.Current.Resources["FormInputTextBox"] as Style,
-                Width = 300
+                Width = _defaultWidth
             };
             Binding tbBinding = new Binding(bindingLocation)
             {
@@ -138,9 +102,76 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             tb.SetBinding(TextBox.TextProperty, tbBinding);
 
             parentElement.Children.Add(tb);
+
+            return tb;
         }
 
-        private void AddFormLabel(Language lang, string content, Panel parentElement)
+        private ComboBox AddBindedComboBox(object bindingSource, string bindingLocation, Panel parentElement, int specID)
+        {
+            // using the style defined in styles.xaml is not entirely working, so doing it manually
+
+            ComboBox cb = new ComboBox
+            {
+                VerticalContentAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Margin = new Thickness(0, 20, 0, 0),
+                Height = _defaultHeight,
+                Width = _defaultWidth,
+                Padding = new Thickness(0, 5, 0, 5),
+                DisplayMemberPath = "LocalizedValue"
+            };
+
+            Specification spec = _specificationsList.SingleOrDefault(x => x.ID == specID);
+            List<SpecificationEnum> enums = spec.Enumerations.ToList();
+
+            foreach (var e in enums)
+            {
+                e.LocalizedValue = e.LocalizedEnumValues.SingleOrDefault(x => x.LanguageID == _preferredLanguage.ID).Value;
+            }
+
+            cb.SetBinding(ItemsControl.ItemsSourceProperty,
+                new Binding
+                {
+                    Source = enums // get source
+                });
+
+            cb.SetBinding(
+               Selector.SelectedItemProperty,
+               new Binding(bindingLocation)
+               {
+                   Source = bindingSource
+               });
+
+            NonMLStackRightInput.Children.Add(cb);
+
+            return cb;
+        }
+
+        private CheckBox AddBindedCheckBox(object bindingSource, string bindingLocation, Panel parentElement)
+        {
+            // styles is not working, so it was added manually here
+
+            CheckBox cb = new CheckBox
+            {
+                Width = _defaultWidth,
+                VerticalContentAlignment = VerticalAlignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Left,
+                Margin = new Thickness(10,20,0,0),
+                Height = _defaultHeight,
+                Padding = new Thickness(0,-5,0,-5)
+            };
+            Binding cbBinding = new Binding(bindingLocation)
+            {
+                Source = bindingSource
+            };
+            cb.SetBinding(CheckBox.IsCheckedProperty, cbBinding);
+
+            parentElement.Children.Add(cb);
+
+            return cb;
+        }
+
+        private Label AddFormLabel(string content, Panel parentElement)
         {
             Label lbl = new Label
             {
@@ -148,6 +179,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 Style = Application.Current.Resources["FormLabel"] as Style
             };
             parentElement.Children.Add(lbl);
+
+            return lbl;
         }
 
         private void TabItemColours()
@@ -181,22 +214,129 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             lblTitle.SetResourceReference(ContentProperty, _updatingPage ? "UpdateProductTitle" : "NewProductTitle");
         }
 
+        private void EnableTabs(params TabItem[] tabItems)
+        {
+            foreach (TabItem tb in tabItems)
+            {
+                tb.IsEnabled = true;
+
+                WrapPanel wp = (WrapPanel)tb.Header;
+
+                foreach (var child in wp.Children)
+                {
+                    if (child is TextBlock)
+                    {
+                        ((TextBlock)child).Foreground = Brushes.Black;
+                    }
+                    else
+                    {
+                        if (child is Border)
+                        {
+                            ((Border)child).BorderBrush = Brushes.Black;
+                            ((TextBlock)((Border)child).Child).Foreground = Brushes.Black;
+                        }
+                    }
+                }
+
+                tb.BorderBrush = Brushes.Black;
+            }
+        }
+
+        private void AnimatedTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var tabItem in AnimatedTabControl.Items)
+            {
+                var tab = (TabItem)tabItem;
+
+                if (tab.IsSelected)
+                {
+                    tab.BorderThickness = new Thickness(1);
+                }
+                else
+                {
+                    tab.BorderThickness = new Thickness(0);
+                }
+            }
+        }
+
+        #region GeneralTab
+
+        private async void GenerateProductNameLabelsAndInputs()
+        {
+            _languageList = await _langRepo.GetAllAsync();
+
+            foreach (var lang in _languageList)
+            {
+                string labelContent = $"\"{lang.LocalName}\" {LangResource.Name} * : ";
+
+                AddFormLabel(labelContent, GeneralNameLabels);
+
+                LocalizedProduct locProd = ProductModel.LocalizedProducts.SingleOrDefault(x => x.LanguageID == lang.ID);
+
+                if (locProd == null)
+                {
+                    locProd = new LocalizedProduct
+                    {
+                        LanguageID = lang.ID
+                    };
+                    ProductModel.LocalizedProducts.Add(locProd);
+                }
+
+                AddBindedTextBox(locProd, "Name", GeneralNameInputs);
+            }
+        }
+
+        private async void FillBrandDropdown()
+        {
+            _brandRepo = new BrandRepository();
+
+            BrandsList = (await _brandRepo.GetAllAsync()).OrderBy(x => x.Name).ToList();
+        }
+
+        private async void FillCategoryDropdown()
+        {
+            _catRepo = new CategoryRepository();
+
+            CategoryList = (await _catRepo.GetAllAsync());
+
+            foreach (var cat in CategoryList)
+            {
+                cat.LocalizedName = cat.LocalizedCategories.SingleOrDefault(x => x.LanguageID == _preferredLanguage.ID).Name;
+            }
+
+            CategoryList = CategoryList.OrderBy(x => x.LocalizedName).ToList();
+        }
+
         private void cmbxCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Category cat = cmbxCategories.SelectedItem as Category;
 
-            _catSpecList = cat.CategorySpecifications.ToList();
+            _necessarySpecList = new List<NecessarySpecification>();
 
-            foreach (var catSpec in _catSpecList)
+            foreach (var catSpec in cat.CategorySpecifications)
             {
                 Specification spec = _specificationsList.SingleOrDefault(x => x.ID == catSpec.SpecificationID);
 
-                catSpec.SpecificationName = spec.LocalizedSpecifications.Single(x => x.LanguageID == _preferredLanguage.ID).LookupName;
+                NecessarySpecification necSpec = new NecessarySpecification
+                {
+                    CategoryID = catSpec.CategoryID,
+                    SpecificationID = catSpec.SpecificationID,
+                    IsBool = spec.IsBool,
+                    IsEnumeration = spec.IsEnumeration,
+                    IsMultilingual = spec.IsMultilingual,
+                    LookupName = spec.LocalizedSpecifications.Single(x => x.LanguageID == _preferredLanguage.ID).LookupName,
+                    DisplayOrder = catSpec.DisplayOrder
+                };
+
+                _necessarySpecList.Add(necSpec);
             }
 
-            _catSpecList = _catSpecList.OrderBy(x => x.DisplayOrder).ToList();
+            _necessarySpecList = _necessarySpecList.OrderBy(x => x.DisplayOrder).ToList();
+
+            FillMultilingualTab();
+            FillNonMultilingualTab();
         }
-        
+
         #region Generating, Drag&Drop and Removing images
 
         Grid gridImageToDrag;
@@ -371,47 +511,27 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             }
         }
 
-        protected override void btnSave_Click(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
         #endregion
 
         private void SubmitGeneral(object sender, RoutedEventArgs e)
         {
             if (ValidateGeneralTab())
             {
+                EnableTabs(tabItemGeneral, tabItemMultilingualProperties);
+
                 tabItemMultilingualProperties.IsSelected = true;
-                tabItemMultilingualProperties.IsEnabled = true;
-
-                WrapPanel wp = (WrapPanel)tabItemMultilingualProperties.Header;
-
-                foreach (var child in wp.Children)
-                {
-                    if (child is TextBlock)
-                    {
-                        ((TextBlock)child).Foreground = Brushes.Black;
-                    }
-                    else
-                    {
-                        if (child is Border)
-                        {
-                            ((Border)child).BorderBrush = Brushes.Black;
-                            ((TextBlock)((Border)child).Child).Foreground = Brushes.Black;
-                        }
-                    }
-                }
-
-                tabItemMultilingualProperties.BorderBrush = Brushes.Black;
-            }            
+            }
+            else
+            {
+                MessageBox.Show("BeepBoop");
+            }
         }
 
         private bool ValidateGeneralTab()
         {
             foreach (var locProd in ProductModel.LocalizedProducts)
             {
-                if (locProd.Name == null)
+                if (string.IsNullOrWhiteSpace(locProd.Name))
                 {
                     return false;
                 }
@@ -445,21 +565,303 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             return true;
         }
 
-        private void AnimatedTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            foreach (var tabItem in AnimatedTabControl.Items)
-            {
-                var tab = (TabItem)tabItem;
+        #endregion
 
-                if (tab.IsSelected)
+        #region MLTab
+
+        private readonly int _defaultHeight = 30;
+        private readonly int _defaultWidth = 300;
+        private readonly int _descriptionHeight = 150;
+
+        private void FillMultilingualTab()
+        {
+            TabControlLanguages.Items.Clear();
+
+            ProductModel.Values_ProductSpecifications = new List<Value_ProductSpecification>();
+
+            foreach (var lang in _languageList)
+            {
+                CreateMLLocalizedTab(lang);
+            }
+        }
+
+        private void CreateMLLocalizedTab(Language lang)
+        {
+            MetroTabItem tabItem = CreateMetroTabItem(lang);
+            Grid tabGrid = new Grid { Style = Application.Current.Resources["GridBelowTabItem"] as Style };
+            tabGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            tabGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+
+            StackPanel stackPanelLeft = CreateLeftStackPanelForLabels(lang);
+            tabGrid.Children.Add(stackPanelLeft);
+            Grid.SetColumn(stackPanelLeft, 0);
+
+            StackPanel stackPanelRight = CreateRightStackPanelForInput(lang);
+            tabGrid.Children.Add(stackPanelRight);
+            Grid.SetColumn(stackPanelRight, 1);
+
+            tabItem.Content = tabGrid;
+
+            TabControlLanguages.Items.Add(tabItem);
+        }
+
+        private StackPanel CreateRightStackPanelForInput(Language lang)
+        {
+            StackPanel stackInput = new StackPanel();
+
+            LocalizedProduct lp = ProductModel.LocalizedProducts.SingleOrDefault(x => x.LanguageID == lang.ID);
+
+            TextBox tbDescription = AddBindedTextBox(lp, "Description", stackInput);
+            tbDescription.Height = _descriptionHeight;
+            tbDescription.TextWrapping = TextWrapping.Wrap;
+            tbDescription.AcceptsReturn = true;
+            tbDescription.VerticalContentAlignment = VerticalAlignment.Top;
+            tbDescription.Padding = new Thickness(0, 5, 0, 5);
+
+            foreach (var spec in
+                _necessarySpecList.Where(ns => ns.IsMultilingual == true && ns.IsEnumeration == false).OrderBy(ns => ns.DisplayOrder))
+            {
+                Value_ProductSpecification val = new Value_ProductSpecification
                 {
-                    tab.BorderThickness = new Thickness(1);
+                    SpecificationID = spec.SpecificationID,
+                    LanguageID = lang.ID
+                };
+                ProductModel.Values_ProductSpecifications.Add(val);
+
+                AddBindedTextBox(val, "Value", stackInput);
+            }
+
+            return stackInput;
+        }
+
+        private StackPanel CreateLeftStackPanelForLabels(Language lang)
+        {
+            StackPanel stackLabels = new StackPanel();
+
+            Label lblDescription = AddFormLabel(LangResource.Description + " * : ", stackLabels);
+            lblDescription.Margin = new Thickness(0, 20, 0, _descriptionHeight - _defaultHeight);
+
+
+            foreach (var spec in
+                _necessarySpecList.Where(ns => ns.IsMultilingual == true && ns.IsEnumeration == false).OrderBy(ns => ns.DisplayOrder))
+            {
+                AddFormLabel(spec.LookupName + " * : ", stackLabels);
+            }
+
+            return stackLabels;
+        }
+
+        private MetroTabItem CreateMetroTabItem(Language lang)
+        {
+            MetroTabItem metroTab = new MetroTabItem
+            {
+                Header = lang.LocalName,
+                Name = $"tab{lang.ID}",
+                Padding = new Thickness { Left = 25, Right = 25 },
+                Background = Brushes.Beige
+            };
+
+            // Creates a new style for the new tabItem
+            Style AutoGeneratedTabItem = new Style
+            {
+                TargetType = typeof(MetroTabItem)
+            };
+
+            // Adds a setter to give the tabItem border
+            Setter SelectedStyle = new Setter
+            {
+                Property = TabItem.BorderThicknessProperty,
+                Value = new Thickness { Top = 2, Bottom = 2, Left = 2, Right = 2 }
+            };
+
+            // Adds a new trigger, for when the tabItem is selected
+            Trigger SelectedTrigger = new Trigger
+            {
+                Property = TabItem.IsSelectedProperty,
+                Value = true
+            };
+
+            // When the tabItem gets selected, it will generate borders, to clearly see which one is selected
+            SelectedTrigger.Setters.Add(SelectedStyle);
+
+
+            // The same as above for when it is selected, but now to revert the change when unselected
+            Setter NotSelectedStyle = new Setter
+            {
+                Property = TabItem.BorderThicknessProperty,
+                Value = new Thickness { Top = 0, Bottom = 0, Left = 1, Right = 1 }
+            };
+            Trigger NotSelectedTrigger = new Trigger
+            {
+                Property = TabItem.IsSelectedProperty,
+                Value = false
+            };
+            NotSelectedTrigger.Setters.Add(NotSelectedStyle);
+
+            AutoGeneratedTabItem.Triggers.Add(SelectedTrigger);
+            AutoGeneratedTabItem.Triggers.Add(NotSelectedTrigger);
+
+            AutoGeneratedTabItem.Setters.Add(new Setter() { Property = ControlsHelper.HeaderFontSizeProperty, Value = 18.0 });
+            metroTab.Style = AutoGeneratedTabItem;
+
+            return metroTab;
+        }
+
+        private void SubmitML(object sender, RoutedEventArgs e)
+        {
+            if (ValidateMLTab())
+            {
+                EnableTabs(tabItemGeneral, tabItemMultilingualProperties, tabItemNonMultilingualProperties);
+
+                tabItemNonMultilingualProperties.IsSelected = true;
+            }
+            else
+            {
+                MessageBox.Show("RIPBoop");
+            }
+        }
+
+        private bool ValidateMLTab()
+        {
+            foreach (var spec in
+                _necessarySpecList.Where(ns => ns.IsMultilingual == true && ns.IsEnumeration == false))
+            {
+                foreach (var valSpec in ProductModel.Values_ProductSpecifications.Where(x => x.SpecificationID == spec.SpecificationID))
+                {
+                    if (valSpec == null)
+                    {
+                        return false;
+                    }
+
+                    if (String.IsNullOrWhiteSpace(valSpec.Value))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            foreach (var lp in ProductModel.LocalizedProducts)
+            {
+                if (String.IsNullOrWhiteSpace(lp.Description))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        private void BackToGeneral(object sender, RoutedEventArgs e)
+        {
+            tabItemGeneral.IsSelected = true;
+        }
+
+        #endregion
+
+        #region NonMLTab
+        
+        private void FillNonMultilingualTab()
+        {
+            NonMLStackLeftLabels.Children.Clear();
+            NonMLStackRightInput.Children.Clear();
+            
+            foreach (var spec in _necessarySpecList.Where(ns => ns.IsMultilingual == false || ns.IsEnumeration == true).OrderBy(x => x.DisplayOrder))
+            {
+                Value_ProductSpecification val = new Value_ProductSpecification
+                {
+                    SpecificationID = spec.SpecificationID,
+                    LanguageID = null
+                };
+
+                if (spec.IsBool)
+                {
+                    AddFormLabel(spec.LookupName + " * : ", NonMLStackLeftLabels);
+                    AddBindedCheckBox(val, "Value", NonMLStackRightInput);
                 }
                 else
                 {
-                    tab.BorderThickness = new Thickness(0);
+                    if (spec.IsEnumeration)
+                    {
+                        if (spec.IsMultilingual)
+                        {
+                            AddFormLabel(spec.LookupName + " * : ", NonMLStackLeftLabels);
+                            AddBindedComboBox(val, "SpecificationEnum", NonMLStackRightInput, val.SpecificationID);
+                        }
+                        else
+                        {
+                            AddFormLabel(spec.LookupName + " * : ", NonMLStackLeftLabels);
+                            AddBindedComboBox(val, "SpecificationEnum", NonMLStackRightInput, val.SpecificationID);
+                        }
+                    }
+                    else
+                    {
+                        AddFormLabel(spec.LookupName + " * : ", NonMLStackLeftLabels);
+                        AddBindedTextBox(val, "Value", NonMLStackRightInput);
+                    }
+                }
+
+                ProductModel.Values_ProductSpecifications.Add(val);
+            }
+        }        
+
+        private void BackToML(object sender, RoutedEventArgs e)
+        {
+            tabItemMultilingualProperties.IsSelected = true;
+        }
+
+        #endregion
+
+        protected override void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                PrepareModelForSaving();
+            }
+            catch (Exception)
+            {
+                string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheProduct.ToLower());
+                string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.Product.ToLower()));
+
+                MessageBox.Show(content, title);
+            }
+        }
+
+        private void PrepareModelForSaving()
+        {
+            ProductModel.CurrentStock = (int)ProductModel.InitialStock;
+
+            List<Value_ProductSpecification> tempList = new List<Value_ProductSpecification>();
+
+            // TODO Comment this mess holy moly
+
+            foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.LanguageID == null))
+            {
+                bool isFirstLanguage = true;
+
+                foreach (var lang in _languageList)
+                {
+                    if (isFirstLanguage)
+                    {
+                        val.LanguageID = lang.ID;
+                    }
+                    else
+                    {
+                        tempList.Add(
+                            new Value_ProductSpecification
+                            {
+                                LanguageID = lang.ID,
+                                SpecificationID = val.SpecificationID,
+                                Value = val.Value,
+                                SpecificationEnum = val.SpecificationEnum
+                            });
+                    }
+
+                    isFirstLanguage = false;
                 }
             }
+
+            ProductModel.Values_ProductSpecifications.ToList().AddRange(tempList);
+            ProductModel.Values_ProductSpecifications = ProductModel.Values_ProductSpecifications.OrderBy(x => x.SpecificationID).ToList();
         }
     }
 }

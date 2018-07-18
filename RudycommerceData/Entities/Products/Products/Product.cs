@@ -36,7 +36,7 @@ namespace RudycommerceData.Entities.Products.Products
 
         public virtual ICollection<ProductImage> Images { get; set; }
         public virtual ICollection<LocalizedProduct> LocalizedProducts { get; set; }
-        public virtual ICollection<Values_ProductSpecifications> Values_ProductSpecifications { get; set; }
+        public virtual ICollection<Value_ProductSpecification> Values_ProductSpecifications { get; set; }
 
         public override string ToString()
         {

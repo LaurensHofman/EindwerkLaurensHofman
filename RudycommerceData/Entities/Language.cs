@@ -17,7 +17,7 @@ namespace RudycommerceData.Entities
         public ICollection<LocalizedEnumValue> LocalizedEnumValues { get; set; }
         public ICollection<LocalizedProduct> LocalizedProducts { get; set; }
         public ICollection<LocalizedSpecification> LocalizedSpecifications { get; set; }
-        public ICollection<Values_ProductSpecifications> Values_ProductSpecifications { get; set; }
+        public ICollection<Value_ProductSpecification> Values_ProductSpecifications { get; set; }
 
         [Required]
         [StringLength(255)]

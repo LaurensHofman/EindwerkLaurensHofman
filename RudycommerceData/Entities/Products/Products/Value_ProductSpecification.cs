@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace RudycommerceData.Entities.Products.Products
 {
-    public class Values_ProductSpecifications
+    public class Value_ProductSpecification
     {
         public int ProductID { get; set; }
 
@@ -17,8 +17,6 @@ namespace RudycommerceData.Entities.Products.Products
         public int? LanguageID { get; set; }
 
         public string Value { get; set; }
-
-        public int? EnumValueID { get; set; }
 
         public virtual SpecificationEnum SpecificationEnum { get; set; }
 

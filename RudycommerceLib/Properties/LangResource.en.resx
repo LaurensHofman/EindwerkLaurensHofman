@@ -201,4 +201,10 @@
   <data name="Specification" xml:space="preserve">
     <value>Productspecification</value>
   </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="TheProduct" xml:space="preserve">
+    <value>the product</value>
+  </data>
 </root>
