@@ -138,6 +138,14 @@
     <Compile Include="Migrations\201807181546002_enumvalid.Designer.cs">
       <DependentUpon>201807181546002_enumvalid.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807191358301_onetomanyProd.cs" />
+    <Compile Include="Migrations\201807191358301_onetomanyProd.Designer.cs">
+      <DependentUpon>201807191358301_onetomanyProd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807191411111_SpecEnumID.cs" />
+    <Compile Include="Migrations\201807191411111_SpecEnumID.Designer.cs">
+      <DependentUpon>201807191411111_SpecEnumID.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryOverviewItem.cs" />
     <Compile Include="Models\DesktopLogin.cs" />
@@ -222,6 +230,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807181546002_enumvalid.resx">
       <DependentUpon>201807181546002_enumvalid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807191358301_onetomanyProd.resx">
+      <DependentUpon>201807191358301_onetomanyProd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807191411111_SpecEnumID.resx">
+      <DependentUpon>201807191411111_SpecEnumID.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

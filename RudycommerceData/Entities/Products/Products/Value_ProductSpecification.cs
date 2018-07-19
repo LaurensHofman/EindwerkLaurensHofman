@@ -18,6 +18,7 @@ namespace RudycommerceData.Entities.Products.Products
 
         public string Value { get; set; }
 
+        public int? SpecificationEnumID { get; set; }
         public virtual SpecificationEnum SpecificationEnum { get; set; }
 
         [NotMapped]

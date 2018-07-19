@@ -124,7 +124,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 Height = _defaultHeight,
                 Width = _defaultWidth,
                 Padding = new Thickness(0, 5, 0, 5),
-                DisplayMemberPath = "LocalizedValue"
+                DisplayMemberPath = "LocalizedValue",
+                SelectedValuePath = "ID"
             };
 
             Specification spec = _specificationsList.SingleOrDefault(x => x.ID == specID);
@@ -138,11 +139,11 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             cb.SetBinding(ItemsControl.ItemsSourceProperty,
                 new Binding
                 {
-                    Source = enums // get source
+                    Source = enums
                 });
 
             cb.SetBinding(
-               Selector.SelectedItemProperty,
+               Selector.SelectedValueProperty,
                new Binding(bindingLocation)
                {
                    Source = bindingSource
@@ -201,6 +202,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 }
                 else
                 {
+                    i.BorderThickness = new Thickness(1, 0, 1, 0);
                     var wp = (i.Header as WrapPanel);
 
                     var brd = wp.Children[0] as Border;
@@ -260,7 +262,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 }
                 else
                 {
-                    tab.BorderThickness = new Thickness(0);
+                    tab.BorderThickness = new Thickness(1,0,1,0);
                 }
             }
         }
@@ -543,12 +545,12 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 }
             }
 
-            if (ProductModel.Category == null)
+            if (ProductModel.CategoryID <= 0)
             {
                 return false;
             }
 
-            if (ProductModel.Brand == null)
+            if (ProductModel.BrandID <= 0)
             {
                 return false;
             }
@@ -787,12 +789,12 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                         if (spec.IsMultilingual)
                         {
                             AddFormLabel(spec.LookupName + " * : ", NonMLStackLeftLabels);
-                            AddBindedComboBox(val, "SpecificationEnum", NonMLStackRightInput, val.SpecificationID);
+                            AddBindedComboBox(val, "SpecificationEnumID", NonMLStackRightInput, val.SpecificationID);
                         }
                         else
                         {
                             AddFormLabel(spec.LookupName + " * : ", NonMLStackLeftLabels);
-                            AddBindedComboBox(val, "SpecificationEnum", NonMLStackRightInput, val.SpecificationID);
+                            AddBindedComboBox(val, "SpecificationEnumID", NonMLStackRightInput, val.SpecificationID);
                         }
                     }
                     else
@@ -832,8 +834,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             }
             catch (Exception)
             {
-                throw;
-
                 string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheProduct.ToLower());
                 string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.Product.ToLower()));
 

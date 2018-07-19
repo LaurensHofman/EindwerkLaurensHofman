@@ -121,12 +121,14 @@
 
                                             <ComboBox x:Name="cmbxCategories" Style="{StaticResource ResourceKey=FormInputComboBox}" Width="300"
                                                 ItemsSource="{Binding Path=CategoryList}"
-                                                SelectedItem="{Binding Path=ProductModel.Category}"
+                                                SelectedValuePath="ID"
+                                                SelectedValue="{Binding Path=ProductModel.CategoryID}"
                                                 DisplayMemberPath="LocalizedName" SelectionChanged="cmbxCategories_SelectionChanged"/>
 
                                             <ComboBox x:Name="cmbxBrands" Style="{StaticResource ResourceKey=FormInputComboBox}" Width="300"
                                                 ItemsSource="{Binding Path=BrandsList}"
-                                                SelectedItem="{Binding Path=ProductModel.Brand}"
+                                                SelectedValuePath="ID"
+                                                SelectedValue="{Binding Path=ProductModel.BrandID}"
                                                 DisplayMemberPath="Name"/>
 
                                             <TextBox Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70">

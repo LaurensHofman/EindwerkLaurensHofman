@@ -166,7 +166,7 @@ namespace RudycommerceData.Data
 
             #endregion
 
-            #region Spec
+            #region Spec - Enum
 
             modelBuilder.Entity<SpecificationEnum>()
                 .HasRequired<Specification>(enums => enums.Specification)
