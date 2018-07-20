@@ -88,6 +88,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             FillBrandDropdown();
         }
 
+        public ProductForm(int ID)
+        {
+            InitializeComponent();
+
+            lblInitStock.Visibility = tbInitStock.Visibility = Visibility.Collapsed;
+        }
+
         private async void GetSpecificationList()
         {
             _specRepo = new SpecificationRepository();
@@ -173,8 +180,10 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             };
             cb.SetBinding(CheckBox.IsCheckedProperty, cbBinding);
 
-            parentElement.Children.Add(cb);
+            cb.IsChecked = false;
 
+            parentElement.Children.Add(cb);
+            
             return cb;
         }
 
@@ -867,7 +876,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                                 LanguageID = lang.ID,
                                 SpecificationID = val.SpecificationID,
                                 Value = val.Value,
-                                SpecificationEnum = val.SpecificationEnum
+                                SpecificationEnumID = val.SpecificationEnumID
                             });
                     }
 

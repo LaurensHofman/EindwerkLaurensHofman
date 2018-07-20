@@ -1,4 +1,5 @@
 ﻿using RudycommerceData.Entities.Products.Products;
+using RudycommerceData.Models;
 using RudycommerceData.Repositories.BaseRepo;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,9 @@ namespace RudycommerceData.Repositories.IRepo
     public interface IProductRepository: IBaseRepository<Product>
     {
         Task<Product> AddWithImagesAsync(Product entity);
+
+        List<ProductOverviewItem> GetProductOverview(int languageID);
+
+        void ToggleProductActive(int ProductID);
     }
 }

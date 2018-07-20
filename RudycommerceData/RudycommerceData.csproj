@@ -146,10 +146,19 @@
     <Compile Include="Migrations\201807191411111_SpecEnumID.Designer.cs">
       <DependentUpon>201807191411111_SpecEnumID.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807201132016_onetomanyprodimg.cs" />
+    <Compile Include="Migrations\201807201132016_onetomanyprodimg.Designer.cs">
+      <DependentUpon>201807201132016_onetomanyprodimg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807201304228_minStock.cs" />
+    <Compile Include="Migrations\201807201304228_minStock.Designer.cs">
+      <DependentUpon>201807201304228_minStock.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryOverviewItem.cs" />
     <Compile Include="Models\DesktopLogin.cs" />
     <Compile Include="Models\NecessarySpecification.cs" />
+    <Compile Include="Models\ProductOverviewItem.cs" />
     <Compile Include="Models\SpecificationOverviewItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepo\BaseRepository.cs" />
@@ -236,6 +245,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807191411111_SpecEnumID.resx">
       <DependentUpon>201807191411111_SpecEnumID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201132016_onetomanyprodimg.resx">
+      <DependentUpon>201807201132016_onetomanyprodimg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807201304228_minStock.resx">
+      <DependentUpon>201807201304228_minStock.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

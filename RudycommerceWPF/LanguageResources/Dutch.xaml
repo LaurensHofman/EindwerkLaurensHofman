@@ -99,4 +99,17 @@
     <system:String x:Key="NonMultilingualSpecifications">Niet-meertalige specificaties</system:String>
 
     <system:String x:Key="General">Algemeen</system:String>
+    <system:String x:Key="ProductOverviewTitle">Overzicht producten</system:String>
+    <system:String x:Key="ProductImage">Foto</system:String>
+    <system:String x:Key="MinimumStock">IJzeren voorraad</system:String>
+
+    <system:String x:Key="Category">Categorie</system:String>
+    <system:String x:Key="TopSpecification">Top specificatie</system:String>
+    <system:String x:Key="CurrentStock">Huidige voorraad</system:String>
+
+    <system:String x:Key="ShowProductImages">Toon productfoto's</system:String>
+    <system:String x:Key="HideProductImages">Verberg productfoto's</system:String>
+
+    <system:String x:Key="ActivateProduct">Activeer</system:String>
+    <system:String x:Key="InactiveProduct">Desactiveer</system:String>
 </ResourceDictionary>

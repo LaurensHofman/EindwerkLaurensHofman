@@ -101,13 +101,20 @@
                                                 </WrapPanel>
                                             </Label>
 
-                                            <Label Style="{StaticResource ResourceKey=FormLabel}">
+                                            <Label x:Name="lblInitStock" Style="{StaticResource ResourceKey=FormLabel}">
                                                 <WrapPanel>
                                                     <TextBlock Text="{DynamicResource ResourceKey=InitialStock}"/>
                                                     <TextBlock Text=" : "/>
                                                 </WrapPanel>
                                             </Label>
 
+                                            <Label Style="{StaticResource ResourceKey=FormLabel}">
+                                                <WrapPanel>
+                                                    <TextBlock Text="{DynamicResource ResourceKey=MinimumStock}"/>
+                                                    <TextBlock Text=" : "/>
+                                                </WrapPanel>
+                                            </Label>
+                                            
                                             <Label Style="{StaticResource ResourceKey=FormLabel}">
                                                 <WrapPanel>
                                                     <TextBlock Text="{DynamicResource ResourceKey=IsProductActive}"/>
@@ -138,8 +145,10 @@
                                                 </TextBox.Text>
                                             </TextBox>
 
-                                            <TextBox Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70" Text="{Binding ProductModel.InitialStock}"/>
+                                            <TextBox x:Name="tbInitStock" Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70" Text="{Binding ProductModel.InitialStock}"/>
 
+                                            <TextBox Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70" Text="{Binding ProductModel.MinimumStock}"/>
+                                            
                                             <CheckBox IsChecked="{Binding Path=ProductModel.IsActive}" Style="{StaticResource ResourceKey=FormInputCheckBox}" Margin="0,20,0,0" Width="50"/>
 
                                         </StackPanel>

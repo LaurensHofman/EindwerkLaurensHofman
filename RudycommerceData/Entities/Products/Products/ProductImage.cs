@@ -19,6 +19,9 @@ namespace RudycommerceData.Entities.Products.Products
         [NotMapped]
         public string FileLocation { get; set; }
 
+        public int ProductID { get; set; }
+        public Product Product { get; set; }
+
         public override bool IsNew()
         {
             return this.ID <= 0;
