@@ -1,0 +1,143 @@
+﻿<base:MultilingualUserControl
+    xmlns:base="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts" x:Class="RudycommerceWPF.WindowsAndUserControls.Users.UserOverview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Users"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Style="{StaticResource TitleLabel}" Content="{DynamicResource DesktopUserOverviewTitle}"/>
+
+        <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="10,0,10,0">
+            <Button Width="30" Height="30" Click="RefreshGrid">
+                <Image Source="pack://application:,,,/Resources/Icons/256_RefreshWhite.png"/>
+            </Button>
+        </WrapPanel>
+
+        <DataGrid x:Name="dgDesktopUserOverview" Grid.Row="2" Style="{StaticResource ResourceKey=OverviewDataGridWithImages}" 
+                Height="Auto" VerticalAlignment="Top" IsReadOnly="True">
+            <DataGrid.RowStyle>
+                <Style TargetType="{x:Type DataGridRow}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsAdmin}" Value="True">
+                            <Setter Property="Background" Value="LightGreen"></Setter>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=VerifiedByAdmin}" Value="False">
+                            <Setter Property="Background" Value="OrangeRed"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Width="Auto" Binding="{Binding FullName}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="{DynamicResource Name}" VerticalAlignment="Center"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Width="Auto" Binding="{Binding Username}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="{DynamicResource Username}" VerticalAlignment="Center"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+
+                <DataGridTextColumn Width="Auto" Binding="{Binding Email}">
+                    <DataGridTextColumn.Header>
+                        <TextBlock Text="{DynamicResource Email}" VerticalAlignment="Center"/>
+                    </DataGridTextColumn.Header>
+                </DataGridTextColumn>
+                
+                <DataGridCheckBoxColumn Width="Auto" Binding="{Binding IsAdmin}">
+                    <DataGridCheckBoxColumn.Header>
+                        <TextBlock Text="{DynamicResource IsAdmin}" VerticalAlignment="Center"/>
+                    </DataGridCheckBoxColumn.Header>
+                </DataGridCheckBoxColumn>
+
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="MakeAdmin">
+                                <Button.Content>
+                                    <TextBlock Text="{DynamicResource MakeAdmin}" Style="{DynamicResource DataGridButtonTextBlock}"></TextBlock>
+                                </Button.Content>
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsAdmin}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Path=VerifiedByAdmin}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Delete">
+                                <Button.Content>
+                                    <TextBlock Text="{DynamicResource Delete}" Style="{DynamicResource DataGridButtonTextBlock}"></TextBlock>
+                                </Button.Content>
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=IsAdmin}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Verify">
+                                <Button.Content>
+                                    <TextBlock Text="{DynamicResource VerifyUser}" Style="{DynamicResource DataGridButtonTextBlock}"></TextBlock>
+                                </Button.Content>
+                                <Button.Style>
+                                    <Style TargetType="Button">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Path=VerifiedByAdmin}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</base:MultilingualUserControl>

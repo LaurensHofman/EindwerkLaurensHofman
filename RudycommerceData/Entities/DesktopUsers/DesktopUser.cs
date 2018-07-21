@@ -28,6 +28,8 @@ namespace RudycommerceData.Entities.DesktopUsers
         public virtual Language PreferredLanguage { get; set; }
 
         [Required]
+        [Index("IX_UniqueUsername", IsUnique = true, Order = 1)]
+        [MaxLength(50)]
         public string Username { get; set; }
 
         [Required]
@@ -41,9 +43,18 @@ namespace RudycommerceData.Entities.DesktopUsers
             return this.ID <= 0;
         }
 
+        [NotMapped]
+        public string FullName
+        {
+            get
+            {
+                return this.FirstName + " " + this.LastName;
+            }
+        }
+
         public override string ToString()
         {
-            return this.FirstName + " " + this.LastName;
+            return FullName;
         }
 
     }

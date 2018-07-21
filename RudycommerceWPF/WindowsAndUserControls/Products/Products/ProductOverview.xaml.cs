@@ -1,6 +1,7 @@
 ﻿using RudycommerceData.Models;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
+using RudycommerceLib.Properties;
 using RudycommerceWPF.WindowsAndUserControls.Abstracts;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -46,32 +48,72 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         { 
             _prodRepo = new ProductRepository();
 
-            ProductList = new ObservableCollection<ProductOverviewItem>(_prodRepo.GetProductOverview(_preferredLanguage.ID));
+            ProductList = new ObservableCollection<ProductOverviewItem>(_prodRepo.GetProductOverview(_preferredLanguage.ID).OrderBy(x => x.ProductName));
 
             BindData();
         }
 
         private void BindData()
         {
-            ProductList.OrderBy(x => x.ProductName);
-
             dgProductOverview.ItemsSource = ProductList;
             dgProductOverview.DataContext = ProductList;
         }
 
-        protected override void Delete(object sender, RoutedEventArgs e)
+        protected override async void Delete(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            try
+            {
+                ProductOverviewItem ToBeDeleted = ((FrameworkElement)sender).DataContext as ProductOverviewItem;
+
+                string messageboxTitle = String.Format(LangResource.MBTitleDeleteObj, ToBeDeleted.ProductName);
+                string messageboxContent = String.Format(LangResource.MBContentDeleteObj, LangResource.TheProduct.ToLower(), ToBeDeleted.ProductName);
+
+                MessageBoxManager.Yes = LangResource.Yes;
+                MessageBoxManager.No = LangResource.No;
+                MessageBoxManager.Register();
+
+                if (MessageBox.Show(messageboxContent,
+                                    messageboxTitle,
+                                    MessageBoxButton.YesNo,
+                                    MessageBoxImage.Warning)
+                    == MessageBoxResult.Yes)
+                {
+                    MessageBoxManager.Unregister();
+
+                    _prodRepo.Delete(ToBeDeleted.ID);
+                    ProductList.Remove(ToBeDeleted);
+
+                    await _prodRepo.SaveChangesAsync();
+
+                    BindData();
+                }
+                else
+                { MessageBoxManager.Unregister(); }
+            }
+            catch (Exception)
+            {
+                MessageBoxManager.Unregister();
+                throw;
+            }
         }
 
         protected override void OpenForm(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            var myWindow = (NavigationWindow)GetParentWindow();
+
+            ContentControl form = myWindow.ccProductForm;
+            ContentControl ov = myWindow.ccProductOverview;
+
+            form.Content = null;
+
+            myWindow.ShowFormUserControl<ProductForm, ProductOverview>(form, ov);
         }
 
         protected override void Update(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            ProductOverviewItem ToBeUpdated = ((FrameworkElement)sender).DataContext as ProductOverviewItem;
+
+            ShowUpdateForm<ProductForm>(ToBeUpdated.ID);
         }
 
         private void ToggleVisibilityImages(object sender, RoutedEventArgs e)

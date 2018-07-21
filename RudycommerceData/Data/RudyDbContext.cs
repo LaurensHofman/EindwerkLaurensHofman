@@ -176,9 +176,9 @@ namespace RudycommerceData.Data
             #endregion
 
             modelBuilder.Entity<ProductImage>()
-                .HasRequired<Product>(img => img.Product)
+                .HasOptional<Product>(img => img.Product)
                 .WithMany(p => p.Images)
-                .HasForeignKey<int>(img => img.ProductID);
+                .HasForeignKey<int?>(img => img.ProductID);
         }
     }
 }

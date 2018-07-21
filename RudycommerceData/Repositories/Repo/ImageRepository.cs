@@ -87,7 +87,7 @@ namespace RudycommerceData.Repositories.Repo
                 File = new FileDescription(path),
                 PublicId = $"ID{productID}Ord{img.Order}",
                 Overwrite = true,
-                Folder = $"Brands/{productID}"
+                Folder = $"Products/{productID}"
             };
 
             var uploadResult = await cloudinary.UploadAsync(uploadParams);

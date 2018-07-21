@@ -92,7 +92,43 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         {
             InitializeComponent();
 
+            _updatingPage = true;
+
             lblInitStock.Visibility = tbInitStock.Visibility = Visibility.Collapsed;
+
+            DataContext = this;
+
+            _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
+
+            SetLanguageDictionary();
+
+            TabItemColours();
+            EnableTabs(tabItemGeneral, tabItemMultilingualProperties, tabItemNonMultilingualProperties);
+            
+            _prodRepo = new ProductRepository();
+
+            ProductModel = _prodRepo.Get(ID);
+
+            _langRepo = new LanguageRepository();
+            
+            SetTitle();
+
+            GenerateProductNameLabelsAndInputs();
+
+            GetSpecificationList();
+
+            FillCategoryDropdown();
+            FillBrandDropdown();
+
+            AddImages();
+        }
+
+        private void AddImages()
+        {
+            foreach (var img in ProductModel.Images)
+            {
+                AddImage(img, null);
+            }
         }
 
         private async void GetSpecificationList()
@@ -180,8 +216,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             };
             cb.SetBinding(CheckBox.IsCheckedProperty, cbBinding);
 
-            cb.IsChecked = false;
-
             parentElement.Children.Add(cb);
             
             return cb;
@@ -223,6 +257,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                     tbnr.Foreground = Brushes.Gray;
                     tbtxt.Foreground = Brushes.Gray;
                 }
+
+                i.Background = Brushes.Transparent;
             }
         }
 
@@ -308,6 +344,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             _brandRepo = new BrandRepository();
 
             BrandsList = (await _brandRepo.GetAllAsync()).OrderBy(x => x.Name).ToList();
+
+            cmbxBrands.ItemsSource = BrandsList;
         }
 
         private async void FillCategoryDropdown()
@@ -322,6 +360,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             }
 
             CategoryList = CategoryList.OrderBy(x => x.LocalizedName).ToList();
+
+            cmbxCategories.ItemsSource = CategoryList;
         }
 
         private void cmbxCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -357,31 +397,39 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         #region Generating, Drag&Drop and Removing images
 
         Grid gridImageToDrag;
+        private bool result;
 
         private void AddImage(object sender, RoutedEventArgs e)
         {
             try
             {
-                Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog
+                if (sender.GetType() == typeof(ProductImage))
                 {
-                    Filter = "Image File (*.jpg; *.png)| *.jpg; *.png"
-                };
-
-                bool? result = fileDialog.ShowDialog();
-
-                if (result == true)
-                {
-                    string filename = fileDialog.FileName;
-
-                    CreateImageControls(filename);
-
-                    ProductImage prdImg = new ProductImage
-                    {
-                        FileLocation = filename,
-                        Order = imgPnl.Children.Count - 1
-                    };
-                    ProductModel.Images.Add(prdImg);
+                    CreateImageControls(((ProductImage)sender).ImageURL);
                 }
+                else
+                {
+                    Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog
+                    {
+                        Filter = "Image File (*.jpg; *.png)| *.jpg; *.png"
+                    };
+
+                    bool? result = fileDialog.ShowDialog();
+
+                    if (result == true)
+                    {
+                        string filename = fileDialog.FileName;
+
+                        CreateImageControls(filename);
+
+                        ProductImage prdImg = new ProductImage
+                        {
+                            FileLocation = filename,
+                            Order = imgPnl.Children.Count - 1
+                        };
+                        ProductModel.Images.Add(prdImg);
+                    }
+                }                
             }
 
             catch (Exception)
@@ -463,6 +511,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             }
 
             imgPnl.Children.Remove(grd);
+
+            foreach (Grid grid in imgPnl.Children)
+            {
+                Border brd = (Border)grd.Children[0];
+                brd.BorderBrush = (imgPnl.Children.IndexOf(grd) == 0) ? Brushes.Black : Brushes.Transparent;
+                brd.BorderThickness = new Thickness((imgPnl.Children.IndexOf(grd) == 0) ? 2 : 0);
+            }
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -634,12 +689,18 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             foreach (var spec in
                 _necessarySpecList.Where(ns => ns.IsMultilingual == true && ns.IsEnumeration == false).OrderBy(ns => ns.DisplayOrder))
             {
-                Value_ProductSpecification val = new Value_ProductSpecification
+                Value_ProductSpecification val = ProductModel.Values_ProductSpecifications
+                    .SingleOrDefault(x => x.SpecificationID == spec.SpecificationID && x.LanguageID == lang.ID);
+
+                if (val == null)
                 {
-                    SpecificationID = spec.SpecificationID,
-                    LanguageID = lang.ID
-                };
-                ProductModel.Values_ProductSpecifications.Add(val);
+                    val = new Value_ProductSpecification
+                    {
+                        SpecificationID = spec.SpecificationID,
+                        LanguageID = lang.ID
+                    };
+                    ProductModel.Values_ProductSpecifications.Add(val);
+                }                
 
                 AddBindedTextBox(val, "Value", stackInput);
             }
@@ -780,16 +841,48 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             
             foreach (var spec in _necessarySpecList.Where(ns => ns.IsMultilingual == false || ns.IsEnumeration == true).OrderBy(x => x.DisplayOrder))
             {
-                Value_ProductSpecification val = new Value_ProductSpecification
+                int firstLangID = _languageList.FirstOrDefault().ID;
+
+                Value_ProductSpecification val = ProductModel.Values_ProductSpecifications
+                    .SingleOrDefault(x => x.SpecificationID == spec.SpecificationID && x.LanguageID == firstLangID);
+
+                if (val == null)
                 {
-                    SpecificationID = spec.SpecificationID,
-                    LanguageID = null
-                };
+                    val = new Value_ProductSpecification
+                    {
+                        SpecificationID = spec.SpecificationID,
+                        LanguageID = null,
+                        TempBoolValue = null,
+                        TempLangID = null
+                    };
+
+                    ProductModel.Values_ProductSpecifications.Add(val);
+                }
+                else
+                {
+                    foreach (var value in ProductModel.Values_ProductSpecifications
+                        .Where(x => x.SpecificationID == spec.SpecificationID && x.LanguageID != firstLangID))
+                    {
+                        value.TempLangID = value.LanguageID;
+                        value.LanguageID = null;
+                    }
+                }
 
                 if (spec.IsBool)
                 {
+                    bool.TryParse(val.Value, out bool isBoolValue);
+
+                    if (isBoolValue)
+                    {
+                        val.TempBoolValue = bool.Parse(val.Value);
+                    }
+                    else
+                    {
+                        val.TempBoolValue = false;
+                    }
+
                     AddFormLabel(spec.LookupName + " * : ", NonMLStackLeftLabels);
-                    AddBindedCheckBox(val, "Value", NonMLStackRightInput);
+                    AddBindedCheckBox(val, "TempBoolValue", NonMLStackRightInput);
                 }
                 else
                 {
@@ -812,8 +905,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                         AddBindedTextBox(val, "Value", NonMLStackRightInput);
                     }
                 }
-
-                ProductModel.Values_ProductSpecifications.Add(val);
             }
         }        
 
@@ -830,11 +921,15 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             {
                 if (_updatingPage)
                 {
+                    PrepareModelForUpdate();
 
+                    await _prodRepo.UpdateWithImagesAsync(ProductModel);
+
+                    TriggerSaveEvent();
                 }
                 else
                 {
-                    PrepareModelForSaving();
+                    PrepareModelForCreate();
 
                     await _prodRepo.AddWithImagesAsync(ProductModel);
 
@@ -843,6 +938,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             }
             catch (Exception)
             {
+                throw;
+
                 string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheProduct.ToLower());
                 string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.Product.ToLower()));
 
@@ -850,13 +947,72 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             }
         }
 
-        private void PrepareModelForSaving()
+        private void PrepareModelForUpdate()
+        {
+            foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.TempBoolValue != null))
+            {
+                val.Value = val.TempBoolValue.ToString();
+            }
+
+            int firstLangID = _languageList.FirstOrDefault().ID;
+
+            foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.LanguageID == null && x.TempLangID != null))
+            {
+                val.LanguageID = val.TempLangID;
+                val.Value = ProductModel.Values_ProductSpecifications
+                    .SingleOrDefault(x => x.SpecificationID == val.SpecificationID && x.LanguageID == firstLangID).Value;
+                val.SpecificationEnumID = ProductModel.Values_ProductSpecifications
+                    .SingleOrDefault(x => x.SpecificationID == val.SpecificationID && x.LanguageID == firstLangID).SpecificationEnumID;
+            }
+
+            List<Value_ProductSpecification> tempList = new List<Value_ProductSpecification>();
+
+            foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.LanguageID == null && x.TempLangID == null))
+            {
+                bool isFirstLanguage = true;
+
+                foreach (var lang in _languageList)
+                {
+                    if (isFirstLanguage)
+                    {
+                        val.LanguageID = lang.ID;
+                    }
+                    else
+                    {
+                        tempList.Add(
+                            new Value_ProductSpecification
+                            {
+                                LanguageID = lang.ID,
+                                SpecificationID = val.SpecificationID,
+                                Value = val.Value,
+                                SpecificationEnumID = val.SpecificationEnumID
+                            });
+                    }
+
+                    isFirstLanguage = false;
+                }
+            }
+
+            foreach (var tempItem in tempList)
+            {
+                ProductModel.Values_ProductSpecifications.Add(tempItem);
+            }
+
+            ProductModel.Values_ProductSpecifications = ProductModel.Values_ProductSpecifications.OrderBy(x => x.SpecificationID).ToList();
+        }
+
+        private void PrepareModelForCreate()
         {
             ProductModel.CurrentStock = (int)ProductModel.InitialStock;
 
             List<Value_ProductSpecification> tempList = new List<Value_ProductSpecification>();
 
             // TODO Comment this mess holy moly
+
+            foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.TempBoolValue != null))
+            {
+                val.Value = val.TempBoolValue.ToString();
+            }
 
             foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.LanguageID == null))
             {

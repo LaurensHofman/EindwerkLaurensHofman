@@ -112,4 +112,13 @@
 
     <system:String x:Key="ActivateProduct">Activeer</system:String>
     <system:String x:Key="InactiveProduct">Desactiveer</system:String>
+
+    <system:String x:Key="DesktopUserOverviewTitle">Overzicht werknemers</system:String>
+    
+    
+    <!--wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww-->
+
+    <system:String x:Key="IsAdmin">Is beheerder?</system:String>
+    <system:String x:Key="MakeAdmin">Beheerder maken</system:String>
+    <system:String x:Key="VerifyUser">Verifieer gebruiker</system:String>
 </ResourceDictionary>

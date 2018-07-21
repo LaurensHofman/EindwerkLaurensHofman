@@ -81,7 +81,7 @@
                         
                         <Separator/>
 
-                        <StackPanel x:Name="stackProducts" Style="{StaticResource ToolbarStack}">
+                        <StackPanel x:Name="stackProducts" Style="{StaticResource ToolbarStack}" Background="Green">
                             <WrapPanel>
                                 <Button Style="{StaticResource ToolbarButton}" ToolTip="{DynamicResource NewProductTT}" Click="menuAddProduct">
                                     <Image Style="{StaticResource ToolbarIcon}" Source="pack://application:,,,/Resources/Icons/256_AddWhite.png"/>

@@ -140,6 +140,22 @@ namespace RudycommerceWPF.WindowsAndUserControls
             (contentControl.Content as ToBeShownUC).Visibility = Visibility.Visible;
         }
 
+        private void ShowGeneralUserControl<ToBeShownUC>(ContentControl contentControl) where ToBeShownUC: MultilingualUserControl, new()
+        {
+            HideAllUserControls();
+
+            if (contentControl.Content == null || (contentControl.Content as ToBeShownUC).Visibility == Visibility.Collapsed)
+            {
+                ToBeShownUC _content = new ToBeShownUC();
+
+                contentControl.Content = _content;
+            }
+
+            // Make the ContentControl and the UserControl visible
+            contentControl.Visibility = Visibility.Visible;
+            (contentControl.Content as ToBeShownUC).Visibility = Visibility.Visible;
+        }
+
         private void GoToOverview<overviewUC>(ContentControl contentControl) where overviewUC : OverviewUserControl, new()
         {
             ShowOverviewUserControl<overviewUC>(contentControl);
@@ -192,7 +208,7 @@ namespace RudycommerceWPF.WindowsAndUserControls
 
         private void menuDesktopUserOverview(object sender, RoutedEventArgs e)
         {
-
+            ShowGeneralUserControl<UserOverview>(ccUsers);
         }
 
         #endregion

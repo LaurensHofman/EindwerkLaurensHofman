@@ -133,7 +133,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             }
             catch (Exception)
             {
-                // TODO ERROR
+                // TODO ERROR + Exception when Username is already taken
 
                 pwdPassword.Password = null;
                 throw;

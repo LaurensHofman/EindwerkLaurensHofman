@@ -170,7 +170,7 @@
                         <DataTemplate>
                             <Button Click="Delete">
                                 <Button.Content>
-                                    <TextBlock Text="{DynamicResource Update}" Style="{DynamicResource DataGridButtonTextBlock}"></TextBlock>
+                                    <TextBlock Text="{DynamicResource Delete}" Style="{DynamicResource DataGridButtonTextBlock}"></TextBlock>
                                 </Button.Content>
                             </Button>
                         </DataTemplate>

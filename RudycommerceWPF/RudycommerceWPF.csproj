@@ -133,6 +133,9 @@
     <Compile Include="WindowsAndUserControls\Users\AccountSettings.xaml.cs">
       <DependentUpon>AccountSettings.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowsAndUserControls\Users\UserOverview.xaml.cs">
+      <DependentUpon>UserOverview.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -246,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="WindowsAndUserControls\Users\AccountSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsAndUserControls\Users\UserOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

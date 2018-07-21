@@ -62,7 +62,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
         private void BindData()
         {
-            LanguageList.OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.IsDesktopLanguage).ThenBy(x => x.ISO);
+            LanguageList = new ObservableCollection<Language>(LanguageList.OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.IsDesktopLanguage).ThenBy(x => x.ISO));
 
             dgLanguageOverview.ItemsSource = LanguageList;
             //.OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.IsDesktopLanguage).ThenBy(x => x.ISO);
@@ -157,7 +157,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
                     await _langRepo.SaveChangesAsync();
 
-                    BindData();
+                    LoadDataGridData();
                 }
                 else
                 { MessageBoxManager.Unregister(); }

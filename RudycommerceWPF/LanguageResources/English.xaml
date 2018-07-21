@@ -41,4 +41,81 @@
 
     <!-- wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww -->
 
+    <system:String x:Key="ManageAccountTitle">Account settings</system:String>
+    <system:String x:Key="UpdateLanguageTitle">Update language</system:String>
+    <system:String x:Key="NewLanguageTitle">New language</system:String>
+    <system:String x:Key="LocalName">Local name</system:String>
+    <system:String x:Key="DutchName">Dutch name</system:String>
+    <system:String x:Key="EnglishName">English name</system:String>
+    <system:String x:Key="ISOCode">ISO code</system:String>
+    <system:String x:Key="IsLanguageDefault">Default language?</system:String>
+    <system:String x:Key="SettingsTT">Change the preferences of the user.</system:String>
+    <system:String x:Key="LanguageOverview">Language overview</system:String>
+    <system:String x:Key="MakeLangDefault">Make default language</system:String>
+    <system:String x:Key="DefaultLanguageHeader">Default language?</system:String>
+    <system:String x:Key="Delete">Delete</system:String>
+    <system:String x:Key="NewBrandTT">Add a new brand.</system:String>
+    <system:String x:Key="BrandOverviewTT">Shows the overview of the brands.</system:String>
+    <system:String x:Key="Brands">Brands</system:String>
+    <system:String x:Key="Brand">Brand</system:String>
+    <system:String x:Key="Update">Modify</system:String>
+    <system:String x:Key="Name">Name</system:String>
+    <system:String x:Key="BrandLogo">Logo</system:String>
+    <system:String x:Key="AddImage">Add image</system:String>
+    <system:String x:Key="UpdateBrandTitle">Modify brand</system:String>
+    <system:String x:Key="NewBrandTitle">New brand</system:String>
+    <system:String x:Key="BrandOverviewTitle">Brands overview</system:String>
+    <system:String x:Key="UpdateSpecificationTitle">Modify product specification</system:String>
+    <system:String x:Key="NewSpecificationTitle">New productspecification</system:String>
+    <system:String x:Key="UpdateProductTitle">Modify product</system:String>
+    <system:String x:Key="NewProductTitle">New product</system:String>
+
+    <system:String x:Key="IsSpecificationML">Is the specification language sensitive</system:String>
+    <system:String x:Key="IsSpecificationBool">Does the specification have a Yes/No-Value?</system:String>
+    <system:String x:Key="IsSpecificationEnum">Does the specification have a fixed list of values?</system:String>
+    <system:String x:Key="IsSpecificationMLShort">Language sensitive?</system:String>
+    <system:String x:Key="IsSpecificationBoolShort">Yes/No-Value?</system:String>
+    <system:String x:Key="IsSpecificationEnumShort">Fixed values?</system:String>
+
+    <system:String x:Key="SpecificationOverviewTitle">Product specification overview</system:String>
+    <system:String x:Key="AddSpecificationToCategory">Add a product specification to the category</system:String>
+    <system:String x:Key="PossibleSpecifications">Possible specifications</system:String>
+    <system:String x:Key="CategorySpecifications">Specifications from the category</system:String>
+    <system:String x:Key="AddedSpecificationsToCategory">Specifications, belonging to category</system:String>
+
+    <system:String x:Key="UpdateCategoryTitle">Modify category</system:String>
+    <system:String x:Key="NewCategoryTitle">New category</system:String>
+    <system:String x:Key="CategoryOverview">Category overview</system:String>
+
+    <system:String x:Key="PluralName">Plural name</system:String>
+    <system:String x:Key="SpecCount">Amount of specifications</system:String>
+
+    <system:String x:Key="SelectCategory">Category</system:String>
+    <system:String x:Key="InitialStock">Initial stock</system:String>
+    <system:String x:Key="UnitPrice">Unit price</system:String>
+    <system:String x:Key="IsProductActive">Is product active?</system:String>
+    <system:String x:Key="SelectBrand">Brand</system:String>
+
+    <system:String x:Key="MultilingualSpecifications">Multilingual specifications</system:String>
+    <system:String x:Key="NonMultilingualSpecifications">Non-multilingual specifications</system:String>
+
+    <system:String x:Key="General">General</system:String>
+    <system:String x:Key="ProductOverviewTitle">Product overview</system:String>
+    <system:String x:Key="ProductImage">Image</system:String>
+    <system:String x:Key="MinimumStock">Minimum stock</system:String>
+
+    <system:String x:Key="Category">Category</system:String>
+    <system:String x:Key="TopSpecification">Top specification</system:String>
+    <system:String x:Key="CurrentStock">Current stock</system:String>
+
+    <system:String x:Key="ShowProductImages">Show productimages</system:String>
+    <system:String x:Key="HideProductImages">Hideproductimages</system:String>
+
+    <system:String x:Key="ActivateProduct">Make active</system:String>
+    <system:String x:Key="InactiveProduct">Make inactive</system:String>
+
+
+    <system:String x:Key="DesktopUserOverviewTitle">Employee overview</system:String>
+    
+
 </ResourceDictionary>

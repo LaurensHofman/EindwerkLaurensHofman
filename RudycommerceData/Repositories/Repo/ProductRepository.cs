@@ -44,6 +44,37 @@ namespace RudycommerceData.Repositories.Repo
             }
         }
 
+        public async Task<Product> UpdateWithImagesAsync(Product entity)
+        {
+            using (var ctxTransaction = _context.Database.BeginTransaction())
+            {
+                try
+                {
+                    IImageRepository _imgRepo = new ImageRepository();
+
+                    foreach (var img in entity.Images)
+                    {
+                        img.ImageURL = await _imgRepo.SaveImage(img, entity.ID);
+                    }
+
+                    await UpdateAsync(entity);
+
+                    await _context.SaveChangesAsync();
+
+                    ctxTransaction.Commit();
+
+                    return entity;
+                }
+                catch (Exception)
+                {
+                    ctxTransaction.Rollback();
+                    // TODO
+                    throw;
+                }
+
+            }
+        }
+
         public List<ProductOverviewItem> GetProductOverview(int languageID)
         {
             SqlParameter langID = new SqlParameter("@langID", languageID.ToString());

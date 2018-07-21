@@ -13,6 +13,8 @@ namespace RudycommerceData.Repositories.IRepo
     {
         Task<Product> AddWithImagesAsync(Product entity);
 
+        Task<Product> UpdateWithImagesAsync(Product entity);
+
         List<ProductOverviewItem> GetProductOverview(int languageID);
 
         void ToggleProductActive(int ProductID);

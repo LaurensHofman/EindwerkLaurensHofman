@@ -154,6 +154,18 @@
     <Compile Include="Migrations\201807201304228_minStock.Designer.cs">
       <DependentUpon>201807201304228_minStock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807211052211_boolnullprodIDinIMG.cs" />
+    <Compile Include="Migrations\201807211052211_boolnullprodIDinIMG.Designer.cs">
+      <DependentUpon>201807211052211_boolnullprodIDinIMG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807211057269_test.cs" />
+    <Compile Include="Migrations\201807211057269_test.Designer.cs">
+      <DependentUpon>201807211057269_test.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807211638303_usernameUnique.cs" />
+    <Compile Include="Migrations\201807211638303_usernameUnique.Designer.cs">
+      <DependentUpon>201807211638303_usernameUnique.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CategoryOverviewItem.cs" />
     <Compile Include="Models\DesktopLogin.cs" />
@@ -251,6 +263,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807201304228_minStock.resx">
       <DependentUpon>201807201304228_minStock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807211052211_boolnullprodIDinIMG.resx">
+      <DependentUpon>201807211052211_boolnullprodIDinIMG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807211057269_test.resx">
+      <DependentUpon>201807211057269_test.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807211638303_usernameUnique.resx">
+      <DependentUpon>201807211638303_usernameUnique.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
