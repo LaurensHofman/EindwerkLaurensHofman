@@ -103,8 +103,14 @@
     <Compile Include="WindowsAndUserControls\Login\NewUserForm.xaml.cs">
       <DependentUpon>NewUserForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowsAndUserControls\MyDialog.xaml.cs">
+      <DependentUpon>MyDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsAndUserControls\NavigationWindow.xaml.cs">
       <DependentUpon>NavigationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsAndUserControls\Orders\OrderOverview.xaml.cs">
+      <DependentUpon>OrderOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="WindowsAndUserControls\Products\Brands\BrandForm.xaml.cs">
       <DependentUpon>BrandForm.xaml</DependentUpon>
@@ -174,7 +180,6 @@
       <Name>RudycommerceLib</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Page Include="LanguageResources\Dutch.xaml">
       <SubType>Designer</SubType>
@@ -212,7 +217,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowsAndUserControls\MyDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowsAndUserControls\NavigationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsAndUserControls\Orders\OrderOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -291,6 +304,9 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\64_ArrowDownWhite.png" />
     <Resource Include="Resources\Icons\64_ArrowUpWhite.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\OrdersHereLUL.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

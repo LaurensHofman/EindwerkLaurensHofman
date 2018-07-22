@@ -23,6 +23,8 @@ namespace RudycommerceData.Entities.Products.Products
 
         [Required]
         public int MinimumStock { get; set; }
+        
+        public bool SellingWell { get; set; }
 
         public int CategoryID { get; set; }
         public virtual Category Category { get; set; }
@@ -32,6 +34,7 @@ namespace RudycommerceData.Entities.Products.Products
 
         public Product()
         {
+            this.SellingWell = false;
             this.IsActive = true;
         }
 

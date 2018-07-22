@@ -22,6 +22,14 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <!--<Window x:Name="MyDialog">
+            <StackPanel>
+                <TextBlock Text="Enter some text" />
+                <TextBox x:Name="ResponseTextBox" />
+                <Button Content="OK" Click="OKButton_Click" />
+            </StackPanel>
+        </Window>-->
+        
         <Label Grid.Row="0" Style="{StaticResource TitleLabel}" Content="{DynamicResource ProductOverviewTitle}"/>
 
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="10,0,10,0">
@@ -35,7 +43,7 @@
 
         <DataGrid x:Name="dgProductOverview" Grid.Row="2" Style="{StaticResource OverviewDataGridWithImages}"
                   Height="Auto" VerticalAlignment="Top" IsReadOnly="True"
-                  ItemsSource="{Binding Path=ProductList, UpdateSourceTrigger=PropertyChanged}">
+                  ItemsSource="{Binding ViewSource.View}">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Template">
@@ -47,6 +55,11 @@
                             </ControlTemplate>
                         </Setter.Value>
                     </Setter>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Path=IsBelowMinStock}" Value="True">
+                            <Setter Property="Background" Value="OrangeRed"></Setter>
+                        </DataTrigger>
+                    </Style.Triggers>
                 </Style>
             </DataGrid.CellStyle>
             <DataGrid.RowStyle>
@@ -122,6 +135,18 @@
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
 
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="AddStock">
+                                <Button.Content>
+                                    <TextBlock Text="{DynamicResource AddStock}" Style="{DynamicResource DataGridButtonTextBlock}"></TextBlock>
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                
                 <DataGridCheckBoxColumn Width="Auto" Binding="{Binding IsActive}">
                     <DataGridCheckBoxColumn.Header>
                         <TextBlock Text="{DynamicResource IsProductActive}" VerticalAlignment="Center"/>

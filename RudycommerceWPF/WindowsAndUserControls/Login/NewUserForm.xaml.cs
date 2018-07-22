@@ -47,11 +47,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             _userRepo = new DesktopUserRepository();
             _notifier = new GmailNotifier();
 
-            InitializeWindow();
-
             _preferredLanguage = _prefLanguage;
 
-            SelectRadioButtonByLanguage();
+            InitializeWindow();
         }
 
         private async void InitializeWindow()
@@ -59,6 +57,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             _languageList = (await _languageRepo.GetAllAsync()).Where(l => l.IsDesktopLanguage == true).ToList();
 
             bool listContainsDesktopLanguages = _languageList.Any(l => l.LocalName == "Nederlands") && _languageList.Any(l => l.LocalName == "English");
+            
+            NewDesktopUser = new DesktopUser()
+            {
+                IsAdmin = false,
+                VerifiedByAdmin = false,
+                Salt = Encryption.GetNewSalt(32)
+            };
 
             if (listContainsDesktopLanguages)
             {
@@ -70,14 +75,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
                 lblPrefLang.Visibility = Visibility.Collapsed;
             }
 
-            DataContext = this;
+            SelectRadioButtonByLanguage();
 
-            NewDesktopUser = new DesktopUser()
-            {
-                IsAdmin = true,
-                VerifiedByAdmin = true,
-                Salt = Encryption.GetNewSalt(32)
-            };
+            DataContext = this;
         }
 
         private void SelectRadioButtonByLanguage()
@@ -103,13 +103,15 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
         {
             if (rbPreferNL.IsChecked == true)
             {
-                NewDesktopUser.PreferredLanguage = _languageList.Single(l => l.LocalName == "Nederlands");
+                NewDesktopUser.PreferredLanguageID = _languageList.Single(l => l.LocalName == "Nederlands").ID;
+                _preferredLanguage = _languageList.Single(l => l.LocalName == "Nederlands");
                 SetLanguageDictionary();
 
             }
             if (rbPreferEN.IsChecked == true)
             {
-                NewDesktopUser.PreferredLanguage = _languageList.Single(l => l.LocalName == "English");
+                NewDesktopUser.PreferredLanguageID = _languageList.Single(l => l.LocalName == "English").ID;
+                _preferredLanguage = _languageList.Single(l => l.LocalName == "English");
                 SetLanguageDictionary();
             }
         }
@@ -126,8 +128,10 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
                 SendMailToAdmin();
                 SendMailToNewUser();
 
-                NavigationWindow naviWindow = new NavigationWindow(NewDesktopUser.ID);
-                naviWindow.Show();
+                LoginWindow login = new LoginWindow();
+                login.Show();
+
+                // TODO Message to explain process (instead of e-mail)
 
                 this.Close();
             }
@@ -215,7 +219,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             string title = "TODO Title";
             string content = "TODO Content";
 
-            if (_preferredLanguage != null)
+            if (admin.PreferredLanguage != null)
             {
                 switch (_preferredLanguage.LocalName)
                 {

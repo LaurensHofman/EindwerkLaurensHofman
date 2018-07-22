@@ -207,4 +207,31 @@
   <data name="TheProduct" xml:space="preserve">
     <value>het product</value>
   </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Medewerker</value>
+  </data>
+  <data name="MBContentMakeUserAdmin" xml:space="preserve">
+    <value>Bent u zeker dat u {0} de nieuwe beheerder wil maken? Indien ja, dan zal u uw rechten als beheerder verliezen en zal u opnieuw moeten inloggen.</value>
+  </data>
+  <data name="MBTitleMakeUserAdmin" xml:space="preserve">
+    <value>{0} nieuwe beheerder?</value>
+  </data>
+  <data name="TheEmployee" xml:space="preserve">
+    <value>de medewerker</value>
+  </data>
+  <data name="MBContentVerifyUser" xml:space="preserve">
+    <value>Bent u zeker dat u '{0}' toegang wil geven tot de applicatie?</value>
+  </data>
+  <data name="MBTitleVerifyUser" xml:space="preserve">
+    <value>Geef '{0}' toegang?</value>
+  </data>
+  <data name="AddStockTitle" xml:space="preserve">
+    <value>Hoeveel voorraad is er bijgekomen?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuleer</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Sla op</value>
+  </data>
 </root>

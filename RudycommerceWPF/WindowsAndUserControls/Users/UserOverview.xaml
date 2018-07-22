@@ -79,7 +79,7 @@
                                     <TextBlock Text="{DynamicResource MakeAdmin}" Style="{DynamicResource DataGridButtonTextBlock}"></TextBlock>
                                 </Button.Content>
                                 <Button.Style>
-                                    <Style TargetType="Button">
+                                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding Path=IsAdmin}" Value="True">
                                                 <Setter Property="Visibility" Value="Collapsed"/>
@@ -103,7 +103,7 @@
                                     <TextBlock Text="{DynamicResource Delete}" Style="{DynamicResource DataGridButtonTextBlock}"></TextBlock>
                                 </Button.Content>
                                 <Button.Style>
-                                    <Style TargetType="Button">
+                                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding Path=IsAdmin}" Value="True">
                                                 <Setter Property="Visibility" Value="Collapsed"/>
@@ -124,7 +124,7 @@
                                     <TextBlock Text="{DynamicResource VerifyUser}" Style="{DynamicResource DataGridButtonTextBlock}"></TextBlock>
                                 </Button.Content>
                                 <Button.Style>
-                                    <Style TargetType="Button">
+                                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding Path=VerifiedByAdmin}" Value="True">
                                                 <Setter Property="Visibility" Value="Collapsed"/>

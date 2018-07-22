@@ -207,4 +207,31 @@
   <data name="TheProduct" xml:space="preserve">
     <value>the product</value>
   </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="MBContentMakeUserAdmin" xml:space="preserve">
+    <value>Are you sure you want to make {0} the new administrator? This means you will lose your rights as administrator and you will have to relog.</value>
+  </data>
+  <data name="MBTitleMakeUserAdmin" xml:space="preserve">
+    <value>{0} new admin?</value>
+  </data>
+  <data name="TheEmployee" xml:space="preserve">
+    <value>the employee</value>
+  </data>
+  <data name="MBContentVerifyUser" xml:space="preserve">
+    <value>Are you sure you want to give '{0}' access to the application?</value>
+  </data>
+  <data name="MBTitleVerifyUser" xml:space="preserve">
+    <value>Give '{0}' access?</value>
+  </data>
+  <data name="AddStockTitle" xml:space="preserve">
+    <value>How much stock has been added?</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>Submit</value>
+  </data>
 </root>

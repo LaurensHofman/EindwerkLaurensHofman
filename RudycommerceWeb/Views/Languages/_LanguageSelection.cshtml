@@ -1,0 +1,35 @@
+﻿@model List<RudycommerceData.Entities.Language>
+
+@{
+    Layout = null;
+}
+
+@using System.Text.RegularExpressions;
+@{
+    string path = HttpContext.Current.Request.Url.PathAndQuery;
+
+    if (path.Length >= 3)
+    {
+        string pathStart = path.Substring(0, 3);
+
+        Regex r = new Regex("/..");
+
+        bool success = r.Match(pathStart).Success;
+
+        if (success)
+        {
+            string pathEnd = path.Substring(3, path.Length - 3);
+            path = pathEnd;
+        }
+    }
+}
+
+@foreach (var lang in Model)
+{
+    <li class="nav-item">
+        <a class="nav-link languages" href="@Html.Raw("/" + lang.ISO + path )">
+            @lang.ISO.ToUpper()
+        </a>
+    </li>
+}
+

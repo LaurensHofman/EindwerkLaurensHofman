@@ -116,6 +116,9 @@
 
 
     <system:String x:Key="DesktopUserOverviewTitle">Employee overview</system:String>
-    
 
+    <system:String x:Key="IsAdmin">Is admin?</system:String>
+    <system:String x:Key="MakeAdmin">Make admin</system:String>
+    <system:String x:Key="VerifyUser">Verify user</system:String>
+    <system:String x:Key="AddStock">Add stock</system:String>
 </ResourceDictionary>

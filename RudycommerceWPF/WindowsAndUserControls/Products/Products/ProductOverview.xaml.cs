@@ -1,4 +1,5 @@
-﻿using RudycommerceData.Models;
+﻿using RudycommerceData.Entities.Products.Products;
+using RudycommerceData.Models;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
 using RudycommerceLib.Properties;
@@ -27,6 +28,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
     /// </summary>
     public partial class ProductOverview : OverviewUserControl
     {
+        public CollectionViewSource ViewSource { get; set; }
         public ObservableCollection<ProductOverviewItem> ProductList { get; set; }
 
         private IProductRepository _prodRepo;
@@ -45,18 +47,23 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         }
 
         public override void LoadDataGridData()
-        { 
+        {
             _prodRepo = new ProductRepository();
 
-            ProductList = new ObservableCollection<ProductOverviewItem>(_prodRepo.GetProductOverview(_preferredLanguage.ID).OrderBy(x => x.ProductName));
+            ProductList = new ObservableCollection<ProductOverviewItem>(_prodRepo.GetProductOverview(_preferredLanguage.ID)
+                .OrderByDescending(x => x.IsActive).ThenBy(x => x.ProductName));
+
+            ViewSource = new CollectionViewSource();
+            ViewSource.Source = ProductList;
+            dgProductOverview.ItemsSource = ViewSource.View;
+            dgProductOverview.DataContext = ProductList;
 
             BindData();
         }
 
         private void BindData()
         {
-            dgProductOverview.ItemsSource = ProductList;
-            dgProductOverview.DataContext = ProductList;
+            ViewSource.View.Refresh();
         }
 
         protected override async void Delete(object sender, RoutedEventArgs e)
@@ -138,12 +145,38 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             await _prodRepo.SaveChangesAsync();
 
             item.IsActive = !item.IsActive;
+            
 
-            // for some reason, datagrid wasn't showing the updated isActive toggle;
+            //LoadDataGridData();
 
-            LoadDataGridData();
-
-            //BindData();
+            BindData();
         }
+
+        private void AddStock(object sender, RoutedEventArgs e)
+        {
+            var dialog = new MyDialog(LangResource.Cancel, LangResource.Submit, LangResource.AddStockTitle);
+            if (dialog.ShowDialog() == true)
+            {
+                if (int.TryParse(dialog.ResponseText, out int response))
+                {
+                    var product = ((FrameworkElement)sender).DataContext as ProductOverviewItem;
+
+                    Product toBeUpdated = _prodRepo.Get(product.ID);
+
+                    toBeUpdated.CurrentStock += response;
+                    product.CurrentStock += response;
+
+                    _prodRepo.Update(toBeUpdated);
+                    _prodRepo.SaveChangesAsync();
+
+                    BindData();
+                }
+            }
+        }
+
+        //private void OKButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        //{
+        //    DialogResult = true;
+        //}
     }
 }

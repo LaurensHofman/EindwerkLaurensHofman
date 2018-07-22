@@ -1,0 +1,19 @@
+﻿
+@model List<RudycommerceData.Models.ASPModels.LocalizedCatListItem>
+
+@{
+    Layout = null;
+}
+
+<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    @Resources.Global.Categories
+</a>
+<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+    @foreach (var cat in Model)
+    {
+        @Html.ActionLink(
+            cat.LocalizedName, "CategoryPage", "Products", new { id = cat.CategoryID }, new { @class = "dropdown-item"})
+    }
+
+</div>

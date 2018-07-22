@@ -166,9 +166,15 @@
     <Compile Include="Migrations\201807211638303_usernameUnique.Designer.cs">
       <DependentUpon>201807211638303_usernameUnique.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807221723167_sellingwell.cs" />
+    <Compile Include="Migrations\201807221723167_sellingwell.Designer.cs">
+      <DependentUpon>201807221723167_sellingwell.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ASPModels\ProductListItem.cs" />
     <Compile Include="Models\CategoryOverviewItem.cs" />
     <Compile Include="Models\DesktopLogin.cs" />
+    <Compile Include="Models\ASPModels\LocalizedCatListItem.cs" />
     <Compile Include="Models\NecessarySpecification.cs" />
     <Compile Include="Models\ProductOverviewItem.cs" />
     <Compile Include="Models\SpecificationOverviewItem.cs" />
@@ -272,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807211638303_usernameUnique.resx">
       <DependentUpon>201807211638303_usernameUnique.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807221723167_sellingwell.resx">
+      <DependentUpon>201807221723167_sellingwell.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

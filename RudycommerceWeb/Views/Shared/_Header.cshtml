@@ -1,0 +1,73 @@
+﻿<nav class="navbar navbar-expand-lg navbar-light navbarbackground bold">
+
+    @if (ViewBag.IsHome == null)
+    {
+        <a class="navbar-brand" href="@Url.Action("Index", "Products", null)">
+            <img src="~/Images/LogoRudyCommerce.png" alt="Rudycommerce logo" class="brand-logo" />
+        </a>
+    }
+    else
+    {
+        <img src="~/Images/LogoRudyCommerce.png" alt="Rudycommerce logo" class="brand-logo" />
+    }
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsableNav" aria-controls="collapsableNav" aria-expanded="false"
+            aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div class="collapse navbar-collapse" id="collapsableNav">
+
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                @Html.Action("_CategoryDropdown", "Categories")
+            </li>
+
+        </ul>
+        <ul class="navbar-nav right">
+            <li class="nav-item content-vertical-center">
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </li>
+            <li class="nav-item lang-item content-vertical-center">
+                <ul class="navbar-nav">
+                    @Html.Action("_LanguageSelection", "Languages")
+                </ul>
+            </li>
+            <li class="nav-item">
+                <button id="shopping-cart" class="shopping-cart" data-toggle="dropdown">
+                    <img src="~/Images/64_DefaultCartBlue.png" alt="@Resources.Global.ShoppingCart" />
+                    <img src="~/Images/64_ArrowDownProgDiscl.png" />
+                </button>
+                <div id="cart-dropdown" class="dropdown-menu dropdown-menu-right" role="menu">
+                    <div class="container">
+                        <div id="cartrow" class="row">
+                            <ul id="cart-products" class="collapse col-md-12"></ul>
+                            <div id="cart-total-price" class="collapse col-md-12">
+                                <div class="row">
+                                    <div class="col-md-8 text-right">
+                                        @Resources.Global.TotalPrice:
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                        € <span id="totalprice">dummy price</span>
+                                    </div>
+                                    <div class="col-md-12" id="cart-buttons">
+                                        <button class="btn" onclick="location.href='@Url.Action("Index", "Products", null)'">@Resources.Global.Overview</button>
+                                        <button class="btn" onclick="location.href='@Url.Action("Index", "Products", null)'">@Resources.Global.Checkout</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="collapse" id="empty-cart">
+                                Cart is empty 🙁
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</nav>

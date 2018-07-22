@@ -61,6 +61,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hoeveel voorraad is er bijgekomen?.
+        /// </summary>
+        public static string AddStockTitle {
+            get {
+                return ResourceManager.GetString("AddStockTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Uitbreidende uitleg.
         /// </summary>
         public static string AdviceDescription {
@@ -79,6 +88,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Annuleer.
+        /// </summary>
+        public static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categorie.
         /// </summary>
         public static string Category {
@@ -93,6 +111,15 @@ namespace RudycommerceLib.Properties {
         public static string Description {
             get {
                 return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Medewerker.
+        /// </summary>
+        public static string Employee {
+            get {
+                return ResourceManager.GetString("Employee", resourceCulture);
             }
         }
         
@@ -133,6 +160,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bent u zeker dat u {0} de nieuwe beheerder wil maken? Indien ja, dan zal u uw rechten als beheerder verliezen en zal u opnieuw moeten inloggen..
+        /// </summary>
+        public static string MBContentMakeUserAdmin {
+            get {
+                return ResourceManager.GetString("MBContentMakeUserAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bent u zeker dat u &apos;{0}&apos; de nieuwe standaardtaal wil maken?.
         /// </summary>
         public static string MBContentNewDefaultLang {
@@ -147,6 +183,15 @@ namespace RudycommerceLib.Properties {
         public static string MBContentObjSaveFailed {
             get {
                 return ResourceManager.GetString("MBContentObjSaveFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bent u zeker dat u &apos;{0}&apos; toegang wil geven tot de applicatie?.
+        /// </summary>
+        public static string MBContentVerifyUser {
+            get {
+                return ResourceManager.GetString("MBContentVerifyUser", resourceCulture);
             }
         }
         
@@ -196,6 +241,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} nieuwe beheerder?.
+        /// </summary>
+        public static string MBTitleMakeUserAdmin {
+            get {
+                return ResourceManager.GetString("MBTitleMakeUserAdmin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to &apos;{0}&apos; als standaardtaal?.
         /// </summary>
         public static string MBTitleNewDefaultLang {
@@ -210,6 +264,15 @@ namespace RudycommerceLib.Properties {
         public static string MBTitleObjSaveFailed {
             get {
                 return ResourceManager.GetString("MBTitleObjSaveFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Geef &apos;{0}&apos; toegang?.
+        /// </summary>
+        public static string MBTitleVerifyUser {
+            get {
+                return ResourceManager.GetString("MBTitleVerifyUser", resourceCulture);
             }
         }
         
@@ -277,6 +340,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sla op.
+        /// </summary>
+        public static string Submit {
+            get {
+                return ResourceManager.GetString("Submit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to het merk.
         /// </summary>
         public static string TheBrand {
@@ -291,6 +363,15 @@ namespace RudycommerceLib.Properties {
         public static string TheCategory {
             get {
                 return ResourceManager.GetString("TheCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to de medewerker.
+        /// </summary>
+        public static string TheEmployee {
+            get {
+                return ResourceManager.GetString("TheEmployee", resourceCulture);
             }
         }
         

@@ -5,6 +5,7 @@ using RudycommerceData.Repositories.Repo;
 using RudycommerceLib.Properties;
 using RudycommerceWPF.WindowsAndUserControls.Abstracts;
 using RudycommerceWPF.WindowsAndUserControls.Languages;
+using RudycommerceWPF.WindowsAndUserControls.Orders;
 using RudycommerceWPF.WindowsAndUserControls.Products.Brands;
 using RudycommerceWPF.WindowsAndUserControls.Products.Categories;
 using RudycommerceWPF.WindowsAndUserControls.Products.Products;
@@ -54,6 +55,8 @@ namespace RudycommerceWPF.WindowsAndUserControls
             InitializeWindow(userID);
 
             SetLanguageDictionary();
+
+            menuOrderOverview(null, null);
         }
 
         private void InitializeWindow(int userID)
@@ -73,6 +76,7 @@ namespace RudycommerceWPF.WindowsAndUserControls
             {
                 stackDesktopUser.IsEnabled = true;
                 stackDesktopUser.Visibility = Visibility.Visible;
+                sepDesktopUser.Visibility = Visibility.Visible;
             }
         }
        
@@ -167,6 +171,15 @@ namespace RudycommerceWPF.WindowsAndUserControls
             {
                 contentControl.Visibility = Visibility.Collapsed;
             }
+        }
+
+        #endregion
+
+        #region Orders
+
+        private void menuOrderOverview(object sender, RoutedEventArgs e)
+        {
+            ShowGeneralUserControl<OrderOverview>(ccOrders);
         }
 
         #endregion

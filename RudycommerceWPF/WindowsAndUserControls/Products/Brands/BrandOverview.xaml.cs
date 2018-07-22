@@ -59,7 +59,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
 
         private void BindData()
         {
-            BrandsList.OrderBy(x => x.Name);
+            BrandsList = new ObservableCollection<Brand>( BrandsList.OrderBy(x => x.Name)) ;
 
             dgBrandsOverview.ItemsSource = BrandsList;
             //.OrderBy(x => x.Name);

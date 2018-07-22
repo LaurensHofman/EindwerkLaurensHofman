@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = Resources.Global.Home;
+}
+
+<div class="row">
+    <h2> @Resources.Global.NewestProducts </h2>
+    <hr />
+
+    @*@Html.Action("HomepageList", "Products")*@
+
+</div>
+
+@section scripts {
+
+    @*<script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"][data-trigger="hover"]').popover({
+                delay: { show: "800", hide: "200" }
+            });
+        });
+    </script>*@
+
+}
+
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/Content/Pages/ProductList.css" />
+}

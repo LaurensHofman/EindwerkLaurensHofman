@@ -121,4 +121,5 @@
     <system:String x:Key="IsAdmin">Is beheerder?</system:String>
     <system:String x:Key="MakeAdmin">Beheerder maken</system:String>
     <system:String x:Key="VerifyUser">Verifieer gebruiker</system:String>
+    <system:String x:Key="AddStock">Voorraad toevoegen</system:String>
 </ResourceDictionary>

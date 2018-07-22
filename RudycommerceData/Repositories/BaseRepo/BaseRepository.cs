@@ -45,6 +45,11 @@ namespace RudycommerceData.Repositories.BaseRepo
             return await _context.Set<T>().ToListAsync();
         }
 
+        public List<T> GetAll()
+        {
+            return _context.Set<T>().ToList();
+        }
+
         public async Task<T> GetAsync(int ID)
         {
             return await _context.Set<T>().FindAsync(ID);
@@ -80,6 +85,16 @@ namespace RudycommerceData.Repositories.BaseRepo
             }
 
             return null;
+        }
+
+        public T[] Update(params T[] entities)
+        {
+            foreach (var entity in entities)
+            {
+                Update(entity);
+            }
+
+            return entities;
         }
 
         public async Task<bool> AnyAsync()

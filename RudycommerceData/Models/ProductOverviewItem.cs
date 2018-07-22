@@ -53,7 +53,7 @@ namespace RudycommerceData.Models
         {
             get
             {
-                return CurrentStock <= MinimumStock;
+                return CurrentStock < MinimumStock;
             }
         }
 

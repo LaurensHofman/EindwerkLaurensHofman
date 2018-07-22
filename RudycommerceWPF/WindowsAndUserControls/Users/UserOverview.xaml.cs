@@ -1,7 +1,9 @@
 ﻿using RudycommerceData.Entities.DesktopUsers;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
+using RudycommerceLib.Properties;
 using RudycommerceWPF.WindowsAndUserControls.Abstracts;
+using RudycommerceWPF.WindowsAndUserControls.Login;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -27,18 +30,22 @@ namespace RudycommerceWPF.WindowsAndUserControls.Users
     {
         private IDesktopUserRepository _userRepo;
 
+        public CollectionViewSource ViewSource { get; set; }
         public ObservableCollection<DesktopUser> UserList { get; set; }
 
         public UserOverview()
         {
             InitializeComponent();
 
+            _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
+            SetLanguageDictionary();
+
             DataContext = this;
 
-            GetData();
+            LoadData();
         }
 
-        private async void GetData()
+        private async void LoadData()
         {
             _userRepo = new DesktopUserRepository();
 
@@ -47,28 +54,145 @@ namespace RudycommerceWPF.WindowsAndUserControls.Users
                                                 .ThenBy(x => x.VerifiedByAdmin)
                                                 .ThenBy(x => x.FullName));
 
-            dgDesktopUserOverview.ItemsSource = UserList;
+            ViewSource = new CollectionViewSource();
+            ViewSource.Source = UserList;
+
+            dgDesktopUserOverview.ItemsSource = ViewSource.View;
             dgDesktopUserOverview.DataContext = UserList;
+
+            BindData();
+        }
+
+        private void BindData()
+        {
+            ViewSource.View.Refresh();
         }
 
         private void RefreshGrid(object sender, RoutedEventArgs e)
         {
-            GetData();
+            LoadData();
         }
 
         private void MakeAdmin(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                SetLanguageDictionary();
 
+                DesktopUser newAdmin = ((FrameworkElement)sender).DataContext as DesktopUser;
+
+                string messageboxContent = String.Format(LangResource.MBContentMakeUserAdmin, newAdmin.FullName);
+                string messageboxTitle = String.Format(LangResource.MBTitleMakeUserAdmin, newAdmin.FullName);
+
+                MessageBoxManager.Yes = LangResource.Yes;
+                MessageBoxManager.No = LangResource.No;
+                MessageBoxManager.Register();
+
+                if (MessageBox.Show(messageboxContent,
+                                    messageboxTitle,
+                                    MessageBoxButton.YesNo,
+                                    MessageBoxImage.Warning)
+                    == MessageBoxResult.Yes)
+                {
+                    _userRepo.AssignNewAdmin(newAdmin);
+                    _userRepo.SaveChangesAsync();
+
+                    LoginWindow login = new LoginWindow();
+                    login.Show();
+
+                    NavigationWindow win = (NavigationWindow)Window.GetWindow(this);
+
+                    win.Close();
+
+                    MessageBoxManager.Unregister();
+                }
+                else
+                { MessageBoxManager.Unregister(); }
+            }
+            catch (Exception)
+            {
+                // TODO ERROR
+                MessageBoxManager.Unregister();
+                throw;
+            }            
         }
 
         private void Delete(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                SetLanguageDictionary();
 
+                var user = ((FrameworkElement)sender).DataContext as DesktopUser;
+
+                string messageboxContent = String.Format(LangResource.MBContentDeleteObj, LangResource.TheEmployee.ToLower(), user.FullName);
+                string messageboxTitle = String.Format(LangResource.MBTitleDeleteObj, user.FullName);
+
+                MessageBoxManager.Yes = LangResource.Yes;
+                MessageBoxManager.No = LangResource.No;
+                MessageBoxManager.Register();
+
+                if (MessageBox.Show(messageboxContent,
+                                    messageboxTitle,
+                                    MessageBoxButton.YesNo,
+                                    MessageBoxImage.Warning)
+                    == MessageBoxResult.Yes)
+                {
+                    MessageBoxManager.Unregister();
+
+                    _userRepo.Delete(user);
+                    _userRepo.SaveChangesAsync();
+                    UserList.Remove(user);
+                }
+                else
+                { MessageBoxManager.Unregister(); }
+            }
+            catch (Exception)
+            {
+                // TODO ERROR
+                MessageBoxManager.Unregister();
+                throw;
+            }
         }
 
         private void Verify(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                SetLanguageDictionary();
 
+                var user = ((FrameworkElement)sender).DataContext as DesktopUser;
+
+                string messageboxContent = String.Format(LangResource.MBContentVerifyUser, user.FullName);
+                string messageboxTitle = String.Format(LangResource.MBTitleVerifyUser, user.FullName);
+
+                MessageBoxManager.Yes = LangResource.Yes;
+                MessageBoxManager.No = LangResource.No;
+                MessageBoxManager.Register();
+
+                if (MessageBox.Show(messageboxContent,
+                                    messageboxTitle,
+                                    MessageBoxButton.YesNo,
+                                    MessageBoxImage.Warning)
+                    == MessageBoxResult.Yes)
+                {
+                    MessageBoxManager.Unregister();
+
+                    user.VerifiedByAdmin = true;
+                    _userRepo.Update(user);
+                    _userRepo.SaveChangesAsync();
+
+                    BindData() ;
+                }
+                else
+                { MessageBoxManager.Unregister(); }
+            }
+            catch (Exception)
+            {
+                // TODO ERROR
+                MessageBoxManager.Unregister();
+                throw;
+            }
         }
     }
 }

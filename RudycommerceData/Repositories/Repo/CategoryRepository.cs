@@ -1,5 +1,6 @@
 ﻿using RudycommerceData.Entities.Products.Categories;
 using RudycommerceData.Models;
+using RudycommerceData.Models.ASPModels;
 using RudycommerceData.Repositories.BaseRepo;
 using RudycommerceData.Repositories.IRepo;
 using System;
@@ -19,6 +20,15 @@ namespace RudycommerceData.Repositories.Repo
             SqlParameter langID = new SqlParameter("@langID", languageID.ToString());
 
             return _context.Database.SqlQuery<CategoryOverviewItem>("exec dbo.sprocGetCategoryOverview @langID", langID).ToList();
+        }
+
+        public List<LocalizedCatListItem> GetLocalizedCatListItems(string iso)
+        {
+            SqlParameter langISO = new SqlParameter("langISO", iso);
+
+            List<LocalizedCatListItem> list = _context.Database.SqlQuery<LocalizedCatListItem>("exec dbo.sprocGetLocalizedCategoryList @langISO", langISO).ToList();
+
+            return list;
         }
 
         public override Category Update(Category entity)
