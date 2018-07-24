@@ -34,13 +34,15 @@ namespace RudycommerceData.Models
 
         public bool IsFirstSpecBool { get; set; }
 
+        public bool? BoolValue { get; set; }
+
         public string FirstSpec
         {
             get
             {
                 if (IsFirstSpecBool)
                 {
-                    return FirstSpecName + ": " + ((FirstSpecValue.ToLower() == "true") ? LangResource.Yes : LangResource.No);
+                    return FirstSpecName + ": " + ((bool)BoolValue? LangResource.Yes : LangResource.No);
                 }
                 else
                 {
@@ -53,7 +55,7 @@ namespace RudycommerceData.Models
         {
             get
             {
-                return CurrentStock < MinimumStock;
+                return CurrentStock <= MinimumStock;
             }
         }
 

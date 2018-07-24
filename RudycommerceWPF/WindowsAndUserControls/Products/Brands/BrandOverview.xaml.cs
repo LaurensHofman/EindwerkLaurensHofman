@@ -37,7 +37,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
             InitializeWindow();
         }
 
-        private void InitializeWindow()
+        private async void InitializeWindow()
         {
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
 
@@ -45,10 +45,10 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
 
             DataContext = this;
 
-            LoadDataGridData();
+            await LoadDataGridData();
         }
 
-        public override async void LoadDataGridData()
+        public override async Task LoadDataGridData()
         {
             _brandRepo = new BrandRepository();
 

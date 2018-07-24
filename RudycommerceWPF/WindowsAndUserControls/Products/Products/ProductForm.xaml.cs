@@ -55,7 +55,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         private IProductRepository _prodRepo;
         private IBrandRepository _brandRepo;
         private ICategoryRepository _catRepo;
-
+        
         public ProductForm()
         {
             InitializeComponent();
@@ -67,7 +67,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             SetLanguageDictionary();
 
             SetTitle();
-
+            
             TabItemColours();
 
             _prodRepo = new ProductRepository();
@@ -91,6 +91,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         public ProductForm(int ID)
         {
             InitializeComponent();
+            
+            progressBar = prog;
+            submitButton = btnSubmit;
 
             _updatingPage = true;
 
@@ -137,9 +140,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             _specificationsList = await _specRepo.GetAllAsync();
         }
 
-        private TextBox AddBindedTextBox(object bindingSource, string bindingLocation, Panel parentElement)
+        private ClickSelectTextBox AddBindedTextBox(object bindingSource, string bindingLocation, Panel parentElement)
         {
-            TextBox tb = new TextBox
+            ClickSelectTextBox tb = new ClickSelectTextBox
             {
                 Style = Application.Current.Resources["FormInputTextBox"] as Style,
                 Width = _defaultWidth
@@ -233,6 +236,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             return lbl;
         }
 
+        /// <summary>
+        /// Gives the tab items their appropriate colours (worked correctly through XAML in create window, but not in update window)
+        /// </summary>
         private void TabItemColours()
         {
             foreach (var item in AnimatedTabControl.Items)
@@ -316,18 +322,23 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
         private async void GenerateProductNameLabelsAndInputs()
         {
+            // Get all the languages in the database
             _languageList = await _langRepo.GetAllAsync();
 
+            // foreach language, make a textbox and label for the name input
             foreach (var lang in _languageList)
             {
                 string labelContent = $"\"{lang.LocalName}\" {LangResource.Name} * : ";
 
                 AddFormLabel(labelContent, GeneralNameLabels);
 
+                // Looks if the model already has a localized product for this language (can be the case when updating the product)
                 LocalizedProduct locProd = ProductModel.LocalizedProducts.SingleOrDefault(x => x.LanguageID == lang.ID);
 
                 if (locProd == null)
                 {
+                    // If the localized product doesn't exist yet, make a new one
+
                     locProd = new LocalizedProduct
                     {
                         LanguageID = lang.ID
@@ -364,6 +375,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             cmbxCategories.ItemsSource = CategoryList;
         }
 
+        /// <summary>
+        /// Whenever the category changes, fill the input tabs with new inputs, according to the necessary specifications belonging to a category
+        /// </summary>
         private void cmbxCategories_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Category cat = cmbxCategories.SelectedItem as Category;
@@ -397,18 +411,23 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         #region Generating, Drag&Drop and Removing images
 
         Grid gridImageToDrag;
-        private bool result;
 
         private void AddImage(object sender, RoutedEventArgs e)
         {
             try
             {
+                // If used from code, the type of sender will be of ProductImage
+
                 if (sender.GetType() == typeof(ProductImage))
                 {
                     CreateImageControls(((ProductImage)sender).ImageURL);
                 }
                 else
                 {
+                    // Opens a file dialog, to select an image
+                    // The path will be added to the Model
+                    // An image will be shown according to the file from the path
+
                     Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog
                     {
                         Filter = "Image File (*.jpg; *.png)| *.jpg; *.png"
@@ -442,6 +461,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
         private void CreateImageControls(string filename)
         {
+            // Creates an image. Puts this image in a border element (this allows to show a border around the default image (Image[0]))
+            // Image will be put in a grid, together with a button with a trashcan image
+
             Grid grd = new Grid
             {
                 Margin = new Thickness(10, 0, 10, 10)
@@ -465,6 +487,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             };
             img.DragEnter += Image_DragEnter;
             img.MouseLeftButtonDown += Image_MouseLeftButtonDown;
+
+            // Drag and MouseLeftButtonDown allows for the image to be moved. (to determine the display order of the images)
 
             brd.Child = img;
             grd.Children.Add(brd);
@@ -497,21 +521,28 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
         private void DeleteImage(object sender, RoutedEventArgs e)
         {
+            // Gets the Delete button which was clicked
             Button sourceButton = (Button)e.Source;
 
+            // Finds the parent grid of the button
             Grid grd = (Grid)sourceButton.Parent;
 
+            // Since the index of the grid within the wrappanel is equal to the index within the Model.Images list,
+            // The image with the same index as the index of the grid within the wrappanel can be removed.
             int removedIndex = imgPnl.Children.IndexOf(grd);
 
             ProductModel.Images.Remove(ProductModel.Images.ToList()[removedIndex]);
 
+            // Every image coming after the removed image, needs its DisplayOrder reduced by one
             for (int i = removedIndex; i < ProductModel.Images.Count; i++)
             {
                 ProductModel.Images.ToList()[i].Order -= 1;
             }
 
+            // Remove the image
             imgPnl.Children.Remove(grd);
 
+            // Gives the first image a border, and all the other ones no border
             foreach (Grid grid in imgPnl.Children)
             {
                 Border brd = (Border)grd.Children[0];
@@ -522,23 +553,34 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
+            // MouseLeftButtonDown on the image will look for its parent Grid (because the whole grid needs to be moved)
+            // Image is inside a Border, which is inside a Grid.
+
             gridImageToDrag = (Grid)((Border)((Image)e.Source).Parent).Parent;
+
+            // Default drag and drop function from WPF
             DragDrop.DoDragDrop(gridImageToDrag, gridImageToDrag, DragDropEffects.Move);
         }
 
         private void Image_DragEnter(object sender, DragEventArgs e)
         {
+            // MouseLeftButtonDown on the image will look for its parent Grid (because the whole grid needs to be moved)
+            // Image is inside a Border, which is inside a Grid.
+
             Grid grdImg = (Grid)((Border)((Image)e.Source).Parent).Parent;
 
+            // Gets the 2 locations that got swapped.
             int where_to_drop = imgPnl.Children.IndexOf(grdImg);
             int initial_location = imgPnl.Children.IndexOf(gridImageToDrag);
 
+            // Removes the image from the first position, and inserts it at the new location
             imgPnl.Children.Remove(gridImageToDrag);
             imgPnl.Children.Insert(where_to_drop, gridImageToDrag);
 
-
+            // Gets the difference between the 2 location indices
             int deltaLocation = Math.Abs(where_to_drop - initial_location);
 
+            // If the difference is 1, the 2 images get swapped (since they are next to each other)
             if (deltaLocation == 1 || deltaLocation == 0)
             {
                 ProductImage temporary = ProductModel.Images.Single(x => x.Order == initial_location);
@@ -549,8 +591,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             }
             else
             {
+                // If the difference is larger than 1, all the images in between need their DisplayOrder changed
+
                 if (initial_location < where_to_drop)
                 {
+                    // If the image gets moved from left to right (with a difference larger than 1)
+                    // Then: all the images in between those positions, are moved one position to the left (meaning their DisplayOrder gets reduced by one)
+
                     ProductImage draggedImage = ProductModel.Images.Single(x => x.Order == initial_location);
 
                     for (int i = initial_location + 1; i <= where_to_drop; i++)
@@ -562,6 +609,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 }
                 else
                 {
+                    // If the image gets moved from right to left (with a difference larger than 1)
+                    // Then: all the images in between those positions, are moved one position to the right (meaning their DisplayOrder gets increased by one)
+
                     ProductImage draggedImage = ProductModel.Images.Single(x => x.Order == initial_location);
 
                     for (int i = initial_location - 1; i >= where_to_drop; i--)
@@ -573,8 +623,11 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 }
             }
 
+            // Images list gets ordered by DisplayOrder, so they align with the order of the displayed images
+
             ProductModel.Images = ProductModel.Images.OrderBy(x => x.Order).ToList();
 
+            // Gives the first image (= default image) a border, and the other ones no border
             foreach (Grid grd in imgPnl.Children)
             {
                 Border brd = (Border)grd.Children[0];
@@ -595,7 +648,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             }
             else
             {
-                MessageBox.Show("BeepBoop");
+                MessageBox.Show(LangResource.ProdFormGeneralTabInvalid);
             }
         }
 
@@ -649,6 +702,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
             foreach (var lang in _languageList)
             {
+                // Creates a tab for language sensitive specifications
                 CreateMLLocalizedTab(lang);
             }
         }
@@ -677,20 +731,32 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         {
             StackPanel stackInput = new StackPanel();
 
-            LocalizedProduct lp = ProductModel.LocalizedProducts.SingleOrDefault(x => x.LanguageID == lang.ID);
+            // Gets the localized product to bind the description to.
+            // Because the localized product already exists (because they were made to generate the Name labels and input)
+            // , we don't have to check whether they exist
 
-            TextBox tbDescription = AddBindedTextBox(lp, "Description", stackInput);
+            LocalizedProduct lp = ProductModel.LocalizedProducts.First(x => x.LanguageID == lang.ID);
+
+            // Creates a textbox to bind the description to.
+            // Because the Description textbox is a multiline textbox, some extra changes are made to the textbox.
+
+            ClickSelectTextBox tbDescription = AddBindedTextBox(lp, "Description", stackInput);
             tbDescription.Height = _descriptionHeight;
             tbDescription.TextWrapping = TextWrapping.Wrap;
             tbDescription.AcceptsReturn = true;
             tbDescription.VerticalContentAlignment = VerticalAlignment.Top;
             tbDescription.Padding = new Thickness(0, 5, 0, 5);
 
+
+            // Foreach specification (belonging to the selected category) that is multilingual (and not a enumeration, which would give a combobox)
+            // Generate a label and a textbox
             foreach (var spec in
                 _necessarySpecList.Where(ns => ns.IsMultilingual == true && ns.IsEnumeration == false).OrderBy(ns => ns.DisplayOrder))
             {
                 Value_ProductSpecification val = ProductModel.Values_ProductSpecifications
                     .SingleOrDefault(x => x.SpecificationID == spec.SpecificationID && x.LanguageID == lang.ID);
+                
+                // Checks whether the specification already exists within the product (in case of updating a product)
 
                 if (val == null)
                 {
@@ -716,6 +782,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             lblDescription.Margin = new Thickness(0, 20, 0, _descriptionHeight - _defaultHeight);
 
 
+
+            // Creates a label for each specification made in the 'right stackpanel for input'
             foreach (var spec in
                 _necessarySpecList.Where(ns => ns.IsMultilingual == true && ns.IsEnumeration == false).OrderBy(ns => ns.DisplayOrder))
             {
@@ -839,6 +907,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             NonMLStackLeftLabels.Children.Clear();
             NonMLStackRightInput.Children.Clear();
             
+            // Foreach specification that does not require a textbox for different languages, make an appropriate input element and bind it to it.
+
             foreach (var spec in _necessarySpecList.Where(ns => ns.IsMultilingual == false || ns.IsEnumeration == true).OrderBy(x => x.DisplayOrder))
             {
                 int firstLangID = _languageList.FirstOrDefault().ID;
@@ -852,8 +922,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                     {
                         SpecificationID = spec.SpecificationID,
                         LanguageID = null,
-                        TempBoolValue = null,
-                        TempLangID = null
+                        TempLangID = null,
+                        BoolValue = null
                     };
 
                     ProductModel.Values_ProductSpecifications.Add(val);
@@ -870,19 +940,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
                 if (spec.IsBool)
                 {
-                    bool.TryParse(val.Value, out bool isBoolValue);
-
-                    if (isBoolValue)
+                    if (val.ProductID == 0)
                     {
-                        val.TempBoolValue = bool.Parse(val.Value);
-                    }
-                    else
-                    {
-                        val.TempBoolValue = false;
+                        val.BoolValue = false;
                     }
 
                     AddFormLabel(spec.LookupName + " * : ", NonMLStackLeftLabels);
-                    AddBindedCheckBox(val, "TempBoolValue", NonMLStackRightInput);
+                    AddBindedCheckBox(val, "BoolValue", NonMLStackRightInput);
                 }
                 else
                 {
@@ -919,6 +983,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         {
             try
             {
+                TurnOnProgressBar();
+
                 if (_updatingPage)
                 {
                     PrepareModelForUpdate();
@@ -926,6 +992,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                     await _prodRepo.UpdateWithImagesAsync(ProductModel);
 
                     TriggerSaveEvent();
+
+                    TurnOffProgressBar();
                 }
                 else
                 {
@@ -934,11 +1002,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                     await _prodRepo.AddWithImagesAsync(ProductModel);
 
                     TriggerSaveEvent();
+
+                    TurnOffProgressBar();
                 }
             }
             catch (Exception)
             {
-                throw;
+                TurnOffProgressBar();
 
                 string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheProduct.ToLower());
                 string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.Product.ToLower()));
@@ -949,10 +1019,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
         private void PrepareModelForUpdate()
         {
-            foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.TempBoolValue != null))
-            {
-                val.Value = val.TempBoolValue.ToString();
-            }
+            // TODO Add comments
 
             int firstLangID = _languageList.FirstOrDefault().ID;
 
@@ -1003,17 +1070,12 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
         private void PrepareModelForCreate()
         {
+            // TODO Add comments
+
             ProductModel.CurrentStock = (int)ProductModel.InitialStock;
 
             List<Value_ProductSpecification> tempList = new List<Value_ProductSpecification>();
-
-            // TODO Comment this mess holy moly
-
-            foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.TempBoolValue != null))
-            {
-                val.Value = val.TempBoolValue.ToString();
-            }
-
+        
             foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.LanguageID == null))
             {
                 bool isFirstLanguage = true;

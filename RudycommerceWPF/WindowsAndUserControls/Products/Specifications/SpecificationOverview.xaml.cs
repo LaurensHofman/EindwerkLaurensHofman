@@ -43,10 +43,14 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
         private void InitializeWindow()
         {
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
+            InitializeContent();
+        }
 
+        private async void InitializeContent()
+        {
             SetLanguageDictionary();
 
-            LoadDataGridData();
+            await LoadDataGridData();
 
             DataContext = this;
         }
@@ -57,7 +61,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             dgSpecificationOverview.DataContext = SpecList;
         }
 
-        public override async void LoadDataGridData()
+        public override async Task LoadDataGridData()
         {
             _specRepo = new SpecificationRepository();
 

@@ -56,6 +56,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
 
         private void InitializeWindow()
         {
+            progressBar = prog;
+            submitButton = btnSubmit;
+
             _updatingPage = !BrandModel.IsNew();
 
             _brandRepo = new BrandRepository();
@@ -162,13 +165,23 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
         {
             try
             {
+                TurnOnProgressBar();
+
                 if (Validate())
                 {
                     await SaveModel();
                 }
+                else
+                {
+                    // TODO Message
+                }
+
+                TurnOffProgressBar();
             }
             catch (Exception)
             {
+                TurnOffProgressBar();
+
                 string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheBrand.ToLower());
                 string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.Brand.ToLower()));
 

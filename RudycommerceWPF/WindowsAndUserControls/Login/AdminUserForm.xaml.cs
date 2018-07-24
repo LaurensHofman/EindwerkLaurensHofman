@@ -24,7 +24,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
     /// <summary>
     /// Interaction logic for AdminUserForm.xaml
     /// </summary>
-    public partial class AdminUserForm : LanguageWindow
+    public partial class AdminUserForm : MultilingualWindow
     {
         private List<Language> _languageList;
 
@@ -103,12 +103,14 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
         {
             if (rbPreferNL.IsChecked == true)
             {
-                NewDesktopUser.PreferredLanguage = _languageList.Single(l => l.LocalName == "Nederlands");
+                NewDesktopUser.PreferredLanguageID = _languageList.Single(l => l.LocalName == "Nederlands").ID;
+                _preferredLanguage = _languageList.Single(l => l.LocalName == "Nederlands");
                 SetLanguageDictionary();
             }
             if (rbPreferEN.IsChecked == true)
             {
-                NewDesktopUser.PreferredLanguage = _languageList.Single(l => l.LocalName == "English");
+                NewDesktopUser.PreferredLanguageID = _languageList.Single(l => l.LocalName == "English").ID;
+                _preferredLanguage = _languageList.Single(l => l.LocalName == "English");
                 SetLanguageDictionary();
             }
         }

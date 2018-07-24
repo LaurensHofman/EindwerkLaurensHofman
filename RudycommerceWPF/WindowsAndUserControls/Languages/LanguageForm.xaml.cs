@@ -55,6 +55,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
         private void InitializeWindow(Language languageModel)
         {
+            progressBar = prog;
+            submitButton = btnSubmit;
+
             _updatingPage = !languageModel.IsNew();
 
             _langRepo = new LanguageRepository();
@@ -79,6 +82,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
         {
             try
             {
+                TurnOnProgressBar();
+
                 if (LanguageModel.LocalName == "Nederlands" || LanguageModel.LocalName == "English")
                 {
                     LanguageModel.IsDesktopLanguage = true;
@@ -115,9 +120,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
                         await SaveModel();
                     }
                 }
+
+                TurnOffProgressBar();
             }
             catch (Exception)
             {
+                TurnOffProgressBar();
+
                 string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheLanguage.ToLower());
                 string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.TheLanguage.ToLower()));
 
@@ -147,6 +156,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
         private bool ValidateModel()
         {
+            // TODO Validate language model
+
             if (LanguageModel.ISO.Length != 2)
             {
                 return false;

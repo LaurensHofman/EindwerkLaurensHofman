@@ -22,15 +22,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--<Window x:Name="MyDialog">
-            <StackPanel>
-                <TextBlock Text="Enter some text" />
-                <TextBox x:Name="ResponseTextBox" />
-                <Button Content="OK" Click="OKButton_Click" />
-            </StackPanel>
-        </Window>-->
-        
-        <Label Grid.Row="0" Style="{StaticResource TitleLabel}" Content="{DynamicResource ProductOverviewTitle}"/>
+        <StackPanel Grid.Row="0">
+            
+            <ProgressBar x:Name="prog" Minimum="0" Maximum="100" Visibility="Collapsed"/>
+            <Label Style="{StaticResource TitleLabel}" Content="{DynamicResource ProductOverviewTitle}"/>
+            
+        </StackPanel>
 
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="10,0,10,0">
             <Button Click="ToggleVisibilityImages" Content="{DynamicResource ShowProductImages}"/>
@@ -57,7 +54,7 @@
                     </Setter>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Path=IsBelowMinStock}" Value="True">
-                            <Setter Property="Background" Value="OrangeRed"></Setter>
+                            <Setter Property="Background" Value="Orange"></Setter>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -66,7 +63,7 @@
                 <Style TargetType="{x:Type DataGridRow}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Path=IsBelowMinStock}" Value="True">
-                            <Setter Property="Background" Value="OrangeRed"></Setter>
+                            <Setter Property="Background" Value="Orange"></Setter>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -113,13 +110,25 @@
 
                 <DataGridTextColumn Width="Auto" Binding="{Binding CurrentStock}">
                     <DataGridTextColumn.Header>
-                        <TextBlock Text="{DynamicResource CurrentStock}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{DynamicResource CurrentStock}" TextWrapping="Wrap" VerticalAlignment="Center"/>
                     </DataGridTextColumn.Header>
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Style.Setters>
+                                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                            </Style.Setters>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=IsBelowMinStock}" Value="True">
+                                    <Setter Property="Background" Value="OrangeRed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
                 </DataGridTextColumn>
 
                 <DataGridTextColumn Width="Auto" Binding="{Binding MinimumStock}">
                     <DataGridTextColumn.Header>
-                        <TextBlock Text="{DynamicResource MinimumStock}" VerticalAlignment="Center"/>
+                        <TextBlock Text="{DynamicResource MinimumStock}" TextWrapping="Wrap" VerticalAlignment="Center"/>
                     </DataGridTextColumn.Header>
                 </DataGridTextColumn>
 
@@ -127,7 +136,7 @@
                     <DataGridTextColumn.ElementStyle>
                         <Style>
                             <Setter Property="TextBlock.TextWrapping" Value="Wrap"/>
-                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                            <Setter Property="TextBlock.TextAlignment" Value="Left"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                     <DataGridTextColumn.Header>
@@ -190,12 +199,12 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
 
-                <DataGridTemplateColumn Width="Auto">
+                <DataGridTemplateColumn Width="*" MinWidth="30">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Click="Delete">
                                 <Button.Content>
-                                    <TextBlock Text="{DynamicResource Delete}" Style="{DynamicResource DataGridButtonTextBlock}"></TextBlock>
+                                    <Image Source="pack://application:,,,/Resources/Icons/64_GarbageCanWhite.png" Height="12"/>
                                 </Button.Content>
                             </Button>
                         </DataTemplate>

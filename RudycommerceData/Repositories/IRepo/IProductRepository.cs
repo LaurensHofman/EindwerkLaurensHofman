@@ -1,5 +1,6 @@
 ﻿using RudycommerceData.Entities.Products.Products;
 using RudycommerceData.Models;
+using RudycommerceData.Models.ASPModels;
 using RudycommerceData.Repositories.BaseRepo;
 using System;
 using System.Collections.Generic;
@@ -18,5 +19,7 @@ namespace RudycommerceData.Repositories.IRepo
         List<ProductOverviewItem> GetProductOverview(int languageID);
 
         void ToggleProductActive(int ProductID);
+
+        List<ProductListItem> GetHomepageItems(string langISO, string choice);
     }
 }

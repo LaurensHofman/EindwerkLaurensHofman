@@ -38,16 +38,14 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
             InitializeWindow();
         }
 
-        private void InitializeWindow()
+        private async void InitializeWindow()
         {
             DataContext = this;
 
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
             SetLanguageDictionary();
 
-            _catRepo = new CategoryRepository();
-
-            CategoryList = new ObservableCollection<CategoryOverviewItem>(_catRepo.GetCategoryOverview(_preferredLanguage.ID));
+            await LoadDataGridData();
 
             BindData();
         }
@@ -60,7 +58,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
             dgCategoryOverview.DataContext = CategoryList;
         }
 
-        public override void LoadDataGridData()
+        public override async Task LoadDataGridData()
         {
             _catRepo = new CategoryRepository();
 

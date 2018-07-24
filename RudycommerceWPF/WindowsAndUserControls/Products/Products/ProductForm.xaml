@@ -7,7 +7,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Products.Products"
             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-            mc:Ignorable="d" 
+    xmlns:rudycommercewpf="clr-namespace:RudycommerceWPF"
+    mc:Ignorable="d" 
              d:DesignHeight="900" d:DesignWidth="800">
 
     <UserControl.Resources>
@@ -23,6 +24,7 @@
             <Grid x:Name="grdNewProductForm" Style="{StaticResource ResourceKey=UserControlGrid}">
 
                 <StackPanel HorizontalAlignment="Stretch">
+                    <ProgressBar x:Name="prog" Minimum="0" Maximum="100" Height="20" Visibility="Collapsed"/>
 
                     <Label x:Name="lblTitle" Style="{StaticResource ResourceKey=TitleLabel}" Content="Title placeholder"/>
 
@@ -138,16 +140,16 @@
                                                 SelectedValue="{Binding Path=ProductModel.BrandID}"
                                                 DisplayMemberPath="Name"/>
 
-                                            <TextBox Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70">
+                                            <rudycommercewpf:ClickSelectTextBox Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70">
                                                 <TextBox.Text>
                                                     <Binding Path="ProductModel.UnitPrice" StringFormat="N2" 
                                                          ConverterCulture="nl-BE"/>
                                                 </TextBox.Text>
-                                            </TextBox>
+                                            </rudycommercewpf:ClickSelectTextBox>
 
-                                            <TextBox x:Name="tbInitStock" Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70" Text="{Binding ProductModel.InitialStock}"/>
+                                            <rudycommercewpf:ClickSelectTextBox x:Name="tbInitStock" Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70" Text="{Binding ProductModel.InitialStock}"/>
 
-                                            <TextBox Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70" Text="{Binding ProductModel.MinimumStock}"/>
+                                            <rudycommercewpf:ClickSelectTextBox Style="{StaticResource ResourceKey=FormInputTextBox}" Width="70" Text="{Binding ProductModel.MinimumStock}"/>
                                             
                                             <CheckBox IsChecked="{Binding Path=ProductModel.IsActive}" Style="{StaticResource ResourceKey=FormInputCheckBox}" Margin="0,20,0,0" Width="50"/>
 
@@ -289,7 +291,7 @@
                                         </Button.Content>
                                     </Button>
 
-                                    <Button Style="{StaticResource ResourceKey=FormSubmitButton}" Click="btnSave_Click">
+                                    <Button x:Name="btnSubmit" Style="{StaticResource ResourceKey=FormSubmitButton}" Click="btnSave_Click">
                                         <Button.Content>
                                             <WrapPanel>
                                                 <TextBlock Text="{DynamicResource Save}"/>

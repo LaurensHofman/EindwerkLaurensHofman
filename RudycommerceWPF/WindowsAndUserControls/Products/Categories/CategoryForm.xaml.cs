@@ -69,7 +69,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
             InitializeWindow();
 
-
             LoadUpdateWindow();
         }
 
@@ -110,6 +109,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
         private void InitializeWindow()
         {
+            progressBar = prog;
+            submitButton = btnSubmit;
+
             _langRepo = new LanguageRepository();
             _specRepo = new SpecificationRepository();
 
@@ -144,6 +146,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
         {
             try
             {
+                TurnOnProgressBar();
+
                 if (_updatingPage)
                 {
                     _categoryRepo.Update(CategoryModel);
@@ -156,9 +160,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
                 await _categoryRepo.SaveChangesAsync();
 
                 TriggerSaveEvent();
+
+                TurnOffProgressBar();
             }
             catch (Exception)            
             {
+                TurnOffProgressBar();
+
                 string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheCategory.ToLower());
                 string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.Category.ToLower()));
 
@@ -314,7 +322,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
             StackPanel stackRight = new StackPanel();
 
-            TextBox txtName = new TextBox
+            ClickSelectTextBox txtName = new ClickSelectTextBox
             {
                 Height = _defaultHeight,
                 Width = _defaultWidth,
@@ -327,7 +335,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
             };
             txtName.SetBinding(TextBox.TextProperty, nameBinding);
 
-            TextBox txtPluralName = new TextBox
+            ClickSelectTextBox txtPluralName = new ClickSelectTextBox
             {
                 Height = _defaultHeight,
                 Width = _defaultWidth,

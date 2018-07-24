@@ -17,7 +17,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
     /// <summary>
     /// Interaction logic for UpdateFormWindow.xaml
     /// </summary>
-    public partial class UpdateFormWindow: LanguageWindow 
+    public partial class UpdateFormWindow: MultilingualWindow 
     {
         public UpdateFormWindow()
         {

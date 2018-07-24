@@ -21,7 +21,10 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Style="{StaticResource TitleLabel}" Content="{DynamicResource BrandOverviewTitle}"/>
+        <StackPanel Grid.Row="0">
+            <ProgressBar x:Name="prog" Minimum="0" Maximum="100" Visibility="Collapsed"/>
+            <Label Style="{StaticResource TitleLabel}" Content="{DynamicResource BrandOverviewTitle}"/>
+        </StackPanel>
 
         <WrapPanel Grid.Row="1" HorizontalAlignment="Right" Margin="10,0,10,0">
             <Button Margin="20,0,20,0" Click="OpenForm" Content="{DynamicResource NewBrandTitle}"/>

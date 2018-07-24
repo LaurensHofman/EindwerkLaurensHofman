@@ -27,7 +27,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
     /// <summary>
     /// Interaction logic for LoginWindow.xaml
     /// </summary>
-    public partial class LoginWindow : LanguageWindow
+    public partial class LoginWindow : MultilingualWindow
     {
         private List<Language> _languageList;
         private bool newWindow = false;
@@ -173,7 +173,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             {
                 if (userID == 0)
                 {
-                    MessageBox.Show("Not verified yet");
+                    MessageBox.Show(LangResource.NotVerifiedYet);
                 }
                 else
                 {
@@ -188,7 +188,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             {
                 // TODO ERROR MESSAGE
 
-                MessageBox.Show("RIP");
+                MessageBox.Show(LangResource.LoginFailedWPF);
             }
 
             DesktopLogin.Password = null;

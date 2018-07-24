@@ -48,6 +48,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
         public SpecificationForm()
         {
             InitializeComponent();
+            
+            progressBar = prog;
+            submitButton = btnSubmit;
 
             SpecModel = new Specification();
 
@@ -61,6 +64,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
         public SpecificationForm(int ID)
         {
             InitializeComponent();
+            
+            progressBar = prog;
+            submitButton = btnSubmit;
 
             _specRepo = new SpecificationRepository();
 
@@ -198,7 +204,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
                 HorizontalAlignment = HorizontalAlignment.Left
             };
 
-            TextBox txtName = new TextBox
+            ClickSelectTextBox txtName = new ClickSelectTextBox
             {
                 Height = _defaultHeight,
                 Width = _defaultWidth,
@@ -211,7 +217,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             };
             txtName.SetBinding(TextBox.TextProperty, nameBinding);
 
-            TextBox txtAdviceDescription = new TextBox
+            ClickSelectTextBox txtAdviceDescription = new ClickSelectTextBox
             {
                 Height = 300,
                 Width = _defaultWidth,
@@ -304,10 +310,16 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
         {
             try
             {
+                TurnOnProgressBar();
+
                 SaveModel();
+
+                TurnOffProgressBar();
             }
             catch (Exception)
             {
+                TurnOffProgressBar();
+
                 string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheSpec.ToLower());
                 string title = StringExtensions.FirstCharToUpper(String.Format(LangResource.MBTitleObjSaveFailed, LangResource.Specification.ToLower()));
 

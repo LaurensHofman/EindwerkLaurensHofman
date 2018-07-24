@@ -234,4 +234,13 @@
   <data name="Submit" xml:space="preserve">
     <value>Submit</value>
   </data>
+  <data name="NotVerifiedYet" xml:space="preserve">
+    <value>Your account hasn't been verified yet by the administrator.</value>
+  </data>
+  <data name="LoginFailedWPF" xml:space="preserve">
+    <value>The password and/or the username that has been inserted, was incorrect.</value>
+  </data>
+  <data name="ProdFormGeneralTabInvalid" xml:space="preserve">
+    <value>De values filled in the 'General' tab aren't all (correctly) filled in. Please correct these to continue.</value>
+  </data>
 </root>

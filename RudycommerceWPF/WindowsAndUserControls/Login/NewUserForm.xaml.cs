@@ -26,7 +26,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
     /// <summary>
     /// Interaction logic for NewUserForm.xaml
     /// </summary>
-    public partial class NewUserForm : LanguageWindow
+    public partial class NewUserForm : MultilingualWindow
     {
         private List<Language> _languageList;
 

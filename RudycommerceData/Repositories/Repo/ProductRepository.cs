@@ -1,5 +1,6 @@
 ﻿using RudycommerceData.Entities.Products.Products;
 using RudycommerceData.Models;
+using RudycommerceData.Models.ASPModels;
 using RudycommerceData.Repositories.BaseRepo;
 using RudycommerceData.Repositories.IRepo;
 using System;
@@ -89,6 +90,14 @@ namespace RudycommerceData.Repositories.Repo
             prod.IsActive = !prod.IsActive;
 
             Update(prod);
+        }
+
+        public List<ProductListItem> GetHomepageItems(string languageISO, string choiceOption)
+        {
+            SqlParameter langISO = new SqlParameter("@langISO", languageISO);
+            SqlParameter choice = new SqlParameter("@choice", choiceOption); 
+
+            return _context.Database.SqlQuery<ProductListItem>("exec dbo.sprocHomePageItems @langISO, @choice", langISO, choice).ToList();
         }
     }
 }

@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Products.Brands"
-             mc:Ignorable="d" 
+    xmlns:rudycommercewpf="clr-namespace:RudycommerceWPF"
+    mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -18,6 +19,8 @@
 
     <Grid x:Name="grdBrandForm" Style="{StaticResource UserControlGrid}">
         <StackPanel HorizontalAlignment="Stretch">
+
+            <ProgressBar x:Name="prog" Minimum="0" Maximum="100" Height="20" Visibility="Collapsed"/>
 
             <Label x:Name="lblTitle" Content="Title placeholder" Style="{StaticResource TitleLabel}"/>
 
@@ -42,7 +45,7 @@
                 </StackPanel>
                 <StackPanel>
 
-                    <TextBox Text="{Binding Path=BrandModel.Name}" Style="{StaticResource FormInputTextBox}" Width="200"/>
+                    <rudycommercewpf:ClickSelectTextBox Text="{Binding Path=BrandModel.Name}" Style="{StaticResource FormInputTextBox}" Width="200"/>
 
                     <WrapPanel HorizontalAlignment="Left" Margin="0,50,0,0" Height="100">
                         <Image x:Name="LogoImage" Visibility="Collapsed" Height="100" Width="100" Margin="0,0,20,0" VerticalAlignment="Center"/>
@@ -65,7 +68,7 @@
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Right">
                 <Button x:Name="btnCancel" Content="{DynamicResource Cancel}" Style="{StaticResource FormCancelLinkButton}" Template="{StaticResource FormCancelLinkButtonTemp}" Click="btnCancel_Click"/>
-                <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource FormSubmitButton}" Click="btnSave_Click"/>
+                <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource FormSubmitButton}" Click="btnSave_Click"/>
             </WrapPanel>
 
         </StackPanel>

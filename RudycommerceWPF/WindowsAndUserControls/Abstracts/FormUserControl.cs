@@ -18,6 +18,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
         public delegate void FormUpdate();
         public event FormUpdate UpdateEvent;
 
+        /// <summary>
+        /// The current content control in which this user control exists within, 
+        /// </summary>
         public ContentControl thisContentControl { get; set; }
 
         protected abstract void SetTitle();
@@ -52,5 +55,23 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
         }
 
         protected abstract void btnSave_Click(object sender, RoutedEventArgs e);
+        
+        protected void TurnOnProgressBar()
+        {
+            progressBar.IsIndeterminate = true;
+            progressBar.Visibility = Visibility.Visible;
+
+            submitButton.IsEnabled = false;
+        }
+
+        protected ProgressBar progressBar;
+        protected Button submitButton;
+
+        protected void TurnOffProgressBar()
+        {
+            progressBar.IsIndeterminate = false;
+            progressBar.Visibility = Visibility.Collapsed;
+            submitButton.IsEnabled = true;
+        }
     }
 }

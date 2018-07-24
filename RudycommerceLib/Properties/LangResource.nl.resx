@@ -234,4 +234,13 @@
   <data name="Submit" xml:space="preserve">
     <value>Sla op</value>
   </data>
+  <data name="NotVerifiedYet" xml:space="preserve">
+    <value>Uw account is nog niet geverifieerd door de beheerder.</value>
+  </data>
+  <data name="LoginFailedWPF" xml:space="preserve">
+    <value>Uw ingevoerde wachtwoord en/of gebruikersnaam was verkeerd.</value>
+  </data>
+  <data name="ProdFormGeneralTabInvalid" xml:space="preserve">
+    <value>De waarden ingevoerd in de tab 'Algemeen' zijn niet allemaal (correct) ingevoerd. Gelieve deze aan te vullen vooraleer verder te gaan.</value>
+  </data>
 </root>

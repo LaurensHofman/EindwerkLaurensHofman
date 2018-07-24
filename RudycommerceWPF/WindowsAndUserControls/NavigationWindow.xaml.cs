@@ -33,7 +33,7 @@ namespace RudycommerceWPF.WindowsAndUserControls
     /// <summary>
     /// Interaction logic for NavigationWindow.xaml
     /// </summary>
-    public partial class NavigationWindow : LanguageWindow
+    public partial class NavigationWindow : MultilingualWindow
     {
         private IDesktopUserRepository _userRepo;
         private ILanguageRepository _langRepo;

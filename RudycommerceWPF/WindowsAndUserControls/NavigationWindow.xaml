@@ -1,4 +1,4 @@
-﻿<base:LanguageWindow
+﻿<base:MultilingualWindow
     xmlns:base="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts" 
     x:Class="RudycommerceWPF.WindowsAndUserControls.NavigationWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -202,4 +202,4 @@
 
         </Grid>
     </Grid>
-</base:LanguageWindow>
+</base:MultilingualWindow>

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
 {
@@ -12,8 +13,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
         /// <summary>
         /// Creates instance of the Generic Form type, with ID to load the Item in the form
         /// </summary>
-        /// <typeparam name="FormUC"></typeparam>
-        /// <param name="ID"></param>
         protected void ShowUpdateForm<FormUC>(int ID) where FormUC: FormUserControl, new()
         {
             // https://stackoverflow.com/questions/1852837/is-there-a-generic-constructor-with-parameter-constraint-in-c
@@ -26,13 +25,20 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
             win.Show();
         }
 
-        public abstract void LoadDataGridData();
+        public abstract Task LoadDataGridData();
 
+        /// <summary>
+        /// To be called when the Update event gets triggered in an update form, opened from within this Overview
+        /// </summary>
         private void Updated()
         {
             LoadDataGridData();
         }
 
+        /// <summary>
+        /// Gets the Window in which this user control exists
+        /// </summary>
+        /// <returns></returns>
         protected Window GetParentWindow()
         {
             NavigationWindow myWindow = (NavigationWindow)Window.GetWindow(this);

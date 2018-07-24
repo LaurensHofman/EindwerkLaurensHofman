@@ -36,16 +36,20 @@ namespace RudycommerceWPF.WindowsAndUserControls.Users
         public UserOverview()
         {
             InitializeComponent();
+            InitiliazeContent();
+        }
 
+        private async void InitiliazeContent()
+        {
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
             SetLanguageDictionary();
 
             DataContext = this;
 
-            LoadData();
+            await LoadData();
         }
 
-        private async void LoadData()
+        private async Task LoadData()
         {
             _userRepo = new DesktopUserRepository();
 

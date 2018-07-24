@@ -151,6 +151,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uw ingevoerde wachtwoord en/of gebruikersnaam was verkeerd..
+        /// </summary>
+        public static string LoginFailedWPF {
+            get {
+                return ResourceManager.GetString("LoginFailedWPF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bent u zeker dat u {0} &apos;{1}&apos; wil verwijderen?.
         /// </summary>
         public static string MBContentDeleteObj {
@@ -304,6 +313,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Uw account is nog niet geverifieerd..
+        /// </summary>
+        public static string NotVerifiedYet {
+            get {
+                return ResourceManager.GetString("NotVerifiedYet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Naam in meervoud.
         /// </summary>
         public static string PluralName {
@@ -318,6 +336,15 @@ namespace RudycommerceLib.Properties {
         public static string PotentialValues {
             get {
                 return ResourceManager.GetString("PotentialValues", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to De waarden ingevoerd in de tab &apos;Algemeen&apos; zijn niet allemaal (correct) ingevoerd. Gelieve deze aan te vullen vooraleer verder te gaan..
+        /// </summary>
+        public static string ProdFormGeneralTabInvalid {
+            get {
+                return ResourceManager.GetString("ProdFormGeneralTabInvalid", resourceCulture);
             }
         }
         

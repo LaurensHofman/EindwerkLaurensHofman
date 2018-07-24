@@ -36,7 +36,11 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         public ProductOverview()
         {
             InitializeComponent();
+            InitializeContent();
+        }
 
+        private async void InitializeContent()
+        {
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
 
             SetLanguageDictionary();
@@ -46,12 +50,14 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             LoadDataGridData();
         }
 
-        public override void LoadDataGridData()
+        public override async Task LoadDataGridData()
         {
             _prodRepo = new ProductRepository();
 
             ProductList = new ObservableCollection<ProductOverviewItem>(_prodRepo.GetProductOverview(_preferredLanguage.ID)
-                .OrderByDescending(x => x.IsActive).ThenBy(x => x.ProductName));
+                .OrderBy(x => x.CategoryName)
+                .ThenByDescending(x => x.IsActive)
+                .ThenBy(x => x.ProductName));
 
             ViewSource = new CollectionViewSource();
             ViewSource.Source = ProductList;
@@ -104,6 +110,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             }
         }
 
+        /// <summary>
+        /// Opens a new Create Form, but not as a popup
+        /// </summary>
         protected override void OpenForm(object sender, RoutedEventArgs e)
         {
             var myWindow = (NavigationWindow)GetParentWindow();
@@ -123,6 +132,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             ShowUpdateForm<ProductForm>(ToBeUpdated.ID);
         }
 
+        /// <summary>
+        /// Shows/Hides the images column
+        /// </summary>
         private void ToggleVisibilityImages(object sender, RoutedEventArgs e)
         {
             if (ImageColumn.Visibility == Visibility.Collapsed)
@@ -139,19 +151,21 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
         private async void ToggleProductActive(object sender, RoutedEventArgs e)
         {
+            // gets the item, changes the IsActive and saves it
+
             ProductOverviewItem item = (ProductOverviewItem)((FrameworkElement)sender).DataContext;
 
             _prodRepo.ToggleProductActive(item.ID);
             await _prodRepo.SaveChangesAsync();
 
             item.IsActive = !item.IsActive;
-            
-
-            //LoadDataGridData();
 
             BindData();
         }
 
+        /// <summary>
+        /// Opens a small window to prompt for the added stock value
+        /// </summary>
         private void AddStock(object sender, RoutedEventArgs e)
         {
             var dialog = new MyDialog(LangResource.Cancel, LangResource.Submit, LangResource.AddStockTitle);
@@ -159,24 +173,22 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             {
                 if (int.TryParse(dialog.ResponseText, out int response))
                 {
-                    var product = ((FrameworkElement)sender).DataContext as ProductOverviewItem;
+                    if (response > 0)
+                    {
+                        var product = ((FrameworkElement)sender).DataContext as ProductOverviewItem;
 
-                    Product toBeUpdated = _prodRepo.Get(product.ID);
+                        Product toBeUpdated = _prodRepo.Get(product.ID);
 
-                    toBeUpdated.CurrentStock += response;
-                    product.CurrentStock += response;
+                        toBeUpdated.CurrentStock += response;
+                        product.CurrentStock += response;
 
-                    _prodRepo.Update(toBeUpdated);
-                    _prodRepo.SaveChangesAsync();
+                        _prodRepo.Update(toBeUpdated);
+                        _prodRepo.SaveChangesAsync();
 
-                    BindData();
+                        BindData();
+                    }
                 }
             }
         }
-
-        //private void OKButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        //{
-        //    DialogResult = true;
-        //}
     }
 }

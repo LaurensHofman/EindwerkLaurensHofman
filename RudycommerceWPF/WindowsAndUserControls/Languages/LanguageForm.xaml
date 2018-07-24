@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Languages"
-             mc:Ignorable="d" 
+    xmlns:rudycommercewpf="clr-namespace:RudycommerceWPF"
+    mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
     <UserControl.Resources>
@@ -19,6 +20,8 @@
 
     <Grid x:Name="grdLanguageForm" Style="{StaticResource UserControlGrid}">
         <StackPanel HorizontalAlignment="Stretch">
+            <ProgressBar x:Name="prog" Minimum="0" MaxHeight="100" Height="20" Visibility="Collapsed"/>
+
             <Label x:Name="lblTitle" Content="Title placeholder" Style="{StaticResource TitleLabel}"/>
 
             <WrapPanel HorizontalAlignment="Center">
@@ -53,10 +56,10 @@
 
                 </StackPanel>
                 <StackPanel x:Name="stackInput">
-                    <TextBox x:Name="txtLocalName" Text="{Binding Path=LanguageModel.LocalName}" Style="{StaticResource FormInputTextBox}" Width="200"/>
-                    <TextBox x:Name="txtDutchName" Text="{Binding Path=LanguageModel.DutchName}" Style="{StaticResource FormInputTextBox}" Width="200"/>
-                    <TextBox x:Name="txtEnglishName" Text="{Binding Path=LanguageModel.EnglishName}" Style="{StaticResource FormInputTextBox}" Width="200"/>
-                    <TextBox x:Name="txtISO" Text="{Binding Path=LanguageModel.ISO}" VerticalAlignment="Top" Style="{StaticResource FormInputTextBox}" Width="50" MaxLength="2"/>
+                    <rudycommercewpf:ClickSelectTextBox x:Name="txtLocalName" Text="{Binding Path=LanguageModel.LocalName}" Style="{StaticResource FormInputTextBox}" Width="200"/>
+                    <rudycommercewpf:ClickSelectTextBox x:Name="txtDutchName" Text="{Binding Path=LanguageModel.DutchName}" Style="{StaticResource FormInputTextBox}" Width="200"/>
+                    <rudycommercewpf:ClickSelectTextBox x:Name="txtEnglishName" Text="{Binding Path=LanguageModel.EnglishName}" Style="{StaticResource FormInputTextBox}" Width="200"/>
+                    <rudycommercewpf:ClickSelectTextBox x:Name="txtISO" Text="{Binding Path=LanguageModel.ISO}" VerticalAlignment="Top" Style="{StaticResource FormInputTextBox}" Width="50" MaxLength="2"/>
                     <!--<CheckBox x:Name="cbxIsActive" IsChecked="{Binding Path=Model.IsActive}" Style="{StaticResource FormInputCheckBox}" Click="cbxIsActive_Click"/>-->
                     <CheckBox x:Name="cbxIsDefault" IsChecked="{Binding Path=LanguageModel.IsDefault}" Style="{StaticResource FormInputCheckBox}"/>
 
@@ -64,7 +67,7 @@
             </WrapPanel>
             <WrapPanel HorizontalAlignment="Right">
                 <Button x:Name="btnCancel" Content="{DynamicResource Cancel}" Style="{StaticResource FormCancelLinkButton}" Template="{StaticResource FormCancelLinkButtonTemp}" Click="btnCancel_Click"/>
-                <Button x:Name="btnSave" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource FormSubmitButton}" Click="btnSave_Click"/>
+                <Button x:Name="btnSubmit" Content="{DynamicResource ResourceKey=Save}" Style="{StaticResource FormSubmitButton}" Click="btnSave_Click"/>
             </WrapPanel>
         </StackPanel>
     </Grid>

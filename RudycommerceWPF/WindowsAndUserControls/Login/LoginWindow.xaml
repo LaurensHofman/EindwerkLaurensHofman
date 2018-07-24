@@ -1,4 +1,4 @@
-﻿<base:LanguageWindow
+﻿<base:MultilingualWindow
     x:Class="RudycommerceWPF.WindowsAndUserControls.Login.LoginWindow"
     xmlns:base="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -119,4 +119,4 @@
             <Button x:Name="btnLazy" Click="btnLazy_Click" IsDefault="True" HorizontalAlignment="Left" FontSize="12" Content="FOR THE LAZY" Width="120" Margin="20,-27,20,0"/>
         </StackPanel>
     </Grid>
-</base:LanguageWindow>
+</base:MultilingualWindow>

@@ -170,6 +170,14 @@
     <Compile Include="Migrations\201807221723167_sellingwell.Designer.cs">
       <DependentUpon>201807221723167_sellingwell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201807231355033_boolVal.cs" />
+    <Compile Include="Migrations\201807231355033_boolVal.Designer.cs">
+      <DependentUpon>201807231355033_boolVal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201807231358378_boolVal1.cs" />
+    <Compile Include="Migrations\201807231358378_boolVal1.Designer.cs">
+      <DependentUpon>201807231358378_boolVal1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ASPModels\ProductListItem.cs" />
     <Compile Include="Models\CategoryOverviewItem.cs" />
@@ -281,6 +289,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201807221723167_sellingwell.resx">
       <DependentUpon>201807221723167_sellingwell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807231355033_boolVal.resx">
+      <DependentUpon>201807231355033_boolVal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201807231358378_boolVal1.resx">
+      <DependentUpon>201807231358378_boolVal1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
