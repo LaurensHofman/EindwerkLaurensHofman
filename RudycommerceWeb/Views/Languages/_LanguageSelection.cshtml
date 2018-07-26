@@ -5,10 +5,11 @@
 }
 
 @using System.Text.RegularExpressions;
+
 @{
     string path = HttpContext.Current.Request.Url.PathAndQuery;
 
-    if (path.Length >= 3)
+    if (path.Length == 3)
     {
         string pathStart = path.Substring(0, 3);
 
@@ -18,7 +19,21 @@
 
         if (success)
         {
-            string pathEnd = path.Substring(3, path.Length - 3);
+            path = "/";
+        }
+    }
+
+    if (path.Length >= 4)
+    {
+        string pathStart = path.Substring(0, 4);
+
+        Regex r = new Regex("/../");
+
+        bool success = r.Match(pathStart).Success;
+
+        if (success)
+        {
+            string pathEnd = "/" + path.Substring(4, path.Length - 4);
             path = pathEnd;
         }
     }

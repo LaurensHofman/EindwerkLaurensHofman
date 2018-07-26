@@ -1,2 +1,88 @@
-﻿body {
+﻿.product-list-title{
+    margin-top: 4rem;
+    font-size: 2.2rem;
+}
+
+.product-list-region {
+    margin-top: 2rem;
+}
+
+
+.product-card {
+    height: 27rem;
+    background-color: white;
+    margin-top: 1rem;
+}
+
+.card-image-top {
+    width: 100%;
+    height: 12rem;
+    margin-top: 5px;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.product-image {
+    max-width: 100%;
+    height: 100%;
+}
+
+.card ul.list-group {
+    height: 11rem;
+}
+
+.card ul li {
+    border: 0;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+}
+.bool-value {
+    height: 1.4rem;
+    width: 1.4rem;
+    margin-left: 0.25rem;
+}
+
+.name-li{
+    margin-bottom: 0.5rem;
+}
+
+.price {
+    text-align: center;
+    font-size: 1.5rem;
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.product-name {
+    text-decoration: underline;
+    font-size: 1.4rem;
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-height: 1.5rem; /* fallback */
+    max-height: 3rem; /* fallback */
+    height: 3rem;
+}
+
+.product-name a{
+    color: black;
+}
+
+.card-footer {
+}
+
+.top-spec {
+    font-size: 1rem;
+}
+
+.card-footer .call-to-action {
+    text-align: center;
+    padding-left: 0;
+    padding-right: 0;
 }

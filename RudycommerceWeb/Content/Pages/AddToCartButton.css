@@ -1,0 +1,16 @@
+﻿.add-to-cart {
+    min-width: 90%;
+    background: #f9c61d;
+    border-radius: 1rem;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+    .add-to-cart img {
+        height: 2.5rem;
+        padding: 2px;
+    }
+
+    .add-to-cart span {
+        font-size: calc(12px + 0.5vw);
+    }

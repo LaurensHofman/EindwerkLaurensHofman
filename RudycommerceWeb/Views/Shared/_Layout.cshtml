@@ -21,7 +21,7 @@
         {
             <div class="jumbotron jumbotron-fluid jumbo">
                 <div class="container" id="jumboCollapse">
-                    <h1 class="display-4">@Resources.Global.JumboWelcomeTo<span class="font-italic font-weight-bold">Rudycommerce</span></h1>
+                    <h1 class="display-4 site-welcome">@Resources.Global.JumboWelcomeTo<span class="font-italic font-weight-bold">Rudycommerce</span></h1>
                     <p class="lead">@Resources.Global.Tagline</p>
                     <p>
                         <a class="btn btn-secondary collapse-button" data-toggle="collapse" href="#collapseCountries" role="button" aria-expanded="false"
@@ -54,14 +54,15 @@
             </div>
         }
 
-        <div class="container body-content">
+        <div class="container-fluid body-content">
             @RenderBody()
         </div>
     </content>
 
     <footer>
         <hr />
-        @*@Html.Partial("_Footer")*@
+
+        @Html.Partial("_Footer")
     </footer>
 
 

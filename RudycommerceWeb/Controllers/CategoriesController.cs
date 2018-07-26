@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace RudycommerceWeb.Controllers
 {
-    public class CategoriesController : Controller
+    public class CategoriesController : MultilingualBaseController
     {
         private ICategoryRepository _catRepo;
 
@@ -21,9 +21,12 @@ namespace RudycommerceWeb.Controllers
 
         public ActionResult _CategoryDropdown()
         {
-            string iso = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
+            return View("_CategoryDropdown", _catRepo.GetLocalizedCatListItems(GetISO()));
+        }
 
-            return View("_CategoryDropdown", _catRepo.GetLocalizedCatListItems(iso));
+        public ActionResult _CategoryList()
+        {
+            return View("_CategoryList", _catRepo.GetLocalizedCatListItems(GetISO()));
         }
     }
 }

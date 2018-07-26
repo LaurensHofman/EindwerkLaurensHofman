@@ -20,6 +20,8 @@ namespace RudycommerceData.Repositories.IRepo
 
         void ToggleProductActive(int ProductID);
 
-        List<ProductListItem> GetHomepageItems(string langISO, string choice);
+        List<ProductListItem> GetProductListItems(string langISO, string choice, string queryString);
+
+        List<ProductListItem> GetProductListItems(string languageISO, string choiceOption);
     }
 }

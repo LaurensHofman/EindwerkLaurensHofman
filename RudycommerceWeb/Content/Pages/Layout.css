@@ -1,7 +1,15 @@
-﻿.jumbo {
+﻿body {
+    background-color: #F5F5F5;
+}
+
+.jumbo {
     margin-bottom: 0;
     padding-bottom: 1rem;
 }
+
+    .jumbo .site-welcome {
+        font-size: calc(30px + 2.5vw);
+    }
 
     .jumbo .container .collapse .collapse-content {
         margin-bottom: 0;
@@ -10,6 +18,11 @@
 .navbarbackground {
     background-color: white;
     border: 1px solid lightgray;
+}
+
+.navbar-brand {
+    padding: 0;
+    margin-right: 0;
 }
 
 .brand-logo {
@@ -57,4 +70,28 @@
 
 li:first-child .languages {
     border-left: 0;
+}
+
+.footer-row .col-md-4 .footer-title {
+    text-align: center;
+}
+
+.footer-row .col-md-4 p {
+    font-size: 1.4rem;
+    margin-bottom: 0.7rem;
+}
+
+.footer-row .col-md-4 ul {
+    list-style-type: none;
+    padding-left: 5px;
+    text-decoration: underline;
+    margin-top: -5px;
+}
+
+    .footer-row .col-md-4 ul li {
+        margin-left: 10%;
+    }
+
+body > footer {
+    margin-top: 3rem;
 }

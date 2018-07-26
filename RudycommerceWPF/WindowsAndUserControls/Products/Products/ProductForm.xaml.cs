@@ -60,6 +60,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         {
             InitializeComponent();
 
+            progressBar = prog;
+            submitButton = btnSubmit;
+
             DataContext = this;
 
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
@@ -1032,6 +1035,14 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                     .SingleOrDefault(x => x.SpecificationID == val.SpecificationID && x.LanguageID == firstLangID).SpecificationEnumID;
             }
 
+            foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.LanguageID == firstLangID && x.BoolValue != null))
+            {
+                foreach (var boolval in ProductModel.Values_ProductSpecifications.Where(x => x.SpecificationID == val.SpecificationID && x.LanguageID != firstLangID))
+                {
+                    boolval.BoolValue = val.BoolValue;
+                }
+            }
+
             List<Value_ProductSpecification> tempList = new List<Value_ProductSpecification>();
 
             foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.LanguageID == null && x.TempLangID == null))
@@ -1052,7 +1063,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                                 LanguageID = lang.ID,
                                 SpecificationID = val.SpecificationID,
                                 Value = val.Value,
-                                SpecificationEnumID = val.SpecificationEnumID
+                                SpecificationEnumID = val.SpecificationEnumID,
+                                BoolValue = val.BoolValue
                             });
                     }
 
@@ -1094,7 +1106,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                                 LanguageID = lang.ID,
                                 SpecificationID = val.SpecificationID,
                                 Value = val.Value,
-                                SpecificationEnumID = val.SpecificationEnumID
+                                SpecificationEnumID = val.SpecificationEnumID,
+                                BoolValue = val.BoolValue
                             });
                     }
 

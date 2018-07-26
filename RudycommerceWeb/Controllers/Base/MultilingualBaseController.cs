@@ -1,4 +1,6 @@
-﻿using System;
+﻿using RudycommerceData.Repositories.IRepo;
+using RudycommerceData.Repositories.Repo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -7,8 +9,20 @@ using System.Web.Mvc;
 
 namespace RudycommerceWeb.Controllers
 {
-    public class MultilingualBaseController : Controller
+    public abstract class MultilingualBaseController : Controller
     {
+        private ILanguageRepository _langRepo;
+
+        public MultilingualBaseController()
+        {
+            _langRepo = new LanguageRepository();
+        }
+
+        protected int GetLangID()
+        {
+            return _langRepo.GetLanguageIDByISO(GetISO());
+        }
+
         protected static string GetISO()
         {
             return Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;

@@ -13,5 +13,6 @@ namespace RudycommerceData.Repositories.IRepo
         Task<Language> MakeNewDefaultLanguage(Language newDefault);
 
         Task<Language> SwapDefaultLanguages(Language newDefault);
+        int GetLanguageIDByISO(string iso);
     }
 }

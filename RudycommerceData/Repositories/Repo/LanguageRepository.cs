@@ -3,6 +3,7 @@ using RudycommerceData.Repositories.BaseRepo;
 using RudycommerceData.Repositories.IRepo;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,5 +32,12 @@ namespace RudycommerceData.Repositories.Repo
             newDefault.IsDefault = true;
             return await UpdateAsync(newDefault);
         }
+
+        public int GetLanguageIDByISO(string iso)
+        {
+            SqlParameter langISO = new SqlParameter("@langISO", iso);
+
+            return _context.Database.SqlQuery<int>("exec dbo.sprocProductListItems @langISO", langISO).First();
+        }    
     }
 }

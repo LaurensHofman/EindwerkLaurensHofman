@@ -1,0 +1,47 @@
+﻿
+<header></header>
+
+<content>
+    <div class="container">
+        <div class="row footer-row">
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="footer-title">
+                    <p>@Resources.Global.OurDeliveryServices</p>
+                </div>
+                <ul>
+                    <li> @Html.ActionLink(Resources.Global.DeliverCountries, "DeliveryCountries", "Utilities") </li>
+                    <li> @Html.ActionLink(Resources.Global.DeliveryPrices, "DeliverPrices", "Utilities") </li>
+                </ul>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="footer-title">
+                    <p>@Resources.Global.CustomerService</p>
+                </div>
+                <ul>
+                    <li> @Html.ActionLink(Resources.Global.FAQ, "FAQ", "Utilities") </li>
+                    <li> @Html.ActionLink(Resources.Global.AskAQuestion, "Contact", "Utilities") </li>
+                </ul>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4">
+                <div class="footer-title">
+                    <p>@Resources.Global.About</p>
+                </div>
+                <ul>
+                    <li> @Html.ActionLink(Resources.Global.PrivacyPolicy, "PrivacyPolicy", "Utilities") </li>
+                    <li> @Html.ActionLink(Resources.Global.TermsConditions, "TermsAndConditions", "Utilities") </li>
+                    <li> @Html.ActionLink(Resources.Global.About, "AboutUs", "Utilities") </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</content>
+
+<footer>
+    <div class="container">
+        <div class="row footer-row">
+            <div class="col-md-4">
+                &copy; @DateTime.Now.Year - Rudycommerce
+            </div>
+        </div>
+    </div>
+</footer>

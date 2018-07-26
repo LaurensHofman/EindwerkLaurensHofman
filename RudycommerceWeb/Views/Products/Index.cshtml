@@ -2,27 +2,30 @@
 @{
     ViewBag.Title = Resources.Global.Home;
 }
+<div class="container">
 
-<div class="row">
-    <h2> @Resources.Global.NewestProducts </h2>
+    <h2 class="product-list-title"> @Resources.Global.NewestProducts </h2>
+
     <hr />
 
-    @Html.Action("NewestProducts", "Products")
+    <div class="row">
+
+        @Html.Action("NewestProducts", "Products")
+
+    </div>
+
+    <h2 class="product-list-title"> @Resources.Global.BestSellers </h2>
+
+    <hr />
+
+    <div class="row">
+
+        @Html.Action("BestSellingProducts", "Products")
+
+    </div>
 
 </div>
-
-@section scripts {
-
-    @*<script>
-        $(document).ready(function () {
-            $('[data-toggle="popover"][data-trigger="hover"]').popover({
-                delay: { show: "800", hide: "200" }
-            });
-        });
-    </script>*@
-
-}
-
 @section Styles {
-    <link rel="stylesheet" type="text/css" href="~/Content/Pages/ProductList.css" />
+    @Styles.Render("~/Content/Pages/ProductList.css")
+    @Styles.Render("~/Content/Pages/AddToCartButton.css")
 }

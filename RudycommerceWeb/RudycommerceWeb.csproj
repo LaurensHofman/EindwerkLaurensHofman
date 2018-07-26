@@ -184,6 +184,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Pages\AddToCartButton.css" />
     <Content Include="Content\Pages\Layout.css" />
     <Content Include="Content\Pages\ProductList.css" />
     <Content Include="Content\Pages\ShoppingCart.css" />
@@ -191,6 +192,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\64_AddToCartBlue.png" />
     <Content Include="Images\64_AddToShoppingCartBLUE.png" />
     <Content Include="Images\64_ArrowDownProgDiscl.png" />
     <Content Include="Images\64_ArrowRight.png" />
@@ -231,6 +233,12 @@
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Languages\_LanguageSelection.cshtml" />
     <Content Include="Views\Categories\_CategoryDropdown.cshtml" />
+    <Content Include="Views\Products\_ProductList.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
+    <Content Include="Views\Categories\_CategoryList.cshtml" />
+    <Content Include="Views\Products\CategoryPage.cshtml" />
+    <Content Include="Views\Products\SearchResultPage.cshtml" />
+    <Content Include="Views\Products\_FilterableProductList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

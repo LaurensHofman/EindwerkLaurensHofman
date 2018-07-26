@@ -121,4 +121,7 @@
     <system:String x:Key="MakeAdmin">Make admin</system:String>
     <system:String x:Key="VerifyUser">Verify user</system:String>
     <system:String x:Key="AddStock">Add stock</system:String>
+
+    <system:String x:Key="Active?">Active?</system:String>
+    <system:String x:Key="Price">Price</system:String>
 </ResourceDictionary>

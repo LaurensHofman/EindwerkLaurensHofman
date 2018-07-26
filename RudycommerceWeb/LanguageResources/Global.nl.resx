@@ -128,6 +128,9 @@
     <value>Stel ons een vraag</value>
     <comment>Link to 'ask us a question'</comment>
   </data>
+  <data name="BestSellers" xml:space="preserve">
+    <value>Onze best verkopende producten</value>
+  </data>
   <data name="Categories" xml:space="preserve">
     <value>Categorieën</value>
   </data>
@@ -170,8 +173,14 @@
   <data name="NewestProducts" xml:space="preserve">
     <value>Onze nieuwste producten</value>
   </data>
+  <data name="NoProductsFound" xml:space="preserve">
+    <value>Er werden geen producten gevonden :(</value>
+  </data>
   <data name="OurCategories" xml:space="preserve">
     <value>Onze categorieën</value>
+  </data>
+  <data name="OurDeliveryServices" xml:space="preserve">
+    <value>Onze leverdiensten</value>
   </data>
   <data name="Overview" xml:space="preserve">
     <value>Overzicht</value>
@@ -181,6 +190,9 @@
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacybeleid</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Zoeken</value>
   </data>
   <data name="ShoppingCart" xml:space="preserve">
     <value>Winkelkar</value>
@@ -197,5 +209,8 @@
   </data>
   <data name="TotalPrice" xml:space="preserve">
     <value>Totale prijs</value>
+  </data>
+  <data name="YourSearchQuery" xml:space="preserve">
+    <value>Uw zoekopdracht: "{0}"</value>
   </data>
 </root>

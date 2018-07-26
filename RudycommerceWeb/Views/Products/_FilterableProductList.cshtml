@@ -1,0 +1,17 @@
+﻿<div class="container-fluid" style="padding-left:2rem;padding-right:2rem;">
+    <div class="row">
+        <div class="col-3">
+            Hier komen de filters
+        </div>
+        <div class="col-9">
+            <div class="row">
+                <div class="col-12" style="text-align:right;">
+                    Hier komen de sorteeropties
+                </div>
+            </div>
+            <div class="row">
+                @Html.Partial("_ProductList", (List<RudycommerceData.Models.ASPModels.ProductListItem>)ViewBag.Products)
+            </div>
+        </div>
+    </div>
+</div>

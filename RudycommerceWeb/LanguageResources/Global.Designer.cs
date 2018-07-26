@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Our best sellers.
+        /// </summary>
+        public static string BestSellers {
+            get {
+                return ResourceManager.GetString("BestSellers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categories.
         /// </summary>
         public static string Categories {
@@ -207,11 +216,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There were no products found :(.
+        /// </summary>
+        public static string NoProductsFound {
+            get {
+                return ResourceManager.GetString("NoProductsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Our categories.
         /// </summary>
         public static string OurCategories {
             get {
                 return ResourceManager.GetString("OurCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our delivery services.
+        /// </summary>
+        public static string OurDeliveryServices {
+            get {
+                return ResourceManager.GetString("OurDeliveryServices", resourceCulture);
             }
         }
         
@@ -239,6 +266,15 @@ namespace Resources {
         public static string PrivacyPolicy {
             get {
                 return ResourceManager.GetString("PrivacyPolicy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string Search {
+            get {
+                return ResourceManager.GetString("Search", resourceCulture);
             }
         }
         
@@ -284,6 +320,15 @@ namespace Resources {
         public static string TotalPrice {
             get {
                 return ResourceManager.GetString("TotalPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your search query: &quot;{0}&quot;.
+        /// </summary>
+        public static string YourSearchQuery {
+            get {
+                return ResourceManager.GetString("YourSearchQuery", resourceCulture);
             }
         }
     }

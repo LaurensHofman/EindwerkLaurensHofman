@@ -128,6 +128,9 @@
     <value>Ask us a question</value>
     <comment>Link to 'ask us a question'</comment>
   </data>
+  <data name="BestSellers" xml:space="preserve">
+    <value>Our best sellers</value>
+  </data>
   <data name="Categories" xml:space="preserve">
     <value>Categories</value>
   </data>
@@ -171,8 +174,14 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   <data name="NewestProducts" xml:space="preserve">
     <value>Our newest products</value>
   </data>
+  <data name="NoProductsFound" xml:space="preserve">
+    <value>There were no products found :(</value>
+  </data>
   <data name="OurCategories" xml:space="preserve">
     <value>Our categories</value>
+  </data>
+  <data name="OurDeliveryServices" xml:space="preserve">
+    <value>Our delivery services</value>
   </data>
   <data name="Overview" xml:space="preserve">
     <value>Overview</value>
@@ -182,6 +191,9 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacy Policy</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
   </data>
   <data name="ShoppingCart" xml:space="preserve">
     <value>Shopping cart</value>
@@ -198,5 +210,8 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   </data>
   <data name="TotalPrice" xml:space="preserve">
     <value>Total price</value>
+  </data>
+  <data name="YourSearchQuery" xml:space="preserve">
+    <value>Your search query: "{0}"</value>
   </data>
 </root>

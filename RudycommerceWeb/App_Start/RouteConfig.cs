@@ -18,7 +18,7 @@ namespace RudycommerceWeb
                 name: "DefaultLocalized",
                 url: "{lang}/{controller}/{action}/{id}",
                 constraints: new { lang = @"(\w{2})" },   // e.g. en
-                defaults: new { controller = "Products", action = "Index", id = UrlParameter.Optional }
+                defaults: new { lang = "nl", controller = "Products", action = "Index", id = UrlParameter.Optional }
             );
 
             routes.MapRoute(

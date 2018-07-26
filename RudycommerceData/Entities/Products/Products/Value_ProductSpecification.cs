@@ -47,5 +47,10 @@ namespace RudycommerceData.Entities.Products.Products
                 }
             }
         }
+
+        public Value_ProductSpecification()
+        {
+            BoolValue = null;
+        }
     }
 }

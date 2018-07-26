@@ -1,0 +1,14 @@
+﻿@using RudycommerceData.Models.ASPModels;
+
+<div class="container">
+    <h2 class="product-list-title">@ViewBag.Title</h2>
+    <hr />
+
+</div>
+@Html.Partial("_FilterableProductList")
+
+@section Styles {
+    @Styles.Render("~/Content/Pages/ProductList.css")
+    @Styles.Render("~/Content/Pages/AddToCartButton.css")
+}
+

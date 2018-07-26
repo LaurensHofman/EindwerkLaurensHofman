@@ -5,6 +5,7 @@ using RudycommerceData.Repositories.BaseRepo;
 using RudycommerceData.Repositories.IRepo;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -92,12 +93,18 @@ namespace RudycommerceData.Repositories.Repo
             Update(prod);
         }
 
-        public List<ProductListItem> GetHomepageItems(string languageISO, string choiceOption)
+        public List<ProductListItem> GetProductListItems(string languageISO, string choiceOption, string queryString)
         {
             SqlParameter langISO = new SqlParameter("@langISO", languageISO);
-            SqlParameter choice = new SqlParameter("@choice", choiceOption); 
+            SqlParameter choice = new SqlParameter("@choice", choiceOption);
+            SqlParameter query = new SqlParameter("@query", queryString);
 
-            return _context.Database.SqlQuery<ProductListItem>("exec dbo.sprocHomePageItems @langISO, @choice", langISO, choice).ToList();
+            return _context.Database.SqlQuery<ProductListItem>("exec dbo.sprocProductListItems @langISO, @choice, @query", langISO, choice, query).ToList();
+        }
+
+        public List<ProductListItem> GetProductListItems(string languageISO, string choiceOption)
+        {
+            return GetProductListItems(languageISO, choiceOption, "");
         }
     }
 }

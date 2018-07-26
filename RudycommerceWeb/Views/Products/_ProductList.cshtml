@@ -1,0 +1,98 @@
+﻿
+@model IEnumerable<RudycommerceData.Models.ASPModels.ProductListItem>
+
+@{
+    Layout = null;
+}
+
+
+@foreach (var product in Model)
+{
+    <div class="col-12 col-sm-6 col-md-6 col-lg-4">
+
+        <div class="card product-card">
+
+            <div class="card-image-top">
+                <a href="@Url.Action("Details", new { ProductID = product.ProductID })">
+                    <img src="@product.ImageURL" alt="@product.Name"
+                         class="product-image" />
+                </a>
+            </div>
+
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item name-li">
+                    <h4 class="card-text product-name">
+                        @Html.ActionLink(product.Name, "Details",
+                                 new { ProductID = product.ProductID })
+                    </h4>
+                </li>
+                <li class="list-group-item">
+                    @if (!product.TopSpec1IsBool)
+                    {
+                        <div class="top-spec">
+                            @product.TopSpec1
+                        </div>
+                    }
+                    else
+                    {
+                        @(product.TopSpec1Name + ": ")
+
+                        if ((bool)product.Bool1Value)
+                        {
+                            <img class="bool-value" src="~/Images/64_GreenCheck.png" />
+                        }
+                        else
+                        {
+                            <img class="bool-value" src="~/Images/64_RedCross.png" />
+                        }
+                    }
+                </li>
+                <li class="list-group-item">
+                    @if (!product.TopSpec2IsBool)
+                    {
+                        <div class="top-spec">
+                            @product.TopSpec2
+                        </div>
+                    }
+                    else
+                    {
+                        @(product.TopSpec2Name + ": ")
+
+                        if ((bool)product.Bool2Value)
+                        {
+                            <img class="bool-value" src="~/Images/64_GreenCheck.png" />
+                        }
+                        else
+                        {
+                            <img class="bool-value" src="~/Images/64_RedCross.png" />
+                        }
+                    }
+                </li>
+            </ul>
+
+            <div class="card-footer container">
+                <div class="row">
+                    <div class="col-7 price">
+                        € @product.UnitPrice
+                    </div>
+
+
+                    <div class="call-to-action col-5">
+                        <button class="add-to-cart" type="button" onclick="cart.addToCart(event, @product.ProductID, '@product.Name', '@product.UnitPrice')">
+                            @*<span>@Resources.Global.AddToCart</span>*@
+                            <img src="~/Images/64_AddToCartBlue.png" />
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+}
+
+
+

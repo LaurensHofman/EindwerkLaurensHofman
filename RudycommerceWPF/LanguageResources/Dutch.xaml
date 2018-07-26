@@ -122,4 +122,9 @@
     <system:String x:Key="MakeAdmin">Beheerder maken</system:String>
     <system:String x:Key="VerifyUser">Verifieer gebruiker</system:String>
     <system:String x:Key="AddStock">Voorraad toevoegen</system:String>
+
+
+    <system:String x:Key="Active?">Actief?</system:String>
+    <system:String x:Key="Price">Prijs</system:String>
+
 </ResourceDictionary>
