@@ -4,18 +4,20 @@
 }
 @using RudycommerceData.Models.ASPModels;
 
-<div class="container">
+@Html.Raw("<div class=\"container\">")
 <h2 class="product-list-title">@String.Format(Resources.Global.YourSearchQuery, ViewBag.SearchQuery)</h2>
 <hr />
-    </div>
+
 
 @if (((List<ProductListItem>)ViewBag.Products).Count() == 0)
 {
+
     <div>@Resources.Global.NoProductsFound</div>
+    @Html.Raw("</div>")
 }
 else
 {
-
+    @Html.Raw("</div>")
     @Html.Partial("_FilterableProductList")
 }
 

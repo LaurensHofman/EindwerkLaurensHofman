@@ -13,7 +13,7 @@
         <div class="card product-card">
 
             <div class="card-image-top">
-                <a href="@Url.Action("Details", new { ProductID = product.ProductID })">
+                <a href="@Url.Action("Details", new { ID = product.ProductID })">
                     <img src="@product.ImageURL" alt="@product.Name"
                          class="product-image" />
                 </a>
@@ -23,7 +23,7 @@
                 <li class="list-group-item name-li">
                     <h4 class="card-text product-name">
                         @Html.ActionLink(product.Name, "Details",
-                                 new { ProductID = product.ProductID })
+                                 new { ID = product.ProductID })
                     </h4>
                 </li>
                 <li class="list-group-item">

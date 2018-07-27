@@ -1,6 +1,7 @@
 ﻿using RudycommerceData.Entities.Products.Products;
 using RudycommerceData.Models;
 using RudycommerceData.Models.ASPModels;
+using RudycommerceData.Models.ASPModels.ProductDetailsPageSubItems;
 using RudycommerceData.Repositories.BaseRepo;
 using RudycommerceData.Repositories.IRepo;
 using System;
@@ -105,6 +106,41 @@ namespace RudycommerceData.Repositories.Repo
         public List<ProductListItem> GetProductListItems(string languageISO, string choiceOption)
         {
             return GetProductListItems(languageISO, choiceOption, "");
+        }
+
+        public ProductDetailsPageItem GetProductDetails(string ISO, int ID)
+        {
+            ProductDetailsPageItem details = new ProductDetailsPageItem
+            {
+                ProductInfo = GetProductInfo(ISO, ID),
+                Images = GetProductImages(ID).OrderBy(x => x.DisplayOrder).ToList(),
+                SpecificationInfoAndValues = GetSpecificationInfo(ISO, ID).OrderBy(x => x.DisplayOrder).ToList()
+            };
+
+            return details;
+        }
+
+        private List<ProdDetSpecInfoAndValue> GetSpecificationInfo(string ISO, int ID)
+        {
+            SqlParameter langISO = new SqlParameter("@langISO", ISO);
+            SqlParameter productID = new SqlParameter("@productID", ID);
+
+            return _context.Database.SqlQuery<ProdDetSpecInfoAndValue>("exec dbo.sprocProdDetSpecs @langISO, @productID", langISO, productID).ToList();
+        }
+
+        private List<ProdDetImage> GetProductImages(int ID)
+        {
+            SqlParameter productID = new SqlParameter("@productID", ID);
+
+            return _context.Database.SqlQuery<ProdDetImage>("exec dbo.sprocProdDetImages @productID", productID).ToList();
+        }
+
+        private ProdDetProductInfo GetProductInfo(string ISO, int ID)
+        {
+            SqlParameter langISO = new SqlParameter("@langISO", ISO);
+            SqlParameter productID = new SqlParameter("@productID", ID);
+
+            return _context.Database.SqlQuery<ProdDetProductInfo>("exec dbo.sprocProdDetProductInfo @langISO, @productID", langISO, productID).First();
         }
     }
 }

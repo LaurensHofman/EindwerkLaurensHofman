@@ -32,13 +32,11 @@
                         <input class="form-control mr-sm-2" type="search" placeholder="@Resources.Global.Search" aria-label="@Resources.Global.Search"
                                id="searchQuery" name="searchQuery" value="@ViewBag.SearchQuery"/>
                         
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">@Resources.Global.Search</button>
+                        <button class="btn btn-outline-success form-submit my-2 my-sm-0" type="submit">@Resources.Global.Search</button>
                     }
             </li>
             <li class="nav-item lang-item content-vertical-center">
-                <ul class="navbar-nav">
                     @Html.Action("_LanguageSelection", "Languages")
-                </ul>
             </li>
             <li class="nav-item">
                 <button id="shopping-cart" class="shopping-cart" data-toggle="dropdown">
@@ -48,16 +46,16 @@
                 <div id="cart-dropdown" class="dropdown-menu dropdown-menu-right" role="menu">
                     <div class="container">
                         <div id="cartrow" class="row">
-                            <ul id="cart-products" class="collapse col-md-12"></ul>
-                            <div id="cart-total-price" class="collapse col-md-12">
+                            <ul id="cart-products" class="collapse col-12"></ul>
+                            <div id="cart-total-price" class="collapse col-12">
                                 <div class="row">
-                                    <div class="col-md-8 text-right">
+                                    <div class="col-8 text-right">
                                         @Resources.Global.TotalPrice:
                                     </div>
-                                    <div class="col-md-4 text-center">
+                                    <div class="col-4 text-center">
                                         € <span id="totalprice">dummy price</span>
                                     </div>
-                                    <div class="col-md-12" id="cart-buttons">
+                                    <div class="col-12" id="cart-buttons">
                                         <button class="btn" onclick="location.href='@Url.Action("Index", "Products", null)'">@Resources.Global.Overview</button>
                                         <button class="btn" onclick="location.href='@Url.Action("Index", "Products", null)'">@Resources.Global.Checkout</button>
                                     </div>

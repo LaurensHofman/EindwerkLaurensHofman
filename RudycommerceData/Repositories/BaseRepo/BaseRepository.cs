@@ -18,7 +18,7 @@ namespace RudycommerceData.Repositories.BaseRepo
             _context = new RudyDbContext();
         }
 
-        public IQueryable<T> GetAllQueryable()
+        public virtual IQueryable<T> GetAllQueryable()
         {
             return _context.Set<T>().AsQueryable();
         }
@@ -40,17 +40,17 @@ namespace RudycommerceData.Repositories.BaseRepo
             Delete(Get(entityID));
         }
 
-        public async Task<List<T>> GetAllAsync()
+        public virtual async Task<List<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
         }
 
-        public List<T> GetAll()
+        public virtual List<T> GetAll()
         {
             return _context.Set<T>().ToList();
         }
 
-        public async Task<T> GetAsync(int ID)
+        public virtual async Task<T> GetAsync(int ID)
         {
             return await _context.Set<T>().FindAsync(ID);
         }
@@ -115,7 +115,7 @@ namespace RudycommerceData.Repositories.BaseRepo
             }
         }
 
-        public T Get(int ID)
+        public virtual T Get(int ID)
         {
             return _context.Set<T>().Find(ID);
         }

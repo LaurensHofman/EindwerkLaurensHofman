@@ -1,0 +1,294 @@
+﻿@model RudycommerceData.Models.ASPModels.ProductDetailsPageItem
+
+<div class="container">
+
+    <h2>@ViewBag.Title</h2>
+
+    <div class="row">
+
+        <div id="column-product-info" class="col-12 col-sm-8 col-md-8">
+            <div id="images">
+                @if (Model.Images[0] != null)
+                {
+                    if (Model.Images.Count > 1)
+                    {
+                        <div id="img-buttons">
+                            <button id="image-button-previous" class="btn btn-secondary">
+                                <img src="~/Images/64_ArrowRight.png" />
+                            </button>
+
+                            <div id="current-img-container">
+                                <img src="@Model.Images[0].ImageURL" class="img-current" alt="@Model.ProductInfo.Name" />
+                            </div>
+
+                            <button id="image-button-next" class="btn btn-secondary">
+                                <img src="~/Images/64_ArrowRight.png" />
+                            </button>
+                        </div>
+                    }
+                    else
+                    {
+                        <div id="img-buttons">
+                            <div id="current-img-container">
+                                <img src="@Model.Images[0].ImageURL" class="img-current" />
+                            </div>
+                        </div>
+                    }
+
+                    <div id="thumbnail-container" class="row">
+                        @if (Model.Images.Count == 1)
+                        {
+                            <div class="col-6 col-sm-4 col-md-3">
+                                <div class="img-thumbnail selected-img collapse">
+                                    <img src="@Model.Images[0].ImageURL" />
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            for (int i = 0; i < Model.Images.Count(); i++)
+                            {
+                                <div class="col-6 col-sm-4 col-md-3">
+                                    @if (i == 0)
+                                    {
+                                        <div class="img-thumbnail selected-img">
+                                            <img src="@Model.Images[i].ImageURL" />
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="img-thumbnail">
+                                            <img src="@Model.Images[i].ImageURL" />
+                                        </div>
+                                    }
+
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            </div>
+
+            <div id="description">
+                @Model.ProductInfo.Description
+            </div>
+
+            <div id="specifications">
+                <h3>@Resources.Global.Specifications</h3>
+
+                @foreach (var spec in Model.SpecificationInfoAndValues)
+                {
+                    bool valueEmpty;
+                    if (spec.IsBoolValue)
+                    {
+                        valueEmpty = (spec.BoolValue == null);
+                    }
+                    else
+                    {
+                        valueEmpty = (spec.Value == null);
+                    }
+
+                    if (!valueEmpty)
+                    {
+                        <div class="row">
+                            <div class="col-12 col-sm-6 specification-name big-screen">
+                                @spec.Name :
+                            </div>
+                            @if (spec.AdviceDescription != null)
+                            {
+                                <div class="col-12 col-sm-6 specification-name small-screen advice" data-toggle="popover"
+                                     data-placement="top" title="@spec.Name"
+                                     data-content="@spec.AdviceDescription.Replace(Environment.NewLine, "<br/>")"
+                                     data-html="true">
+                                    <span class="questionmark">(?)</span><span class="name">@spec.Name :</span>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-12 col-sm-6 specification-name small-screen">
+                                    @spec.Name :
+                                </div>
+                            }
+
+                            <div class="col-12 col-sm-6 specification-value">
+                                <div class="value">
+                                    @if (!spec.IsBoolValue)
+                                    {
+                                        @Html.Raw(spec.Value);
+                                    }
+                                    else
+                                    {
+                                        if ((bool)spec.BoolValue)
+                                        {
+                                            <img class="bool-value" src="~/Images/64_GreenCheck.png" />
+                                        }
+                                        else
+                                        {
+                                            <img class="bool-value" src="~/Images/64_RedCross.png" />
+                                        }
+                                    }
+                                </div>
+                                @if (spec.AdviceDescription != null)
+                                {
+                                    <button type="button" data-toggle="popover" data-trigger="focus" data-placement="right" title="@spec.Name"
+                                            data-content="@spec.AdviceDescription.Replace(Environment.NewLine, "<br/>")"
+                                            data-html="true" class="specification-help btn btn-primary">
+                                        <div>
+                                            ?
+                                        </div>
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+        <div id="column-price-cart" class="col-12 col-sm-4 col-md-4">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 mobile-hide"> <h4 class="text-center"> @Model.ProductInfo.Name </h4> </div>
+
+                    <hr class="mobile-hide" />
+
+                    <div class="col-6 col-sm-12 col-md-12 text-center mobile-hide"> @Resources.Global.PriceVAT: </div>
+                    <div class="col-6 col-sm-12 price text-center">
+                        € @Model.ProductInfo.UnitPrice
+                    </div>
+
+                    <hr class="mobile-hide" />
+
+                    <div class="col-6 col-sm-12 nonmobile-hide">
+                        <div class="call-to-action">
+                            <button class="add-to-cart" type="button" onclick="cart.addToCart(event, @Model.ProductInfo.ID, '@Model.ProductInfo.Name', '@Model.ProductInfo.UnitPrice')">
+                                <img src="~/Images/64_AddToCartBlue.png" />
+                            </button>
+                        </div>
+                    </div>
+
+                    <hr class="mobile-hide" />
+
+                    <div class="col-12 delivery">
+                        @Resources.Global.GaranteedDelivery2Days
+                        @if (Enumerable.Range(1, 5).Contains(Model.ProductInfo.CurrentStock))
+                        {
+                            @Html.Raw(" <br /> <br/> <strong> " + Resources.Global.HurryUpStockLow + " </strong>");
+                        }
+                    </div>
+
+                    <hr class="mobile-hide" />
+
+                    <div class="col-6 col-sm-12 mobile-hide">
+                        <div class="call-to-action">
+                            <button class="add-to-cart" type="button" onclick="cart.addToCart(event, @Model.ProductInfo.ID, '@Model.ProductInfo.Name', '@Model.ProductInfo.UnitPrice')">
+                                <img src="~/Images/64_AddToCartBlue.png" />
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Styles{
+    @Styles.Render("~/Content/Pages/ProductDetails.css")
+    @Styles.Render("~/Content/Pages/AddToCartButton.css")
+}
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover({
+                delay: { show: "0", hide: "0" }
+            });
+        });
+
+        let imageElements = document.querySelectorAll('.img-thumbnail img');
+
+        function addClickEvents() {
+
+            var i = 0;
+
+            imageElements.forEach(function (image) {
+                image.addEventListener('click', function () {
+                    changeImage(image);
+                });
+
+                image.parentElement.addEventListener('click', function () {
+                    changeImage(image);
+                });
+            });
+
+            var previousButton = document.querySelector('#image-button-previous');
+
+            if (previousButton) {
+                previousButton.addEventListener('click', function () {
+                    var currentImage = document.querySelector('.img-current');
+
+                    var index = getIndex(imageElements, currentImage);
+
+                    if (index == 0) {
+                        index = imageElements.length - 1;
+                    }
+                    else {
+                        index = index - 1;
+                    }
+
+                    changeImage(imageElements[index]);
+                });
+
+            }
+
+
+            var nextButton = document.querySelector('#image-button-next');
+
+            if (nextButton) {
+                nextButton.addEventListener('click', function () {
+                    var currentImage = document.querySelector('.img-current');
+
+                    var index = getIndex(imageElements, currentImage);
+
+                    if (index == imageElements.length - 1) {
+                        index = 0
+                    }
+                    else {
+                        index = index + 1;
+                    }
+
+                    changeImage(imageElements[index]);
+                });
+            }
+        };
+
+
+        var getIndex = function (list, item) {
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].src == item.src) {
+                    return i;
+                }
+            }
+        };
+
+        var changeImage = function (newImage) {
+            let bigImg = document.querySelector('#current-img-container');
+
+            while (bigImg.firstChild) {
+                bigImg.removeChild(bigImg.firstChild);
+            }
+
+            document.querySelector('.selected-img').classList.remove('selected-img');
+
+            var newElement = newImage.cloneNode(true);
+
+            newElement.classList.add('img-current');
+            bigImg.appendChild(newElement);
+
+            newImage.parentElement.classList.add('selected-img');
+        }
+        window.onload = addClickEvents;
+    </script>
+}

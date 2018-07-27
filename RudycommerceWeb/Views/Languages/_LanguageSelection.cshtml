@@ -41,10 +41,8 @@
 
 @foreach (var lang in Model)
 {
-    <li class="nav-item">
         <a class="nav-link languages" href="@Html.Raw("/" + lang.ISO + path )">
             @lang.ISO.ToUpper()
         </a>
-    </li>
 }
 

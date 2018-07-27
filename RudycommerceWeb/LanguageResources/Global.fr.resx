@@ -118,105 +118,106 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="About" xml:space="preserve">
-    <value>Over ons</value>
+    <value>A propos de nous</value>
     <comment>About us</comment>
   </data>
   <data name="AddToCart" xml:space="preserve">
-    <value>Voeg toe aan winkelkar</value>
+    <value>Ajoutez à chariot</value>
   </data>
   <data name="AskAQuestion" xml:space="preserve">
-    <value>Stel ons een vraag</value>
+    <value>Posez-nous une question</value>
     <comment>Link to 'ask us a question'</comment>
   </data>
   <data name="BestSellers" xml:space="preserve">
-    <value>Onze best verkopende producten</value>
+    <value>Nos meilleures ventes</value>
   </data>
   <data name="Categories" xml:space="preserve">
-    <value>Categorieën</value>
+    <value>Catégories</value>
   </data>
   <data name="Category" xml:space="preserve">
-    <value>Categorie</value>
+    <value>Catégorie</value>
   </data>
   <data name="Checkout" xml:space="preserve">
-    <value>Bestellen</value>
+    <value>Check-out</value>
   </data>
   <data name="CustomerService" xml:space="preserve">
-    <value>Klantendienst</value>
+    <value>Service Clients</value>
   </data>
   <data name="DeliverCountries" xml:space="preserve">
-    <value>Landen waar wij leveren</value>
+    <value>Pays où nous livrons</value>
   </data>
   <data name="DeliverCountriesDescription" xml:space="preserve">
-    <value>Wij leveren onze producten overal binnen de Benelux (België, Nederland en Luxemburg) en Frankrijk.</value>
+    <value>Nous livrons nos produits au Benelux (Belgique, Pays-Bas et Luxembourg) et en France.</value>
   </data>
   <data name="DeliveryPrices" xml:space="preserve">
-    <value>Onze leverprijzen</value>
+    <value>Nos prix de livraison</value>
   </data>
   <data name="DeliveryPricesDescription" xml:space="preserve">
-    <value>Onze leverprijzen zijn afhankelijk van het land waar we moeten leveren, en de totaalprijs van uw bestelling. In de Benelux, als uw bestelling meer dan € 50,00 kost; dan leveren we bij gratis tot bij u thuis.
-</value>
+    <value>Nos prix de livraison dépendent du pays où nous devons livrer et du prix total de votre commande.
+Au Benelux, si votre commande dépasse € 50,00; alors nous livrons gratuitement.</value>
   </data>
   <data name="DeliveryPricesLink" xml:space="preserve">
-    <value>Leverkosten</value>
+    <value>Coûts de livraison</value>
   </data>
   <data name="FAQ" xml:space="preserve">
-    <value>Veelgestelde vragen</value>
+    <value>Questions frequemment posées</value>
   </data>
   <data name="GaranteedDelivery2Days" xml:space="preserve">
-    <value>Gegarandeerd, binnen de 2 dagen bij u thuis geleverd.</value>
+    <value>Delivré garanti en 2 jours</value>
   </data>
   <data name="Home" xml:space="preserve">
-    <value>Thuis</value>
+    <value>Accueil</value>
     <comment>Link to the homepage</comment>
   </data>
   <data name="HurryUpStockLow" xml:space="preserve">
-    <value>Maar haast je! Er zijn er niet meer veel beschikbaar!</value>
+    <value>Mais dépêche-toi! Nous n'en avons plus beaucoup!</value>
   </data>
   <data name="JumboWelcomeTo" xml:space="preserve">
-    <value>Welkom bij </value>
+    <value>Bienvenue à </value>
     <comment>'Welcome to' inside the index jumbotron</comment>
   </data>
   <data name="NewestProducts" xml:space="preserve">
-    <value>Onze nieuwste producten</value>
+    <value>Nos produits nouveaux</value>
   </data>
   <data name="NoProductsFound" xml:space="preserve">
-    <value>Er werden geen producten gevonden :(</value>
+    <value>On n'a rien trouvé :((</value>
+    <comment> </comment>
   </data>
   <data name="OurCategories" xml:space="preserve">
-    <value>Onze categorieën</value>
+    <value>Nos catégories</value>
   </data>
   <data name="OurDeliveryServices" xml:space="preserve">
-    <value>Onze leverdiensten</value>
+    <value>Nos services de livraison</value>
   </data>
   <data name="Overview" xml:space="preserve">
-    <value>Overzicht</value>
+    <value>Aperçu</value>
   </data>
   <data name="PriceVAT" xml:space="preserve">
-    <value>Prijs (incl. BTW)</value>
+    <value>Prix (TVA incluse)</value>
   </data>
   <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Privacybeleid</value>
+    <value>Politique de confidentialité</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Zoeken</value>
+    <value>Chercher</value>
   </data>
   <data name="ShoppingCart" xml:space="preserve">
-    <value>Winkelkar</value>
+    <value>Chariot</value>
   </data>
   <data name="Specifications" xml:space="preserve">
-    <value>Specificaties</value>
+    <value>Caractéristiques</value>
   </data>
   <data name="Tagline" xml:space="preserve">
-    <value>Dit is een schoolproject. Koop hier alstublieft geen producten.</value>
+    <value>N'achetez pas de produits sur un site avec un slogan merdique.</value>
   </data>
   <data name="TermsConditions" xml:space="preserve">
-    <value>Algemene voorwaarden</value>
+    <value>Termes et conditions</value>
     <comment>Terms and conditions</comment>
   </data>
   <data name="TotalPrice" xml:space="preserve">
-    <value>Totale prijs</value>
+    <value>Prix total</value>
   </data>
   <data name="YourSearchQuery" xml:space="preserve">
-    <value>Uw zoekopdracht: "{0}"</value>
+    <value>Votre requête de recherche: "{0}"</value>
   </data>
 </root>

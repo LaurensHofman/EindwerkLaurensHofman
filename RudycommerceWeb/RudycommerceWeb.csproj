@@ -172,6 +172,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Global.en.resx</DependentUpon>
     </Compile>
+    <Compile Include="LanguageResources\Global.fr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Global.fr.resx</DependentUpon>
+    </Compile>
     <Compile Include="LanguageResources\Global.nl.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -186,6 +191,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Pages\AddToCartButton.css" />
     <Content Include="Content\Pages\Layout.css" />
+    <Content Include="Content\Pages\ProductDetails.css" />
     <Content Include="Content\Pages\ProductList.css" />
     <Content Include="Content\Pages\ShoppingCart.css" />
     <Content Include="favicon.ico" />
@@ -239,6 +245,7 @@
     <Content Include="Views\Products\CategoryPage.cshtml" />
     <Content Include="Views\Products\SearchResultPage.cshtml" />
     <Content Include="Views\Products\_FilterableProductList.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -261,6 +268,11 @@
     <EmbeddedResource Include="LanguageResources\Global.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Global.en.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageResources\Global.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Global.fr.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="LanguageResources\Global.nl.resx">

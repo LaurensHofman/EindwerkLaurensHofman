@@ -1,4 +1,18 @@
-﻿body {
+﻿@media (max-width: 575px) {
+    .mobile-hide {
+        visibility: collapse;
+        display: none;
+    }
+}
+
+@media (min-width: 576px) {
+    .nonmobile-hide {
+        visibility: collapse;
+        display: none;
+    }
+}
+
+body {
     background-color: #F5F5F5;
 }
 
@@ -52,12 +66,16 @@
 
 .content-vertical-center {
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     align-items: center;
 }
 
 .lang-item.nav-item {
-    margin-left: 1rem;
+    text-align: left;
+}
+
+.form-submit {
+    margin-right: 1rem;
 }
 
 .languages {
@@ -66,10 +84,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    min-width: 3rem;
 }
 
-li:first-child .languages {
+.lang-item .languages:first-child {
     border-left: 0;
+    margin-left: 0;
 }
 
 .footer-row .col-md-4 .footer-title {

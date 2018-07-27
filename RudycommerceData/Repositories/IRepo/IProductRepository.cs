@@ -23,5 +23,7 @@ namespace RudycommerceData.Repositories.IRepo
         List<ProductListItem> GetProductListItems(string langISO, string choice, string queryString);
 
         List<ProductListItem> GetProductListItems(string languageISO, string choiceOption);
+
+        ProductDetailsPageItem GetProductDetails(string ISO, int ID);
     }
 }

@@ -163,9 +163,15 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   <data name="FAQ" xml:space="preserve">
     <value>Frequently Asked Questions</value>
   </data>
+  <data name="GaranteedDelivery2Days" xml:space="preserve">
+    <value>Guaranteed delivered at your home, within 2 days.</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
     <comment>Link to the homepage</comment>
+  </data>
+  <data name="HurryUpStockLow" xml:space="preserve">
+    <value>But hurry up! We don't have many of these left!</value>
   </data>
   <data name="JumboWelcomeTo" xml:space="preserve">
     <value>Welcome to </value>

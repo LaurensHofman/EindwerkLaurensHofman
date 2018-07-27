@@ -1,0 +1,257 @@
+﻿@media (max-width: 575px) {
+
+    #column-price-cart {
+        position: sticky;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        border-style: solid;
+        border-color: #dee2e6;
+        border-width: 1px 1px 1px 1px;
+        border-radius: 0.25rem;
+        background: white;
+    }
+
+    #img-buttons button.btn {
+        visibility: collapse;
+    }
+
+    .specification-name {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .specification-value .value {
+        width: 100%;
+        text-align: end;
+    }
+
+    .specification-help {
+        visibility: collapse;
+        display: none;
+    }
+
+    .specification-name.big-screen {
+        visibility: collapse;
+        display: none;
+    }
+
+    .specification-name.small-screen.advice {
+        color: darkblue;
+    }
+
+    .advice .questionmark {
+        margin-right: 0.2rem;
+    }
+
+    .advice .name {
+        text-decoration: underline;
+    }
+
+    .price {
+        font-size: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #column-price-cart .row {
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+    }
+
+    #column-price-cart .delivery {
+        font-size: 0.8rem;
+        margin-top: 0.1rem;
+    }
+}
+
+@media (min-width: 576px) {
+
+    #column-price-cart {
+        position: fixed;
+        right: 0;
+        border-style: solid;
+        border-color: #dee2e6;
+        border-width: 1px 0 1px 1px;
+        border-radius: 0.25rem;
+        background: white;
+    }
+
+    #column-price-cart hr {
+        margin: 0.5rem;
+    }
+
+    .specification-name {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .specification-help {
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1.6rem;
+        height: 1.6rem;
+        font-weight: bold;
+        border: 1px solid black;
+        padding: 0;
+    }
+
+    .specification-value .value {
+        width: 100%;
+    }
+
+    .specification-name.small-screen {
+        visibility: collapse;
+        display: none;
+    }
+
+    .price {
+        font-size: 2rem;
+    }
+
+    .priceVAT {
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+    }
+
+    #column-price-cart .row {
+        padding-top: 0.2rem;
+        padding-bottom: 0.2rem;
+    }
+
+    #column-price-cart .delivery {
+        font-size: 1.1rem;
+        margin-top: 0.1rem;
+    }
+
+    .call-to-action {
+        text-align: center;
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+h2 {
+    margin: 2rem;
+    text-align: center;
+}
+
+/*Sticky with price and button*/
+
+
+/*Images*/
+
+#img-buttons {
+    display: flex;
+    text-align: center;
+    margin-bottom: 10px;
+    align-items: center;
+    background-color: white;
+    border-radius: 0.25rem;
+    border: 1px solid #dee2e6;
+}
+
+    #img-buttons button {
+        display: inline-block;
+        border-radius: 50%;
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+        #img-buttons button img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        #img-buttons button:first-child img {
+            transform: rotate(180deg);
+        }
+
+#current-img-container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#thumbnail-container .col-md-4 {
+    margin-bottom: 10px;
+}
+
+.img-current {
+    max-width: 100%;
+    height: 15rem;
+    display: block;
+}
+
+div.selected-img {
+    border: 2px solid black;
+    cursor: default;
+}
+
+    div.selected-img img {
+        cursor: default;
+    }
+
+
+.img-thumbnail {
+    height: 5.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+    .img-thumbnail img {
+        max-height: 100%;
+        max-width: 100%;
+        cursor: pointer;
+    }
+
+
+/*Description*/
+
+#description {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    line-height: 1.8;
+}
+
+
+
+/*Specifications*/
+
+#specifications {
+    width: 100%;
+    margin-top: 1rem;
+}
+
+    #specifications h3 {
+        text-decoration: underline;
+        font-size: 1.4rem;
+    }
+
+    #specifications .row {
+        width: 100%;
+        margin: 0;
+        min-height: 2rem;
+    }
+
+        #specifications .row:nth-child(even) {
+            background: white;
+        }
+
+.specification-value {
+    display: flex;
+    align-items: center;
+}
+
+.bool-value {
+    height: 1rem;
+    width: 1rem;
+}

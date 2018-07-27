@@ -183,6 +183,10 @@
       <DependentUpon>201807251413277_testimg.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ASPModels\ProductDetailsPageItem.cs" />
+    <Compile Include="Models\ASPModels\ProductDetailsPageSubItems\ProdDetImage.cs" />
+    <Compile Include="Models\ASPModels\ProductDetailsPageSubItems\ProdDetProductInfo.cs" />
+    <Compile Include="Models\ASPModels\ProductDetailsPageSubItems\ProdDetSpecInfoAndValue.cs" />
     <Compile Include="Models\ASPModels\ProductListItem.cs" />
     <Compile Include="Models\CategoryOverviewItem.cs" />
     <Compile Include="Models\DesktopLogin.cs" />

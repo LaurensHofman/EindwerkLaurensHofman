@@ -64,6 +64,15 @@ namespace RudycommerceWeb.Controllers
             ViewBag.Title = _catRepo.GetLocalizedCatListItems(GetISO()).First(x => x.CategoryID == id).LocalizedPluralName;
 
             return View("CategoryPage"); 
-        }        
+        }
+
+        public ActionResult Details(int ID)
+        {
+            RudycommerceData.Models.ASPModels.ProductDetailsPageItem details = _prodRepo.GetProductDetails(GetISO(), ID);
+
+            ViewBag.Title = details.ProductInfo.Name;
+
+            return View("Details", details);
+        }
     }
 }

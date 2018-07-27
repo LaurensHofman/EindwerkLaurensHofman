@@ -1,8 +1,8 @@
-﻿
-#cart-dropdown.dropdown-menu.show {
-    width: 22rem;
+﻿@media (min-width: 576px) {
+    #cart-dropdown.dropdown-menu.show {
+        width: 22rem;
+    }
 }
-
     #cart-dropdown.dropdown-menu.show .container {
         display: flex;
         justify-content: center;

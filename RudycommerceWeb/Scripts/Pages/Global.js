@@ -7,7 +7,7 @@ var cartEmptyElem = document.querySelector('#empty-cart');
 var cartButton = document.querySelector('#shopping-cart');
 var cartDropdown = document.querySelector('#cart-dropdown');
 
-var amountOfMinutesToSaveCart = 10;
+var amountOfMinutesToSaveCart = 0.2;
 
 var cart = {
     productsElement: cartProductsElem,
@@ -146,14 +146,14 @@ var cart = {
 
 
         var cartName = document.createElement('div');
-        cartName.classList.add('cart-name', 'col-md-6');
+        cartName.classList.add('cart-name', 'col-6');
         cartName.textContent = product.name;
 
         newLIRow.appendChild(cartName);
 
 
         //var cartQuantityButtons = document.createElement('div');
-        //cartQuantityButtons.classList.add('cart-quantity-buttons', 'col-md-1');
+        //cartQuantityButtons.classList.add('cart-quantity-buttons', 'col-1');
 
         //var plusRow = document.createElement('div');
         //plusRow.classList.add('row');
@@ -177,7 +177,7 @@ var cart = {
 
 
         var cartQuantity = document.createElement('div');
-        cartQuantity.classList.add('cart-quantity', 'col-md-2');
+        cartQuantity.classList.add('cart-quantity', 'col-2');
         cartQuantity.textContent = 'x ' + product.quantity;
 
         newLIRow.appendChild(cartQuantity);
@@ -185,7 +185,7 @@ var cart = {
 
 
         var cartPrice = document.createElement('div');
-        cartPrice.classList.add('cart-price', 'col-md-4');
+        cartPrice.classList.add('cart-price', 'col-4');
 
         var unitPrice = product.price;
 

@@ -189,11 +189,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Guaranteed delivered at your home, within 2 days..
+        /// </summary>
+        public static string GaranteedDelivery2Days {
+            get {
+                return ResourceManager.GetString("GaranteedDelivery2Days", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Home.
         /// </summary>
         public static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to But hurry up! We don&apos;t have many of these left!.
+        /// </summary>
+        public static string HurryUpStockLow {
+            get {
+                return ResourceManager.GetString("HurryUpStockLow", resourceCulture);
             }
         }
         
