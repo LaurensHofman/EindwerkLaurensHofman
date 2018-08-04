@@ -1,0 +1,37 @@
+﻿<button id="shopping-cart" class="shopping-cart content-center" data-toggle="dropdown">
+    <div>
+        <img src="~/Images/64_DefaultCartBlue.png" alt="@Resources.Global.ShoppingCart" />
+        <div id="shopping-cart-amount" class="content-center hide"></div>
+    </div>
+
+    <img src="~/Images/64_ArrowDownProgDiscl.png"/>
+    
+</button>
+
+@using (Html.BeginForm("Cart", "Products", FormMethod.Post))
+{
+    <div id="cart-dropdown" class="dropdown-menu dropdown-menu-right" role="menu">
+        <div class="container">
+            <div id="cartrow" class="row">
+                <ul id="cart-products" class="collapse col-12"></ul>
+                <div id="cart-total-price" class="collapse col-12">
+                    <div class="row">
+                        <div class="col-8 text-right">
+                            @Resources.Global.TotalPrice:
+                        </div>
+                        <div class="col-4 text-center">
+                            € <span id="totalprice">dummy price</span>
+                        </div>
+                        <div class="col-12" id="cart-buttons">
+                            <button class="btn btn-link" type="submit"> @Resources.Global.ManageCart </button>
+                            <button class="btn" type="submit">@Resources.Global.Checkout</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="collapse" id="empty-cart">
+                    Cart is empty 🙁
+                </div>
+            </div>
+        </div>
+    </div>
+}

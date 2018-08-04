@@ -177,6 +177,9 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
     <value>Welcome to </value>
     <comment>'Welcome to' inside the index jumbotron</comment>
   </data>
+  <data name="ManageCart" xml:space="preserve">
+    <value>Manage shopping cart</value>
+  </data>
   <data name="NewestProducts" xml:space="preserve">
     <value>Our newest products</value>
   </data>

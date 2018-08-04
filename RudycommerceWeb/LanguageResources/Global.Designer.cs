@@ -225,6 +225,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage shopping cart.
+        /// </summary>
+        public static string ManageCart {
+            get {
+                return ResourceManager.GetString("ManageCart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Our newest products.
         /// </summary>
         public static string NewestProducts {

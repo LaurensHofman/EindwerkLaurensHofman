@@ -65,10 +65,13 @@
         font-size: 0.8rem;
         margin-top: 0.1rem;
     }
+
+    #specifications .row:last-child {
+        margin-bottom: 1rem;
+    }
 }
 
 @media (min-width: 576px) {
-
     #column-price-cart {
         position: fixed;
         right: 0;
@@ -139,7 +142,7 @@
 }
 
 h2 {
-    margin: 2rem;
+    margin: 0 2rem 2rem 2rem;
     text-align: center;
 }
 

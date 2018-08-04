@@ -176,6 +176,9 @@
     <value>Welkom bij </value>
     <comment>'Welcome to' inside the index jumbotron</comment>
   </data>
+  <data name="ManageCart" xml:space="preserve">
+    <value>Wijzig uw winkelkarretje</value>
+  </data>
   <data name="NewestProducts" xml:space="preserve">
     <value>Onze nieuwste producten</value>
   </data>

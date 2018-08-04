@@ -173,7 +173,7 @@
                         @Resources.Global.GaranteedDelivery2Days
                         @if (Enumerable.Range(1, 5).Contains(Model.ProductInfo.CurrentStock))
                         {
-                            @Html.Raw(" <br /> <br/> <strong> " + Resources.Global.HurryUpStockLow + " </strong>");
+                            @Html.Raw("<span class=\"mobile-hide\">  <br /> <br/>  <strong> " + Resources.Global.HurryUpStockLow + " </strong> </span>");
                         }
                     </div>
 

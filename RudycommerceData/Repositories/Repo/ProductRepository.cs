@@ -93,6 +93,21 @@ namespace RudycommerceData.Repositories.Repo
 
             Update(prod);
         }
+        
+        public List<CartOverviewItem> GetCartOverview(string languageISO, List<int> IDs)
+        {
+            string IDString = string.Join(",", IDs);
+
+            return GetCartOverview(languageISO, IDString);
+        }
+
+        public List<CartOverviewItem> GetCartOverview(string languageISO, string IDString)
+        {
+            SqlParameter langISO = new SqlParameter("@langISO", languageISO);
+            SqlParameter intList = new SqlParameter("@intList", IDString);
+
+            return _context.Database.SqlQuery<CartOverviewItem>("exec dbo.sprocGetCartOverview @intList, @langISO", intList, langISO).ToList();
+        }
 
         public List<ProductListItem> GetProductListItems(string languageISO, string choiceOption, string queryString)
         {

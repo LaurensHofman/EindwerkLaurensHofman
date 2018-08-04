@@ -27,46 +27,29 @@
         </ul>
         <ul class="navbar-nav right">
             <li class="nav-item content-vertical-center">
-                    @using (Html.BeginForm("Search", "Products", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0" }))
-                    {
-                        <input class="form-control mr-sm-2" type="search" placeholder="@Resources.Global.Search" aria-label="@Resources.Global.Search"
-                               id="searchQuery" name="searchQuery" value="@ViewBag.SearchQuery"/>
-                        
-                        <button class="btn btn-outline-success form-submit my-2 my-sm-0" type="submit">@Resources.Global.Search</button>
-                    }
+                @using (Html.BeginForm("Search", "Products", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0" }))
+                {
+                    <input class="form-control mr-sm-2" type="search" placeholder="@Resources.Global.Search" aria-label="@Resources.Global.Search"
+                           id="searchQuery" name="searchQuery" value="@ViewBag.SearchQuery" />
+
+                    <button class="btn btn-outline-success form-submit my-2 my-sm-0" type="submit">@Resources.Global.Search</button>
+                }
             </li>
             <li class="nav-item lang-item content-vertical-center">
-                    @Html.Action("_LanguageSelection", "Languages")
+                @Html.Action("_LanguageSelection", "Languages")
             </li>
-            <li class="nav-item">
-                <button id="shopping-cart" class="shopping-cart" data-toggle="dropdown">
-                    <img src="~/Images/64_DefaultCartBlue.png" alt="@Resources.Global.ShoppingCart" />
-                    <img src="~/Images/64_ArrowDownProgDiscl.png" />
-                </button>
-                <div id="cart-dropdown" class="dropdown-menu dropdown-menu-right" role="menu">
-                    <div class="container">
-                        <div id="cartrow" class="row">
-                            <ul id="cart-products" class="collapse col-12"></ul>
-                            <div id="cart-total-price" class="collapse col-12">
-                                <div class="row">
-                                    <div class="col-8 text-right">
-                                        @Resources.Global.TotalPrice:
-                                    </div>
-                                    <div class="col-4 text-center">
-                                        € <span id="totalprice">dummy price</span>
-                                    </div>
-                                    <div class="col-12" id="cart-buttons">
-                                        <button class="btn" onclick="location.href='@Url.Action("Index", "Products", null)'">@Resources.Global.Overview</button>
-                                        <button class="btn" onclick="location.href='@Url.Action("Index", "Products", null)'">@Resources.Global.Checkout</button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="collapse" id="empty-cart">
-                                Cart is empty 🙁
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+            @{ 
+                string liClass = "";
+                if (ViewBag.HideCart != null)
+                {
+                    liClass = "collapse";
+                }
+            }
+            <li class="nav-item shoppingcartbutton @liClass">
+                
+                @Html.Partial("_ShoppingCart")
+                
             </li>
         </ul>
 

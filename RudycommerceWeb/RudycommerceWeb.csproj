@@ -154,6 +154,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Attributes\CheckoutActionFilter.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\LanguagesController.cs" />
     <Compile Include="Controllers\Base\MultilingualBaseController.cs" />
@@ -162,6 +163,26 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LanguageActivator\LocalizedControllerActivator.cs" />
+    <Compile Include="LanguageResources\Checkout.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Checkout.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageResources\Checkout.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Checkout.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageResources\Checkout.fr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Checkout.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageResources\Checkout.nl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Checkout.nl.resx</DependentUpon>
+    </Compile>
     <Compile Include="LanguageResources\Global.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -190,6 +211,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Pages\AddToCartButton.css" />
+    <Content Include="Content\Pages\CartOverview.css" />
     <Content Include="Content\Pages\Layout.css" />
     <Content Include="Content\Pages\ProductDetails.css" />
     <Content Include="Content\Pages\ProductList.css" />
@@ -203,6 +225,7 @@
     <Content Include="Images\64_ArrowDownProgDiscl.png" />
     <Content Include="Images\64_ArrowRight.png" />
     <Content Include="Images\64_DefaultCartBlue.png" />
+    <Content Include="Images\64_GarbageCan.png" />
     <Content Include="Images\64_GreenCheck.png" />
     <Content Include="Images\64_RedCross.png" />
     <Content Include="Images\64_RemoveFromCartBlue.png" />
@@ -246,6 +269,8 @@
     <Content Include="Views\Products\SearchResultPage.cshtml" />
     <Content Include="Views\Products\_FilterableProductList.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\CartOverview.cshtml" />
+    <Content Include="Views\Shared\_ShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -265,6 +290,26 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="LanguageResources\Checkout.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Checkout.en.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageResources\Checkout.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Checkout.fr.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageResources\Checkout.nl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Checkout.nl.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageResources\Checkout.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Checkout.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="LanguageResources\Global.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Global.en.Designer.cs</LastGenOutput>

@@ -1,5 +1,5 @@
 ﻿
-@model IEnumerable<RudycommerceData.Models.ASPModels.ProductListItem>
+@model List<RudycommerceData.Models.ASPModels.ProductListItem>
 
 @{
     Layout = null;
@@ -78,17 +78,13 @@
 
 
                     <div class="call-to-action col-5">
-                        <button class="add-to-cart" type="button" onclick="cart.addToCart(event, @product.ProductID, '@product.Name', '@product.UnitPrice')">
-                            @*<span>@Resources.Global.AddToCart</span>*@
+                        <button class="add-to-cart" type="button" onclick="cart.addToCart(event, @product.ProductID, '@product.Name', '@product.UnitPrice'); return false;">
                             <img src="~/Images/64_AddToCartBlue.png" />
                         </button>
                     </div>
 
                 </div>
             </div>
-
-
-
         </div>
 
     </div>

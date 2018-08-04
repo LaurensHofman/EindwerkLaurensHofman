@@ -183,6 +183,9 @@
       <DependentUpon>201807251413277_testimg.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ASPModels\CartFromJSON.cs" />
+    <Compile Include="Models\ASPModels\CartItem.cs" />
+    <Compile Include="Models\ASPModels\CartOverviewItem.cs" />
     <Compile Include="Models\ASPModels\ProductDetailsPageItem.cs" />
     <Compile Include="Models\ASPModels\ProductDetailsPageSubItems\ProdDetImage.cs" />
     <Compile Include="Models\ASPModels\ProductDetailsPageSubItems\ProdDetProductInfo.cs" />
