@@ -92,26 +92,13 @@ namespace RudycommerceWeb.Controllers
             {
                 if (Request.Cookies[cookieCartName] != null)
                 {
-                    CartFromJSON cart = Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(Request.Cookies[cookieCartName].Value);
-
-                    List<int> IDs = new List<int>();
-                    foreach (var prod in cart.ProductList)
-                    {
-                        for (int i = 0; i < prod.Quantity; i++)
-                        {
-                            IDs.Add(prod.ID);
-                        }
-                    }
-
-                    var Products = _prodRepo.GetCartOverview(GetISO(), IDs);
-
-                    return View("CartOverview", Products);
+                    return View("CartOverview", GetCartItemsFromCookie());
                 }
                 else
                 {
                     return View("CartOverview");
                 }
-            }
+            } 
             catch (Exception)
             {
                 // TODO ErrorPage or smth else (as well in the else{} above)
@@ -122,9 +109,33 @@ namespace RudycommerceWeb.Controllers
         [HttpPost]
         public ActionResult CartOverview(CartOverviewItem cartOverviewItems)
         {
+            // TODO Validate
             CartFromJSON cartItems = Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(Request.Cookies[cookieCartName].Value);
             
-            return View();
+            return RedirectToAction("PersonalInfoChoice", "Clients");
+        }
+        
+        public PartialViewResult _CheckoutCartList()
+        {
+            return PartialView("_CheckoutCartList", GetCartItemsFromCookie());
+        }
+
+        private List<CartOverviewItem> GetCartItemsFromCookie()
+        {
+            // TODO Error
+
+            CartFromJSON cart = Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(Request.Cookies[cookieCartName].Value);
+
+            List<int> IDs = new List<int>();
+            foreach (var prod in cart.ProductList)
+            {
+                for (int i = 0; i < prod.Quantity; i++)
+                {
+                    IDs.Add(prod.ID);
+                }
+            }
+
+            return _prodRepo.GetCartOverview(GetISO(), IDs).OrderBy(x => x.ProductName).ToList();
         }
     }
 }

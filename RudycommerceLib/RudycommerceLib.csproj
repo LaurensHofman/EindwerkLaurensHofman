@@ -59,6 +59,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LangResource.nl.resx</DependentUpon>
     </Compile>
+    <Compile Include="Reflection\ReflectionExtensions.cs" />
     <Compile Include="Security\Encryption.cs" />
     <Compile Include="Utilities\ListUtilities.cs" />
     <Compile Include="Utilities\StringExtensions.cs" />

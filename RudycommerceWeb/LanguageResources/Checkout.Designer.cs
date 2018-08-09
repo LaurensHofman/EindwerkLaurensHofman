@@ -77,5 +77,158 @@ namespace Resources {
                 return ResourceManager.GetString("CartOverviewTitleShort", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue to information screen (change wording).
+        /// </summary>
+        public static string ContinueToPersonalInfoForm {
+            get {
+                return ResourceManager.GetString("ContinueToPersonalInfoForm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery.
+        /// </summary>
+        public static string Delivery {
+            get {
+                return ResourceManager.GetString("Delivery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delivery.
+        /// </summary>
+        public static string DeliveryArrow {
+            get {
+                return ResourceManager.GetString("DeliveryArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to London.
+        /// </summary>
+        public static string ExampleCity {
+            get {
+                return ResourceManager.GetString("ExampleCity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to rudy.hofman@rudycommerce.com.
+        /// </summary>
+        public static string ExampleEmail {
+            get {
+                return ResourceManager.GetString("ExampleEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to John.
+        /// </summary>
+        public static string ExampleFirstName {
+            get {
+                return ResourceManager.GetString("ExampleFirstName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Appleseed.
+        /// </summary>
+        public static string ExampleLastName {
+            get {
+                return ResourceManager.GetString("ExampleLastName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WC2N 5DU.
+        /// </summary>
+        public static string ExamplePostalCode {
+            get {
+                return ResourceManager.GetString("ExamplePostalCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Baker Street 25.
+        /// </summary>
+        public static string ExampleStreetAndNumber {
+            get {
+                return ResourceManager.GetString("ExampleStreetAndNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to e.g..
+        /// </summary>
+        public static string ForExampleABBR {
+            get {
+                return ResourceManager.GetString("ForExampleABBR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string LoginFormTitle {
+            get {
+                return ResourceManager.GetString("LoginFormTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You don&apos;t need an account to make purchases with us. &lt;br/&gt; But if you do want one, you can choose to make one in the next page..
+        /// </summary>
+        public static string NoAccountContent {
+            get {
+                return ResourceManager.GetString("NoAccountContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No account?.
+        /// </summary>
+        public static string NoAccountTitle {
+            get {
+                return ResourceManager.GetString("NoAccountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment.
+        /// </summary>
+        public static string Payment {
+            get {
+                return ResourceManager.GetString("Payment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment.
+        /// </summary>
+        public static string PaymentArrow {
+            get {
+                return ResourceManager.GetString("PaymentArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal info.
+        /// </summary>
+        public static string PersonalInfo {
+            get {
+                return ResourceManager.GetString("PersonalInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal info.
+        /// </summary>
+        public static string PersonalInfoArrow {
+            get {
+                return ResourceManager.GetString("PersonalInfoArrow", resourceCulture);
+            }
+        }
     }
 }

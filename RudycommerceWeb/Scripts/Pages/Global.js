@@ -11,7 +11,7 @@ var cartEmptyElem = document.querySelector('#empty-cart');
 var cartButton = document.querySelector('#shopping-cart');
 var cartDropdown = document.querySelector('#cart-dropdown');
 
-var amountOfMinutesToSaveCart = 2;
+var amountOfHoursToSaveCart = 3 ;
 
 var LoadNewDocURL;
 
@@ -23,8 +23,11 @@ var cart = {
     currentCartContent: null,
 
     displayInitialCart: function () {
-
+        
         this.getCurrentCart();
+
+        // recreates cookie to refresh timer
+        createCookie(cookieCartName, JSON.stringify(this.currentCartContent), amountOfHoursToSaveCart);
 
         this.displayCart(this.currentCartContent);
     },
@@ -42,34 +45,31 @@ var cart = {
             this.currentCartContent = this.addToExistingCart(this.currentCartContent, id, name, price);
         }
 
-        createCookie(cookieCartName,JSON.stringify(this.currentCartContent));
+        createCookie(cookieCartName, JSON.stringify(this.currentCartContent), amountOfHoursToSaveCart);
         this.displayCart(this.currentCartContent);
+        
+        if (name) {
+            if (firstAddToCart == false) {
+                // Opening the shopping cart works fine, only if u close it by clicking the shopping cart button itself after opening for the first time.
 
-        //if (name) {
-        //    if (!cartButton.parentElement.classList.contains('show')) {
-        //        cartButton.click(event);
-        //    }
-        //}
+                $('.shoppingcartbutton').addClass('show');
+                $('#shopping-cart').attr('aria-expanded', true);
+                $('#cart-dropdown').addClass('show');
 
-        if (firstAddToCart == false) {
-            // Opening the shopping cart works fine, only if u close it by clicking the shopping cart button itself after opening for the first time.
+                cartButton.click();
 
-            $('.shoppingcartbutton').addClass('show');
-            $('#shopping-cart').attr('aria-expanded', true);
-            $('#cart-dropdown').addClass('show');
+                $('.shoppingcartbutton').addClass('show');
+                $('#shopping-cart').attr('aria-expanded', true);
+                $('#cart-dropdown').addClass('show');
 
-            cartButton.click();
+                firstAddToCart = true;
+            }
+            else {
+                $('.shoppingcartbutton').addClass('show');
+                $('#shopping-cart').attr('aria-expanded', true);
+                $('#cart-dropdown').addClass('show');
+            }
 
-            $('.shoppingcartbutton').addClass('show');
-            $('#shopping-cart').attr('aria-expanded', true);
-            $('#cart-dropdown').addClass('show');
-
-            firstAddToCart = true;
-        }
-        else {
-            $('.shoppingcartbutton').addClass('show');
-            $('#shopping-cart').attr('aria-expanded', true);
-            $('#cart-dropdown').addClass('show');
         }
     },
 
@@ -92,7 +92,7 @@ var cart = {
 
                 this.currentCartContent = newCartContent;
 
-                createCookie(cookieCartName, JSON.stringify(this.currentCartContent));
+                createCookie(cookieCartName, JSON.stringify(this.currentCartContent), amountOfHoursToSaveCart);
                 this.displayCart(this.currentCartContent);
             }
         }
@@ -107,7 +107,7 @@ var cart = {
             eraseCookie(cookieCartName);
         }
         else {
-            createCookie(cookieCartName, JSON.stringify(this.currentCartContent));
+            createCookie(cookieCartName, JSON.stringify(this.currentCartContent), amountOfHoursToSaveCart);
             this.displayCart(this.currentCartContent);
         }
     },
@@ -118,28 +118,11 @@ var cart = {
         //var cart = document.cookie;
 
         if (cart) {
-            var cartContent = JSON.parse(cart);
+            if (cart != 'undefined') {
+                var cartContent = JSON.parse(cart);
+
+            }
         }
-        //else {
-        //    var cartContent = { 'productList': [] };
-        //}
-
-        //if (cartContent) {
-
-        //    //var now = new Date();
-        //    //var cartDate = new Date(cartContent.modifiedAt);
-
-        //    //if ((Math.floor(now - cartDate) / 60000) > amountOfMinutesToSaveCart) {
-
-        //    //    cartContent = null;
-        //    //    localStorage.removeItem('cart');
-        //    //}
-        //    //else {
-        //    //    cartContent.modifiedAt = now;
-        //    //}
-
-            
-        //}
 
         this.currentCartContent = cartContent;
 
@@ -281,10 +264,10 @@ var cart = {
 
 //https://www.quirksmode.org/js/cookies.html
 
-function createCookie(name, value, days) {
-    if (days) {
+function createCookie(name, value, hours) {
+    if (hours) {
         var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        date.setTime(date.getTime() + (hours * 60 * 60 * 1000));
         var expires = "; expires=" + date.toGMTString();
     }
     else var expires = "";

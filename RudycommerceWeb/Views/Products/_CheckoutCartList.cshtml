@@ -1,0 +1,39 @@
+﻿@model List<RudycommerceData.Models.ASPModels.CartOverviewItem>
+
+<div class="well">
+
+    <ul id="cart-products" class="col-12">
+
+    @foreach (var item in Model)
+    {
+        <li class="cart-product">
+            <div class="row">
+                <div class="cart-name, col-6">
+                    @item.ProductName
+                </div>
+                <div class="cart-quantity col-2">
+                    x @item.Quantity
+                </div>
+                <div class="cart-price col-4">
+                    € @item.Price
+                </div>
+            </div>
+        </li>
+    }
+        </ul>
+    <div id="cart-total-price" class="col-12">
+
+
+        <div class="row">
+            <div class="col-8 text-right">
+                @Resources.Global.TotalPrice:
+            </div>
+            <div class="col-4 text-center">
+                € <span id="totalprice">@Model.Sum(x => x.Price)</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

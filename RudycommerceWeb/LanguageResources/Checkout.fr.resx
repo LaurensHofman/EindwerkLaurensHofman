@@ -123,7 +123,57 @@
   <data name="CartOverviewTitleShort" xml:space="preserve">
     <value>Aperçu chariot</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value> </value>
+  <data name="ContinueToPersonalInfoForm" xml:space="preserve">
+    <value>Continuer vers l'écran d'information (better wording pls)</value>
+  </data>
+  <data name="Delivery" xml:space="preserve">
+    <value>Livraison</value>
+  </data>
+  <data name="DeliveryArrow" xml:space="preserve">
+    <value>Livraison</value>
+  </data>
+  <data name="ExampleCity" xml:space="preserve">
+    <value>Nice</value>
+  </data>
+  <data name="ExampleEmail" xml:space="preserve">
+    <value>rudy.hofman@rudycommerce.fr</value>
+  </data>
+  <data name="ExampleFirstName" xml:space="preserve">
+    <value>Pierre</value>
+  </data>
+  <data name="ExampleLastName" xml:space="preserve">
+    <value>Delacroix</value>
+  </data>
+  <data name="ExamplePostalCode" xml:space="preserve">
+    <value>06000</value>
+  </data>
+  <data name="ExampleStreetAndNumber" xml:space="preserve">
+    <value>Promenade des Anglais 25</value>
+  </data>
+  <data name="ForExampleABBR" xml:space="preserve">
+    <value>ex. :</value>
+    <comment>https://forum.wordreference.com/threads/par-exemple-abrhttps://forum.wordreference.com/threads/par-exemple-abr%C3%A9viation.222101/</comment>
+  </data>
+  <data name="LoginFormTitle" xml:space="preserve">
+    <value>Identifier</value>
+  </data>
+  <data name="NoAccountContent" xml:space="preserve">
+    <value>Vous n'avez pas besoin d'un compte pour faire des achats aves nous. &lt;br/&gt; Mais si vous en voulez un, vous pouvez en choisir un à la page suivante.</value>
+    <comment>&lt;br/&gt; for linebreaks</comment>
+  </data>
+  <data name="NoAccountTitle" xml:space="preserve">
+    <value>Pas de compte?</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Paiement</value>
+  </data>
+  <data name="PaymentArrow" xml:space="preserve">
+    <value>Paiement</value>
+  </data>
+  <data name="PersonalInfo" xml:space="preserve">
+    <value>Information personnelle</value>
+  </data>
+  <data name="PersonalInfoArrow" xml:space="preserve">
+    <value>Vos données</value>
   </data>
 </root>

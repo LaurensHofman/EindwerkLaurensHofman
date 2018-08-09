@@ -1,4 +1,13 @@
-﻿@media (max-width: 575px) {
+﻿:root {
+    --main-bg-color: #F5F5F5;
+}
+
+
+input, select {
+    max-width: unset;
+}
+
+@media (max-width: 575px) {
     .mobile-hide {
         visibility: collapse;
         display: none;
@@ -66,7 +75,8 @@ hr.hr80 {
 }
 
 body {
-    background-color: #F5F5F5;
+    background-color: var(--main-bg-color);
+    padding:0;
 }
 
 .jumbo {
