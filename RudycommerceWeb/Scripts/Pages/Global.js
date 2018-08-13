@@ -1,5 +1,4 @@
-﻿
-var firstAddToCart = false;
+﻿var firstAddToCart = false;
 var cookieCartName = 'shoppingCartRudyCommerce';
 
 var cartProductsElem = document.querySelector('#cart-products');
@@ -120,7 +119,6 @@ var cart = {
         if (cart) {
             if (cart != 'undefined') {
                 var cartContent = JSON.parse(cart);
-
             }
         }
 

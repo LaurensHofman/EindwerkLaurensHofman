@@ -61,6 +61,15 @@ namespace Validation {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You have to agree to the terms and conditions to be able to make this purchase..
+        /// </summary>
+        public static string AgreesToTermsIsTrue {
+            get {
+                return ResourceManager.GetString("AgreesToTermsIsTrue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City *.
         /// </summary>
         public static string City {
@@ -196,11 +205,20 @@ namespace Validation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Password.
+        ///   Looks up a localized string similar to Password *.
         /// </summary>
         public static string Password {
             get {
                 return ResourceManager.GetString("Password", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your password has to be between {0} and {1} characters long..
+        /// </summary>
+        public static string PasswordLengthValidation {
+            get {
+                return ResourceManager.GetString("PasswordLengthValidation", resourceCulture);
             }
         }
         
@@ -264,6 +282,15 @@ namespace Validation {
         public static string StreetReq {
             get {
                 return ResourceManager.GetString("StreetReq", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I would like to make an account to speed up future purchases at Rudycommerce..
+        /// </summary>
+        public static string WantsAccountLabel {
+            get {
+                return ResourceManager.GetString("WantsAccountLabel", resourceCulture);
             }
         }
         

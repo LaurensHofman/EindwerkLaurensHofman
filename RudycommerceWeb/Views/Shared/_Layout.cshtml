@@ -13,8 +13,10 @@
 
     @RenderSection("Styles", false)
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    
 </head>
 <body>
+
     <header class="sticky-top">
         @Html.Partial("_Header")
     </header>
@@ -69,16 +71,8 @@
     </footer>
 
 
-    @*<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>*@
-    @*<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>*@
-    @*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>*@
-
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryval")
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-zmp7rvo3miykv+2+9j3uj46jbk0wlauadn689acwoqbbjisnjak/l8wvcwpipm49" crossorigin="anonymous"></script>*@
-
+    @*@Scripts.Render("~/bundles/jqueryval")*@
 
     @Scripts.Render("~/bundles/bootstrap")
 

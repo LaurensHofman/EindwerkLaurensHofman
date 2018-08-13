@@ -79,6 +79,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deliver to another address than your own?.
+        /// </summary>
+        public static string ChooseOtherAddressForDelivery {
+            get {
+                return ResourceManager.GetString("ChooseOtherAddressForDelivery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue to delivery options.
+        /// </summary>
+        public static string ContinueToDelivery {
+            get {
+                return ResourceManager.GetString("ContinueToDelivery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue to payment.
+        /// </summary>
+        public static string ContinueToPayment {
+            get {
+                return ResourceManager.GetString("ContinueToPayment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue to information screen (change wording).
         /// </summary>
         public static string ContinueToPersonalInfoForm {
@@ -106,6 +133,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The chosen email address is already being used. Please use another email address..
+        /// </summary>
+        public static string EmailNotUnique {
+            get {
+                return ResourceManager.GetString("EmailNotUnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to London.
         /// </summary>
         public static string ExampleCity {
@@ -115,7 +151,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to rudy.hofman@rudycommerce.com.
+        ///   Looks up a localized string similar to john.appleseed@rudycommerce.com.
         /// </summary>
         public static string ExampleEmail {
             get {
@@ -169,6 +205,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to I agree with the {0}. *.
+        /// </summary>
+        public static string IAgreeWithTermsConds {
+            get {
+                return ResourceManager.GetString("IAgreeWithTermsConds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login.
         /// </summary>
         public static string LoginFormTitle {
@@ -192,6 +237,24 @@ namespace Resources {
         public static string NoAccountTitle {
             get {
                 return ResourceManager.GetString("NoAccountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can choose whatever password that pleases you, if its length is between 6 and 40 characters..
+        /// </summary>
+        public static string PasswordExplanation {
+            get {
+                return ResourceManager.GetString("PasswordExplanation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password.
+        /// </summary>
+        public static string PasswordPlaceholder {
+            get {
+                return ResourceManager.GetString("PasswordPlaceholder", resourceCulture);
             }
         }
         
@@ -228,6 +291,15 @@ namespace Resources {
         public static string PersonalInfoArrow {
             get {
                 return ResourceManager.GetString("PersonalInfoArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to General Terms and Conditions.
+        /// </summary>
+        public static string TermsAndConds {
+            get {
+                return ResourceManager.GetString("TermsAndConds", resourceCulture);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RudycommerceLib.CustomAttributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -11,8 +12,16 @@ namespace RudycommerceData.Entities
 {
     public class Client : Base.UserWithPassword
     {
+        [Display(Name = nameof(Validation.Client.WantsAccountLabel) , ResourceType = typeof(Validation.Client))]
         public bool AccountUser { get; set; }
         
+        [NotMapped]
+        [DataType(DataType.Password)]
+        [PasswordLength("AccountUser", "EncryptedPassword", "Salt", minLength:6, maxLength: 40, ErrorMessageResourceType = typeof(Validation.Client),
+            ErrorMessageResourceName = "PasswordLengthValidation")]
+        [Display(Name = nameof(Validation.Client.Password), ResourceType = typeof(Validation.Client))]
+        public override string Password { get; set; }
+
         [Required(ErrorMessageResourceType = typeof(Validation.Client), 
             ErrorMessageResourceName = "StreetReq")]
         [StringLength(maximumLength:80, MinimumLength = 2, ErrorMessageResourceType = typeof(Validation.Client),
@@ -40,7 +49,7 @@ namespace RudycommerceData.Entities
         public string PostalCode { get; set; }
 
         [Required(ErrorMessageResourceType = typeof(Validation.Client),
-            ErrorMessageResourceName = "CityReq")]
+            ErrorMessageResourceName = "CountryCodeReq")]
         [Display(Name = nameof(Validation.Client.Country), ResourceType = typeof(Validation.Client))]
         public string CountryCode { get; set; }
 
@@ -49,15 +58,19 @@ namespace RudycommerceData.Entities
 
         [NotMapped]
         // https://stackoverflow.com/questions/4730183/mvc-model-require-true
+        [IsTrue(ErrorMessageResourceType = typeof(Validation.Client),
+            ErrorMessageResourceName = "AgreesToTermsIsTrue")]
+        [Display(Name = nameof(Validation.Client.AgreesToTermsIsTrue),
+            ResourceType = typeof(Validation.Client))]
         public bool AgreesToTermsAndConditions { get; set; }
-
+        
         [NotMapped]
         public Dictionary<string, string> CountriesByCode { get { return new Countries.CountriesDictionary().OrderBy(x => x.Value).ToDictionary(x => x.Key, y => y.Value); } }
         
         public Client()
         {
             CountryCode = "BE";
-            AgreesToTermsAndConditions = false;
+            //AgreesToTermsAndConditions = false;
             WantsNewsletter = false;
             AccountUser = false;
         }

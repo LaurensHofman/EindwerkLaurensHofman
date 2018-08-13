@@ -1,4 +1,5 @@
-﻿using RudycommerceData.Entities.Products.Categories;
+﻿using RudycommerceData.Entities.Orders;
+using RudycommerceData.Entities.Products.Categories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -46,6 +47,8 @@ namespace RudycommerceData.Entities.Products.Products
         public virtual ICollection<ProductImage> Images { get; set; }
         public virtual ICollection<LocalizedProduct> LocalizedProducts { get; set; }
         public virtual ICollection<Value_ProductSpecification> Values_ProductSpecifications { get; set; }
+
+        public ICollection<IncomingOrderLines> IncomingOrderLines { get; set; }
 
         public override string ToString()
         {

@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AgreesToTermsIsTrue" xml:space="preserve">
+    <value>U moet akkoord gaan met onze algemene voorwaarden om deze aankoop te kunnen maken.</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>Stad *</value>
   </data>
@@ -163,7 +166,10 @@
     <value>Bus</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Wachtwoord</value>
+    <value>Wachtwoord *</value>
+  </data>
+  <data name="PasswordLengthValidation" xml:space="preserve">
+    <value>Uw wachtwoord moet tussen de {0} en {1} karakters lang zijn.</value>
   </data>
   <data name="PostalCode" xml:space="preserve">
     <value>Postcode *</value>
@@ -185,6 +191,9 @@
   </data>
   <data name="StreetReq" xml:space="preserve">
     <value>Een straat is vereist om in te vullen.</value>
+  </data>
+  <data name="WantsAccountLabel" xml:space="preserve">
+    <value>Ik zou graag een account aanmaken om in de toekomst efficiënter aankopen te kunnen doen bij Rudycommerce.</value>
   </data>
   <data name="WantsNewsLetterLabel" xml:space="preserve">
     <value>Ik zou graag nieuwsbrieven ontvangen van Rudycommerce.</value>

@@ -29,5 +29,7 @@ namespace RudycommerceData.Repositories.IRepo
         List<CartOverviewItem> GetCartOverview(string languageISO, List<int> IDs);
 
         List<CartOverviewItem> GetCartOverview(string languageISO, string IDString);
+
+        Decimal GetTotalPrice(List<int> IDs);
     }
 }

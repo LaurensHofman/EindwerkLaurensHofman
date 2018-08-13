@@ -168,7 +168,8 @@
 
 
                                             </WrapPanel>
-                                            <Button Width="100" Height="100" Margin="20,0,20,20" BorderThickness="1" BorderBrush="Black" Foreground="Black" Background="LightGray" VerticalAlignment="Center" Click="AddImage">
+                                            <Button Width="100" Height="100" Margin="20,0,20,20" BorderThickness="1" BorderBrush="Black" Foreground="Black" 
+                                                    Background="LightGray" VerticalAlignment="Center" Click="AddImage">
                                                 <Button.Content>
                                                     <StackPanel HorizontalAlignment="Center">
                                                         <TextBlock FontSize="30">+</TextBlock>

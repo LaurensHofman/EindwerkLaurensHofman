@@ -1,0 +1,34 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Rudycommerce</title>
+
+    <link type="text/css" rel="stylesheet" href="~/Content/css" />
+
+    <link href="~/Content/Pages/Layout.css" rel="stylesheet" type="text/css" />
+
+    @RenderSection("Styles", false)
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script src="~/Scripts/Pages/Global.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

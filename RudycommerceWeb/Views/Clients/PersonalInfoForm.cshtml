@@ -1,9 +1,11 @@
 ﻿@model RudycommerceData.Entities.Client
-@using RudycommerceLib.Reflection 
+@using RudycommerceLib.Reflection
 @using RudycommerceData.Entities
 @{
     ViewBag.Title = Resources.Checkout.PersonalInfo;
     Layout = "~/Views/Shared/_CheckoutLayout.cshtml";
+
+    //Model.Password = null;
 }
 
 @section Styles{
@@ -12,13 +14,38 @@
             width: 65%;
         }
 
-        .form-horizontal > div.row > div{
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            color: black;
+        }
+
+            .form-control::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                color: rgba(168, 168, 168, 1);
+            }
+
+            .form-control::-moz-placeholder { /* Firefox 19+ */
+                color: rgba(168, 168, 168, 1);
+            }
+
+            .form-control:-ms-input-placeholder { /* IE 10+ */
+                color: rgba(168, 168, 168, 1);
+            }
+
+            .form-control:-moz-placeholder { /* Firefox 18- */
+                color: rgba(168, 168, 168, 1);
+            }
+
+        .form-horizontal > div.row > div {
             padding: 0;
         }
 
         .form-horizontal > .form-group > div {
             padding: 0;
         }
+
         .form-horizontal > .form-group > label {
             padding: 0;
         }
@@ -32,27 +59,27 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
-
-            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+            @{ string valSumClass = (ViewBag.ShowValidationSummary == null) ? "hide" : "";}
+            @Html.ValidationSummary("", new { @class = "alert alert-danger " + valSumClass })
 
             <!--First name and Last name-->
             <div class="row">
 
                 <div class="col-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-12" })
+                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-12" })
                         <div class="col-12">
-                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Checkout.ForExampleABBR + " " + Resources.Checkout.ExampleFirstName } })
-                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Checkout.ForExampleABBR + " " + Resources.Checkout.ExampleFirstName } })
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
                 <div class="col-6">
                     <div class="form-group">
-                        @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-12" })
+                        @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-12" })
                         <div class="col-12">
-                            @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Checkout.ForExampleABBR + " " + Resources.Checkout.ExampleLastName } })
-                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                            @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Checkout.ForExampleABBR + " " + Resources.Checkout.ExampleLastName } })
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -114,7 +141,7 @@
             </div>
 
             <!--Country-->
-            <div class="row">                
+            <div class="row">
                 <div class="col-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.CountryCode, htmlAttributes: new { @class = "control-label col-12" })
@@ -126,33 +153,142 @@
                 </div>
             </div>
 
+            <!--Wants account-->
+            <div class="form-group" style="display:flex;">
+                <div class="checkbox content-center" style="margin-right:1rem;">
+                    @Html.EditorFor(model => model.AccountUser)
+                </div>
+                @Html.LabelFor(model => model.AccountUser, htmlAttributes: new { @class = "control-label", style = "margin-bottom:0;" })
+                @Html.ValidationMessageFor(model => model.AccountUser, "", new { @class = "text-danger" })
+            </div>
+            <!--Password-->
+            @{ string pwdClass = (Model.AccountUser) ? "" : "hide";}
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.AccountUser, htmlAttributes: new { @class = "control-label col-12" })
+            <div id="pwd-form-group" class="form-group @pwdClass" style="padding-left:2rem; margin-top:-0.5rem;margin-bottom:2rem;">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-12" })
                 <div class="col-12">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.AccountUser)
-                        @Html.ValidationMessageFor(model => model.AccountUser, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Checkout.PasswordPlaceholder } })
+
+                    @*https://codepen.io/gabrieleromanato/pen/VYmrJV*@
+                    <div style="margin-top:0.5rem;">
+                        <input type="checkbox" id="show-hide" name="show-hide" value="" />
+                        <label for="show-hide">Show password</label>
                     </div>
+
+                    <label style="color:gray"> @Resources.Checkout.PasswordExplanation </label>
+
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.WantsNewsletter, htmlAttributes: new { @class = "control-label col-12" })
-                <div class="col-12">
-                    <div class="checkbox">
-                        @Html.EditorFor(model => model.WantsNewsletter)
-                        @Html.ValidationMessageFor(model => model.WantsNewsletter, "", new { @class = "text-danger" })
-                    </div>
+
+            <div class="form-group" style="display:flex;">
+                <div class="checkbox content-center" style="margin-right:1rem;">
+                    @Html.EditorFor(model => model.WantsNewsletter)
                 </div>
+                @Html.LabelFor(model => model.WantsNewsletter, htmlAttributes: new { @class = "control-label", style = "margin-bottom:0;" })
+                @Html.ValidationMessageFor(model => model.WantsNewsletter, "", new { @class = "text-danger" })
             </div>
 
+            <div class="form-group">
+                <div style="display:flex;">
+                    <div class="checkbox content-center" style="margin-right:1rem;">
+                        @Html.EditorFor(model => model.AgreesToTermsAndConditions)
+                    </div>
+                    <label class="control-label" for="AgreesToTermsAndConditions" style="margin-bottom:0;width:100%;">
+                        @{
+                            string iAgreeSentence = Resources.Checkout.IAgreeWithTermsConds;
+
+                            string termsAndConditions =
+                                $"<a href=\"#\" onClick=\"MyWindow=window.open(" +
+                                $"'{Url.Action("TermsAndConditions", "Utilities", new { popup = true }, this.Request.Url.Scheme)}'" +
+                                $", 'MyWindow','width=600,height=700');return false;\">{Resources.Checkout.TermsAndConds}</a>";
+
+                            string sentence = String.Format(iAgreeSentence, termsAndConditions);
+                        }
+                        @Html.Raw(sentence)
+
+                    </label>
+                </div>
+                @Html.ValidationMessageFor(model => model.AgreesToTermsAndConditions, "", new { @class = "text-danger" })
+            </div>
 
             <div class="form-group">
-                <div class="col-md-offset-2 col-12">
-                    <input type="submit" value="Create (to the right)" class="btn btn-default" />
+                <div class="col-12 content-vertcen-right">
+                    <input type="submit" value="@Resources.Checkout.ContinueToDelivery" class="btn btn-default" />
                 </div>
             </div>
         </div>
     }
 </div>
+
+@section scripts{
+    <script>
+        (function () {
+
+            var PasswordToggler = function (element, field) {
+                this.element = element;
+                this.field = field;
+
+                this.toggle();
+            };
+
+            PasswordToggler.prototype = {
+                toggle: function () {
+                    var self = this;
+                    self.element.addEventListener('change', function () {
+                        if (self.element.checked) {
+                            debugger;
+                            self.field.setAttribute('type', 'text');
+                        } else {
+                            debugger;
+                            self.field.setAttribute('type', 'password');
+                        }
+                    }, false);
+                }
+            };
+
+            var PasswordRegionToggler = function (cb, field, pwd) {
+                this.cbox = cb;
+                this.region = field;
+                this.password = pwd;
+
+                this.toggle();
+            };
+
+            PasswordRegionToggler.prototype = {
+                toggle: function () {
+                    var self = this;
+                    self.cbox.addEventListener('change', function () {
+                        if (self.cbox.checked) {
+                            self.region.classList.remove('hide');
+                            self.password.value = '';
+                        } else {
+                            self.region.classList.add('hide');
+                            self.password.value = '';
+                        }
+                    }, false);
+                }
+            };
+
+            window.onload = function () {
+                var pwdCheckbox = document.querySelector('#show-hide'),
+                    pwd = document.querySelector('#Password');
+
+                var passwordToggler = new PasswordToggler(pwdCheckbox, pwd);
+
+                // do same for show/hide password formgroup
+
+                var accountCheckbox = document.querySelector('#AccountUser'),
+                    hideablePasswordRegion = document.querySelector('#pwd-form-group');
+
+                var passwordRegionToggler = new PasswordRegionToggler(accountCheckbox, hideablePasswordRegion, pwd);
+            };
+
+        })();
+
+
+    </script>
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

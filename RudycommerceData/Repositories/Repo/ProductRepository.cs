@@ -135,6 +135,20 @@ namespace RudycommerceData.Repositories.Repo
             return details;
         }
 
+        public Decimal GetTotalPrice(List<int> IDs)
+        {
+            string IDString = string.Join(",", IDs);
+
+            return GetTotalPrice(IDString);
+        }
+
+        public Decimal GetTotalPrice(string IDs)
+        {
+            SqlParameter idstring = new SqlParameter("@idstring", IDs);
+            
+            return _context.Database.SqlQuery<Decimal>("exec dbo.sprocGetTotalPrice @idstring", idstring).First();
+        }
+
         private List<ProdDetSpecInfoAndValue> GetSpecificationInfo(string ISO, int ID)
         {
             SqlParameter langISO = new SqlParameter("@langISO", ISO);

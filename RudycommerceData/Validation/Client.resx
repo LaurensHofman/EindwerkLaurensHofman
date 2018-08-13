@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AgreesToTermsIsTrue" xml:space="preserve">
+    <value>You have to agree to the terms and conditions to be able to make this purchase.</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>City *</value>
     <comment>Add * for required field</comment>
@@ -168,7 +171,10 @@
     <value>Mail box</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Password *</value>
+  </data>
+  <data name="PasswordLengthValidation" xml:space="preserve">
+    <value>Your password has to be between {0} and {1} characters long.</value>
   </data>
   <data name="PostalCode" xml:space="preserve">
     <value>Postal code *</value>
@@ -192,6 +198,9 @@
   </data>
   <data name="StreetReq" xml:space="preserve">
     <value>The street is required to fill in.</value>
+  </data>
+  <data name="WantsAccountLabel" xml:space="preserve">
+    <value>I would like to make an account to speed up future purchases at Rudycommerce.</value>
   </data>
   <data name="WantsNewsLetterLabel" xml:space="preserve">
     <value>I would like to subscribe to the Rudycommerce newsletter.</value>

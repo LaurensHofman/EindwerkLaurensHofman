@@ -1,0 +1,167 @@
+﻿@model RudycommerceData.Models.ASPModels.Delivery
+@{
+    ViewBag.Title = Resources.Checkout.Delivery;
+    Layout = "~/Views/Shared/_CheckoutLayout.cshtml";
+}
+
+<div class="container">
+
+    @using (Html.BeginForm())
+    {
+    <div class="form-group" style="display:flex;">
+        <div class="checkbox content-center" style="margin-right:1rem;">
+            @Html.EditorFor(model => model.OtherAddress)
+        </div>
+        <label class="control-label" style="margin-bottom:0;" for="OtherAddress">@Resources.Checkout.ChooseOtherAddressForDelivery</label>
+        @Html.ValidationMessageFor(model => model.OtherAddress, "", new { @class = "text-danger" })
+    </div>
+
+        <div @*class="well"*@>
+
+            <div id="input-region" class="form-horizontal">
+                @{ string valSumClass = (ViewBag.ShowValidationSummary == null) ? "hide" : "";}
+                @Html.ValidationSummary("", new { @class = "alert alert-danger " + valSumClass })
+
+                <!--Street and Number-->
+                <div class="row">
+                    <div class="col-9">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.StreetAndNumber, htmlAttributes: new { @class = "control-label col-12" })
+                            <div class="col-12">
+                                @Html.EditorFor(model => model.StreetAndNumber, new { htmlAttributes = new { @class = "form-control", disabled = "true", placeholder = Resources.Checkout.ForExampleABBR + " " + Resources.Checkout.ExampleStreetAndNumber } })
+                                @Html.ValidationMessageFor(model => model.StreetAndNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.MailBox, htmlAttributes: new { @class = "control-label col-12" })
+                            <div class="col-12">
+                                @Html.EditorFor(model => model.MailBox, new { htmlAttributes = new { @class = "form-control", disabled = "true"} })
+                                @Html.ValidationMessageFor(model => model.MailBox, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Postal code and City-->
+                <div class="row">
+                    <div class="col-3">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "control-label col-12" })
+                            <div class="col-12">
+                                @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control", disabled = "true", placeholder = Resources.Checkout.ForExampleABBR + " " + Resources.Checkout.ExamplePostalCode } })
+                                @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-9">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-12" })
+                            <div class="col-12">
+                                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", disabled = "true", placeholder = Resources.Checkout.ForExampleABBR + " " + Resources.Checkout.ExampleCity } })
+                                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!--Country-->
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CountryCode, htmlAttributes: new { @class = "control-label col-12" })
+                            <div class="col-12">
+                                @Html.DropDownListFor(model => model.CountryCode, new SelectList(Model.CountriesByCode, "Key", "Value"), new { @class = "form-control", disabled = "true"})
+                                @Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-12 content-vertcen-right">
+                <input type="submit" onclick="addressToggler.enableAll();" value="@Resources.Checkout.ContinueToPayment" class="btn btn-default" />
+            </div>
+        </div>
+    }
+
+</div>
+
+@section scripts {
+    
+    <script>
+
+        var homeAddress = @Html.Raw(Json.Encode(Model));
+        var addressToggler;
+        (function () {
+
+            var AddresToggler = function (cb) {
+                this.checkbox = cb;
+
+                this.streetandnumber = document.querySelector('#StreetAndNumber');
+                this.mailbox = document.querySelector('#MailBox');
+                this.postalcode = document.querySelector('#PostalCode');
+                this.city = document.querySelector('#City');
+                this.countrycode = document.querySelector('#CountryCode');
+
+                this.inputElements = [this.streetandnumber, this.mailbox, this.postalcode, this.city, this.countrycode];
+
+                this.toggle();
+            };
+
+            AddresToggler.prototype = {
+                toggle: function () {
+                    var self = this;
+                    self.checkbox.addEventListener('change', function () {
+                        if (self.checkbox.checked) {
+
+                            self.enableAll();
+
+                        }
+                        else {
+                            
+                            self.inputElements.forEach(input => {
+                                input.setAttribute('disabled', 'true');
+                            });
+
+                            self.streetandnumber.value = homeAddress.StreetAndNumber;
+                            self.mailbox.value = homeAddress.MailBox;
+                            self.postalcode.value = homeAddress.PostalCode;
+                            self.city.value = homeAddress.City;
+                            self.countrycode.value = homeAddress.CountryCode;
+                            
+                        }
+                    }, false);
+                },
+                enableAll: function () {
+
+                    var self = this;
+
+                    self.inputElements.forEach(input => {
+                        input.removeAttribute('disabled');
+                    });
+                }
+            };
+
+            window.onload = function () {
+                var toggleCheckbox = document.querySelector('#OtherAddress');
+
+                addressToggler = new AddresToggler(toggleCheckbox);
+
+                if (homeAddress.OtherAddress) {
+
+                    addressToggler.enableAll();
+
+                }
+            };
+        })();
+
+    </script>
+
+    }

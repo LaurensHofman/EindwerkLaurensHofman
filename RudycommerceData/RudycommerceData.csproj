@@ -66,6 +66,8 @@
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\DesktopUsers\DesktopUser.cs" />
     <Compile Include="Entities\Language.cs" />
+    <Compile Include="Entities\Orders\IncomingOrder.cs" />
+    <Compile Include="Entities\Orders\IncomingOrderLines.cs" />
     <Compile Include="Entities\Products\Categories\Category.cs" />
     <Compile Include="Entities\Products\Categories\CategorySpecification.cs" />
     <Compile Include="Entities\Products\Categories\LocalizedCategory.cs" />
@@ -199,7 +201,24 @@
     <Compile Include="Migrations\201808091438553_desktopuserchangesmg.Designer.cs">
       <DependentUpon>201808091438553_desktopuserchangesmg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808111615336_clients.cs" />
+    <Compile Include="Migrations\201808111615336_clients.Designer.cs">
+      <DependentUpon>201808111615336_clients.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808121932123_orders.cs" />
+    <Compile Include="Migrations\201808121932123_orders.Designer.cs">
+      <DependentUpon>201808121932123_orders.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808131029328_whatchanged.cs" />
+    <Compile Include="Migrations\201808131029328_whatchanged.Designer.cs">
+      <DependentUpon>201808131029328_whatchanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808131216046_whatchanged1.cs" />
+    <Compile Include="Migrations\201808131216046_whatchanged1.Designer.cs">
+      <DependentUpon>201808131216046_whatchanged1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ASPModels\Delivery.cs" />
     <Compile Include="Models\ASPModels\CartFromJSON.cs" />
     <Compile Include="Models\ASPModels\CartItem.cs" />
     <Compile Include="Models\ASPModels\CartOverviewItem.cs" />
@@ -219,6 +238,7 @@
     <Compile Include="Repositories\BaseRepo\IBaseRepository.cs" />
     <Compile Include="Repositories\IRepo\IBrandRepository.cs" />
     <Compile Include="Repositories\IRepo\ICategoryRepository.cs" />
+    <Compile Include="Repositories\IRepo\IClientRepository.cs" />
     <Compile Include="Repositories\IRepo\IDesktopUserRepository.cs" />
     <Compile Include="Repositories\IRepo\ILanguageRepository.cs" />
     <Compile Include="Repositories\IRepo\IImageRepository.cs" />
@@ -226,12 +246,12 @@
     <Compile Include="Repositories\IRepo\ISpecificationRepository.cs" />
     <Compile Include="Repositories\Repo\BrandRepository.cs" />
     <Compile Include="Repositories\Repo\CategoryRepository.cs" />
+    <Compile Include="Repositories\Repo\ClientRepository.cs" />
     <Compile Include="Repositories\Repo\DesktopUserRepository.cs" />
     <Compile Include="Repositories\Repo\LanguageRepository.cs" />
     <Compile Include="Repositories\Repo\ImageRepository.cs" />
     <Compile Include="Repositories\Repo\ProductRepository.cs" />
     <Compile Include="Repositories\Repo\SpecificationRepository.cs" />
-    <Compile Include="TestObject.cs" />
     <Compile Include="Validation\Client.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -360,6 +380,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808091438553_desktopuserchangesmg.resx">
       <DependentUpon>201808091438553_desktopuserchangesmg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808111615336_clients.resx">
+      <DependentUpon>201808111615336_clients.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808121932123_orders.resx">
+      <DependentUpon>201808121932123_orders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808131029328_whatchanged.resx">
+      <DependentUpon>201808131029328_whatchanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808131216046_whatchanged1.resx">
+      <DependentUpon>201808131216046_whatchanged1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Validation\Client.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

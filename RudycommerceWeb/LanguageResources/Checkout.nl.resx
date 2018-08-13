@@ -123,6 +123,15 @@
   <data name="CartOverviewTitleShort" xml:space="preserve">
     <value>Overzicht winkelkar</value>
   </data>
+  <data name="ChooseOtherAddressForDelivery" xml:space="preserve">
+    <value>Wilt u naar een ander adres laten leveren?</value>
+  </data>
+  <data name="ContinueToDelivery" xml:space="preserve">
+    <value>Verdergaan naar leveropties</value>
+  </data>
+  <data name="ContinueToPayment" xml:space="preserve">
+    <value>Verdergaan naar betaling</value>
+  </data>
   <data name="ContinueToPersonalInfoForm" xml:space="preserve">
     <value>Verdergaan naar persoonlijke info (beter verwoording)</value>
   </data>
@@ -132,11 +141,14 @@
   <data name="DeliveryArrow" xml:space="preserve">
     <value>Levering</value>
   </data>
+  <data name="EmailNotUnique" xml:space="preserve">
+    <value>Het gekozen e-mailadres wordt reeds gebruikt. Gelieve een ander e-mailadres te kiezen.</value>
+  </data>
   <data name="ExampleCity" xml:space="preserve">
     <value>De Haan</value>
   </data>
   <data name="ExampleEmail" xml:space="preserve">
-    <value>rudy.hofman@rudycommerce.be</value>
+    <value>lorenz.höfmann@rudycommerce.be</value>
   </data>
   <data name="ExampleFirstName" xml:space="preserve">
     <value>Lorenz</value>
@@ -153,6 +165,9 @@
   <data name="ForExampleABBR" xml:space="preserve">
     <value>bijv.</value>
   </data>
+  <data name="IAgreeWithTermsConds" xml:space="preserve">
+    <value>Ik ga akkoord met de {0}. *</value>
+  </data>
   <data name="LoginFormTitle" xml:space="preserve">
     <value>Aanmelden</value>
   </data>
@@ -162,6 +177,12 @@
   </data>
   <data name="NoAccountTitle" xml:space="preserve">
     <value>Geen account?</value>
+  </data>
+  <data name="PasswordExplanation" xml:space="preserve">
+    <value>U kan gelijk welk wachtwoord kiezen, zolang het maar tussen de 6 en de 40 karakters lang is.</value>
+  </data>
+  <data name="PasswordPlaceholder" xml:space="preserve">
+    <value>Wachtwoord</value>
   </data>
   <data name="Payment" xml:space="preserve">
     <value>Betaling</value>
@@ -174,5 +195,8 @@
   </data>
   <data name="PersonalInfoArrow" xml:space="preserve">
     <value>Uw gegevens</value>
+  </data>
+  <data name="TermsAndConds" xml:space="preserve">
+    <value>Algemene voorwaarden</value>
   </data>
 </root>

@@ -1,5 +1,6 @@
 ﻿using RudycommerceData.Entities;
 using RudycommerceData.Entities.DesktopUsers;
+using RudycommerceData.Entities.Orders;
 using RudycommerceData.Entities.Products.Categories;
 using RudycommerceData.Entities.Products.Products;
 using RudycommerceData.Entities.Products.Specifications;
@@ -51,6 +52,7 @@ namespace RudycommerceData.Data
         public DbSet<Language> Languages { get; set; }
 
         public DbSet<DesktopUser> DesktopUsers { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
         #endregion
 
@@ -61,6 +63,24 @@ namespace RudycommerceData.Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            #region Orders to products
+
+            modelBuilder.Entity<IncomingOrderLines>()
+                .HasKey(iol => new { iol.OrderID, iol.ProductID });
+
+            modelBuilder.Entity<IncomingOrder>()
+                .HasMany(o => o.IncomingOrderLines)
+                .WithRequired()
+                .HasForeignKey(iol => iol.OrderID);
+
+            modelBuilder.Entity<Product>()
+                .HasMany(p => p.IncomingOrderLines)
+                .WithRequired()
+                .HasForeignKey(iol => iol.ProductID);
+
+            #endregion
+
+
             #region Categories (many) to (many) Languages
             modelBuilder.Entity<LocalizedCategory>()
                 .HasKey(lpc => new { lpc.CategoryID, lpc.LanguageID });

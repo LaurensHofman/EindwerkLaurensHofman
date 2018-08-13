@@ -1,8 +1,10 @@
 ﻿using RudycommerceWeb.LanguageActivator;
+using Stripe;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -19,6 +21,9 @@ namespace RudycommerceWeb
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ControllerBuilder.Current.SetControllerFactory(new DefaultControllerFactory(new LocalizedControllerActivator()));
 
+
+            var secretKey = WebConfigurationManager.AppSettings["stripeSecretKey"];
+            StripeConfiguration.SetApiKey(secretKey);
         }
     }
 }
