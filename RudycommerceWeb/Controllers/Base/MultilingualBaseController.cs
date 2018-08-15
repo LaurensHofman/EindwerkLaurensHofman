@@ -1,5 +1,6 @@
 ﻿using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
+using RudycommerceWeb.Controllers.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Web.Mvc;
 
 namespace RudycommerceWeb.Controllers
 {
-    public abstract class MultilingualBaseController : Controller
+    public abstract class MultilingualBaseController : RedirectableFromFiltersController
     {
         private ILanguageRepository _langRepo;
 

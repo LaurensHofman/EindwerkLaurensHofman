@@ -131,6 +131,9 @@
   <data name="BestSellers" xml:space="preserve">
     <value>Our best sellers</value>
   </data>
+  <data name="CartIsEmpty" xml:space="preserve">
+    <value>Cart is empty</value>
+  </data>
   <data name="Categories" xml:space="preserve">
     <value>Categories</value>
   </data>
@@ -186,6 +189,9 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   <data name="NoProductsFound" xml:space="preserve">
     <value>There were no products found :(</value>
   </data>
+  <data name="NotYetImplemented" xml:space="preserve">
+    <value>Not yet implemented</value>
+  </data>
   <data name="OurCategories" xml:space="preserve">
     <value>Our categories</value>
   </data>
@@ -209,6 +215,9 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   </data>
   <data name="Specifications" xml:space="preserve">
     <value>Specifications</value>
+  </data>
+  <data name="SupportedCards" xml:space="preserve">
+    <value>Supported cards</value>
   </data>
   <data name="Tagline" xml:space="preserve">
     <value>Don't buy products from a site with a shitty tagline.</value>

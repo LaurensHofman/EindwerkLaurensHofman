@@ -240,6 +240,7 @@
     <Compile Include="Repositories\IRepo\ICategoryRepository.cs" />
     <Compile Include="Repositories\IRepo\IClientRepository.cs" />
     <Compile Include="Repositories\IRepo\IDesktopUserRepository.cs" />
+    <Compile Include="Repositories\IRepo\IIncOrderRepository.cs" />
     <Compile Include="Repositories\IRepo\ILanguageRepository.cs" />
     <Compile Include="Repositories\IRepo\IImageRepository.cs" />
     <Compile Include="Repositories\IRepo\IProductRepository.cs" />
@@ -248,6 +249,7 @@
     <Compile Include="Repositories\Repo\CategoryRepository.cs" />
     <Compile Include="Repositories\Repo\ClientRepository.cs" />
     <Compile Include="Repositories\Repo\DesktopUserRepository.cs" />
+    <Compile Include="Repositories\Repo\IncOrderRepository.cs" />
     <Compile Include="Repositories\Repo\LanguageRepository.cs" />
     <Compile Include="Repositories\Repo\ImageRepository.cs" />
     <Compile Include="Repositories\Repo\ProductRepository.cs" />

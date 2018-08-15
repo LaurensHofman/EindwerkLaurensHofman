@@ -93,6 +93,10 @@
             width: 2rem;
             margin-right: 1rem;
         }
+
+        #checkout-cart-list {
+            margin-bottom: 2rem;
+        }
     </style>
 
 }
@@ -121,28 +125,35 @@
 
     </div>
 </div>
-
-<h2 class="text-center" style="margin-bottom:2rem;">@ViewBag.Title</h2>
-
-<div class="row">
-
-    @if (ViewBag.HideCartOverview != null)
-    {
-        <div class="col-12">
-            @RenderBody()
-        </div>
-    }
-    else
-    {
-        <div class="col-12 col-sm-12 col-md-3" style="margin-bottom:2rem;">
-            @Html.Action("_CheckoutCartList", controllerName: "Products")
-        </div>
-        <div class="col-12 col-sm-12 col-md-9">
-            @RenderBody()
-        </div>
-    }
-
+<div class="h-page-title mobiletablet-hide">
+    <h2 class="text-center">@ViewBag.Title</h2>
+    <hr class="hr80" />
 </div>
+    <div class="row">
+
+
+        @if (ViewBag.HideCartOverview != null)
+        {
+            <div class="col-12">
+                @RenderBody()
+            </div>
+        }
+        else
+        {
+
+            <div id="checkout-cart-list" class="col-12 col-sm-12 col-md-3">
+                @Html.Action("_CheckoutCartList", controllerName: "Products")
+            </div>
+            <div class="col-12 col-sm-12 col-md-9">
+                <div class="h-page-title nonmobiletablet-hide">
+                    <h2 class="text-center">@ViewBag.Title</h2>
+                    <hr class="hr80" />
+                </div>
+                @RenderBody()
+            </div>
+        }
+
+    </div>
 
 @section scripts {
     @RenderSection("scripts", false)

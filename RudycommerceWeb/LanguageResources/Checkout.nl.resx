@@ -133,7 +133,7 @@
     <value>Verdergaan naar betaling</value>
   </data>
   <data name="ContinueToPersonalInfoForm" xml:space="preserve">
-    <value>Verdergaan naar persoonlijke info (beter verwoording)</value>
+    <value>Verdergaan naar persoonsinformatie</value>
   </data>
   <data name="Delivery" xml:space="preserve">
     <value>Levering</value>
@@ -190,6 +190,15 @@
   <data name="PaymentArrow" xml:space="preserve">
     <value>Betaling</value>
   </data>
+  <data name="PaymentAtRudycommerce" xml:space="preserve">
+    <value>Betaling bij Rudycommerce</value>
+  </data>
+  <data name="PaymentWithCard" xml:space="preserve">
+    <value>Betalen met kaart</value>
+  </data>
+  <data name="PayUsingCard" xml:space="preserve">
+    <value>Betalen met uw kaart</value>
+  </data>
   <data name="PersonalInfo" xml:space="preserve">
     <value>Persoonlijke info</value>
   </data>
@@ -198,5 +207,31 @@
   </data>
   <data name="TermsAndConds" xml:space="preserve">
     <value>Algemene voorwaarden</value>
+  </data>
+  <data name="YourCart" xml:space="preserve">
+    <value>Uw winkelkarretje</value>
+  </data>
+  <data name="ChooseYourPaymentOption" xml:space="preserve">
+    <value>Kies uw betaalmethode</value>
+  </data>
+  <data name="PaymentWithPaypal" xml:space="preserve">
+    <value>Betaling met PayPal</value>
+  </data>
+  <data name="BackToHomepage" xml:space="preserve">
+    <value>Terug naar thuispagina</value>
+  </data>
+  <data name="OrderFinished" xml:space="preserve">
+    <value>Bestelling afgerond</value>
+  </data>
+  <data name="OrderFinishedThankYouText" xml:space="preserve">
+    <value>Uw bestelling is succesvol bij ons toegekomen. Dus uw werk zit erop, nu is het aan ons. &lt;br /&gt;&lt;br/&gt;
+        Wij zullen er alles aan doen om de bestelling zo zorgvuldig mogelijk klaar te leggen, zodat de koerierdienst bijgevolg uw bestelling kan leveren.
+        &lt;br /&gt;
+        &lt;br /&gt;
+        Begin maar hoopvol uit te kijken naar uw nieuwe gaming uitrusting, wint binnenkort zal je de beste kunnen worden in elke game.
+        &lt;br /&gt;
+        &lt;br /&gt;
+        Met dank van onze hele crew,
+        Rudycommerce</value>
   </data>
 </root>

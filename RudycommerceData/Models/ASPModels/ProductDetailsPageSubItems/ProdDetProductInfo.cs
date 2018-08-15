@@ -17,5 +17,9 @@ namespace RudycommerceData.Models.ASPModels.ProductDetailsPageSubItems
         public Decimal UnitPrice { get; set; }
 
         public int CurrentStock { get; set; }
+
+        public string BrandIconURL { get; set; }
+
+        public string BrandName { get; set; }
     }
 }

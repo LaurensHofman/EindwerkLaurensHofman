@@ -1,0 +1,70 @@
+﻿@using Stripe;
+@{
+    ViewBag.Title = Resources.Checkout.Payment;
+    Layout = "~/Views/Shared/_CheckoutLayout.cshtml";
+    int priceInCents = (int)((Decimal)ViewBag.totalPrice * 100);
+}
+
+@section Styles {
+    <style>
+        button.stripe-button, button.stripe-button-el {
+            height: 4rem;
+            background-color: #66BF7B;
+            background-image: unset;
+        }
+
+            button.stripe-button span, button.stripe-button-el span {
+                background-color: transparent;
+                background-image: unset;
+                border: 0 solid transparent;
+                -webkit-box-shadow:unset; 
+                font-size: 1.4rem;
+                color:black;
+        }
+    </style>
+}
+
+<h4>@Resources.Checkout.ChooseYourPaymentOption</h4>
+<div class="row">
+    <div class="col-12 col-md-6">
+        <div class="row m-bot-2">
+            <div class="col-12">
+                <input class="radio" checked="checked" type="radio" id="radio-card" name="radio-card" />
+                <label class="control-label" for="radio-card">@Resources.Checkout.PaymentWithCard</label>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-11">@Html.Partial("_SupportedPaymentOptions")</div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <input class="radio" disabled checked="checked" type="radio" id="radio-paypal" name="radio-paypal" />
+                <label class="control-label" for="radio-paypal">@Resources.Checkout.PaymentWithPaypal (@Resources.Global.NotYetImplemented)</label>
+            </div>
+        </div>
+    </div>
+
+    @using (Html.BeginForm("Charge", "Orders", FormMethod.Post, new { id = "card-payment-form", @class = "content-center col-12 col-md-6 well" }))
+    {
+        <div class="row">
+            <div class="col-12">
+                <article class="content-center">
+                    <label class="font-size-2">@Resources.Global.TotalPrice: € @ViewBag.totalPrice</label>
+                </article>
+            </div>
+            <div class="col-12 content-horizontal-center">
+                <script src="//checkout.stripe.com/v2/checkout.js"
+                        class="stripe-button"
+                        data-key="@ViewBag.StripePublishKey"
+                        data-currency="eur"
+                        data-locale="@ViewBag.LangISO"
+                        data-description="@Resources.Checkout.PaymentAtRudycommerce"
+                        data-amount="@priceInCents">
+                </script>
+                <script>
+                var btn = document.querySelector('.stripe-button-el span');
+                btn.innerHTML = '@Resources.Checkout.PayUsingCard';
+                </script>
+            </div>
+        </div>
+    }
+</div>

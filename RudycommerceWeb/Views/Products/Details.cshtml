@@ -2,11 +2,11 @@
 
 <div class="container">
 
-    <h2>@ViewBag.Title</h2>
+    <h2 class="h-page-title">@ViewBag.Title</h2>
 
     <div class="row">
 
-        <div id="column-product-info" class="col-12 col-sm-8 col-md-8">
+        <div id="column-product-info" class="col-12 col-md-8">
             <div id="images">
                 @if (Model.Images[0] != null)
                 {
@@ -14,7 +14,7 @@
                     {
                         <div id="img-buttons">
                             <button id="image-button-previous" class="btn btn-secondary">
-                                <img src="~/Images/64_ArrowRight.png" />
+                                <img alt="@Resources.ImgAltTexts.ShowPreviousImage" src="~/Images/64_ArrowRight.png" />
                             </button>
 
                             <div id="current-img-container">
@@ -22,7 +22,7 @@
                             </div>
 
                             <button id="image-button-next" class="btn btn-secondary">
-                                <img src="~/Images/64_ArrowRight.png" />
+                                <img alt="@Resources.ImgAltTexts.ShowNextImage" src="~/Images/64_ArrowRight.png" />
                             </button>
                         </div>
                     }
@@ -30,7 +30,7 @@
                     {
                         <div id="img-buttons">
                             <div id="current-img-container">
-                                <img src="@Model.Images[0].ImageURL" class="img-current" />
+                                <img src="@Model.Images[0].ImageURL" class="img-current" alt="@Model.ProductInfo.Name" />
                             </div>
                         </div>
                     }
@@ -40,7 +40,7 @@
                         {
                             <div class="col-6 col-sm-4 col-md-3">
                                 <div class="img-thumbnail selected-img collapse">
-                                    <img src="@Model.Images[0].ImageURL" />
+                                    <img src="@Model.Images[0].ImageURL" alt="@Model.ProductInfo.Name @Resources.ImgAltTexts.Thumbnail" />
                                 </div>
                             </div>
                         }
@@ -52,13 +52,13 @@
                                     @if (i == 0)
                                     {
                                         <div class="img-thumbnail selected-img">
-                                            <img src="@Model.Images[i].ImageURL" />
+                                            <img src="@Model.Images[i].ImageURL" alt="@Model.ProductInfo.Name @Resources.ImgAltTexts.Thumbnail @(i+1)" />
                                         </div>
                                     }
                                     else
                                     {
                                         <div class="img-thumbnail">
-                                            <img src="@Model.Images[i].ImageURL" />
+                                            <img src="@Model.Images[i].ImageURL" alt="@Model.ProductInfo.Name @Resources.ImgAltTexts.Thumbnail @(i+1)" />
                                         </div>
                                     }
 
@@ -120,11 +120,11 @@
                                     {
                                         if ((bool)spec.BoolValue)
                                         {
-                                            <img class="bool-value" src="~/Images/64_GreenCheck.png" />
+                                            <img alt="@Resources.ImgAltTexts.TrueIcon" class="bool-value" src="~/Images/64_GreenCheck.png" />
                                         }
                                         else
                                         {
-                                            <img class="bool-value" src="~/Images/64_RedCross.png" />
+                                            <img alt="@Resources.ImgAltTexts.FalseIcon" class="bool-value" src="~/Images/64_RedCross.png" />
                                         }
                                     }
                                 </div>
@@ -145,44 +145,62 @@
             </div>
         </div>
 
-        <div id="column-price-cart" class="col-12 col-sm-4 col-md-4">
+        <div id="column-price-cart" class="col-12 col-md-4">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 mobile-hide"> <h4 class="text-center"> @Model.ProductInfo.Name </h4> </div>
-
-                    <hr class="mobile-hide" />
-
-                    <div class="col-6 col-sm-12 col-md-12 text-center mobile-hide"> @Resources.Global.PriceVAT: </div>
-                    <div class="col-6 col-sm-12 price text-center">
-                        € @Model.ProductInfo.UnitPrice
+                    <div class="col-12 mobiletablet-hide">
+                        <h4 class="text-center mobiletablet-hide m-bot-2"> @Model.ProductInfo.Name </h4>
                     </div>
 
+                    @if (Model.ProductInfo.BrandIconURL != null)
+                    {
+                        <div class="col-6 col-md-12"><div class="row content-center">
+                            <div class="col-12 col-md-6 p-0">
+                                <div class="col-6 col-sm-6 col-md-12 text-center mobiletablet-hide"> @Resources.Global.PriceVAT: </div>
+                                <div class="col-12 price text-center">
+                                    € @Model.ProductInfo.UnitPrice
+                                </div>
+                            </div>
+                            <div class="col-md-6 mobiletablet-hide">
+                                <div id="brand" class="content-center">
+                                    <img class="responsive-image" src="@Model.ProductInfo.BrandIconURL" alt="@Resources.ImgAltTexts.Brand @Model.ProductInfo.BrandName" />
+                                </div>
+                            </div>
+                        </div></div>
+                    }
+                    else
+                    {
+                        <div class="col-6 col-sm-6 col-md-12 text-center mobiletablet-hide"> @Resources.Global.PriceVAT: </div>
+                        <div class="col-6 col-sm-6 col-md-12 price text-center">
+                            € @Model.ProductInfo.UnitPrice
+                        </div>
+                    }
+
                     <hr class="mobile-hide" />
 
-                    <div class="col-6 col-sm-12 nonmobile-hide">
-                        <div class="call-to-action">
-                            <button class="add-to-cart" type="button" onclick="cart.addToCart(event, @Model.ProductInfo.ID, '@Model.ProductInfo.Name', '@Model.ProductInfo.UnitPrice')">
-                                <img src="~/Images/64_AddToCartBlue.png" />
-                            </button>
+                        <div class="col-6 col-sm-6 col-md-12 content-center">
+                            <div class="call-to-action">
+                                <div class="nonmobiletablet-hide">
+                                <button class="add-to-cart" type="button" onclick="cart.addToCart(event, @Model.ProductInfo.ID, '@Model.ProductInfo.Name', '@Model.ProductInfo.UnitPrice')">
+                                    <img src="~/Images/64_AddToCartBlue.png" alt="@Resources.ImgAltTexts.AddToCartIcon" />
+                                </button>
+                            </div>
                         </div>
                     </div>
 
-                    <hr class="mobile-hide" />
 
                     <div class="col-12 delivery">
                         @Resources.Global.GaranteedDelivery2Days
                         @if (Enumerable.Range(1, 5).Contains(Model.ProductInfo.CurrentStock))
                         {
-                            @Html.Raw("<span class=\"mobile-hide\">  <br /> <br/>  <strong> " + Resources.Global.HurryUpStockLow + " </strong> </span>");
+                            @Html.Raw("<div><span class=\"mobile-hide\">  <strong> " + Resources.Global.HurryUpStockLow + " </strong> </span></div>");
                         }
                     </div>
 
-                    <hr class="mobile-hide" />
-
-                    <div class="col-6 col-sm-12 mobile-hide">
-                        <div class="call-to-action">
+                    <div class="col-12 mobiletablet-hide">
+                        <div class="call-to-action content-center">
                             <button class="add-to-cart" type="button" onclick="cart.addToCart(event, @Model.ProductInfo.ID, '@Model.ProductInfo.Name', '@Model.ProductInfo.UnitPrice')">
-                                <img src="~/Images/64_AddToCartBlue.png" />
+                                <img src="~/Images/64_AddToCartBlue.png" alt="@Resources.ImgAltTexts.AddToCartIcon" />
                             </button>
                         </div>
                     </div>

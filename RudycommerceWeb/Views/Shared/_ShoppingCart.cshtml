@@ -1,10 +1,10 @@
 ﻿<button id="shopping-cart" class="shopping-cart content-center" data-toggle="dropdown">
     <div>
-        <img src="~/Images/64_DefaultCartBlue.png" alt="@Resources.Global.ShoppingCart" />
+        <img src="~/Images/64_DefaultCartBlue.png" alt="@Resources.ImgAltTexts.ShoppingCart" />
         <div id="shopping-cart-amount" class="content-center hide"></div>
     </div>
 
-    <img src="~/Images/64_ArrowDownProgDiscl.png"/>
+    <img src="~/Images/64_ArrowDownProgDiscl.png" alt="@Resources.ImgAltTexts.ProgDisclShoppingCart"/>
     
 </button>
 
@@ -24,12 +24,12 @@
                         </div>
                         <div class="col-12" id="cart-buttons">
                             <button class="btn btn-link" type="submit"> @Resources.Global.ManageCart </button>
-                            <button class="btn" type="submit">@Resources.Global.Checkout</button>
+                            <button class="btn btn-secondary" type="submit">@Resources.Global.Checkout</button>
                         </div>
                     </div>
                 </div>
                 <div class="collapse" id="empty-cart">
-                    Cart is empty 🙁
+                    @Resources.Global.CartIsEmpty 🙁
                 </div>
             </div>
         </div>

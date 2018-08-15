@@ -88,6 +88,8 @@
     <Compile Include="Utilities\IntExtensions.cs" />
     <Compile Include="Utilities\ListUtilities.cs" />
     <Compile Include="Utilities\StringExtensions.cs" />
+    <Compile Include="Web\CookieExtensions.cs" />
+    <Compile Include="Web\PopupExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Multilingual\" />

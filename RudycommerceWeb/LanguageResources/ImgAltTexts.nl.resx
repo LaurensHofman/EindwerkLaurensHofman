@@ -117,118 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>Over ons</value>
-    <comment>About us</comment>
+  <data name="AddProductToCart" xml:space="preserve">
+    <value>Voeg {0} toe aan winkelkar</value>
   </data>
-  <data name="AddToCart" xml:space="preserve">
-    <value>Voeg toe aan winkelkar</value>
+  <data name="AddToCartIcon" xml:space="preserve">
+    <value>Toevoegen aan winkelkar</value>
   </data>
-  <data name="AskAQuestion" xml:space="preserve">
-    <value>Stel ons een vraag</value>
-    <comment>Link to 'ask us a question'</comment>
+  <data name="Brand" xml:space="preserve">
+    <value>Merk</value>
   </data>
-  <data name="BestSellers" xml:space="preserve">
-    <value>Onze best verkopende producten</value>
+  <data name="FalseIcon" xml:space="preserve">
+    <value>Waarde: Nee</value>
   </data>
-  <data name="CartIsEmpty" xml:space="preserve">
-    <value>Winkelkar is leeg</value>
+  <data name="Icon" xml:space="preserve">
+    <value>Icoon</value>
   </data>
-  <data name="Categories" xml:space="preserve">
-    <value>Categorieën</value>
+  <data name="Image" xml:space="preserve">
+    <value>Foto</value>
   </data>
-  <data name="Category" xml:space="preserve">
-    <value>Categorie</value>
+  <data name="Logo" xml:space="preserve">
+    <value>Logo</value>
   </data>
-  <data name="Checkout" xml:space="preserve">
-    <value>Bestellen</value>
-  </data>
-  <data name="CustomerService" xml:space="preserve">
-    <value>Klantendienst</value>
-  </data>
-  <data name="DeliverCountries" xml:space="preserve">
-    <value>Landen waar wij leveren</value>
-  </data>
-  <data name="DeliverCountriesDescription" xml:space="preserve">
-    <value>Wij leveren onze producten overal binnen de Benelux (België, Nederland en Luxemburg) en Frankrijk.</value>
-  </data>
-  <data name="DeliveryPrices" xml:space="preserve">
-    <value>Onze leverprijzen</value>
-  </data>
-  <data name="DeliveryPricesDescription" xml:space="preserve">
-    <value>Onze leverprijzen zijn afhankelijk van het land waar we moeten leveren, en de totaalprijs van uw bestelling. In de Benelux, als uw bestelling meer dan € 50,00 kost; dan leveren we bij gratis tot bij u thuis.
-</value>
-  </data>
-  <data name="DeliveryPricesLink" xml:space="preserve">
-    <value>Leverkosten</value>
-  </data>
-  <data name="FAQ" xml:space="preserve">
-    <value>Veelgestelde vragen</value>
-  </data>
-  <data name="GaranteedDelivery2Days" xml:space="preserve">
-    <value>Gegarandeerd, binnen de 2 dagen bij u thuis geleverd.</value>
-  </data>
-  <data name="Home" xml:space="preserve">
-    <value>Thuis</value>
-    <comment>Link to the homepage</comment>
-  </data>
-  <data name="HurryUpStockLow" xml:space="preserve">
-    <value>Maar haast je! Er zijn er niet meer veel beschikbaar!</value>
-  </data>
-  <data name="JumboWelcomeTo" xml:space="preserve">
-    <value>Welkom bij </value>
-    <comment>'Welcome to' inside the index jumbotron</comment>
-  </data>
-  <data name="ManageCart" xml:space="preserve">
-    <value>Wijzig uw winkelkarretje</value>
-  </data>
-  <data name="NewestProducts" xml:space="preserve">
-    <value>Onze nieuwste producten</value>
-  </data>
-  <data name="NoProductsFound" xml:space="preserve">
-    <value>Er werden geen producten gevonden :(</value>
-  </data>
-  <data name="NotYetImplemented" xml:space="preserve">
-    <value>Nog niet geïmplementeerd</value>
-  </data>
-  <data name="OurCategories" xml:space="preserve">
-    <value>Onze categorieën</value>
-  </data>
-  <data name="OurDeliveryServices" xml:space="preserve">
-    <value>Onze leverdiensten</value>
-  </data>
-  <data name="Overview" xml:space="preserve">
-    <value>Overzicht</value>
-  </data>
-  <data name="PriceVAT" xml:space="preserve">
-    <value>Prijs (incl. BTW)</value>
-  </data>
-  <data name="PrivacyPolicy" xml:space="preserve">
-    <value>Privacybeleid</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Zoeken</value>
+  <data name="ProgDisclShoppingCart" xml:space="preserve">
+    <value>Open winkelkar</value>
   </data>
   <data name="ShoppingCart" xml:space="preserve">
     <value>Winkelkar</value>
   </data>
-  <data name="Specifications" xml:space="preserve">
-    <value>Specificaties</value>
+  <data name="ShowNextImage" xml:space="preserve">
+    <value>Toon volgende foto</value>
   </data>
-  <data name="SupportedCards" xml:space="preserve">
-    <value>Ondersteunde kaarten</value>
+  <data name="ShowPreviousImage" xml:space="preserve">
+    <value>Toon vorige foto</value>
   </data>
-  <data name="Tagline" xml:space="preserve">
-    <value>Dit is een schoolproject. Koop hier alstublieft geen producten.</value>
+  <data name="SupportedCard" xml:space="preserve">
+    <value>Ondersteunde kaart</value>
   </data>
-  <data name="TermsConditions" xml:space="preserve">
-    <value>Algemene voorwaarden</value>
-    <comment>Terms and conditions</comment>
+  <data name="Thumbnail" xml:space="preserve">
+    <value>Miniatuurfoto</value>
   </data>
-  <data name="TotalPrice" xml:space="preserve">
-    <value>Totale prijs</value>
-  </data>
-  <data name="YourSearchQuery" xml:space="preserve">
-    <value>Uw zoekopdracht: "{0}"</value>
+  <data name="TrueIcon" xml:space="preserve">
+    <value>Waarde: Ja</value>
   </data>
 </root>

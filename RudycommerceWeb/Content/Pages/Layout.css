@@ -2,15 +2,29 @@
     --main-bg-color: #F5F5F5;
 }
 
+label.explanation-form-label {
+    color:gray;
+}
+
+.font-size-2{
+    font-size:2rem;
+}
 
 input, select {
     max-width: unset;
+}
+
+.m-bot-2{
+    margin-bottom:2rem;
 }
 
 @media (max-width: 575px) {
     .mobile-hide {
         visibility: collapse;
         display: none;
+    }
+    .text-page-container {
+        width:100%;
     }
 }
 
@@ -19,7 +33,33 @@ input, select {
         visibility: collapse;
         display: none;
     }
+    .text-page-container {
+        width: 100%;
+    }
 }
+
+@media (max-width: 767px) {
+    .mobiletablet-hide {
+        visibility: collapse;
+        display: none;
+    }
+    
+}
+
+@media (min-width: 768px) {
+    .nonmobiletablet-hide {
+        visibility: collapse;
+        display: none;
+    }
+    .text-page-container {
+        width: 60%;
+    }
+}
+
+.h-page-title{
+    font-size: 2rem;
+    margin-bottom:2rem;
+} 
 
 .hide{
     visibility:collapse;

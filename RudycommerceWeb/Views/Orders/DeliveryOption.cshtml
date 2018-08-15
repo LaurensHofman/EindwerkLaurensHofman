@@ -4,17 +4,21 @@
     Layout = "~/Views/Shared/_CheckoutLayout.cshtml";
 }
 
+@section Styles{
+    @Styles.Render("/Content/Pages/Form.css")
+}
+
 <div class="container">
 
     @using (Html.BeginForm())
     {
-    <div class="form-group" style="display:flex;">
-        <div class="checkbox content-center" style="margin-right:1rem;">
-            @Html.EditorFor(model => model.OtherAddress)
+        <div class="form-group cb">
+            <div class="checkbox content-center">
+                @Html.EditorFor(model => model.OtherAddress)
+            </div>
+            <label class="control-label" for="OtherAddress">@Resources.Checkout.ChooseOtherAddressForDelivery</label>
+            @Html.ValidationMessageFor(model => model.OtherAddress, "", new { @class = "text-danger" })
         </div>
-        <label class="control-label" style="margin-bottom:0;" for="OtherAddress">@Resources.Checkout.ChooseOtherAddressForDelivery</label>
-        @Html.ValidationMessageFor(model => model.OtherAddress, "", new { @class = "text-danger" })
-    </div>
 
         <div @*class="well"*@>
 
@@ -24,7 +28,7 @@
 
                 <!--Street and Number-->
                 <div class="row">
-                    <div class="col-9">
+                    <div class="col-12 col-md-9">
                         <div class="form-group">
                             @Html.LabelFor(model => model.StreetAndNumber, htmlAttributes: new { @class = "control-label col-12" })
                             <div class="col-12">
@@ -34,11 +38,11 @@
                         </div>
                     </div>
 
-                    <div class="col-3">
+                    <div class="col-6 col-md-3">
                         <div class="form-group">
                             @Html.LabelFor(model => model.MailBox, htmlAttributes: new { @class = "control-label col-12" })
                             <div class="col-12">
-                                @Html.EditorFor(model => model.MailBox, new { htmlAttributes = new { @class = "form-control", disabled = "true"} })
+                                @Html.EditorFor(model => model.MailBox, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
                                 @Html.ValidationMessageFor(model => model.MailBox, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -47,7 +51,7 @@
 
                 <!--Postal code and City-->
                 <div class="row">
-                    <div class="col-3">
+                    <div class="col-6 col-md-3">
                         <div class="form-group">
                             @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "control-label col-12" })
                             <div class="col-12">
@@ -57,7 +61,7 @@
                         </div>
                     </div>
 
-                    <div class="col-9">
+                    <div class="col-12 col-md-9">
                         <div class="form-group">
                             @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-12" })
                             <div class="col-12">
@@ -70,11 +74,11 @@
 
                 <!--Country-->
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12 col-md-6">
                         <div class="form-group">
                             @Html.LabelFor(model => model.CountryCode, htmlAttributes: new { @class = "control-label col-12" })
                             <div class="col-12">
-                                @Html.DropDownListFor(model => model.CountryCode, new SelectList(Model.CountriesByCode, "Key", "Value"), new { @class = "form-control", disabled = "true"})
+                                @Html.DropDownListFor(model => model.CountryCode, new SelectList(Model.CountriesByCode, "Key", "Value"), new { @class = "form-control", disabled = "true" })
                                 @Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -86,7 +90,7 @@
 
         <div class="form-group">
             <div class="col-12 content-vertcen-right">
-                <input type="submit" onclick="addressToggler.enableAll();" value="@Resources.Checkout.ContinueToPayment" class="btn btn-default" />
+                <input type="submit" onclick="addressToggler.enableAll();" value="@Resources.Checkout.ContinueToPayment" class="btn btn-secondary" />
             </div>
         </div>
     }
@@ -94,7 +98,7 @@
 </div>
 
 @section scripts {
-    
+
     <script>
 
         var homeAddress = @Html.Raw(Json.Encode(Model));
@@ -125,7 +129,7 @@
 
                         }
                         else {
-                            
+
                             self.inputElements.forEach(input => {
                                 input.setAttribute('disabled', 'true');
                             });
@@ -135,7 +139,7 @@
                             self.postalcode.value = homeAddress.PostalCode;
                             self.city.value = homeAddress.City;
                             self.countrycode.value = homeAddress.CountryCode;
-                            
+
                         }
                     }, false);
                 },
@@ -164,4 +168,4 @@
 
     </script>
 
-    }
+}

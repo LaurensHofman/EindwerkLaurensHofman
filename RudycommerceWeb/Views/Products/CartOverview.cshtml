@@ -1,4 +1,4 @@
-﻿@model List<RudycommerceData.Models.ASPModels.CartOverviewItem>
+﻿ @model List<RudycommerceData.Models.ASPModels.CartOverviewItem>
 
 @{
     ViewBag.Title = Resources.Checkout.CartOverviewTitleShort;
@@ -31,9 +31,9 @@
 
                     <div id="@idRow" class="cart-overview-row">
                         <div class="row">
-                            <div class="col-12 col-sm-6 col-md-3 imgdiv">
+                            <div class="col-12 col-sm-6 col-md-3 imgdiv content-center">
                                 <a href="@Url.Action("Details", new { ID = prod.ProductID })">
-                                    <img class="responsive-image" src="@prod.ImageURL" />
+                                    <img alt="@prod.ProductName" class="responsive-image" src="@prod.ImageURL" />
                                 </a>
                             </div>
 

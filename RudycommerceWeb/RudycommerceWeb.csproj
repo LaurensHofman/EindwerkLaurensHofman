@@ -161,6 +161,11 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Attributes\CheckoutActionFilter.cs" />
+    <Compile Include="Attributes\IsCartFilledActionFilter.cs" />
+    <Compile Include="Attributes\IsClientFilledActionFilter.cs" />
+    <Compile Include="Attributes\IsDeliveryOptionFilledActionFilter.cs" />
+    <Compile Include="ConstVal.cs" />
+    <Compile Include="Controllers\Base\RedirectableFromFiltersController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\LanguagesController.cs" />
@@ -212,6 +217,26 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Global.nl.resx</DependentUpon>
     </Compile>
+    <Compile Include="LanguageResources\ImgAltTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImgAltTexts.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageResources\ImgAltTexts.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImgAltTexts.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageResources\ImgAltTexts.fr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImgAltTexts.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LanguageResources\ImgAltTexts.nl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImgAltTexts.nl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -223,6 +248,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Pages\AddToCartButton.css" />
     <Content Include="Content\Pages\CartOverview.css" />
+    <Content Include="Content\Pages\Form.css" />
     <Content Include="Content\Pages\Layout.css" />
     <Content Include="Content\Pages\ProductDetails.css" />
     <Content Include="Content\Pages\ProductList.css" />
@@ -239,10 +265,13 @@
     <Content Include="Images\64_GreenCheck.png" />
     <Content Include="Images\64_RedCross.png" />
     <Content Include="Images\64_RemoveFromCartBlue.png" />
+    <Content Include="Images\amex-icon.png" />
+    <Content Include="Images\logo-visa.jpg" />
     <Content Include="Images\LogoRudyCommerce.png" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\mastercard-icon.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -331,6 +360,9 @@
     <Content Include="Views\Utilities\TermsAndConditions.cshtml" />
     <Content Include="Views\Shared\_NoLayout.cshtml" />
     <Content Include="Views\Orders\DeliveryOption.cshtml" />
+    <Content Include="Views\Orders\Payment.cshtml" />
+    <Content Include="Views\Shared\_SupportedPaymentOptions.cshtml" />
+    <Content Include="Views\Orders\OrderFinished.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -380,6 +412,26 @@
     <EmbeddedResource Include="LanguageResources\Global.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Global.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageResources\ImgAltTexts.en.resx">
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImgAltTexts.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageResources\ImgAltTexts.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImgAltTexts.fr.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageResources\ImgAltTexts.nl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImgAltTexts.nl.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LanguageResources\ImgAltTexts.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>ImgAltTexts.Designer.cs</LastGenOutput>
       <CustomToolNamespace>Resources</CustomToolNamespace>
     </EmbeddedResource>
   </ItemGroup>

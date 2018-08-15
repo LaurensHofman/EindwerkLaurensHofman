@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cart is empty.
+        /// </summary>
+        public static string CartIsEmpty {
+            get {
+                return ResourceManager.GetString("CartIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Categories.
         /// </summary>
         public static string Categories {
@@ -252,6 +261,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not yet implemented.
+        /// </summary>
+        public static string NotYetImplemented {
+            get {
+                return ResourceManager.GetString("NotYetImplemented", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Our categories.
         /// </summary>
         public static string OurCategories {
@@ -320,6 +338,15 @@ namespace Resources {
         public static string Specifications {
             get {
                 return ResourceManager.GetString("Specifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported cards.
+        /// </summary>
+        public static string SupportedCards {
+            get {
+                return ResourceManager.GetString("SupportedCards", resourceCulture);
             }
         }
         

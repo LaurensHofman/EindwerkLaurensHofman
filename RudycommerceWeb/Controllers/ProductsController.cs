@@ -14,8 +14,6 @@ namespace RudycommerceWeb.Controllers
 {
     public class ProductsController : MultilingualBaseController
     {
-        private readonly string cookieCartName = "shoppingCartRudyCommerce";
-
         private IProductRepository _prodRepo;
         private ICategoryRepository _catRepo;
 
@@ -48,6 +46,12 @@ namespace RudycommerceWeb.Controllers
         }
 
         [HttpPost]
+        public ActionResult Index(string search)
+        {
+            return RedirectToAction("Search", "Products", new { searchQuery = search });
+        }
+
+        [HttpGet]
         public ActionResult Search(string searchQuery)
         {
             List<ProductListItem> products = _prodRepo.GetProductListItems(GetISO(), "search", searchQuery);
@@ -86,11 +90,12 @@ namespace RudycommerceWeb.Controllers
 
         [HttpGet]
         [CheckoutActionFilter]
+        [IsCartFilledActionFilter]
         public ActionResult CartOverview()
         {
             try
             {
-                if (Request.Cookies[cookieCartName] != null)
+                if (Request.Cookies[ConstVal.cookieCartName] != null)
                 {
                     return View("CartOverview", GetCartItemsFromCookie());
                 }
@@ -110,8 +115,8 @@ namespace RudycommerceWeb.Controllers
         public ActionResult CartOverview(CartOverviewItem cartOverviewItems)
         {
             // TODO Validate
-            CartFromJSON cartItems = Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(Request.Cookies[cookieCartName].Value);
-            
+            CartFromJSON cartItems = Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(Request.Cookies[ConstVal.cookieCartName].Value);
+
             return RedirectToAction("PersonalInfoChoice", "Clients");
         }
         
@@ -124,7 +129,7 @@ namespace RudycommerceWeb.Controllers
         {
             // TODO Error
 
-            CartFromJSON cart = Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(Request.Cookies[cookieCartName].Value);
+            CartFromJSON cart = Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(Request.Cookies[ConstVal.cookieCartName].Value);
 
             List<int> IDs = new List<int>();
             foreach (var prod in cart.ProductList)

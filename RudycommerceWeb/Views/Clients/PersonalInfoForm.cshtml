@@ -9,52 +9,48 @@
 }
 
 @section Styles{
+    @Styles.Render("/Content/Pages/Form.css")
     <style>
-        .container.content-center form {
-            width: 65%;
+        @@media (max-width: 575px) {
+            #user-form {
+                width: 100%;
+            }
         }
 
-        .form-group {
-            margin-bottom: 1.5rem;
+        @@media (min-width: 576px) {
+            #user-form {
+                width: 100%;
+            }
         }
 
-        .form-control {
-            color: black;
+        @@media (min-width: 768px) {
+            #user-form {
+                width: 80%;
+            }
         }
 
-            .form-control::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-                color: rgba(168, 168, 168, 1);
+            #pwd-form-group {
+                padding-left:2rem;
+                margin-top:-0.5rem;
+                margin-bottom:2rem;
             }
 
-            .form-control::-moz-placeholder { /* Firefox 19+ */
-                color: rgba(168, 168, 168, 1);
+            #agrees-to-terms-group.form-group > div {
+                display:flex;
             }
-
-            .form-control:-ms-input-placeholder { /* IE 10+ */
-                color: rgba(168, 168, 168, 1);
+            #agrees-to-terms-group.form-group .checkbox{
+                margin-right:1rem;
             }
-
-            .form-control:-moz-placeholder { /* Firefox 18- */
-                color: rgba(168, 168, 168, 1);
-            }
-
-        .form-horizontal > div.row > div {
-            padding: 0;
-        }
-
-        .form-horizontal > .form-group > div {
-            padding: 0;
-        }
-
-        .form-horizontal > .form-group > label {
-            padding: 0;
+        #agrees-to-terms-group.form-group label {
+            margin-bottom:0;
+            width:100%;
         }
     </style>
-}
+} 
 
 <div class="container content-center">
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "user-form" }))
     {
         @Html.AntiForgeryToken()
 
@@ -65,7 +61,7 @@
             <!--First name and Last name-->
             <div class="row">
 
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-12" })
                         <div class="col-12">
@@ -74,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-12" })
                         <div class="col-12">
@@ -96,7 +92,7 @@
 
             <!--Street and Number-->
             <div class="row">
-                <div class="col-9">
+                <div class="col-12 col-md-9">
                     <div class="form-group">
                         @Html.LabelFor(model => model.StreetAndNumber, htmlAttributes: new { @class = "control-label col-12" })
                         <div class="col-12">
@@ -106,7 +102,7 @@
                     </div>
                 </div>
 
-                <div class="col-3">
+                <div class="col-6 col-md-3">
                     <div class="form-group">
                         @Html.LabelFor(model => model.MailBox, htmlAttributes: new { @class = "control-label col-12" })
                         <div class="col-12">
@@ -119,7 +115,7 @@
 
             <!--Postal code and City-->
             <div class="row">
-                <div class="col-3">
+                <div class="col-6 col-md-3">
                     <div class="form-group">
                         @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "control-label col-12" })
                         <div class="col-12">
@@ -129,7 +125,7 @@
                     </div>
                 </div>
 
-                <div class="col-9">
+                <div class="col-12 col-md-9">
                     <div class="form-group">
                         @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-12" })
                         <div class="col-12">
@@ -142,7 +138,7 @@
 
             <!--Country-->
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-md-6">
                     <div class="form-group">
                         @Html.LabelFor(model => model.CountryCode, htmlAttributes: new { @class = "control-label col-12" })
                         <div class="col-12">
@@ -154,17 +150,17 @@
             </div>
 
             <!--Wants account-->
-            <div class="form-group" style="display:flex;">
-                <div class="checkbox content-center" style="margin-right:1rem;">
+            <div class="form-group cb">
+                <div class="checkbox content-center">
                     @Html.EditorFor(model => model.AccountUser)
                 </div>
-                @Html.LabelFor(model => model.AccountUser, htmlAttributes: new { @class = "control-label", style = "margin-bottom:0;" })
+                @Html.LabelFor(model => model.AccountUser, htmlAttributes: new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.AccountUser, "", new { @class = "text-danger" })
             </div>
             <!--Password-->
             @{ string pwdClass = (Model.AccountUser) ? "" : "hide";}
 
-            <div id="pwd-form-group" class="form-group @pwdClass" style="padding-left:2rem; margin-top:-0.5rem;margin-bottom:2rem;">
+            <div id="pwd-form-group" class="form-group @pwdClass">
                 @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-12" })
                 <div class="col-12">
                     @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Checkout.PasswordPlaceholder } })
@@ -175,36 +171,35 @@
                         <label for="show-hide">Show password</label>
                     </div>
 
-                    <label style="color:gray"> @Resources.Checkout.PasswordExplanation </label>
+                    <label class="explanation-form-label"> @Resources.Checkout.PasswordExplanation </label>
 
                     @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                 </div>
             </div>
 
-
-            <div class="form-group" style="display:flex;">
-                <div class="checkbox content-center" style="margin-right:1rem;">
+            <div class="form-group cb">
+                <div class="checkbox content-center">
                     @Html.EditorFor(model => model.WantsNewsletter)
                 </div>
-                @Html.LabelFor(model => model.WantsNewsletter, htmlAttributes: new { @class = "control-label", style = "margin-bottom:0;" })
+                @Html.LabelFor(model => model.WantsNewsletter, htmlAttributes: new { @class = "control-label" })
                 @Html.ValidationMessageFor(model => model.WantsNewsletter, "", new { @class = "text-danger" })
             </div>
 
-            <div class="form-group">
-                <div style="display:flex;">
-                    <div class="checkbox content-center" style="margin-right:1rem;">
+            <div id="agrees-to-terms-group" class="form-group">
+                <div>
+                    <div class="checkbox content-center">
                         @Html.EditorFor(model => model.AgreesToTermsAndConditions)
                     </div>
-                    <label class="control-label" for="AgreesToTermsAndConditions" style="margin-bottom:0;width:100%;">
+                    <label class="control-label" for="AgreesToTermsAndConditions">
                         @{
                             string iAgreeSentence = Resources.Checkout.IAgreeWithTermsConds;
 
-                            string termsAndConditions =
-                                $"<a href=\"#\" onClick=\"MyWindow=window.open(" +
-                                $"'{Url.Action("TermsAndConditions", "Utilities", new { popup = true }, this.Request.Url.Scheme)}'" +
-                                $", 'MyWindow','width=600,height=700');return false;\">{Resources.Checkout.TermsAndConds}</a>";
+                            string pathToPopup = Url.Action("TermsAndConditions", "Utilities", new { popup = true }, this.Request.Url.Scheme);
 
-                            string sentence = String.Format(iAgreeSentence, termsAndConditions);
+                            string termsAndConditionsPopupString = RudycommerceLib.Web.PopupExtensions.PopupURLString(
+                                pathToPopup, Resources.Checkout.TermsAndConds, 600, 700);
+
+                            string sentence = String.Format(iAgreeSentence, termsAndConditionsPopupString);
                         }
                         @Html.Raw(sentence)
 
@@ -215,7 +210,7 @@
 
             <div class="form-group">
                 <div class="col-12 content-vertcen-right">
-                    <input type="submit" value="@Resources.Checkout.ContinueToDelivery" class="btn btn-default" />
+                    <input type="submit" value="@Resources.Checkout.ContinueToDelivery" class="btn btn-secondary" />
                 </div>
             </div>
         </div>

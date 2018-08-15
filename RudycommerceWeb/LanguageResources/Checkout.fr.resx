@@ -191,6 +191,15 @@
   <data name="PaymentArrow" xml:space="preserve">
     <value>Paiement</value>
   </data>
+  <data name="PaymentAtRudycommerce" xml:space="preserve">
+    <value>Paiement chez Rudycommerce</value>
+  </data>
+  <data name="PaymentWithCard" xml:space="preserve">
+    <value>Payer avec card</value>
+  </data>
+  <data name="PayUsingCard" xml:space="preserve">
+    <value>Pay using your card</value>
+  </data>
   <data name="PersonalInfo" xml:space="preserve">
     <value>Information personnelle</value>
   </data>
@@ -199,5 +208,23 @@
   </data>
   <data name="TermsAndConds" xml:space="preserve">
     <value>Terms and conditions look up pls</value>
+  </data>
+  <data name="YourCart" xml:space="preserve">
+    <value>Votre chariot</value>
+  </data>
+  <data name="ChooseYourPaymentOption" xml:space="preserve">
+    <value>Choisissez votre préférence de paiement</value>
+  </data>
+  <data name="PaymentWithPaypal" xml:space="preserve">
+    <value>Paiement avec PayPal</value>
+  </data>
+  <data name="BackToHomepage" xml:space="preserve">
+    <value>Retournez vers la page maison</value>
+  </data>
+  <data name="OrderFinished" xml:space="preserve">
+    <value>Frans(bestelling afgerond)</value>
+  </data>
+  <data name="OrderFinishedThankYouText" xml:space="preserve">
+    <value>Mais oui, d'accord. Hon hon français.</value>
   </data>
 </root>

@@ -24,12 +24,15 @@ namespace RudycommerceWeb.Controllers
             _clientRepo = new ClientRepository();
         }
         
+        [HttpGet]
+        [IsCartFilledActionFilter]
         public ActionResult PersonalInfoChoice()
         {
             return View();
         }
 
         [HttpGet]
+        [IsCartFilledActionFilter]
         public ActionResult PersonalInfoForm()
         {
             ViewBag.HideCartOverview = true;
@@ -58,13 +61,13 @@ namespace RudycommerceWeb.Controllers
                 _clientRepo.Add(clientEntity);
                 await _clientRepo.SaveChangesAsync();
 
-                HttpCookie clientIDCookie = new HttpCookie("clientID");
+                HttpCookie clientIDCookie = new HttpCookie(ConstVal.cookieClientIDName);
                 clientIDCookie.Value = client.ID.ToString();
                 clientIDCookie.Expires = DateTime.Now.AddDays(1);
 
                 Response.Cookies.Add(clientIDCookie);
 
-                return RedirectToAction("DeliveryOption", "Orders", client);
+                return RedirectToAction("DeliveryOption", "Orders");
             }
             else
             {

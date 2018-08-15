@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = Resources.Checkout.OrderFinished;
+}
+<div class="container text-page-container">
+    <h2 class="h-page-title text-center">@ViewBag.Title</h2>
+
+    <div class="content-center">
+        @Html.Raw(Resources.Checkout.OrderFinishedThankYouText)
+
+    </div>
+    <div class="content-vertcen-right">
+        <button class="btn btn-secondary" onclick="location.href='@Url.Action("Index", "Products")'">@Resources.Checkout.BackToHomepage</button>
+    </div>
+</div>

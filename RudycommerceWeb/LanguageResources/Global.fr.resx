@@ -131,6 +131,9 @@
   <data name="BestSellers" xml:space="preserve">
     <value>Nos meilleures ventes</value>
   </data>
+  <data name="CartIsEmpty" xml:space="preserve">
+    <value>Chariot est vide</value>
+  </data>
   <data name="Categories" xml:space="preserve">
     <value>Catégories</value>
   </data>
@@ -185,6 +188,9 @@ Au Benelux, si votre commande dépasse € 50,00; alors nous livrons gratuitemen
   <data name="NoProductsFound" xml:space="preserve">
     <value>On n'a rien trouvé :((</value>
   </data>
+  <data name="NotYetImplemented" xml:space="preserve">
+    <value>Pas déjà implémenté</value>
+  </data>
   <data name="OurCategories" xml:space="preserve">
     <value>Nos catégories</value>
   </data>
@@ -208,6 +214,9 @@ Au Benelux, si votre commande dépasse € 50,00; alors nous livrons gratuitemen
   </data>
   <data name="Specifications" xml:space="preserve">
     <value>Caractéristiques</value>
+  </data>
+  <data name="SupportedCards" xml:space="preserve">
+    <value>Cards supportées</value>
   </data>
   <data name="Tagline" xml:space="preserve">
     <value>N'achetez pas de produits sur un site avec un slogan merdique.</value>

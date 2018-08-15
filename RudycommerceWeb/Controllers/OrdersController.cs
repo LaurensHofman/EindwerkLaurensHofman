@@ -14,20 +14,23 @@ using System.Web.Mvc;
 using System.Data.Common;
 using System.Data;
 using System.Web.Security;
+using RudycommerceData.Entities.Orders;
+using RudycommerceWeb.Attributes;
 
 namespace RudycommerceWeb.Controllers
 {
-    public class OrdersController : Controller
+    public class OrdersController : MultilingualBaseController
     {
         private IClientRepository _clientRepo;
         private IProductRepository _prodRepo;
+        private IIncOrderRepository _incOrderRepo;
         private Client _client
         {
             get
             {
                 try
                 {
-                    int id = int.Parse((Request.Cookies["clientID"].Value));
+                    int id = int.Parse((Request.Cookies[ConstVal.cookieClientIDName].Value));
                     return _clientRepo.Get(id);
                 }
                 catch (Exception)
@@ -37,15 +40,17 @@ namespace RudycommerceWeb.Controllers
                 }
             }
         }
-        private readonly string cookieCartName = "shoppingCartRudyCommerce";
 
         public OrdersController()
         {
             _clientRepo = new ClientRepository();
             _prodRepo = new ProductRepository();
+            _incOrderRepo = new IncOrderRepository();
         }
 
         [HttpGet]
+        [CheckoutActionFilter]
+        [IsClientFilledActionFilter]
         public ActionResult DeliveryOption()
         {
             ViewBag.CheckoutProgress = 2;
@@ -65,12 +70,20 @@ namespace RudycommerceWeb.Controllers
         }
 
         [HttpPost]
+        [CheckoutActionFilter]
         public ActionResult DeliveryOption(Delivery delivery)
         {
             ViewBag.CheckoutProgress = 2;
 
             if (ModelState.IsValid)
             {
+                var jsonDelivery = Newtonsoft.Json.JsonConvert.SerializeObject(delivery);
+
+                HttpCookie deliveryCookie = new HttpCookie(ConstVal.cookieDeliverOptionName);
+                deliveryCookie.Value = jsonDelivery;
+                deliveryCookie.Expires = DateTime.Now.AddDays(1);
+                Response.Cookies.Add(deliveryCookie);
+
                 return RedirectToAction("Payment");
             }
             else
@@ -81,9 +94,112 @@ namespace RudycommerceWeb.Controllers
         }
 
         [HttpGet]
+        [CheckoutActionFilter]
+        [IsDeliveryOptionFilledActionFilter]
         public ActionResult Payment()
         {
-            Decimal woop = GetTotalPriceFromCookieCart();
+            ViewBag.LangISO = GetISO();
+
+            ViewBag.CheckoutProgress = 3;
+
+            ViewBag.totalPrice = GetTotalPriceFromCookieCart();
+
+            var stripePublishKey = ConfigurationManager.AppSettings["stripePublishableKey"];
+            ViewBag.StripePublishKey = stripePublishKey;
+
+            Response.AppendHeader("Cache-Control", "no-store");
+
+            return View();
+        }
+
+        [CheckoutActionFilter]
+        public ActionResult Charge(string stripeEmail, string stripeToken)
+        {
+            // TODO Make less dependent on Stripe
+
+            var totalPrice = GetTotalPriceFromCookieCart();
+            int priceInCents = (int)(totalPrice * 100);
+
+            var customers = new StripeCustomerService();
+            var charges = new StripeChargeService();
+
+            var customer = customers.Create(new StripeCustomerCreateOptions
+            {
+                Email = stripeEmail,
+                SourceToken = stripeToken
+            });
+
+            var charge = charges.Create(new StripeChargeCreateOptions
+            {
+                Amount = priceInCents,//charge in cents
+                Description = "Sample Charge",
+                Currency = "eur",
+                CustomerId = customer.Id
+            });
+
+            if (charge.Paid)
+            {
+                // TODO ERROR
+
+                Delivery deliveryOption = Newtonsoft.Json.JsonConvert.DeserializeObject<Delivery>(Request.Cookies[ConstVal.cookieDeliverOptionName].Value);
+
+                IncomingOrder order;
+
+                if (deliveryOption.OtherAddress)
+                {
+                    int clientID = int.Parse(Request.Cookies[ConstVal.cookieClientIDName].Value);
+
+                    order = new IncomingOrder(deliveryOption)
+                    {
+                        ClientID = clientID
+                    };
+                }
+                else
+                {
+                    var client = _client;
+
+                    order = new IncomingOrder(client)
+                    {
+                        ClientID = client.ID
+                    };
+                }
+
+                order.PaymentComplete = true;
+                order.PaymentOption = charge.Source.Card.Brand;
+                order.TotalPrice = totalPrice;
+
+                var cart = GetCartFromCookie();
+                foreach (var item in cart.ProductList)
+                {
+                    order.IncomingOrderLines.Add(new IncomingOrderLines
+                    {
+                        ProductID = item.ID,
+                        ProductQuantity = item.Quantity,
+                        ProductUnitPrice = item.Price / 100
+                    });
+                }
+
+                _incOrderRepo.Add(order);
+                _incOrderRepo.SaveChangesAsync();
+
+                return RedirectToAction("OrderFinished", "Orders", null);
+            }
+            else
+            {
+                return Payment();
+            }
+        }
+
+        [HttpGet]
+        public ActionResult OrderFinished()
+        {
+            // Clear cart
+            // Clear user id (except when logged in)
+            // Clear delivery
+
+            DeleteCookie(ConstVal.cookieCartName);
+            DeleteCookie(ConstVal.cookieClientIDName);
+            DeleteCookie(ConstVal.cookieDeliverOptionName);
 
             return View();
         }
@@ -92,7 +208,7 @@ namespace RudycommerceWeb.Controllers
         {
             // TODO Error
 
-            CartFromJSON cart = Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(Request.Cookies[cookieCartName].Value);
+            CartFromJSON cart = Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(Request.Cookies[ConstVal.cookieCartName].Value);
 
             List<int> IDs = new List<int>();
             foreach (var prod in cart.ProductList)
@@ -106,50 +222,19 @@ namespace RudycommerceWeb.Controllers
             return _prodRepo.GetTotalPrice(IDs);
         }
 
-        //public ActionResult DeliveryOption()
-        //{
-        //    var stripePublishKey = ConfigurationManager.AppSettings["stripePublishableKey"];
-        //    ViewBag.StripePublishKey = stripePublishKey;
-        //    return View();
-        //}
+        private CartFromJSON GetCartFromCookie()
+        {
+            // TODO Error
 
-        //public ActionResult Charge(string stripeEmail, string stripeToken)
-        //{
-        //    var customers = new StripeCustomerService();
-        //    var charges = new StripeChargeService();
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(Request.Cookies[ConstVal.cookieCartName].Value);
+        }
 
-        //    var customer = customers.Create(new StripeCustomerCreateOptions
-        //    {
-        //        Email = stripeEmail,
-        //        SourceToken = stripeToken
-        //    });
-
-        //    var charge = charges.Create(new StripeChargeCreateOptions
-        //    {
-        //        Amount = 500,//charge in cents
-        //        Description = "Sample Charge",
-        //        Currency = "usd",
-        //        CustomerId = customer.Id
-        //    });
-
-        //    // further application specific code goes here
-
-        //    return View();
-        //}
-        //        @using(Html.BeginForm("Charge", "Orders", FormMethod.Post))
-        //{
-        //    <article>
-        //        <label>Amount: $5.00</label>
-        //    </article>
-        //    <script src = "//checkout.stripe.com/v2/checkout.js"
-        //            class="stripe-button"
-        //            data-key="@ViewBag.StripePublishKey"
-        //            data-currency="eur"
-        //            data-locale="auto"
-        //            data-description="Sample Charge"
-        //            data-amount="500">
-        //    </script>
-        //}
-        //@using Stripe;
+        private void DeleteCookie(string cookieName)
+        {
+            if (Request.Cookies[cookieName] != null)
+            {
+                Response.Cookies[cookieName].Expires = DateTime.Now.AddDays(-1);
+            }
+        }
     }
 }

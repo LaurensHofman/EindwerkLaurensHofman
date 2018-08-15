@@ -190,6 +190,15 @@
   <data name="PaymentArrow" xml:space="preserve">
     <value>Payment</value>
   </data>
+  <data name="PaymentAtRudycommerce" xml:space="preserve">
+    <value>Payment at Rudycommerce</value>
+  </data>
+  <data name="PaymentWithCard" xml:space="preserve">
+    <value>Payment with card</value>
+  </data>
+  <data name="PayUsingCard" xml:space="preserve">
+    <value>Pay using your card</value>
+  </data>
   <data name="PersonalInfo" xml:space="preserve">
     <value>Personal info</value>
   </data>
@@ -198,5 +207,24 @@
   </data>
   <data name="TermsAndConds" xml:space="preserve">
     <value>General Terms and Conditions</value>
+  </data>
+  <data name="YourCart" xml:space="preserve">
+    <value>Your shopping cart</value>
+  </data>
+  <data name="ChooseYourPaymentOption" xml:space="preserve">
+    <value>Choose your payment option</value>
+  </data>
+  <data name="OrderFinished" xml:space="preserve">
+    <value>Order finished</value>
+  </data>
+  <data name="PaymentWithPaypal" xml:space="preserve">
+    <value>Payment with PayPal</value>
+  </data>
+  <data name="BackToHomepage" xml:space="preserve">
+    <value>Back to homepage</value>
+  </data>
+  <data name="OrderFinishedThankYouText" xml:space="preserve">
+    <value>Your order has succesfully been sent. Your work here is done, it's up to us now. &lt;br/&gt;&lt;br/&gt; We shall commence by carefully preparing your order, so the courier can pick it up and deliver it to your preferred location. &lt;br/&gt; &lt;br/&gt; Now you can start dreaming about what you are going to accomplish with your new gaming gear, because soon you're going to be the best in every game you'll play. &lt;br/&gt; &lt;br/&gt; Kind regards, &lt;br/&gt; Rudycommerce</value>
+    <comment>Use &lt;br/&gt; for formatting</comment>
   </data>
 </root>

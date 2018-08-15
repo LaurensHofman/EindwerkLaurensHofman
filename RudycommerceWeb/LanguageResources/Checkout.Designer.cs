@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back to homepage.
+        /// </summary>
+        public static string BackToHomepage {
+            get {
+                return ResourceManager.GetString("BackToHomepage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Overview of your shopping cart.
         /// </summary>
         public static string CartOverviewTitle {
@@ -84,6 +93,15 @@ namespace Resources {
         public static string ChooseOtherAddressForDelivery {
             get {
                 return ResourceManager.GetString("ChooseOtherAddressForDelivery", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose your payment option.
+        /// </summary>
+        public static string ChooseYourPaymentOption {
+            get {
+                return ResourceManager.GetString("ChooseYourPaymentOption", resourceCulture);
             }
         }
         
@@ -241,6 +259,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order finished.
+        /// </summary>
+        public static string OrderFinished {
+            get {
+                return ResourceManager.GetString("OrderFinished", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your order has succesfully been sent. Your work here is done, it&apos;s up to us now. &lt;br/&gt;&lt;br/&gt; We shall commence by carefully preparing your order, so the courier can pick it up and deliver it to your preferred location. &lt;br/&gt; &lt;br/&gt; Now you can start dreaming about what you are going to accomplish with your new gaming gear, because soon you&apos;re going to be the best in every game you&apos;ll play. &lt;br/&gt; &lt;br/&gt; Kind regards, &lt;br/&gt; Rudycommerce.
+        /// </summary>
+        public static string OrderFinishedThankYouText {
+            get {
+                return ResourceManager.GetString("OrderFinishedThankYouText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You can choose whatever password that pleases you, if its length is between 6 and 40 characters..
         /// </summary>
         public static string PasswordExplanation {
@@ -277,6 +313,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payment at Rudycommerce.
+        /// </summary>
+        public static string PaymentAtRudycommerce {
+            get {
+                return ResourceManager.GetString("PaymentAtRudycommerce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment with card.
+        /// </summary>
+        public static string PaymentWithCard {
+            get {
+                return ResourceManager.GetString("PaymentWithCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment with PayPal.
+        /// </summary>
+        public static string PaymentWithPaypal {
+            get {
+                return ResourceManager.GetString("PaymentWithPaypal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pay using your card.
+        /// </summary>
+        public static string PayUsingCard {
+            get {
+                return ResourceManager.GetString("PayUsingCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Personal info.
         /// </summary>
         public static string PersonalInfo {
@@ -300,6 +372,15 @@ namespace Resources {
         public static string TermsAndConds {
             get {
                 return ResourceManager.GetString("TermsAndConds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your shopping cart.
+        /// </summary>
+        public static string YourCart {
+            get {
+                return ResourceManager.GetString("YourCart", resourceCulture);
             }
         }
     }

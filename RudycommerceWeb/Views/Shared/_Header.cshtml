@@ -3,12 +3,12 @@
     @if (ViewBag.IsHome == null)
     {
         <a class="navbar-brand" href="@Url.Action("Index", "Products", null)">
-            <img src="~/Images/LogoRudyCommerce.png" alt="Rudycommerce logo" class="brand-logo" />
+            <img src="~/Images/LogoRudyCommerce.png" alt="Rudycommerce @Resources.ImgAltTexts.Logo" class="brand-logo" />
         </a>
     }
     else
     {
-        <img src="~/Images/LogoRudyCommerce.png" alt="Rudycommerce logo" class="brand-logo" />
+        <img src="~/Images/LogoRudyCommerce.png" alt="Rudycommerce @Resources.ImgAltTexts.Logo" class="brand-logo" />
     }
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsableNav" aria-controls="collapsableNav" aria-expanded="false"
@@ -27,10 +27,10 @@
         </ul>
         <ul class="navbar-nav right">
             <li class="nav-item content-vertical-center">
-                @using (Html.BeginForm("Search", "Products", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0" }))
+                @using (Html.BeginForm("Index", "Products", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0" }))
                 {
                     <input class="form-control mr-sm-2" type="search" placeholder="@Resources.Global.Search" aria-label="@Resources.Global.Search"
-                           id="searchQuery" name="searchQuery" value="@ViewBag.SearchQuery" />
+                           id="search" name="search" value="@ViewBag.SearchQuery" required />
 
                     <button class="btn btn-outline-success form-submit my-2 my-sm-0" type="submit">@Resources.Global.Search</button>
                 }

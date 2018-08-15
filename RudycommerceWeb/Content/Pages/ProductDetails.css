@@ -1,4 +1,4 @@
-﻿@media (max-width: 575px) {
+﻿@media (max-width: 767px) {
 
     #column-price-cart {
         position: sticky;
@@ -69,9 +69,13 @@
     #specifications .row:last-child {
         margin-bottom: 1rem;
     }
+
+    .call-to-action{
+        width:80%;
+    }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {
     #column-price-cart {
         position: fixed;
         right: 0;
@@ -82,9 +86,9 @@
         background: white;
     }
 
-    #column-price-cart hr {
-        margin: 0.5rem;
-    }
+        #column-price-cart hr {
+            margin: 0.5rem;
+        }
 
     .specification-name {
         display: flex;
@@ -148,6 +152,9 @@ h2 {
 
 /*Sticky with price and button*/
 
+#brand img {
+    height:5rem;
+}
 
 /*Images*/
 

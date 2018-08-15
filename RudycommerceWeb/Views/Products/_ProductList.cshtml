@@ -39,11 +39,11 @@
 
                         if ((bool)product.Bool1Value)
                         {
-                            <img class="bool-value" src="~/Images/64_GreenCheck.png" />
+                            <img alt="@Resources.ImgAltTexts.TrueIcon" class="bool-value" src="~/Images/64_GreenCheck.png" />
                         }
                         else
                         {
-                            <img class="bool-value" src="~/Images/64_RedCross.png" />
+                            <img alt="@Resources.ImgAltTexts.FalseIcon" class="bool-value" src="~/Images/64_RedCross.png" />
                         }
                     }
                 </li>
@@ -60,11 +60,11 @@
 
                         if ((bool)product.Bool2Value)
                         {
-                            <img class="bool-value" src="~/Images/64_GreenCheck.png" />
+                            <img alt="@Resources.ImgAltTexts.TrueIcon" class="bool-value" src="~/Images/64_GreenCheck.png" />
                         }
                         else
                         {
-                            <img class="bool-value" src="~/Images/64_RedCross.png" />
+                            <img alt="@Resources.ImgAltTexts.FalseIcon" class="bool-value" src="~/Images/64_RedCross.png" />
                         }
                     }
                 </li>
@@ -79,7 +79,7 @@
 
                     <div class="call-to-action col-5">
                         <button class="add-to-cart" type="button" onclick="cart.addToCart(event, @product.ProductID, '@product.Name', '@product.UnitPrice'); return false;">
-                            <img src="~/Images/64_AddToCartBlue.png" />
+                            <img alt="@String.Format(Resources.ImgAltTexts.AddProductToCart, product.Name)" src="~/Images/64_AddToCartBlue.png" />
                         </button>
                     </div>
 
