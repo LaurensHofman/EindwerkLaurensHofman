@@ -33,7 +33,7 @@ namespace RudycommerceWeb.Attributes
 
         private void RedirectToOtherPage(ActionExecutingContext filterContext)
         {
-            var controller = (RedirectableFromFiltersController)filterContext.Controller;
+            var controller = (CustomBaseController)filterContext.Controller;
             controller.ViewBag.ClientEmpty = true;
             filterContext.Result = controller.RedirectToAction("PersonalInfoChoice", "Clients");
         }

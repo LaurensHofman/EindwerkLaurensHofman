@@ -2,6 +2,7 @@
 using RudycommerceData.Models.ASPModels;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
+using RudycommerceLib.CustomAttributes;
 using RudycommerceWeb.Attributes;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ using System.Web.Mvc;
 
 namespace RudycommerceWeb.Controllers
 {
-    public class ProductsController : MultilingualBaseController
+    public class ProductsController : Base.MultilingualBaseController
     {
         private IProductRepository _prodRepo;
         private ICategoryRepository _catRepo;
@@ -62,16 +63,57 @@ namespace RudycommerceWeb.Controllers
 
             return View("SearchResultPage");
         }
-
-        public ActionResult CategoryPage(int id)
+        
+        [HttpGet]
+        public ActionResult CategoryPage(int id, Filters filter = null)
         {
-            List<ProductListItem> products = _prodRepo.GetProductListItems(GetISO(), "category", id.ToString());
+            List<ProductListItem> products = _prodRepo.GetFilteredCategoryItems(GetISO(), filter, id);
 
             ViewBag.Products = products;
             ViewBag.Title = _catRepo.GetLocalizedCatListItems(GetISO()).First(x => x.CategoryID == id).LocalizedPluralName;
+            ViewBag.CategoryID = id;
 
-            return View("CategoryPage");
+            var filters = _prodRepo.GetFilters(GetISO(), id);
+
+            ViewBag.CategoryID = filters.CategoryID;
+            filters.FilterOptions = filters.FilterOptions.OrderBy(x => x.DisplayOrder).ToList();
+
+            foreach (var item in filters.FilterOptions)
+            {
+                item.FilterValues = item.FilterValues.OrderBy(x => x.Value).ThenByDescending(x => x.BoolValue).ToList();
+            }
+
+            return View("CategoryPage", filters);
         }
+
+        [HttpPost]
+        public ActionResult CategoryPage(Filters filters)
+        {
+            List<ProductListItem> products = _prodRepo.GetFilteredCategoryItems(GetISO(), filters, filters.CategoryID);
+
+            ViewBag.Products = products;
+            ViewBag.Title = _catRepo.GetLocalizedCatListItems(GetISO()).First(x => x.CategoryID == filters.CategoryID).LocalizedPluralName;
+            ViewBag.CategoryID = filters.CategoryID;
+
+            return View(filters);
+        }
+
+        //[HttpGet]
+        //public ActionResult _FilterOptions(int id)
+        //{
+        //    var filters = _prodRepo.GetFilters(GetISO(), id);
+
+        //    ViewBag.CategoryID = filters.CategoryID;
+        //    filters.FilterOptions = filters.FilterOptions.OrderBy(x => x.DisplayOrder).ToList();
+
+        //    return View(filters);
+        //}
+
+        //[HttpPost]
+        //public ActionResult _FilterOptions(Filters filters)
+        //{
+        //    return RedirectToAction("CategoryPage", "Products", new { id = filters.CategoryID, filter = filters });
+        //}
 
         public ActionResult Details(int ID)
         {
@@ -89,8 +131,9 @@ namespace RudycommerceWeb.Controllers
         }
 
         [HttpGet]
+        [DontSavePageInCache]
         [CheckoutActionFilter]
-        [IsCartFilledActionFilter]
+        //[IsCartFilledActionFilter]
         public ActionResult CartOverview()
         {
             try
@@ -103,7 +146,7 @@ namespace RudycommerceWeb.Controllers
                 {
                     return View("CartOverview");
                 }
-            } 
+            }
             catch (Exception)
             {
                 // TODO ErrorPage or smth else (as well in the else{} above)
@@ -119,7 +162,7 @@ namespace RudycommerceWeb.Controllers
 
             return RedirectToAction("PersonalInfoChoice", "Clients");
         }
-        
+
         public PartialViewResult _CheckoutCartList()
         {
             return PartialView("_CheckoutCartList", GetCartItemsFromCookie());

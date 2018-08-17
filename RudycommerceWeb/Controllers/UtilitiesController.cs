@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace RudycommerceWeb.Controllers
 {
-    public class UtilitiesController : Controller
+    public class UtilitiesController : Base.CustomBaseController
     {
         public ActionResult TermsAndConditions(bool popup = false)
         {

@@ -127,4 +127,8 @@
     <system:String x:Key="Active?">Actief?</system:String>
     <system:String x:Key="Price">Prijs</system:String>
 
+
+    <system:String x:Key="IsSpecNumber">Heeft de specificatie een numerieke waarde?</system:String>
+    <system:String x:Key="IsSpecNumberShort">Numerieke waarde?</system:String>
+
 </ResourceDictionary>

@@ -131,6 +131,9 @@
   <data name="BestSellers" xml:space="preserve">
     <value>Our best sellers</value>
   </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Brand</value>
+  </data>
   <data name="CartIsEmpty" xml:space="preserve">
     <value>Cart is empty</value>
   </data>
@@ -186,8 +189,14 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   <data name="NewestProducts" xml:space="preserve">
     <value>Our newest products</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
   <data name="NoProductsFound" xml:space="preserve">
     <value>There were no products found :(</value>
+  </data>
+  <data name="NoProductsFoundFilter" xml:space="preserve">
+    <value>There were no products found who match the chose filters.</value>
   </data>
   <data name="NotYetImplemented" xml:space="preserve">
     <value>Not yet implemented</value>
@@ -228,6 +237,9 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   </data>
   <data name="TotalPrice" xml:space="preserve">
     <value>Total price</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
   </data>
   <data name="YourSearchQuery" xml:space="preserve">
     <value>Your search query: "{0}"</value>

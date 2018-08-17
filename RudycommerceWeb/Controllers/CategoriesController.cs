@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace RudycommerceWeb.Controllers
 {
-    public class CategoriesController : MultilingualBaseController
+    public class CategoriesController : Base.MultilingualBaseController
     {
         private ICategoryRepository _catRepo;
 

@@ -16,6 +16,8 @@ namespace RudycommerceData.Entities.Products.Specifications
 
         public bool IsEnumeration { get; set; }
 
+        //public bool IsNumber { get; set; }
+
         public virtual ICollection<SpecificationEnum> Enumerations { get; set; }
         public virtual ICollection<LocalizedSpecification> LocalizedSpecifications { get; set; }
         public ICollection<CategorySpecification> CategorySpecifications { get; set; }

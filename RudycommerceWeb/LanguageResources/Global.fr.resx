@@ -131,6 +131,9 @@
   <data name="BestSellers" xml:space="preserve">
     <value>Nos meilleures ventes</value>
   </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Merk in frans</value>
+  </data>
   <data name="CartIsEmpty" xml:space="preserve">
     <value>Chariot est vide</value>
   </data>
@@ -185,8 +188,14 @@ Au Benelux, si votre commande dépasse € 50,00; alors nous livrons gratuitemen
   <data name="NewestProducts" xml:space="preserve">
     <value>Nos produits nouveaux</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Non</value>
+  </data>
   <data name="NoProductsFound" xml:space="preserve">
     <value>On n'a rien trouvé :((</value>
+  </data>
+  <data name="NoProductsFoundFilter" xml:space="preserve">
+    <value>There were no products found who match the chose filters. FRENCH</value>
   </data>
   <data name="NotYetImplemented" xml:space="preserve">
     <value>Pas déjà implémenté</value>
@@ -227,6 +236,9 @@ Au Benelux, si votre commande dépasse € 50,00; alors nous livrons gratuitemen
   </data>
   <data name="TotalPrice" xml:space="preserve">
     <value>Prix total</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Oui</value>
   </data>
   <data name="YourSearchQuery" xml:space="preserve">
     <value>Votre requête de recherche: "{0}"</value>

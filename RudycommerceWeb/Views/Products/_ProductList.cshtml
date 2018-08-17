@@ -5,9 +5,18 @@
     Layout = null;
 }
 
-
-@foreach (var product in Model)
+@if (Model.Count <= 0)
 {
+    <div class="col-12 font-size-2 content-horizontal-center">
+        @Resources.Global.NoProductsFoundFilter
+    </div>
+}
+else
+{
+
+
+    foreach (var product in Model)
+    {
     <div class="col-12 col-sm-6 col-md-6 col-lg-4">
 
         <div class="card product-card">
@@ -23,7 +32,7 @@
                 <li class="list-group-item name-li">
                     <h4 class="card-text product-name">
                         @Html.ActionLink(product.Name, "Details",
-                                 new { ID = product.ProductID })
+                      new { ID = product.ProductID })
                     </h4>
                 </li>
                 <li class="list-group-item">
@@ -88,7 +97,7 @@
         </div>
 
     </div>
+    }
 }
-
 
 

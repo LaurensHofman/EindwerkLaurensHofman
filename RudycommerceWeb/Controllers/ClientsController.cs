@@ -13,7 +13,7 @@ using RudycommerceWeb.Attributes;
 namespace RudycommerceWeb.Controllers
 {
     [CheckoutActionFilter]
-    public class ClientsController : Controller
+    public class ClientsController : Base.CustomBaseController
     {
         private IClientRepository _clientRepo; 
 

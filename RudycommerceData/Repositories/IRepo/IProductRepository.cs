@@ -31,5 +31,9 @@ namespace RudycommerceData.Repositories.IRepo
         List<CartOverviewItem> GetCartOverview(string languageISO, string IDString);
 
         Decimal GetTotalPrice(List<int> IDs);
+
+        Filters GetFilters(string languageISO, int categoryID);
+
+        List<ProductListItem> GetFilteredCategoryItems(string languageISO, Filters filters, int catID);
     }
 }

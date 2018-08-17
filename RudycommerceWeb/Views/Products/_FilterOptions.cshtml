@@ -1,0 +1,31 @@
+﻿@{ Layout = null;}
+
+@model RudycommerceData.Models.ASPModels.Filters
+
+@using (Html.BeginForm("CategoryPage", "Products", FormMethod.Post))
+{
+    @Html.Hidden("filters.CategoryID", Model.CategoryID)
+
+    <button class="btn btn-primary">Filter</button>
+    for (int i = 0; i < Model.FilterOptions.Count; i++)
+    {
+        <div><strong>@Model.FilterOptions[i].SpecName</strong></div>
+        
+        @Html.Hidden($"filters.FilterOptions[{i}].SpecID", Model.FilterOptions[i].SpecID)
+        @Html.Hidden($"filters.FilterOptions[{i}].SpecName", Model.FilterOptions[i].SpecName)
+
+        
+        for (int j = 0; j < Model.FilterOptions[i].FilterValues.Count; j++)
+        {
+            <div>
+                @Html.CheckBox($"filters.FilterOptions[{i}].FilterValues[{j}].IsSelected", Model.FilterOptions[i].FilterValues[j].IsSelected)
+                @Html.Hidden($"filters.FilterOptions[{i}].FilterValues[{j}].Value", Model.FilterOptions[i].FilterValues[j].Value)
+                <label>
+                    @Model.FilterOptions[i].FilterValues[j].Value
+                </label>
+            </div>
+        }
+
+    }
+
+}

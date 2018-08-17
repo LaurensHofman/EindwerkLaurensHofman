@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace RudycommerceWeb.Controllers
 {
-    public class LanguagesController : Controller
+    public class LanguagesController : Base.CustomBaseController
     {
         private ILanguageRepository _langRepo;
 

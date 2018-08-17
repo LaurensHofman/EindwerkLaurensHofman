@@ -97,6 +97,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brand.
+        /// </summary>
+        public static string Brand {
+            get {
+                return ResourceManager.GetString("Brand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cart is empty.
         /// </summary>
         public static string CartIsEmpty {
@@ -252,11 +261,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There were no products found :(.
         /// </summary>
         public static string NoProductsFound {
             get {
                 return ResourceManager.GetString("NoProductsFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There were no products found who match the chose filters..
+        /// </summary>
+        public static string NoProductsFoundFilter {
+            get {
+                return ResourceManager.GetString("NoProductsFoundFilter", resourceCulture);
             }
         }
         
@@ -374,6 +401,15 @@ namespace Resources {
         public static string TotalPrice {
             get {
                 return ResourceManager.GetString("TotalPrice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
         

@@ -73,7 +73,9 @@
                             </Style>
                         </Label.Style>-->
                     </Label>
-                </StackPanel>
+
+                       
+                    </StackPanel>
                 <StackPanel Grid.Column="1">
                         <CheckBox x:Name="cbIsBool" Checked="BoolChecked" Unchecked="BoolChecked"
                               Style="{StaticResource FormInputCheckBox}"/>
@@ -105,7 +107,11 @@
                             </Style>
                         </CheckBox.Style>-->
                     </CheckBox>
-                </StackPanel>
+
+                        <!--<CheckBox x:Name="cbIsNumber" Checked="NumberChecked"  Unchecked="NumberChecked"
+                                  Style="{StaticResource FormInputCheckBox}">
+                        </CheckBox>-->
+                    </StackPanel>
             </Grid>
             
             <WrapPanel HorizontalAlignment="Center">

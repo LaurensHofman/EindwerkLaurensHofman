@@ -118,6 +118,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
             cbIsEnum.IsChecked = SpecModel.IsEnumeration;
 
+            //cbIsNumber.IsChecked = SpecModel.IsNumber;
+
             if (_updatingPage)
             {
                 firstUpdateLoad = false;
@@ -450,7 +452,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
                 lblIsMultilingual.Visibility = Visibility.Visible;
             }
         }
-
+        
         #region Generating DataGrid for Enumerations
 
         public ObservableCollection<SpecificationEnum> SpecificationEnumList { get; set; }
@@ -565,5 +567,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
         }
 
         #endregion
+
+        
     }
 }

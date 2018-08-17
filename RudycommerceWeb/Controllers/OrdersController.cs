@@ -16,10 +16,11 @@ using System.Data;
 using System.Web.Security;
 using RudycommerceData.Entities.Orders;
 using RudycommerceWeb.Attributes;
+using RudycommerceLib.CustomAttributes;
 
 namespace RudycommerceWeb.Controllers
 {
-    public class OrdersController : MultilingualBaseController
+    public class OrdersController : Base.MultilingualBaseController
     {
         private IClientRepository _clientRepo;
         private IProductRepository _prodRepo;
@@ -94,6 +95,7 @@ namespace RudycommerceWeb.Controllers
         }
 
         [HttpGet]
+        [DontSavePageInCache]
         [CheckoutActionFilter]
         [IsDeliveryOptionFilledActionFilter]
         public ActionResult Payment()
@@ -106,8 +108,6 @@ namespace RudycommerceWeb.Controllers
 
             var stripePublishKey = ConfigurationManager.AppSettings["stripePublishableKey"];
             ViewBag.StripePublishKey = stripePublishKey;
-
-            Response.AppendHeader("Cache-Control", "no-store");
 
             return View();
         }

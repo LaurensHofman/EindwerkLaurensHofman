@@ -131,6 +131,9 @@
   <data name="BestSellers" xml:space="preserve">
     <value>Onze best verkopende producten</value>
   </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Merk</value>
+  </data>
   <data name="CartIsEmpty" xml:space="preserve">
     <value>Winkelkar is leeg</value>
   </data>
@@ -185,8 +188,14 @@
   <data name="NewestProducts" xml:space="preserve">
     <value>Onze nieuwste producten</value>
   </data>
+  <data name="No" xml:space="preserve">
+    <value>Nee</value>
+  </data>
   <data name="NoProductsFound" xml:space="preserve">
     <value>Er werden geen producten gevonden :(</value>
+  </data>
+  <data name="NoProductsFoundFilter" xml:space="preserve">
+    <value>Er zijn geen producten gevonden die voldoen aan de gekozen filters.</value>
   </data>
   <data name="NotYetImplemented" xml:space="preserve">
     <value>Nog niet geïmplementeerd</value>
@@ -227,6 +236,9 @@
   </data>
   <data name="TotalPrice" xml:space="preserve">
     <value>Totale prijs</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
   </data>
   <data name="YourSearchQuery" xml:space="preserve">
     <value>Uw zoekopdracht: "{0}"</value>

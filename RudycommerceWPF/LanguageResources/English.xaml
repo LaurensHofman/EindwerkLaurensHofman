@@ -124,4 +124,8 @@
 
     <system:String x:Key="Active?">Active?</system:String>
     <system:String x:Key="Price">Price</system:String>
+
+
+    <system:String x:Key="IsSpecNumber">Does the specification have a numerical value?</system:String>
+    <system:String x:Key="IsSpecNumberShort">Numerical value?</system:String>
 </ResourceDictionary>

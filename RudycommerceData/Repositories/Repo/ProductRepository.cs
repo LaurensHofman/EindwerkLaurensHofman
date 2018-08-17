@@ -1,4 +1,5 @@
 ﻿using RudycommerceData.Entities.Products.Products;
+using RudycommerceData.EqualityComparer;
 using RudycommerceData.Models;
 using RudycommerceData.Models.ASPModels;
 using RudycommerceData.Models.ASPModels.ProductDetailsPageSubItems;
@@ -93,7 +94,101 @@ namespace RudycommerceData.Repositories.Repo
 
             Update(prod);
         }
-        
+
+        public Filters GetFilters(string languageISO, int categoryID)
+        {
+            SqlParameter langISO = new SqlParameter("@langISO", languageISO);
+            SqlParameter catID = new SqlParameter("@catID", categoryID);
+
+            List<FilterOptionSQL> filterOptionsSQL = _context.Database.SqlQuery<FilterOptionSQL>
+                ("exec dbo.sprocGetFilterOptions @langISO, @catID", langISO, catID).ToList();
+
+            Filters filters = new Filters() { CategoryID = categoryID };
+
+            foreach (var item in filterOptionsSQL)
+            {
+                var spec = filters.FilterOptions.FirstOrDefault(x => x.SpecID == item.SpecID);
+
+                if (spec == null)
+                {
+                    filters.FilterOptions.Add(new FilterOption()
+                    {
+                        DisplayOrder = item.DisplayOrder,
+                        SpecID = item.SpecID,
+                        IsBool = item.IsBool,
+                        IsEnum = item.IsEnum,
+                        SpecName = item.SpecName,
+                        FilterValues = new List<FilterValue>()
+                        {
+                            new FilterValue
+                            {
+                                BoolValue = item.BoolValue,
+                                EnumID = item.EnumID,
+                                Value = item.Value
+                            }
+                        }
+                    });
+                }
+                else
+                {
+                    spec.FilterValues.Add(
+                        new FilterValue
+                        {
+                            BoolValue = item.BoolValue,
+                            EnumID = item.EnumID,
+                            Value = item.Value
+                        }
+                    );
+                }
+            }
+
+            // As a starter, I'm not gonna work with numerical values
+            foreach (var item in filters.FilterOptions)
+            {
+                item.FilterValues.RemoveAll(x => x.StringValueIsNumber);
+            }
+
+            foreach (var item in filters.FilterOptions)
+            {
+                item.FilterValues = item.FilterValues.Distinct(new FilterValueComparer()).ToList();
+            }
+
+            filters.FilterOptions.RemoveAll(x => x.FilterValues.Count <= 1);
+
+            return filters;
+        }
+
+        public List<ProductListItem> GetFilteredCategoryItems(string languageISO, Filters filt, int catID)
+        {
+            SqlParameter langISO = new SqlParameter("@langISO", languageISO);
+            SqlParameter categoryID = new SqlParameter("@categoryID", catID);
+
+            string xmlFilters = "";
+
+            foreach (var filterOption in filt.FilterOptions)
+            {
+                if (!filterOption.FilterValues.All(x => x.IsSelected == false))
+                {
+                    foreach (var filterValue in filterOption.FilterValues.Where(x => x.IsSelected == false))
+                    {
+                        if (filterOption.IsBool == true)
+                        {
+                            string filtbool = (bool)filterValue.BoolValue ? "1" : "0";
+                            xmlFilters += $"<filter id = \"{filterOption.SpecID}\"><val>{filtbool}</val></filter>";
+                        }
+                        else
+                        {
+                            xmlFilters += $"<filter id = \"{filterOption.SpecID}\"><val>{filterValue.Value}</val></filter>";
+                        }                        
+                    }
+                }                            
+            }
+
+            SqlParameter filters = new SqlParameter("@filters", xmlFilters);
+
+            return _context.Database.SqlQuery<ProductListItem>("exec dbo.sprocGetFilteredCategoryItems @langISO, @categoryID, @filters", langISO, categoryID, filters).ToList();
+        }
+
         public List<CartOverviewItem> GetCartOverview(string languageISO, List<int> IDs)
         {
             string IDString = string.Join(",", IDs);
@@ -145,7 +240,7 @@ namespace RudycommerceData.Repositories.Repo
         public Decimal GetTotalPrice(string IDs)
         {
             SqlParameter idstring = new SqlParameter("@idstring", IDs);
-            
+
             return _context.Database.SqlQuery<Decimal>("exec dbo.sprocGetTotalPrice @idstring", idstring).First();
         }
 

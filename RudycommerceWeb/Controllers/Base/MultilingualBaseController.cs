@@ -8,9 +8,9 @@ using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
-namespace RudycommerceWeb.Controllers
+namespace RudycommerceWeb.Controllers.Base
 {
-    public abstract class MultilingualBaseController : RedirectableFromFiltersController
+    public abstract class MultilingualBaseController : CustomBaseController
     {
         private ILanguageRepository _langRepo;
 

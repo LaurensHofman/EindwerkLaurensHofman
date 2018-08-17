@@ -31,10 +31,10 @@ namespace RudycommerceWeb.Attributes
 
         private void RedirectToOtherPage(ActionExecutingContext filterContext)
         {
-            var controller = (RedirectableFromFiltersController)filterContext.Controller;
+            var controller = (CustomBaseController)filterContext.Controller;
             controller.ViewBag.CartEmpty = true;
             // TODO Redirect to something else than index page (same for other action filters)
-            filterContext.Result = controller.RedirectToAction("Index", "Products");
+            filterContext.Result = controller.RedirectToAction("CartOverview", "Products");
         }
     }
 }

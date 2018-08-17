@@ -80,6 +80,7 @@
     <Compile Include="Entities\Products\Specifications\LocalizedSpecification.cs" />
     <Compile Include="Entities\Products\Specifications\Specification.cs" />
     <Compile Include="Entities\Products\Specifications\SpecificationEnum.cs" />
+    <Compile Include="EqualityComparer\FilterValueComparer.cs" />
     <Compile Include="Mapping\EntitiesMapping.cs" />
     <Compile Include="Migrations\201806271849094_initTest1ToMany.cs" />
     <Compile Include="Migrations\201806271849094_initTest1ToMany.Designer.cs">
@@ -217,11 +218,16 @@
     <Compile Include="Migrations\201808131216046_whatchanged1.Designer.cs">
       <DependentUpon>201808131216046_whatchanged1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808171432573_notnumberspec.cs" />
+    <Compile Include="Migrations\201808171432573_notnumberspec.Designer.cs">
+      <DependentUpon>201808171432573_notnumberspec.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ASPModels\Delivery.cs" />
     <Compile Include="Models\ASPModels\CartFromJSON.cs" />
     <Compile Include="Models\ASPModels\CartItem.cs" />
     <Compile Include="Models\ASPModels\CartOverviewItem.cs" />
+    <Compile Include="Models\ASPModels\FilterOption.cs" />
     <Compile Include="Models\ASPModels\ProductDetailsPageItem.cs" />
     <Compile Include="Models\ASPModels\ProductDetailsPageSubItems\ProdDetImage.cs" />
     <Compile Include="Models\ASPModels\ProductDetailsPageSubItems\ProdDetProductInfo.cs" />
@@ -394,6 +400,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808131216046_whatchanged1.resx">
       <DependentUpon>201808131216046_whatchanged1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808171432573_notnumberspec.resx">
+      <DependentUpon>201808171432573_notnumberspec.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Validation\Client.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
