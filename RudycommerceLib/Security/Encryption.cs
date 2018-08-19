@@ -36,5 +36,33 @@ namespace RudycommerceLib.Security
 
             return encryptedPassword;
         }
+
+        public static string EncryptString(string toBeEncrypted)
+        {
+            // https://stackoverflow.com/questions/9031537/really-simple-encryption-with-c-sharp-and-symmetricalgorithm
+
+            SymmetricAlgorithm algorithm = DES.Create();
+            ICryptoTransform transform = algorithm.CreateEncryptor(key, iv);
+            byte[] inputbuffer = Encoding.Unicode.GetBytes(toBeEncrypted);
+            byte[] outputBuffer = transform.TransformFinalBlock(inputbuffer, 0, inputbuffer.Length);
+            return Convert.ToBase64String(outputBuffer);
+        }
+
+        private static byte[] key = new byte[8] { 27, 19, 120, 244, 31, 118, 68, 127 };
+        private static byte[] iv = new byte[8] { 206, 50, 119, 83, 120, 100, 189, 9 };
+
+        public static string EncryptString(object toBeEncrypted)
+        {
+            return EncryptString(toBeEncrypted.ToString());
+        }
+
+        public static string DecryptString(string toBeDecrypted)
+        {
+            SymmetricAlgorithm algorithm = DES.Create();
+            ICryptoTransform transform = algorithm.CreateDecryptor(key, iv);
+            byte[] inputbuffer = Convert.FromBase64String(toBeDecrypted);
+            byte[] outputBuffer = transform.TransformFinalBlock(inputbuffer, 0, inputbuffer.Length);
+            return Encoding.Unicode.GetString(outputBuffer);
+        }
     }
 }

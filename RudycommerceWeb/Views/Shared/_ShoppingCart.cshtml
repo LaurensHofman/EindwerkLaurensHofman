@@ -10,28 +10,34 @@
 
 @using (Html.BeginForm("Cart", "Products", FormMethod.Post))
 {
-    <div id="cart-dropdown" class="dropdown-menu dropdown-menu-right" role="menu">
-        <div class="container">
-            <div id="cartrow" class="row">
-                <ul id="cart-products" class="collapse col-12"></ul>
-                <div id="cart-total-price" class="collapse col-12">
-                    <div class="row">
-                        <div class="col-8 text-right">
-                            @Resources.Global.TotalPrice:
-                        </div>
-                        <div class="col-4 text-center">
-                            € <span id="totalprice">dummy price</span>
-                        </div>
-                        <div class="col-12" id="cart-buttons">
-                            <button class="btn btn-link" type="submit"> @Resources.Global.ManageCart </button>
-                            <button class="btn btn-secondary" type="submit">@Resources.Global.Checkout</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="collapse" id="empty-cart">
-                    @Resources.Global.CartIsEmpty 🙁
-                </div>
+<div id="cart-dropdown" class="dropdown-menu dropdown-menu-right p-bot-0" role="menu">
+    <div class="container">
+        <div id="cartrow" class="row">
+            <ul id="cart-products" class="collapse col-12"></ul>
+            
+            <div class="collapse" id="empty-cart">
+                @Resources.Global.CartIsEmpty 🙁
             </div>
         </div>
     </div>
+    <div class="p-bot-0-5 sticky-bot bg-white">
+        <div id="cart-total-price" class="p-top-0 collapse col-12">
+        <hr class="m-0" />
+            <div class="row">
+                <div class="col-8 text-right">
+                    @Resources.Global.TotalPrice:
+                </div>
+                <div class="col-4 text-center">
+                    € <span id="totalprice">dummy price</span>
+                </div>
+
+                <div class="col-12" id="cart-buttons">
+                    <button class="btn btn-link" type="submit"> @Resources.Global.ManageCart </button>
+                    <button class="btn btn-secondary" type="submit">@Resources.Global.Checkout</button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>
 }

@@ -34,7 +34,7 @@
                         <div id="@idRow" class="cart-overview-row">
                             <div class="row">
                                 <div class="col-12 col-sm-6 col-md-3 imgdiv content-center">
-                                    <a href="@Url.Action("Details", new { ID = prod.ProductID })" class="h-100">
+                                    <a href="@Url.Action("Details", new { ID = prod.ProductID })" class="h-100 content-center">
                                         <img @*alt="@prod.ProductName"*@ class="responsive-image" src="@prod.ImageURL" />
                                     </a>
                                 </div>
@@ -107,8 +107,8 @@
                 </div>
             }
             <div id="product-overview-empty" class="@hidden">
-                <div class="content-horizontal-center">NO-ML Your cart is empty at the moment, let's fill it back up.</div>
-                <div class="content-vertcen-right"><button type="button" onclick="location.href='@Url.Action("Index", "Products")'" class="btn btn-secondary">NO-ML Back to homepage</button></div>
+                <div class="content-horizontal-center">@Resources.Checkout.CartEmptyLetsFillIt</div>
+                <div class="content-vertcen-right"><button type="button" onclick="location.href='@Url.Action("Index", "Products")'" class="btn btn-secondary">@Resources.Checkout.CartEmptyBackToHomepage</button></div>
             </div>
         </div>
     }

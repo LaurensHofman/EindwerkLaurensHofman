@@ -142,29 +142,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear all filters.
+        /// </summary>
+        public static string ClearAllFilters {
+            get {
+                return ResourceManager.GetString("ClearAllFilters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Got it!.
+        /// </summary>
+        public static string CookieConsentDismissButton {
+            get {
+                return ResourceManager.GetString("CookieConsentDismissButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Learn more.
+        /// </summary>
+        public static string CookieConsentLinkText {
+            get {
+                return ResourceManager.GetString("CookieConsentLinkText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This website uses cookies to ensure you get the best experience on our website..
+        /// </summary>
+        public static string CookieConsentMessage {
+            get {
+                return ResourceManager.GetString("CookieConsentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customer service.
         /// </summary>
         public static string CustomerService {
             get {
                 return ResourceManager.GetString("CustomerService", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Countries where we deliver.
-        /// </summary>
-        public static string DeliverCountries {
-            get {
-                return ResourceManager.GetString("DeliverCountries", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We deliver our products to the Benelux (Belgium, the Netherlands and Luxembourg) and France..
-        /// </summary>
-        public static string DeliverCountriesDescription {
-            get {
-                return ResourceManager.GetString("DeliverCountriesDescription", resourceCulture);
             }
         }
         
@@ -207,6 +225,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string Filter {
+            get {
+                return ResourceManager.GetString("Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filters.
+        /// </summary>
+        public static string Filters {
+            get {
+                return ResourceManager.GetString("Filters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guaranteed delivered at your home, within 2 days..
         /// </summary>
         public static string GaranteedDelivery2Days {
@@ -234,11 +270,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Welcome to .
+        ///   Looks up a localized string similar to Welcome to {0}.
         /// </summary>
         public static string JumboWelcomeTo {
             get {
                 return ResourceManager.GetString("JumboWelcomeTo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The combination of email and password is incorrect..
+        /// </summary>
+        public static string LoginFailedCredentials {
+            get {
+                return ResourceManager.GetString("LoginFailedCredentials", resourceCulture);
             }
         }
         
@@ -270,20 +315,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There were no products found :(.
-        /// </summary>
-        public static string NoProductsFound {
-            get {
-                return ResourceManager.GetString("NoProductsFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to There were no products found who match the chose filters..
+        ///   Looks up a localized string similar to There were no products found that match the chosen filters..
         /// </summary>
         public static string NoProductsFoundFilter {
             get {
                 return ResourceManager.GetString("NoProductsFoundFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No products were found that matched the search query. Please try another search query..
+        /// </summary>
+        public static string NoProductsFoundSearch {
+            get {
+                return ResourceManager.GetString("NoProductsFoundSearch", resourceCulture);
             }
         }
         
@@ -302,6 +347,33 @@ namespace Resources {
         public static string OurCategories {
             get {
                 return ResourceManager.GetString("OurCategories", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our delivery service.
+        /// </summary>
+        public static string OurDeliveryService {
+            get {
+                return ResourceManager.GetString("OurDeliveryService", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guaranteed delivery within 2 days, wherever you want in the Benelux (Belgium, The Netherlands and Luxembourg) and France..
+        /// </summary>
+        public static string OurDeliveryServiceDescription {
+            get {
+                return ResourceManager.GetString("OurDeliveryServiceDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Our delivery services.
+        /// </summary>
+        public static string OurDeliveryServiceLink {
+            get {
+                return ResourceManager.GetString("OurDeliveryServiceLink", resourceCulture);
             }
         }
         
@@ -356,6 +428,24 @@ namespace Resources {
         public static string ShoppingCart {
             get {
                 return ResourceManager.GetString("ShoppingCart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sort.
+        /// </summary>
+        public static string Sort {
+            get {
+                return ResourceManager.GetString("Sort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorting options.
+        /// </summary>
+        public static string SortingOptions {
+            get {
+                return ResourceManager.GetString("SortingOptions", resourceCulture);
             }
         }
         

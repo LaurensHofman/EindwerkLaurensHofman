@@ -13,7 +13,32 @@
 
     @RenderSection("Styles", false)
     <script src="~/Scripts/modernizr-2.8.3.js"></script>
-    
+
+    @*https://cookieconsent.insites.com/download/#*@
+    <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+    <script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+    <script>
+        window.addEventListener("load", function () {
+            window.cookieconsent.initialise({
+                "palette": {
+                    "popup": {
+                        "background": "#3c404d",
+                        "text": "#d6d6d6"
+                    },
+                    "button": {
+                        "background": "#8bed4f"
+                    }
+                },
+                "theme": "classic",
+                "content": {
+                    "message": "@Resources.Global.CookieConsentMessage",
+                    "dismiss": "@Resources.Global.CookieConsentDismissButton",
+                    "link": "@Resources.Global.CookieConsentLinkText",
+                    "href": "@Url.Action("PrivacyPolicy", "Utilities", null)"
+                }
+            })
+        });
+    </script>
 </head>
 <body>
 
@@ -26,12 +51,13 @@
         {
             <div class="jumbotron jumbotron-fluid jumbo">
                 <div class="container" id="jumboCollapse">
-                    <h1 class="display-4 site-welcome">@Resources.Global.JumboWelcomeTo<span class="font-italic font-weight-bold">Rudycommerce</span></h1>
+                    <h1 class="display-4 site-welcome">
+                        @Html.Raw(String.Format(Resources.Global.JumboWelcomeTo, "<span class=\"font-italic font-weight-bold\">Rudycommerce</span>"))</h1>
                     <p class="lead">@Resources.Global.Tagline</p>
                     <p>
                         <a class="btn btn-secondary collapse-button" data-toggle="collapse" href="#collapseCountries" role="button" aria-expanded="false"
                            aria-controls="collapseCountries">
-                            @Resources.Global.DeliverCountries
+                            @Resources.Global.OurDeliveryService
                         </a>
                         <a class="btn btn-secondary collapse-button" data-toggle="collapse" href="#collapseDelivery" role="button" aria-expanded="false"
                            aria-controls="collapseDelivery">
@@ -42,7 +68,9 @@
                     <div class="collapse" id="collapseCountries" data-parent="#jumboCollapse">
                         <div class="card card-body collapse-content">
                             <div class="container">
-                                @Resources.Global.DeliverCountriesDescription
+                                @Resources.Global.OurDeliveryServiceDescription
+                                <br/>
+                                <a href="@Url.Action("OurDeliveryService", "Utilities", null)">@Resources.Global.OurDeliveryServiceLink</a>
                             </div>
                         </div>
                     </div>
@@ -51,7 +79,7 @@
                         <div class="card card-body collapse-content">
                             <div class="container">
                                 @Html.Raw(Resources.Global.DeliveryPricesDescription.Replace(Environment.NewLine, "<br/>"))
-                                <a href="@Url.Action("Index", "Products", null)">@Resources.Global.DeliveryPricesLink</a>
+                                <a href="@Url.Action("DeliverPrices", "Utilities", null)">@Resources.Global.DeliveryPricesLink</a>
                             </div>
                         </div>
                     </div>

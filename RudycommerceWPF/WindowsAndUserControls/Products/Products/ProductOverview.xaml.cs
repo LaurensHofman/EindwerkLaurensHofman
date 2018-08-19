@@ -149,19 +149,19 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             }
         }
 
-        private async void ToggleProductActive(object sender, RoutedEventArgs e)
-        {
-            // gets the item, changes the IsActive and saves it
+        //private async void ToggleProductActive(object sender, RoutedEventArgs e)
+        //{
+        //    // gets the item, changes the IsActive and saves it
 
-            ProductOverviewItem item = (ProductOverviewItem)((FrameworkElement)sender).DataContext;
+        //    ProductOverviewItem item = (ProductOverviewItem)((FrameworkElement)sender).DataContext;
 
-            _prodRepo.ToggleProductActive(item.ID);
-            await _prodRepo.SaveChangesAsync();
+        //    _prodRepo.ToggleProductActive(item.ID);
+        //    await _prodRepo.SaveChangesAsync();
 
-            item.IsActive = !item.IsActive;
+        //    item.IsActive = !item.IsActive;
 
-            BindData();
-        }
+        //    BindData();
+        //}
 
         /// <summary>
         /// Opens a small window to prompt for the added stock value

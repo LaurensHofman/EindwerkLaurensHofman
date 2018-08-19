@@ -27,6 +27,18 @@ namespace RudycommerceWeb.Attributes
                     {
                         RedirectToOtherPage(filterContext);
                     }
+                    else
+                    {
+                        try
+                        {
+                            int clientID = int.Parse(RudycommerceLib.Security.Encryption.DecryptString(cookie.Value));
+                        }
+                        catch (Exception e)
+                        {
+                            filterContext.HttpContext.Response.Cookies[ConstVal.cookieClientIDName].Expires = DateTime.Now.AddDays(-1);
+                            RedirectToOtherPage(filterContext);
+                        }
+                    }
                 }
             }
         }

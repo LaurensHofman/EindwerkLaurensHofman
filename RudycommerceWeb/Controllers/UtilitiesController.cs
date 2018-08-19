@@ -40,7 +40,7 @@ namespace RudycommerceWeb.Controllers
             return View();
         }
 
-        public ActionResult DeliveryCountries()
+        public ActionResult OurDeliveryService()
         {
             return View();
         }

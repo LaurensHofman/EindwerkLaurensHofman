@@ -133,6 +133,7 @@ var cart = {
 
         if (this.productIsInCart(oldCart, newID)) {
             var index = oldCart.productList.findIndex(p => p.id === newID);
+            oldCart.productList[index].name = newName;
             oldCart.productList[index].quantity += 1;
         }
         else {

@@ -11,5 +11,7 @@ namespace RudycommerceData.Repositories.IRepo
     public interface IClientRepository : IBaseRepository<Client>
     {
         bool EmailTaken(string email);
+
+        Task<Client> FindByEmailAsync(string email);
     }
 }

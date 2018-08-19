@@ -58,6 +58,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Countries.resx</DependentUpon>
     </Compile>
+    <Compile Include="Countries\Countries.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Countries.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Countries\Countries.fr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Countries.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Countries\Countries.nl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Countries.nl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Countries\CountriesDictionary.cs" />
     <Compile Include="Data\RudyDbContext.cs" />
     <Compile Include="Entities\Base\BaseEntity.cs" />
@@ -81,6 +96,26 @@
     <Compile Include="Entities\Products\Specifications\Specification.cs" />
     <Compile Include="Entities\Products\Specifications\SpecificationEnum.cs" />
     <Compile Include="EqualityComparer\FilterValueComparer.cs" />
+    <Compile Include="LangResources\Data.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Data.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LangResources\Data.en.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Data.en.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LangResources\Data.fr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Data.fr.resx</DependentUpon>
+    </Compile>
+    <Compile Include="LangResources\Data.nl.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Data.nl.resx</DependentUpon>
+    </Compile>
     <Compile Include="Mapping\EntitiesMapping.cs" />
     <Compile Include="Migrations\201806271849094_initTest1ToMany.cs" />
     <Compile Include="Migrations\201806271849094_initTest1ToMany.Designer.cs">
@@ -222,17 +257,32 @@
     <Compile Include="Migrations\201808171432573_notnumberspec.Designer.cs">
       <DependentUpon>201808171432573_notnumberspec.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808172020275_imgUrlNotRe.cs" />
+    <Compile Include="Migrations\201808172020275_imgUrlNotRe.Designer.cs">
+      <DependentUpon>201808172020275_imgUrlNotRe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808172040026_imgUrlNotRe1.cs" />
+    <Compile Include="Migrations\201808172040026_imgUrlNotRe1.Designer.cs">
+      <DependentUpon>201808172040026_imgUrlNotRe1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808181439418_removedSellingWell.cs" />
+    <Compile Include="Migrations\201808181439418_removedSellingWell.Designer.cs">
+      <DependentUpon>201808181439418_removedSellingWell.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ASPModels\AddToCartModel.cs" />
     <Compile Include="Models\ASPModels\Delivery.cs" />
     <Compile Include="Models\ASPModels\CartFromJSON.cs" />
     <Compile Include="Models\ASPModels\CartItem.cs" />
     <Compile Include="Models\ASPModels\CartOverviewItem.cs" />
     <Compile Include="Models\ASPModels\FilterOption.cs" />
+    <Compile Include="Models\ASPModels\LoginModel.cs" />
     <Compile Include="Models\ASPModels\ProductDetailsPageItem.cs" />
     <Compile Include="Models\ASPModels\ProductDetailsPageSubItems\ProdDetImage.cs" />
     <Compile Include="Models\ASPModels\ProductDetailsPageSubItems\ProdDetProductInfo.cs" />
     <Compile Include="Models\ASPModels\ProductDetailsPageSubItems\ProdDetSpecInfoAndValue.cs" />
     <Compile Include="Models\ASPModels\ProductListItem.cs" />
+    <Compile Include="Models\ASPModels\SortingDictionary.cs" />
     <Compile Include="Models\CategoryOverviewItem.cs" />
     <Compile Include="Models\DesktopLogin.cs" />
     <Compile Include="Models\ASPModels\LocalizedCatListItem.cs" />
@@ -292,12 +342,41 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Countries\Countries.en.resx" />
-    <EmbeddedResource Include="Countries\Countries.fr.resx" />
-    <EmbeddedResource Include="Countries\Countries.nl.resx" />
+    <EmbeddedResource Include="Countries\Countries.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Countries.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Countries\Countries.fr.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Countries.fr.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Countries\Countries.nl.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Countries.nl.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Countries\Countries.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Countries.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LangResources\Data.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Data.en.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>LangResources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LangResources\Data.fr.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Data.fr.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>LangResources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LangResources\Data.nl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Data.nl.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>LangResources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LangResources\Data.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Data.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>LangResources</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201806271849094_initTest1ToMany.resx">
       <DependentUpon>201806271849094_initTest1ToMany.cs</DependentUpon>
@@ -403,6 +482,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808171432573_notnumberspec.resx">
       <DependentUpon>201808171432573_notnumberspec.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808172020275_imgUrlNotRe.resx">
+      <DependentUpon>201808172020275_imgUrlNotRe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808172040026_imgUrlNotRe1.resx">
+      <DependentUpon>201808172040026_imgUrlNotRe1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808181439418_removedSellingWell.resx">
+      <DependentUpon>201808181439418_removedSellingWell.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Validation\Client.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

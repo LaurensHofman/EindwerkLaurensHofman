@@ -1,4 +1,5 @@
-﻿using RudycommerceWeb.Controllers.Base;
+﻿using RudycommerceData.Models.ASPModels;
+using RudycommerceWeb.Controllers.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,9 +24,18 @@ namespace RudycommerceWeb.Attributes
                 {
                     RedirectToOtherPage(filterContext);
                 }
-
-                // TODO Try to parse cookie value to relevant object,
-                // If failed, clear cookie and redirect to other page
+                else
+                {
+                    try
+                    {
+                        CartFromJSON cart = Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(cookie.Value);
+                    }
+                    catch (Exception)
+                    {
+                        filterContext.HttpContext.Response.Cookies[ConstVal.cookieCartName].Expires = DateTime.Now.AddDays(-1);
+                        RedirectToOtherPage(filterContext);
+                    }
+                }
             }
         }
 
@@ -33,7 +43,6 @@ namespace RudycommerceWeb.Attributes
         {
             var controller = (CustomBaseController)filterContext.Controller;
             controller.ViewBag.CartEmpty = true;
-            // TODO Redirect to something else than index page (same for other action filters)
             filterContext.Result = controller.RedirectToAction("CartOverview", "Products");
         }
     }

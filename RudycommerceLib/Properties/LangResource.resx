@@ -243,4 +243,7 @@
   <data name="ProdFormGeneralTabInvalid" xml:space="preserve">
     <value>De waarden ingevoerd in de tab 'Algemeen' zijn niet allemaal (correct) ingevoerd. Gelieve deze aan te vullen vooraleer verder te gaan.</value>
   </data>
+  <data name="NameInLanguageX" xml:space="preserve">
+    <value>Name in "{0}"</value>
+  </data>
 </root>

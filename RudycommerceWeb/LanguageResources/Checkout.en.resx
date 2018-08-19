@@ -133,7 +133,7 @@
     <value>Continue to payment</value>
   </data>
   <data name="ContinueToPersonalInfoForm" xml:space="preserve">
-    <value>Continue to information screen (change wording)</value>
+    <value>Continue to client form</value>
   </data>
   <data name="Delivery" xml:space="preserve">
     <value>Delivery</value>
@@ -226,5 +226,20 @@
   <data name="OrderFinishedThankYouText" xml:space="preserve">
     <value>Your order has succesfully been sent. Your work here is done, it's up to us now. &lt;br/&gt;&lt;br/&gt; We shall commence by carefully preparing your order, so the courier can pick it up and deliver it to your preferred location. &lt;br/&gt; &lt;br/&gt; Now you can start dreaming about what you are going to accomplish with your new gaming gear, because soon you're going to be the best in every game you'll play. &lt;br/&gt; &lt;br/&gt; Kind regards, &lt;br/&gt; Rudycommerce</value>
     <comment>Use &lt;br/&gt; for formatting</comment>
+  </data>
+  <data name="CartEmptyBackToHomepage" xml:space="preserve">
+    <value>Back to homepage</value>
+  </data>
+  <data name="CartEmptyLetsFillIt" xml:space="preserve">
+    <value>Your cart is empty at the moment, let's fill it back up!</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Forgot password?</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>No account yet? Register</value>
   </data>
 </root>

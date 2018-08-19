@@ -1,0 +1,64 @@
+﻿:root {
+    --arrow-height: 2.8rem;
+    --arrow-indent-width: 3rem;
+    --arrow-colour: rgba(0, 162, 250, 0.6);
+    --arrow-selected-colour: rgba(41, 168, 71, 0.7);
+}
+
+#progress-container .row {
+    width: 100%;
+}
+
+.arrow-prog {
+    margin-bottom: 1rem;
+}
+
+    .arrow-prog .arrow-text {
+        background-color: var(--arrow-colour);
+        height: var(--arrow-height);
+        font-size: 1.3rem;
+        padding-left: calc(var(--arrow-indent-width) + 0.2rem);
+        padding-right: calc(var(--arrow-indent-width) + 0.2rem);
+    }
+
+    .arrow-prog:before {
+        display: flex;
+        position: absolute;
+        height: var(--arrow-height);
+        width: 0;
+        top: -1px;
+        left: 14px;
+        border-top: calc((var(--arrow-height) / 2) + 1px) solid transparent;
+        border-bottom: calc((var(--arrow-height) / 2) + 1px) solid transparent;
+        border-left: var(--arrow-indent-width) solid var(--main-bg-color);
+        content: "";
+    }
+
+    .arrow-prog:after {
+        display: flex;
+        position: absolute;
+        height: var(--arrow-height);
+        width: 0;
+        right: 14px;
+        top: -1px;
+        border-top: calc((var(--arrow-height) / 2) + 1px) solid var(--main-bg-color);
+        border-bottom: calc((var(--arrow-height) / 2) + 1px) solid var(--main-bg-color);
+        border-left: var(--arrow-indent-width) solid transparent;
+        content: "";
+    }
+
+.current-progress {
+    --arrow-colour: var(--arrow-selected-colour);
+    font-weight: bold;
+}
+
+.circle {
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 2rem;
+    margin-right: 1rem;
+}
+
+#checkout-cart-list {
+    margin-bottom: 2rem;
+}

@@ -59,17 +59,17 @@ namespace RudycommerceWeb.Controllers
 
             ViewBag.SearchQuery = searchQuery;
             ViewBag.Title = "\"" + searchQuery + "\"";
-            ViewBag.Products = products;
+            ViewBag.Products = products.OrderBy(x => x.Name).ToList();
 
             return View("SearchResultPage");
         }
         
         [HttpGet]
-        public ActionResult CategoryPage(int id, Filters filter = null)
+        public ActionResult CategoryPage(int id)
         {
-            List<ProductListItem> products = _prodRepo.GetFilteredCategoryItems(GetISO(), filter, id);
+            List<ProductListItem> products = _prodRepo.GetFilteredCategoryItems(GetISO(), null, id);
 
-            ViewBag.Products = products;
+            ViewBag.Products = products.OrderBy(x => x.Name).ToList();
             ViewBag.Title = _catRepo.GetLocalizedCatListItems(GetISO()).First(x => x.CategoryID == id).LocalizedPluralName;
             ViewBag.CategoryID = id;
 
@@ -91,7 +91,36 @@ namespace RudycommerceWeb.Controllers
         {
             List<ProductListItem> products = _prodRepo.GetFilteredCategoryItems(GetISO(), filters, filters.CategoryID);
 
-            ViewBag.Products = products;
+            if (filters != null)
+            {
+                switch (filters.Sort.ToLower())
+                {
+                    case "name-asc":
+                        ViewBag.Products = products.OrderBy(p => p.Name).ToList();
+                        break;
+
+                    case "name-desc":
+                        ViewBag.Products = products.OrderByDescending(p => p.Name).ToList();
+                        break;
+
+                    case "price-asc":
+                        ViewBag.Products = products.OrderBy(p => p.UnitPrice).ToList();
+                        break;
+
+                    case "price-desc":
+                        ViewBag.Products = products.OrderByDescending(p => p.UnitPrice).ToList();
+                        break;
+
+                    default:
+                        ViewBag.Products = products.OrderBy(p => p.Name).ToList();
+                        break;
+                }
+            }
+            else
+            {
+                ViewBag.Products = products.OrderBy(p => p.Name).ToList();
+            }
+
             ViewBag.Title = _catRepo.GetLocalizedCatListItems(GetISO()).First(x => x.CategoryID == filters.CategoryID).LocalizedPluralName;
             ViewBag.CategoryID = filters.CategoryID;
 
@@ -157,9 +186,6 @@ namespace RudycommerceWeb.Controllers
         [HttpPost]
         public ActionResult CartOverview(CartOverviewItem cartOverviewItems)
         {
-            // TODO Validate
-            CartFromJSON cartItems = Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(Request.Cookies[ConstVal.cookieCartName].Value);
-
             return RedirectToAction("PersonalInfoChoice", "Clients");
         }
 

@@ -132,7 +132,7 @@
     <value>Nos meilleures ventes</value>
   </data>
   <data name="Brand" xml:space="preserve">
-    <value>Merk in frans</value>
+    <value>Marque</value>
   </data>
   <data name="CartIsEmpty" xml:space="preserve">
     <value>Chariot est vide</value>
@@ -146,27 +146,40 @@
   <data name="Checkout" xml:space="preserve">
     <value>Check-out</value>
   </data>
+  <data name="ClearAllFilters" xml:space="preserve">
+    <value>Supprimer tous les filtres</value>
+  </data>
+  <data name="CookieConsentDismissButton" xml:space="preserve">
+    <value>J'ai compris!</value>
+  </data>
+  <data name="CookieConsentLinkText" xml:space="preserve">
+    <value>Apprendre encore plus</value>
+  </data>
+  <data name="CookieConsentMessage" xml:space="preserve">
+    <value>Ce site utilise des cookies pour vous garantir la meilleure expérience sur notre site.</value>
+  </data>
   <data name="CustomerService" xml:space="preserve">
     <value>Service Clients</value>
-  </data>
-  <data name="DeliverCountries" xml:space="preserve">
-    <value>Pays où nous livrons</value>
-  </data>
-  <data name="DeliverCountriesDescription" xml:space="preserve">
-    <value>Nous livrons nos produits au Benelux (Belgique, Pays-Bas et Luxembourg) et en France.</value>
   </data>
   <data name="DeliveryPrices" xml:space="preserve">
     <value>Nos prix de livraison</value>
   </data>
   <data name="DeliveryPricesDescription" xml:space="preserve">
     <value>Nos prix de livraison dépendent du pays où nous devons livrer et du prix total de votre commande.
-Au Benelux, si votre commande dépasse € 50,00; alors nous livrons gratuitement.</value>
+Au Benelux, si votre commande dépasse € 50,00; alors nous livrons gratuitement.
+</value>
   </data>
   <data name="DeliveryPricesLink" xml:space="preserve">
     <value>Coûts de livraison</value>
   </data>
   <data name="FAQ" xml:space="preserve">
     <value>Questions frequemment posées</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filtrer</value>
+  </data>
+  <data name="Filters" xml:space="preserve">
+    <value>Filtres</value>
   </data>
   <data name="GaranteedDelivery2Days" xml:space="preserve">
     <value>Delivré garanti en 2 jours</value>
@@ -179,29 +192,41 @@ Au Benelux, si votre commande dépasse € 50,00; alors nous livrons gratuitemen
     <value>Mais dépêche-toi! Nous n'en avons plus beaucoup!</value>
   </data>
   <data name="JumboWelcomeTo" xml:space="preserve">
-    <value>Bienvenue à </value>
+    <value>Bienvenue à {0}</value>
     <comment>'Welcome to' inside the index jumbotron</comment>
+  </data>
+  <data name="LoginFailedCredentials" xml:space="preserve">
+    <value>La combinaison de l'adresse e-mail et du mot de passe est incorrecte</value>
   </data>
   <data name="ManageCart" xml:space="preserve">
     <value>Modifiez votre chariot</value>
   </data>
   <data name="NewestProducts" xml:space="preserve">
-    <value>Nos produits nouveaux</value>
+    <value>Nos produits nouvelles</value>
   </data>
   <data name="No" xml:space="preserve">
     <value>Non</value>
   </data>
-  <data name="NoProductsFound" xml:space="preserve">
-    <value>On n'a rien trouvé :((</value>
-  </data>
   <data name="NoProductsFoundFilter" xml:space="preserve">
-    <value>There were no products found who match the chose filters. FRENCH</value>
+    <value>Aucun produit n'a été trouvé correspondant aux filtres choisis</value>
+  </data>
+  <data name="NoProductsFoundSearch" xml:space="preserve">
+    <value>Aucun produit correspondant à la requête n'a été trouvé</value>
   </data>
   <data name="NotYetImplemented" xml:space="preserve">
     <value>Pas déjà implémenté</value>
   </data>
   <data name="OurCategories" xml:space="preserve">
     <value>Nos catégories</value>
+  </data>
+  <data name="OurDeliveryService" xml:space="preserve">
+    <value>Notre service de livraison</value>
+  </data>
+  <data name="OurDeliveryServiceDescription" xml:space="preserve">
+    <value>Livraison garantie sous 2 jours, où que vous soyez au Benelux (Belgique, Pays-Bas et Luxembourg) ou en France.</value>
+  </data>
+  <data name="OurDeliveryServiceLink" xml:space="preserve">
+    <value>Notre services de livraison</value>
   </data>
   <data name="OurDeliveryServices" xml:space="preserve">
     <value>Nos services de livraison</value>
@@ -220,6 +245,12 @@ Au Benelux, si votre commande dépasse € 50,00; alors nous livrons gratuitemen
   </data>
   <data name="ShoppingCart" xml:space="preserve">
     <value>Chariot</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>Trier</value>
+  </data>
+  <data name="SortingOptions" xml:space="preserve">
+    <value>Options de tri</value>
   </data>
   <data name="Specifications" xml:space="preserve">
     <value>Caractéristiques</value>

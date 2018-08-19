@@ -31,7 +31,7 @@ namespace RudycommerceWeb.Controllers
             {
                 try
                 {
-                    int id = int.Parse((Request.Cookies[ConstVal.cookieClientIDName].Value));
+                    int id = int.Parse(RudycommerceLib.Security.Encryption.DecryptString(Request.Cookies[ConstVal.cookieClientIDName].Value));
                     return _clientRepo.Get(id);
                 }
                 catch (Exception)

@@ -17,8 +17,8 @@
                                 <img alt="@Resources.ImgAltTexts.ShowPreviousImage" src="~/Images/64_ArrowRight.png" />
                             </button>
 
-                            <div id="current-img-container">
-                                <img src="@Model.Images[0].ImageURL" class="img-current" alt="@Model.ProductInfo.Name" />
+                            <div id="current-img-container" class="content-center">
+                                <img src="@Model.Images[0].ImageURL" class="img-current responsive-image" alt="@Model.ProductInfo.Name" />
                             </div>
 
                             <button id="image-button-next" class="btn btn-secondary">
@@ -30,7 +30,7 @@
                     {
                         <div id="img-buttons">
                             <div id="current-img-container">
-                                <img src="@Model.Images[0].ImageURL" class="img-current" alt="@Model.ProductInfo.Name" />
+                                <img src="@Model.Images[0].ImageURL" class="img-current responsive-image" alt="@Model.ProductInfo.Name" />
                             </div>
                         </div>
                     }
@@ -39,8 +39,8 @@
                         @if (Model.Images.Count == 1)
                         {
                             <div class="col-6 col-sm-4 col-md-3">
-                                <div class="img-thumbnail selected-img collapse">
-                                    <img src="@Model.Images[0].ImageURL" alt="@Model.ProductInfo.Name @Resources.ImgAltTexts.Thumbnail" />
+                                <div class="img-thumbnail selected-img collapse ">
+                                    <img class="responsive-image" src="@Model.Images[0].ImageURL" alt="@Model.ProductInfo.Name @Resources.ImgAltTexts.Thumbnail" />
                                 </div>
                             </div>
                         }
@@ -52,13 +52,13 @@
                                     @if (i == 0)
                                     {
                                         <div class="img-thumbnail selected-img">
-                                            <img src="@Model.Images[i].ImageURL" alt="@Model.ProductInfo.Name @Resources.ImgAltTexts.Thumbnail @(i+1)" />
+                                            <img class="responsive-image" src="@Model.Images[i].ImageURL" alt="@Model.ProductInfo.Name @Resources.ImgAltTexts.Thumbnail @(i+1)" />
                                         </div>
                                     }
                                     else
                                     {
                                         <div class="img-thumbnail">
-                                            <img src="@Model.Images[i].ImageURL" alt="@Model.ProductInfo.Name @Resources.ImgAltTexts.Thumbnail @(i+1)" />
+                                            <img class="responsive-image" src="@Model.Images[i].ImageURL" alt="@Model.ProductInfo.Name @Resources.ImgAltTexts.Thumbnail @(i+1)" />
                                         </div>
                                     }
 
@@ -154,19 +154,21 @@
 
                     @if (Model.ProductInfo.BrandIconURL != null)
                     {
-                        <div class="col-6 col-md-12"><div class="row content-center">
-                            <div class="col-12 col-md-6 p-0">
-                                <div class="col-6 col-sm-6 col-md-12 text-center mobiletablet-hide"> @Resources.Global.PriceVAT: </div>
-                                <div class="col-12 price text-center">
-                                    € @Model.ProductInfo.UnitPrice
+                        <div class="col-6 col-md-12">
+                            <div class="row content-center">
+                                <div class="col-12 col-md-6 p-0">
+                                    <div class="col-6 col-sm-6 col-md-12 text-center mobiletablet-hide"> @Resources.Global.PriceVAT: </div>
+                                    <div class="col-12 price text-center">
+                                        € @Model.ProductInfo.UnitPrice
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mobiletablet-hide">
+                                    <div id="brand" class="content-center">
+                                        <img class="responsive-image" src="@Model.ProductInfo.BrandIconURL" alt="@Resources.ImgAltTexts.Brand @Model.ProductInfo.BrandName" />
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 mobiletablet-hide">
-                                <div id="brand" class="content-center">
-                                    <img class="responsive-image" src="@Model.ProductInfo.BrandIconURL" alt="@Resources.ImgAltTexts.Brand @Model.ProductInfo.BrandName" />
-                                </div>
-                            </div>
-                        </div></div>
+                        </div>
                     }
                     else
                     {
@@ -178,9 +180,9 @@
 
                     <hr class="mobile-hide" />
 
-                        <div class="col-6 col-sm-6 col-md-12 content-center">
-                            <div class="call-to-action">
-                                <div class="nonmobiletablet-hide">
+                    <div class="col-6 col-sm-6 col-md-12 content-center">
+                        <div class="call-to-action">
+                            <div class="nonmobiletablet-hide">
                                 <button class="add-to-cart" type="button" onclick="cart.addToCart(event, @Model.ProductInfo.ID, '@Model.ProductInfo.Name', '@Model.ProductInfo.UnitPrice')">
                                     <img src="~/Images/64_AddToCartBlue.png" alt="@Resources.ImgAltTexts.AddToCartIcon" />
                                 </button>
@@ -199,9 +201,9 @@
 
                     <div class="col-12 mobiletablet-hide">
                         <div class="call-to-action content-center">
-                            <button class="add-to-cart" type="button" onclick="cart.addToCart(event, @Model.ProductInfo.ID, '@Model.ProductInfo.Name', '@Model.ProductInfo.UnitPrice')">
-                                <img src="~/Images/64_AddToCartBlue.png" alt="@Resources.ImgAltTexts.AddToCartIcon" />
-                            </button>
+                            @Html.Partial("_AddToCartButton",
+                           new RudycommerceData.Models.ASPModels.AddToCartModel
+                           {ProductID = Model.ProductInfo.ID, ProductName = Model.ProductInfo.Name, UnitPrice = Model.ProductInfo.UnitPrice.ToString() })
                         </div>
                     </div>
 

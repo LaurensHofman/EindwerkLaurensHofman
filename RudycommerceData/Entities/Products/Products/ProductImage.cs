@@ -13,7 +13,7 @@ namespace RudycommerceData.Entities.Products.Products
         [Required]
         public int Order { get; set; }
 
-        [Required]
+        //[Required]
         public string ImageURL { get; set; }
 
         [NotMapped]

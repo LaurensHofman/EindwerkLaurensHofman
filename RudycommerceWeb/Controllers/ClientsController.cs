@@ -8,6 +8,7 @@ using RudycommerceData.Entities;
 using RudycommerceData.Models.ASPModels;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
+using RudycommerceLib.Security;
 using RudycommerceWeb.Attributes;
 
 namespace RudycommerceWeb.Controllers
@@ -31,11 +32,30 @@ namespace RudycommerceWeb.Controllers
             return View();
         }
 
+        [HttpPost]
+        public async Task<ActionResult> PersonalInfoChoice(LoginModel loginModel)
+        {
+            int? clientID = await loginModel.Authenticate(_clientRepo);
+
+            if (clientID != null)
+            {
+                AddClientCookie((int)clientID);
+                return RedirectToAction("DeliveryOption", "Orders");
+            }
+            else
+            {
+                ModelState.AddModelError("", Resources.Global.LoginFailedCredentials);
+            }
+
+            ViewBag.LoginModel = loginModel;
+            return View();
+        }
+
         [HttpGet]
         [IsCartFilledActionFilter]
         public ActionResult PersonalInfoForm()
         {
-            ViewBag.HideCartOverview = true;
+            //ViewBag.HideCartOverview = true;
 
             Client clientModel = new Client();
             
@@ -47,7 +67,7 @@ namespace RudycommerceWeb.Controllers
         {
             Client clientEntity = client;
 
-            ViewBag.HideCartOverview = true;
+            //ViewBag.HideCartOverview = true;
 
             // validate unique e-mail
 
@@ -60,12 +80,7 @@ namespace RudycommerceWeb.Controllers
             {
                 _clientRepo.Add(clientEntity);
                 await _clientRepo.SaveChangesAsync();
-
-                HttpCookie clientIDCookie = new HttpCookie(ConstVal.cookieClientIDName);
-                clientIDCookie.Value = client.ID.ToString();
-                clientIDCookie.Expires = DateTime.Now.AddDays(1);
-
-                Response.Cookies.Add(clientIDCookie);
+                AddClientCookie(client.ID);
 
                 return RedirectToAction("DeliveryOption", "Orders");
             }
@@ -74,6 +89,17 @@ namespace RudycommerceWeb.Controllers
                 ViewBag.ShowValidationSummary = true;
                 return View("PersonalInfoForm", client);
             }           
+        }
+
+        private void AddClientCookie(int clientID)
+        {
+            HttpCookie clientIDCookie = new HttpCookie(ConstVal.cookieClientIDName)
+            {
+                Value = Encryption.EncryptString(clientID.ToString()),
+                Expires = DateTime.Now.AddDays(1)
+            };
+
+            Response.Cookies.Add(clientIDCookie);
         }
     }
 }

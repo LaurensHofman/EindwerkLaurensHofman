@@ -242,6 +242,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Pages\AddToCartButton.css" />
     <Content Include="Content\Pages\CartOverview.css" />
+    <Content Include="Content\Pages\CheckoutLayout.css" />
     <Content Include="Content\Pages\Form.css" />
     <Content Include="Content\Pages\Layout.css" />
     <Content Include="Content\Pages\ProductDetails.css" />
@@ -358,6 +359,16 @@
     <Content Include="Views\Shared\_SupportedPaymentOptions.cshtml" />
     <Content Include="Views\Orders\OrderFinished.cshtml" />
     <Content Include="Views\Products\_FilterOptions.cshtml" />
+    <Content Include="Views\Utilities\PrivacyPolicy.cshtml" />
+    <Content Include="Views\Shared\_TextPagesLayout.cshtml" />
+    <Content Include="Views\Utilities\AboutUs.cshtml" />
+    <Content Include="Views\Utilities\Contact.cshtml" />
+    <Content Include="Views\Utilities\FAQ.cshtml" />
+    <Content Include="Views\Utilities\DeliverPrices.cshtml" />
+    <Content Include="Views\Utilities\OurDeliveryService.cshtml" />
+    <Content Include="Views\Clients\_Login.cshtml" />
+    <Content Include="Views\Products\_ProductCard.cshtml" />
+    <Content Include="Views\Shared\_AddToCartButton.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

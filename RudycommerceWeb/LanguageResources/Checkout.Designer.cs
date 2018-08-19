@@ -70,6 +70,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back to homepage.
+        /// </summary>
+        public static string CartEmptyBackToHomepage {
+            get {
+                return ResourceManager.GetString("CartEmptyBackToHomepage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your cart is empty at the moment, let&apos;s fill it back up!.
+        /// </summary>
+        public static string CartEmptyLetsFillIt {
+            get {
+                return ResourceManager.GetString("CartEmptyLetsFillIt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Overview of your shopping cart.
         /// </summary>
         public static string CartOverviewTitle {
@@ -124,7 +142,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Continue to information screen (change wording).
+        ///   Looks up a localized string similar to Continue to client form.
         /// </summary>
         public static string ContinueToPersonalInfoForm {
             get {
@@ -223,11 +241,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Forgot password?.
+        /// </summary>
+        public static string ForgotPassword {
+            get {
+                return ResourceManager.GetString("ForgotPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to I agree with the {0}. *.
         /// </summary>
         public static string IAgreeWithTermsConds {
             get {
                 return ResourceManager.GetString("IAgreeWithTermsConds", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login.
+        /// </summary>
+        public static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
             }
         }
         
@@ -363,6 +399,15 @@ namespace Resources {
         public static string PersonalInfoArrow {
             get {
                 return ResourceManager.GetString("PersonalInfoArrow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No account yet? Register.
+        /// </summary>
+        public static string Register {
+            get {
+                return ResourceManager.GetString("Register", resourceCulture);
             }
         }
         

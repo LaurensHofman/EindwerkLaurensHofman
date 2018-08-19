@@ -162,7 +162,7 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 
-                <DataGridCheckBoxColumn Width="Auto" Binding="{Binding IsActive}">
+                <!--<DataGridCheckBoxColumn Width="Auto" Binding="{Binding IsActive}">
                     <DataGridCheckBoxColumn.Header>
                         <TextBlock Text="{DynamicResource Active?}" VerticalAlignment="Center"/>
                     </DataGridCheckBoxColumn.Header>
@@ -191,7 +191,7 @@
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
                 
                 <DataGridTemplateColumn Width="Auto">
                     <DataGridTemplateColumn.CellTemplate>

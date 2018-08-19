@@ -146,14 +146,20 @@
   <data name="Checkout" xml:space="preserve">
     <value>Checkout</value>
   </data>
+  <data name="ClearAllFilters" xml:space="preserve">
+    <value>Clear all filters</value>
+  </data>
+  <data name="CookieConsentDismissButton" xml:space="preserve">
+    <value>Got it!</value>
+  </data>
+  <data name="CookieConsentLinkText" xml:space="preserve">
+    <value>Learn more</value>
+  </data>
+  <data name="CookieConsentMessage" xml:space="preserve">
+    <value>This website uses cookies to ensure you get the best experience on our website.</value>
+  </data>
   <data name="CustomerService" xml:space="preserve">
     <value>Customer service</value>
-  </data>
-  <data name="DeliverCountries" xml:space="preserve">
-    <value>Countries where we deliver</value>
-  </data>
-  <data name="DeliverCountriesDescription" xml:space="preserve">
-    <value>We deliver our products to the Benelux (Belgium, the Netherlands and Luxembourg) and France.</value>
   </data>
   <data name="DeliveryPrices" xml:space="preserve">
     <value>Our delivery prices</value>
@@ -169,6 +175,12 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   <data name="FAQ" xml:space="preserve">
     <value>Frequently Asked Questions</value>
   </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="Filters" xml:space="preserve">
+    <value>Filters</value>
+  </data>
   <data name="GaranteedDelivery2Days" xml:space="preserve">
     <value>Guaranteed delivered at your home, within 2 days.</value>
   </data>
@@ -180,8 +192,11 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
     <value>But hurry up! We don't have many of these left!</value>
   </data>
   <data name="JumboWelcomeTo" xml:space="preserve">
-    <value>Welcome to </value>
+    <value>Welcome to {0}</value>
     <comment>'Welcome to' inside the index jumbotron</comment>
+  </data>
+  <data name="LoginFailedCredentials" xml:space="preserve">
+    <value>The combination of email and password is incorrect.</value>
   </data>
   <data name="ManageCart" xml:space="preserve">
     <value>Manage shopping cart</value>
@@ -192,17 +207,26 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="NoProductsFound" xml:space="preserve">
-    <value>There were no products found :(</value>
-  </data>
   <data name="NoProductsFoundFilter" xml:space="preserve">
-    <value>There were no products found who match the chose filters.</value>
+    <value>There were no products found that match the chosen filters.</value>
+  </data>
+  <data name="NoProductsFoundSearch" xml:space="preserve">
+    <value>No products were found that matched the search query. Please try another search query.</value>
   </data>
   <data name="NotYetImplemented" xml:space="preserve">
     <value>Not yet implemented</value>
   </data>
   <data name="OurCategories" xml:space="preserve">
     <value>Our categories</value>
+  </data>
+  <data name="OurDeliveryService" xml:space="preserve">
+    <value>Our delivery service</value>
+  </data>
+  <data name="OurDeliveryServiceDescription" xml:space="preserve">
+    <value>Guaranteed delivery within 2 days, wherever you want in the Benelux (Belgium, The Netherlands and Luxembourg) and France.</value>
+  </data>
+  <data name="OurDeliveryServiceLink" xml:space="preserve">
+    <value>Our delivery services</value>
   </data>
   <data name="OurDeliveryServices" xml:space="preserve">
     <value>Our delivery services</value>
@@ -221,6 +245,12 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   </data>
   <data name="ShoppingCart" xml:space="preserve">
     <value>Shopping cart</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>Sort</value>
+  </data>
+  <data name="SortingOptions" xml:space="preserve">
+    <value>Sorting options</value>
   </data>
   <data name="Specifications" xml:space="preserve">
     <value>Specifications</value>

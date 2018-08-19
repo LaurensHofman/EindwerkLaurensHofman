@@ -1,0 +1,5 @@
+﻿@model RudycommerceData.Models.ASPModels.AddToCartModel
+
+<button class="add-to-cart" type="button" onclick="cart.addToCart(event, @Model.ProductID, '@Model.ProductName', '@Model.UnitPrice'); return false;">
+    <img alt="@String.Format(Resources.ImgAltTexts.AddProductToCart, Model.ProductName)" src="~/Images/64_AddToCartBlue.png" />
+</button>

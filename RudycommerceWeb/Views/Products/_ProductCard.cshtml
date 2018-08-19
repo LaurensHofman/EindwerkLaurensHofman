@@ -1,0 +1,84 @@
+﻿@model RudycommerceData.Models.ASPModels.ProductListItem
+    @{ var product = Model;}
+
+<div class="col-12 col-sm-6 col-md-6 col-lg-4">
+
+    <div class="card product-card">
+        <a href="@Url.Action("Details", new { ID = product.ProductID })">
+            <div class="card-image-top content-center">
+
+                <img src="@product.ImageURL" alt="@product.Name"
+                     class="responsive-image product-image" />
+
+            </div>
+        </a>
+
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item name-li">
+                <h4 class="card-text product-name">
+                    @Html.ActionLink(product.Name, "Details",
+                  new { ID = product.ProductID })
+                </h4>
+            </li>
+            <li class="list-group-item">
+                @if (!product.TopSpec1IsBool)
+                {
+                    <div class="top-spec">
+                        @product.TopSpec1
+                    </div>
+                }
+                else
+                {
+                    @(product.TopSpec1Name + ": ")
+
+                    if ((bool)product.Bool1Value)
+                    {
+                        <img alt="@Resources.ImgAltTexts.TrueIcon" class="bool-value" src="~/Images/64_GreenCheck.png" />
+                    }
+                    else
+                    {
+                        <img alt="@Resources.ImgAltTexts.FalseIcon" class="bool-value" src="~/Images/64_RedCross.png" />
+                    }
+                }
+            </li>
+            <li class="list-group-item">
+                @if (!product.TopSpec2IsBool)
+                {
+                    <div class="top-spec">
+                        @product.TopSpec2
+                    </div>
+                }
+                else
+                {
+                    @(product.TopSpec2Name + ": ")
+
+                    if ((bool)product.Bool2Value)
+                    {
+                        <img alt="@Resources.ImgAltTexts.TrueIcon" class="bool-value" src="~/Images/64_GreenCheck.png" />
+                    }
+                    else
+                    {
+                        <img alt="@Resources.ImgAltTexts.FalseIcon" class="bool-value" src="~/Images/64_RedCross.png" />
+                    }
+                }
+            </li>
+        </ul>
+
+        <div class="card-footer container">
+            <div class="row">
+                <div class="col-7 price">
+                    € @product.UnitPrice
+                </div>
+
+
+                <div class="call-to-action col-5">
+                    @Html.Partial("_AddToCartButton",
+                   new RudycommerceData.Models.ASPModels.AddToCartModel()
+                   { ProductName = product.Name, ProductID = product.ProductID, UnitPrice = product.UnitPrice.ToString()})
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

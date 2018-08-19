@@ -1,0 +1,33 @@
+﻿@model RudycommerceData.Models.ASPModels.LoginModel
+
+<h3 class="text-center m-bot-2"> @Resources.Checkout.LoginFormTitle </h3>
+@using(Html.BeginForm())
+{
+<div class="mx-2">
+
+    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+    
+    <div class="form-group">
+        @Html.LabelFor(model => Model.Email, new { @class = "control-label" })
+        @Html.EditorFor(model => Model.Email, new { htmlAttributes = new { @class = "form-control col-12" } })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => Model.Password, new { @class = "control-label" })
+        @Html.EditorFor(model => Model.Password, new { htmlAttributes = new { @class = "form-control col-12" } })
+    </div>
+    <div class="content-center m-bot-1">
+        <a href="@Url.Action("PersonalInfoChoice", "Clients")" class="disabled-link text-center">
+            @Resources.Checkout.ForgotPassword <br/> @Resources.Global.NotYetImplemented
+        </a>
+    </div>
+
+    <div class="content-center text-center m-bot-1">
+        <a href="@Url.Action("PersonalInfoChoice", "Clients")" class="disabled-link text-center">
+            @Resources.Checkout.Register <br /> @Resources.Global.NotYetImplemented
+        </a>
+    </div>
+    <div class="content-vertcen-right">
+        <button type="submit" class="btn btn-secondary">@Resources.Checkout.Login</button>
+    </div>
+</div>
+}

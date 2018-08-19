@@ -131,7 +131,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
         private void AddImages()
         {
-            foreach (var img in ProductModel.Images)
+            foreach (var img in ProductModel.Images.OrderBy(x => x.Order))
             {
                 AddImage(img, null);
             }
@@ -331,7 +331,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             // foreach language, make a textbox and label for the name input
             foreach (var lang in _languageList)
             {
-                string labelContent = $"\"{lang.LocalName}\" {LangResource.Name} * : ";
+                string labelContent = String.Format(LangResource.NameInLanguageX, lang.LocalName) + " * : ";
 
                 AddFormLabel(labelContent, GeneralNameLabels);
 
@@ -1011,6 +1011,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             }
             catch (Exception)
             {
+            //    throw;
                 TurnOffProgressBar();
 
                 string content = String.Format(LangResource.MBContentObjSaveFailed, LangResource.TheProduct.ToLower());

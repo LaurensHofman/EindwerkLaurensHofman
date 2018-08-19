@@ -1,4 +1,5 @@
-﻿using RudycommerceWeb.Controllers.Base;
+﻿using RudycommerceData.Models.ASPModels;
+using RudycommerceWeb.Controllers.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,18 @@ namespace RudycommerceWeb.Attributes
                         cookie.Value == "undefined")
                     {
                         RedirectToOtherPage(filterContext);
+                    }
+                    else
+                    {
+                        try
+                        {
+                            Delivery delivery = Newtonsoft.Json.JsonConvert.DeserializeObject<Delivery>(cookie.Value);
+                        }
+                        catch (Exception)
+                        {
+                            filterContext.HttpContext.Response.Cookies[ConstVal.cookieDeliverOptionName].Expires = DateTime.Now.AddDays(-1);
+                            RedirectToOtherPage(filterContext);
+                        }
                     }
                 }
             }

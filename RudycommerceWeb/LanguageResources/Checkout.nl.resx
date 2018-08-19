@@ -133,7 +133,7 @@
     <value>Verdergaan naar betaling</value>
   </data>
   <data name="ContinueToPersonalInfoForm" xml:space="preserve">
-    <value>Verdergaan naar persoonsinformatie</value>
+    <value>Verdergaan naar klantformulier</value>
   </data>
   <data name="Delivery" xml:space="preserve">
     <value>Levering</value>
@@ -233,5 +233,20 @@
         &lt;br /&gt;
         Met dank van onze hele crew,
         Rudycommerce</value>
+  </data>
+  <data name="CartEmptyBackToHomepage" xml:space="preserve">
+    <value>Terug naar thuispagina</value>
+  </data>
+  <data name="CartEmptyLetsFillIt" xml:space="preserve">
+    <value>Uw winkelkarretje is leeg, laten we het weer gaan vullen!</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Wachtwoord vergeten?</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Aanmelden</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Nog geen account? Registreer</value>
   </data>
 </root>

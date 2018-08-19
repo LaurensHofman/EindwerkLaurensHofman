@@ -295,6 +295,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name in &quot;{0}&quot;.
+        /// </summary>
+        public static string NameInLanguageX {
+            get {
+                return ResourceManager.GetString("NameInLanguageX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nee.
         /// </summary>
         public static string No {

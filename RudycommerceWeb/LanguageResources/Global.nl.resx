@@ -146,14 +146,20 @@
   <data name="Checkout" xml:space="preserve">
     <value>Bestellen</value>
   </data>
+  <data name="ClearAllFilters" xml:space="preserve">
+    <value>Wis alle filters</value>
+  </data>
+  <data name="CookieConsentDismissButton" xml:space="preserve">
+    <value>Begrepen!</value>
+  </data>
+  <data name="CookieConsentLinkText" xml:space="preserve">
+    <value>Meer weten</value>
+  </data>
+  <data name="CookieConsentMessage" xml:space="preserve">
+    <value>Deze website gebruikt cookies om uw ervaring op deze website zo goed mogelijk te maken.</value>
+  </data>
   <data name="CustomerService" xml:space="preserve">
     <value>Klantendienst</value>
-  </data>
-  <data name="DeliverCountries" xml:space="preserve">
-    <value>Landen waar wij leveren</value>
-  </data>
-  <data name="DeliverCountriesDescription" xml:space="preserve">
-    <value>Wij leveren onze producten overal binnen de Benelux (België, Nederland en Luxemburg) en Frankrijk.</value>
   </data>
   <data name="DeliveryPrices" xml:space="preserve">
     <value>Onze leverprijzen</value>
@@ -168,6 +174,12 @@
   <data name="FAQ" xml:space="preserve">
     <value>Veelgestelde vragen</value>
   </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filteren</value>
+  </data>
+  <data name="Filters" xml:space="preserve">
+    <value>Filters</value>
+  </data>
   <data name="GaranteedDelivery2Days" xml:space="preserve">
     <value>Gegarandeerd, binnen de 2 dagen bij u thuis geleverd.</value>
   </data>
@@ -179,8 +191,11 @@
     <value>Maar haast je! Er zijn er niet meer veel beschikbaar!</value>
   </data>
   <data name="JumboWelcomeTo" xml:space="preserve">
-    <value>Welkom bij </value>
+    <value>Welkom bij {0}</value>
     <comment>'Welcome to' inside the index jumbotron</comment>
+  </data>
+  <data name="LoginFailedCredentials" xml:space="preserve">
+    <value>De combinatie van e-mailadres en wachtwoord is niet correct.</value>
   </data>
   <data name="ManageCart" xml:space="preserve">
     <value>Wijzig uw winkelkarretje</value>
@@ -191,17 +206,26 @@
   <data name="No" xml:space="preserve">
     <value>Nee</value>
   </data>
-  <data name="NoProductsFound" xml:space="preserve">
-    <value>Er werden geen producten gevonden :(</value>
-  </data>
   <data name="NoProductsFoundFilter" xml:space="preserve">
     <value>Er zijn geen producten gevonden die voldoen aan de gekozen filters.</value>
+  </data>
+  <data name="NoProductsFoundSearch" xml:space="preserve">
+    <value>Er waren geen product gevonden die overeenkwamen met de ingevoerde zoekopdracht. Gelieve opnieuw te proberen met een andere zoekopdracht.</value>
   </data>
   <data name="NotYetImplemented" xml:space="preserve">
     <value>Nog niet geïmplementeerd</value>
   </data>
   <data name="OurCategories" xml:space="preserve">
     <value>Onze categorieën</value>
+  </data>
+  <data name="OurDeliveryService" xml:space="preserve">
+    <value>Onze leverdiensten</value>
+  </data>
+  <data name="OurDeliveryServiceDescription" xml:space="preserve">
+    <value>Gegarandeerd binnen de 2 dagen geleverd, binnen de Benelux (België, Nederland en Luxemburg) en Frankrijk.</value>
+  </data>
+  <data name="OurDeliveryServiceLink" xml:space="preserve">
+    <value>Onze leverdiensten</value>
   </data>
   <data name="OurDeliveryServices" xml:space="preserve">
     <value>Onze leverdiensten</value>
@@ -220,6 +244,12 @@
   </data>
   <data name="ShoppingCart" xml:space="preserve">
     <value>Winkelkar</value>
+  </data>
+  <data name="Sort" xml:space="preserve">
+    <value>Sorteer</value>
+  </data>
+  <data name="SortingOptions" xml:space="preserve">
+    <value>Sorteeropties</value>
   </data>
   <data name="Specifications" xml:space="preserve">
     <value>Specificaties</value>

@@ -243,4 +243,7 @@
   <data name="ProdFormGeneralTabInvalid" xml:space="preserve">
     <value>De values filled in the 'General' tab aren't all (correctly) filled in. Please correct these to continue.</value>
   </data>
+  <data name="NameInLanguageX" xml:space="preserve">
+    <value>Name in "{0}"</value>
+  </data>
 </root>

@@ -10,11 +10,15 @@ namespace RudycommerceData.Models.ASPModels
     {
         public int CategoryID { get; set; }
 
+        public string Sort { get; set; }
+        public Dictionary<string, string> SortOptions { get { return new SortingDictionary().OrderBy(x => x.Key).ToDictionary(x => x.Key, y => y.Value); } }
+        
         public List<FilterOption> FilterOptions { get; set; }
 
         public Filters()
         {
             FilterOptions = new List<FilterOption>();
+            Sort = "Name-ASC";
         }
     }
 

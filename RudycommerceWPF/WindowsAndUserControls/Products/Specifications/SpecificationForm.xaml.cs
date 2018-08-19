@@ -64,7 +64,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
         public SpecificationForm(int ID)
         {
             InitializeComponent();
-            
+
             progressBar = prog;
             submitButton = btnSubmit;
 
@@ -74,14 +74,19 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
             _updatingPage = !SpecModel.IsNew();
 
-            InitializeForm();
-            
-            CheckCheckBoxes();
+            PrepareUpdate();
 
             DataContext = this;
         }
 
-        private async void InitializeForm()
+        private async void PrepareUpdate()
+        {
+            await InitializeForm();
+
+            CheckCheckBoxes();
+        }
+
+        private async Task InitializeForm()
         {
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
 

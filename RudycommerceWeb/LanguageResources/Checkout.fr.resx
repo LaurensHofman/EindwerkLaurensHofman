@@ -124,10 +124,10 @@
     <value>Aperçu chariot</value>
   </data>
   <data name="ChooseOtherAddressForDelivery" xml:space="preserve">
-    <value>Frans</value>
+    <value>Livrer à une autre adresse que la vôtre?</value>
   </data>
   <data name="ContinueToDelivery" xml:space="preserve">
-    <value>Honhon</value>
+    <value>Continuer vers les options de livraison</value>
   </data>
   <data name="ContinueToPayment" xml:space="preserve">
     <value>Continuer vers paiement</value>
@@ -222,9 +222,24 @@
     <value>Retournez vers la page maison</value>
   </data>
   <data name="OrderFinished" xml:space="preserve">
-    <value>Frans(bestelling afgerond)</value>
+    <value>Commande terminée</value>
   </data>
   <data name="OrderFinishedThankYouText" xml:space="preserve">
-    <value>Mais oui, d'accord. Hon hon français.</value>
+    <value>Votre commande a été envoyée avec succès. Votre travail ici est terminé, à nous maintenant. &lt;br/&gt; &lt;br/&gt; Nous commencerons par préparer soigneusement votre commande, afin que le courrier puisse le prendre et le livrer à votre emplacement préféré. &lt;br/&gt; &lt;br/&gt; Maintenant, vous pouvez commencer à rêver de ce que vous allez accomplir avec votre nouvel équipement de jeu, car bientôt vous allez être le meilleur dans chaque jeu auquel vous jouerez. &lt;br/&gt; &lt;br/&gt; Cordialement, &lt;br/&gt; Rudycommerce</value>
+  </data>
+  <data name="CartEmptyBackToHomepage" xml:space="preserve">
+    <value>Retourner à page maison</value>
+  </data>
+  <data name="CartEmptyLetsFillIt" xml:space="preserve">
+    <value>Votre chariot est vide, laissez le remplir!</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>Oublié mon mot de passe</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>s'Identifier</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Registrer</value>
   </data>
 </root>

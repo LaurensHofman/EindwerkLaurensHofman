@@ -25,6 +25,8 @@ namespace RudycommerceData.Repositories.Repo
                 {
                     _context.Products.Add(entity);
 
+                    await _context.SaveChangesAsync();
+
                     IImageRepository _imgRepo = new ImageRepository();
 
                     foreach (var img in entity.Images)
@@ -59,6 +61,7 @@ namespace RudycommerceData.Repositories.Repo
                     foreach (var img in entity.Images)
                     {
                         img.ImageURL = await _imgRepo.SaveImage(img, entity.ID);
+                        img.ProductID = entity.ID;
                     }
 
                     await UpdateAsync(entity);
@@ -160,6 +163,11 @@ namespace RudycommerceData.Repositories.Repo
 
         public List<ProductListItem> GetFilteredCategoryItems(string languageISO, Filters filt, int catID)
         {
+            if (filt == null)
+            {
+                filt = new Filters();
+            }
+
             SqlParameter langISO = new SqlParameter("@langISO", languageISO);
             SqlParameter categoryID = new SqlParameter("@categoryID", catID);
 
