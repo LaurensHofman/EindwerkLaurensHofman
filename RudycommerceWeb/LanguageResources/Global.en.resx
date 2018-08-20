@@ -172,6 +172,15 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   <data name="DeliveryPricesLink" xml:space="preserve">
     <value>Delivery costs</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorPageContent" xml:space="preserve">
+    <value>An unexpected error ocurred on our website. The responsible people have been notified. Let's hope this doesn't happen again in the future.</value>
+  </data>
+  <data name="ErrorPageTitle" xml:space="preserve">
+    <value>Oops! Something went unexpectedly wrong!</value>
+  </data>
   <data name="FAQ" xml:space="preserve">
     <value>Frequently Asked Questions</value>
   </data>
@@ -240,8 +249,14 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacy Policy</value>
   </data>
+  <data name="ProductDetailsNotFound" xml:space="preserve">
+    <value>No product was found, or no information about this product was found.</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
+  </data>
+  <data name="SearchInputRequired" xml:space="preserve">
+    <value>Please fill in a search query.</value>
   </data>
   <data name="ShoppingCart" xml:space="preserve">
     <value>Shopping cart</value>

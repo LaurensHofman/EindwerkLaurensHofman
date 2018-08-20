@@ -216,6 +216,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unexpected error ocurred on our website. The responsible people have been notified. Let&apos;s hope this doesn&apos;t happen again in the future..
+        /// </summary>
+        public static string ErrorPageContent {
+            get {
+                return ResourceManager.GetString("ErrorPageContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Oops! Something went unexpectedly wrong!.
+        /// </summary>
+        public static string ErrorPageTitle {
+            get {
+                return ResourceManager.GetString("ErrorPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Frequently Asked Questions.
         /// </summary>
         public static string FAQ {
@@ -414,11 +441,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No product was found, or no information about this product was found..
+        /// </summary>
+        public static string ProductDetailsNotFound {
+            get {
+                return ResourceManager.GetString("ProductDetailsNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         public static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please fill in a search query..
+        /// </summary>
+        public static string SearchInputRequired {
+            get {
+                return ResourceManager.GetString("SearchInputRequired", resourceCulture);
             }
         }
         

@@ -1,8 +1,9 @@
 ﻿:root {
     --arrow-height: 2.8rem;
     --arrow-indent-width: 3rem;
-    --arrow-colour: rgba(0, 162, 250, 0.6);
-    --arrow-selected-colour: rgba(41, 168, 71, 0.7);
+    --arrow-colour: rgba(41, 168, 71, 0.7);
+    --arrow-selected-colour: rgba(0, 162, 250, 0.6);
+    --arrow-future-colour: #cecece;
 }
 
 #progress-container .row {
@@ -49,7 +50,11 @@
 
 .current-progress {
     --arrow-colour: var(--arrow-selected-colour);
-    font-weight: bold;
+    font-weight: 800;
+}
+
+.future-progress{
+    --arrow-colour: var(--arrow-future-colour);
 }
 
 .circle {

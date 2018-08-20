@@ -249,7 +249,7 @@ namespace RudycommerceData.Repositories.Repo
         {
             SqlParameter idstring = new SqlParameter("@idstring", IDs);
 
-            return _context.Database.SqlQuery<Decimal>("exec dbo.sprocGetTotalPrice @idstring", idstring).First();
+            return _context.Database.SqlQuery<Decimal>("exec dbo.sprocGetTotalPrice @idstring", idstring).FirstOrDefault();
         }
 
         private List<ProdDetSpecInfoAndValue> GetSpecificationInfo(string ISO, int ID)
@@ -272,7 +272,7 @@ namespace RudycommerceData.Repositories.Repo
             SqlParameter langISO = new SqlParameter("@langISO", ISO);
             SqlParameter productID = new SqlParameter("@productID", ID);
 
-            return _context.Database.SqlQuery<ProdDetProductInfo>("exec dbo.sprocProdDetProductInfo @langISO, @productID", langISO, productID).First();
+            return _context.Database.SqlQuery<ProdDetProductInfo>("exec dbo.sprocProdDetProductInfo @langISO, @productID", langISO, productID).FirstOrDefault();
         }
     }
 }

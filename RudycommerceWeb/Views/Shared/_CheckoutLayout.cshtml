@@ -28,10 +28,13 @@
         {
             case 1:
                 classArrow1 = "current-progress";
+                classArrow2 = "future-progress";
+                classArrow3 = "future-progress";
                 break;
 
             case 2:
                 classArrow2 = "current-progress";
+                classArrow3 = "future-progress";
                 break;
 
             case 3:
@@ -72,25 +75,16 @@
 
             <div id="progress-container" class="content-center container">
                 <div class="row">
-                    <div class="col-12 col-md-4 arrow-prog @classArrow1">
-                        <div class="content-vertical-center arrow-text">
-                            <span class="circle content-center">1</span>
-                            @Resources.Checkout.PersonalInfoArrow
-                        </div>
-                    </div>
 
-                    <div class="col-12 col-md-4 arrow-prog @classArrow2">
-                        <div class="content-vertical-center arrow-text">
-                            <span class="circle content-center">2</span>
-                            @Resources.Checkout.DeliveryArrow
-                        </div>
-                    </div>
-                    <div class="col-12 col-md-4 arrow-prog @classArrow3">
-                        <div class="content-vertical-center arrow-text">
-                            <span class="circle content-center">3</span>
-                            @Resources.Checkout.PaymentArrow
-                        </div>
-                    </div>
+                    @Html.Partial("_CheckoutLayoutArrow", new RudycommerceData.Models.ASPModels.CheckoutLayoutArrowModel()
+               { ClassName = classArrow1, ArrowNumber = 1, ArrowText = Resources.Checkout.PersonalInfoArrow})
+
+                    @Html.Partial("_CheckoutLayoutArrow", new RudycommerceData.Models.ASPModels.CheckoutLayoutArrowModel()
+               { ClassName = classArrow2, ArrowNumber = 2, ArrowText = Resources.Checkout.DeliveryArrow})
+
+                    @Html.Partial("_CheckoutLayoutArrow", new RudycommerceData.Models.ASPModels.CheckoutLayoutArrowModel()
+               { ClassName = classArrow3, ArrowNumber = 3, ArrowText = Resources.Checkout.PaymentArrow})
+
 
                 </div>
             </div>

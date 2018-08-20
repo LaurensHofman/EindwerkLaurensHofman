@@ -43,9 +43,13 @@
     }
 
 #cart-dropdown {
-    overflow-y: scroll;
     max-height: 22rem;
 }
+
+#cart-dropdown .vert-scroll {
+    max-height:22rem;
+}
+
 
 #cart-dropdown.dropdown-menu.show .container {
     display: flex;

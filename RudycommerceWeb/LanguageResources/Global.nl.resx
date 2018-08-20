@@ -171,6 +171,15 @@
   <data name="DeliveryPricesLink" xml:space="preserve">
     <value>Leverkosten</value>
   </data>
+  <data name="Error" xml:space="preserve">
+    <value>Foutje</value>
+  </data>
+  <data name="ErrorPageContent" xml:space="preserve">
+    <value>Er is een onverwachte fout gebeurt op onze website. De verantwoordelijke voor de website is verwittigt. Hopelijk zal dit in de toekomst niet meer voorvallen.</value>
+  </data>
+  <data name="ErrorPageTitle" xml:space="preserve">
+    <value>Oei! Er is onverwacht iets fout gelopen!</value>
+  </data>
   <data name="FAQ" xml:space="preserve">
     <value>Veelgestelde vragen</value>
   </data>
@@ -239,8 +248,14 @@
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Privacybeleid</value>
   </data>
+  <data name="ProductDetailsNotFound" xml:space="preserve">
+    <value>Het product werd niet gevonden, of de informatie van het product werd niet gevonden.</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Zoeken</value>
+  </data>
+  <data name="SearchInputRequired" xml:space="preserve">
+    <value>Gelieve een zoekterm in te voeren.</value>
   </data>
   <data name="ShoppingCart" xml:space="preserve">
     <value>Winkelkar</value>

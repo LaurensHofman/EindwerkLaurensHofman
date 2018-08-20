@@ -117,10 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="About" xml:space="preserve">
-    <value>A propos de nous</value>
-    <comment>About us</comment>
-  </data>
   <data name="AddToCart" xml:space="preserve">
     <value>Ajoutez à chariot</value>
   </data>
@@ -171,6 +167,19 @@ Au Benelux, si votre commande dépasse € 50,00; alors nous livrons gratuitemen
   </data>
   <data name="DeliveryPricesLink" xml:space="preserve">
     <value>Coûts de livraison</value>
+  </data>
+  <data name="Er is een onverwachte fout gebeurt op onze website. De verantwoordelijke voor de website is verwittigt. Hopelijk zal dit in de toekomst niet meer voorvallen" xml:space="preserve">
+    <value>A propos de nous</value>
+    <comment>About us</comment>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Erreur</value>
+  </data>
+  <data name="ErrorPageContent" xml:space="preserve">
+    <value>Une erreur inattendue s'est produite sur notre site Web. Les responsables ont été prévenus. Espérons que cela ne se reproduira plus dans le futur.</value>
+  </data>
+  <data name="ErrorPageTitle" xml:space="preserve">
+    <value>Oops! Quelque chose de mal inattendu!</value>
   </data>
   <data name="FAQ" xml:space="preserve">
     <value>Questions frequemment posées</value>
@@ -240,8 +249,14 @@ Au Benelux, si votre commande dépasse € 50,00; alors nous livrons gratuitemen
   <data name="PrivacyPolicy" xml:space="preserve">
     <value>Politique de confidentialité</value>
   </data>
+  <data name="ProductDetailsNotFound" xml:space="preserve">
+    <value>Aucun produit n'a été trouvé ou aucune information sur ce produit n'a été trouvée.</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>Chercher</value>
+  </data>
+  <data name="SearchInputRequired" xml:space="preserve">
+    <value>Veuillez remplir une requête de recherche.</value>
   </data>
   <data name="ShoppingCart" xml:space="preserve">
     <value>Chariot</value>

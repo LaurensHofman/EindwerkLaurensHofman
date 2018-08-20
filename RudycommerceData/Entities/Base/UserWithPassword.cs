@@ -15,7 +15,7 @@ namespace RudycommerceData.Entities.Base
         public string Salt { get; set; }
         
         [NotMapped]
-        [DataType(DataType.Password)]
+        [DataType(DataType.Password, ErrorMessageResourceName = "EmailType", ErrorMessageResourceType = typeof(Validation.Client))]
         [Display(Name = nameof(Validation.Client.Password), ResourceType = typeof(Validation.Client))]
         public virtual string Password { get; set; }
     }

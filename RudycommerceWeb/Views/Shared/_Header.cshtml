@@ -30,7 +30,7 @@
                 @using (Html.BeginForm("Index", "Products", FormMethod.Post, new { @class = "form-inline my-2 my-lg-0" }))
                 {
                     <input class="form-control mr-sm-2" autocomplete="off" type="search" placeholder="@Resources.Global.Search" aria-label="@Resources.Global.Search"
-                           id="search" name="search" value="@ViewBag.SearchQuery" required />
+                           id="search" name="search" value="@ViewBag.SearchQuery" onchange="try{setCustomValidity('')}catch(e){}" oninvalid="setCustomValidity('@Resources.Global.SearchInputRequired')" required />
 
                     <button class="btn btn-outline-success form-submit my-2 my-sm-0" type="submit">@Resources.Global.Search</button>
                 }

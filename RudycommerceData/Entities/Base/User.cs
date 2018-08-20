@@ -27,9 +27,11 @@ namespace RudycommerceData.Entities.Base
 
         [Required(ErrorMessageResourceName = "EmailReq",
             ErrorMessageResourceType = typeof(Validation.Client))]
-        [DataType(DataType.EmailAddress, 
-            ErrorMessageResourceType = typeof(Validation.Client), 
-            ErrorMessageResourceName = "EmailType")]
+        //[DataType(DataType.EmailAddress, 
+        //    ErrorMessageResourceType = typeof(Validation.Client), 
+        //    ErrorMessageResourceName = "EmailType")]
+        [RegularExpression(RudycommerceLib.Utilities.Regexes.EmailRegex,
+            ErrorMessageResourceName = "EmailType", ErrorMessageResourceType = typeof(Validation.Client))]
         [Display(Name = nameof(Validation.Client.Email), ResourceType = typeof(Validation.Client))]
         public string Email { get; set; }
 

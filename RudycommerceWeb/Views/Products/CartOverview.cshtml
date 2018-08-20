@@ -11,107 +11,122 @@
     <h2> @Resources.Checkout.CartOverviewTitle </h2>
 
     <hr />
-    @using (Html.BeginForm("CartOverview", "Products", FormMethod.Post))
+
+    @if (Model != null)
     {
-        <div class="well">
-            @{ string hidden = "";}
-            @if (Model == null)
-            {
+        @using (Html.BeginForm("CartOverview", "Products", FormMethod.Post))
+        {
+            <div class="well">
+                @{ string hidden = "";}
+                @if (Model == null)
+                {
 
-            }
-            else
-            {
-                hidden = "hide";
-                <div id="product-overview-filled">
-                    @foreach (var prod in Model)
-                    {
-                        totalPrice += prod.Price;
-                        string idQuantity = "quantity" + prod.ProductID.ToString();
-                        string idPrice = "price" + prod.ProductID.ToString();
-                        string idRow = "overviewrow" + prod.ProductID.ToString();
-                        int indx = Model.IndexOf(prod);
+                }
+                else
+                {
+                    hidden = "hide";
+                    <div id="product-overview-filled">
+                        @foreach (var prod in Model)
+                        {
+                            totalPrice += prod.Price;
+                            string idQuantity = "quantity" + prod.ProductID.ToString();
+                            string idPrice = "price" + prod.ProductID.ToString();
+                            string idRow = "overviewrow" + prod.ProductID.ToString();
+                            int indx = Model.IndexOf(prod);
 
-                        <div id="@idRow" class="cart-overview-row">
-                            <div class="row">
-                                <div class="col-12 col-sm-6 col-md-3 imgdiv content-center">
-                                    <a href="@Url.Action("Details", new { ID = prod.ProductID })" class="h-100 content-center">
-                                        <img @*alt="@prod.ProductName"*@ class="responsive-image" src="@prod.ImageURL" />
-                                    </a>
-                                </div>
+                            <div id="@idRow" class="cart-overview-row">
+                                <div class="row">
+                                    <div class="col-12 col-sm-6 col-md-3 imgdiv content-center">
+                                        <a href="@Url.Action("Details", new { ID = prod.ProductID })" class="h-100 content-center">
+                                            <img @*alt="@prod.ProductName"*@ class="responsive-image" src="@prod.ImageURL" />
+                                        </a>
+                                    </div>
 
-                                <div class="col-12 col-sm-6 col-md-3 content-vertical-center product-name">
-                                    @Html.ActionLink(prod.ProductName, "Details", "Products", new { ID = prod.ProductID }, new { @class = "black-link" })
-                                </div>
+                                    <div class="col-12 col-sm-6 col-md-3 content-vertical-center product-name">
+                                        @Html.ActionLink(prod.ProductName, "Details", "Products", new { ID = prod.ProductID }, new { @class = "black-link" })
+                                    </div>
 
-                                <div class="col-6 col-sm-6 col-md-2 content-vertical-center">
-                                    <div class="container">
-                                        <div class="row quantity-row">
-                                            <div class="col-2"></div>
-                                            <div class="col-3 content-center">
-                                                <button class="btn btn-danger" onclick="cartOverview.minusProduct(event, @prod.ProductID)" type="button">
-                                                    -
-                                                </button>
+                                    <div class="col-6 col-sm-6 col-md-2 content-vertical-center">
+                                        <div class="container">
+                                            <div class="row quantity-row">
+                                                <div class="col-2"></div>
+                                                <div class="col-3 content-center">
+                                                    <button class="btn btn-danger" onclick="cartOverview.minusProduct(event, @prod.ProductID)" type="button">
+                                                        -
+                                                    </button>
+                                                </div>
+                                                <div id="@idQuantity" class="col-2 content-center quantity">
+                                                    @prod.Quantity
+                                                </div>
+                                                <div class="col-3 content-center">
+                                                    <button class="btn btn-success content-center" onclick="cartOverview.plusProduct(event, @prod.ProductID)" type="button">
+                                                        +
+                                                    </button>
+                                                </div>
+                                                <div class="col-2"></div>
                                             </div>
-                                            <div id="@idQuantity" class="col-2 content-center quantity">
-                                                @prod.Quantity
-                                            </div>
-                                            <div class="col-3 content-center">
-                                                <button class="btn btn-success content-center" onclick="cartOverview.plusProduct(event, @prod.ProductID)" type="button">
-                                                    +
-                                                </button>
-                                            </div>
-                                            <div class="col-2"></div>
                                         </div>
                                     </div>
+
+                                    <div id="@idPrice" class="col-6 col-sm-4 col-md-3 content-vertical-center price">
+                                        € @prod.Price
+                                    </div>
+
+                                    <div class="col-4 col-sm-2 col-md-1 mobile-hide content-center">
+                                        <button class="btn btn-dark btn-round" onclick="cartOverview.deleteProduct(event, @prod.ProductID)" type="button">
+                                            X
+                                        </button>
+                                    </div>
+                                    <div class="remove-product nonmobile-hide content-center">
+                                        <button class="btn btn-dark btn-round" onclick="cartOverview.deleteProduct(event, @prod.ProductID)" type="button">
+                                            X
+                                        </button>
+                                    </div>
+                                </div>
+                                <hr class="hr80" />
+                            </div>
+                        }
+
+                        <div id="overview-total-price">
+
+                            <div class="row total-price">
+                                <div class="col-12 col-sm-8 content-vertcen-right price">
+                                    @Resources.Global.TotalPrice:
                                 </div>
 
-                                <div id="@idPrice" class="col-6 col-sm-4 col-md-3 content-vertical-center price">
-                                    € @prod.Price
+                                <div id="totalpriceoverview" class="col-12 col-sm-4 content-vertical-center price">
+                                    € @System.Math.Round(totalPrice, 2)
                                 </div>
+                            </div>
 
-                                <div class="col-4 col-sm-2 col-md-1 mobile-hide content-center">
-                                    <button class="btn btn-dark btn-round" onclick="cartOverview.deleteProduct(event, @prod.ProductID)" type="button">
-                                        X
+                            <div class="row order">
+                                <div class="col-12 checkout">
+                                    @Html.Partial("_BackToHomepageButton")
+                                    <button class="btn btn-success" type="submit">
+                                        @Resources.Global.Checkout
                                     </button>
                                 </div>
-                                <div class="remove-product nonmobile-hide content-center">
-                                    <button class="btn btn-dark btn-round" onclick="cartOverview.deleteProduct(event, @prod.ProductID)" type="button">
-                                        X
-                                    </button>
-                                </div>
-                            </div>
-                            <hr class="hr80" />
-                        </div>
-                    }
-
-                    <div id="overview-total-price">
-
-                        <div class="row total-price">
-                            <div class="col-12 col-sm-8 content-vertcen-right price">
-                                @Resources.Global.TotalPrice:
-                            </div>
-
-                            <div id="totalpriceoverview" class="col-12 col-sm-4 content-vertical-center price">
-                                € @System.Math.Round(totalPrice, 2)
-                            </div>
-                        </div>
-
-                        <div class="row order">
-                            <div class="col-12 checkout">
-                                <button class="btn btn-success" type="submit">
-                                    @Resources.Global.Checkout
-                                </button>
                             </div>
                         </div>
                     </div>
+                }
+                <div id="product-overview-empty" class="@hidden">
+                    <div class="content-horizontal-center">@Resources.Checkout.CartEmptyLetsFillIt</div>
+                    <div class="content-vertcen-right"><button type="button" onclick="location.href='@Url.Action("Index", "Products")'" class="btn btn-secondary">@Resources.Checkout.CartEmptyBackToHomepage</button></div>
                 </div>
-            }
-            <div id="product-overview-empty" class="@hidden">
-                <div class="content-horizontal-center">@Resources.Checkout.CartEmptyLetsFillIt</div>
-                <div class="content-vertcen-right"><button type="button" onclick="location.href='@Url.Action("Index", "Products")'" class="btn btn-secondary">@Resources.Checkout.CartEmptyBackToHomepage</button></div>
             </div>
+        }
+    }
+    else
+    {
+        <div id="product-overview-empty">
+            <div class="content-horizontal-center">@Resources.Checkout.CartEmptyLetsFillIt</div>
+            <div class="content-vertcen-right"><button type="button" onclick="location.href='@Url.Action("Index", "Products")'" class="btn btn-secondary">@Resources.Checkout.CartEmptyBackToHomepage</button></div>
         </div>
     }
+
+
+
 
 </div>
 

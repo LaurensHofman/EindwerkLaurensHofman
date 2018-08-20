@@ -89,6 +89,7 @@
     <Compile Include="Security\Encryption.cs" />
     <Compile Include="Utilities\IntExtensions.cs" />
     <Compile Include="Utilities\ListUtilities.cs" />
+    <Compile Include="Utilities\Regexes.cs" />
     <Compile Include="Utilities\StringExtensions.cs" />
     <Compile Include="Web\CookieExtensions.cs" />
     <Compile Include="Web\PopupExtensions.cs" />

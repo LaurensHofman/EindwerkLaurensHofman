@@ -55,6 +55,11 @@ namespace RudycommerceWeb.Controllers
         [HttpGet]
         public ActionResult Search(string searchQuery)
         {
+            if (searchQuery == null)
+            {
+                searchQuery = " ";
+            }
+
             List<ProductListItem> products = _prodRepo.GetProductListItems(GetISO(), "search", searchQuery);
 
             ViewBag.SearchQuery = searchQuery;
@@ -69,21 +74,30 @@ namespace RudycommerceWeb.Controllers
         {
             List<ProductListItem> products = _prodRepo.GetFilteredCategoryItems(GetISO(), null, id);
 
-            ViewBag.Products = products.OrderBy(x => x.Name).ToList();
-            ViewBag.Title = _catRepo.GetLocalizedCatListItems(GetISO()).First(x => x.CategoryID == id).LocalizedPluralName;
-            ViewBag.CategoryID = id;
-
-            var filters = _prodRepo.GetFilters(GetISO(), id);
-
-            ViewBag.CategoryID = filters.CategoryID;
-            filters.FilterOptions = filters.FilterOptions.OrderBy(x => x.DisplayOrder).ToList();
-
-            foreach (var item in filters.FilterOptions)
+            try
             {
-                item.FilterValues = item.FilterValues.OrderBy(x => x.Value).ThenByDescending(x => x.BoolValue).ToList();
-            }
+                ViewBag.Products = products.OrderBy(x => x.Name).ToList();
+                ViewBag.Title = _catRepo.GetLocalizedCatListItems(GetISO()).First(x => x.CategoryID == id).LocalizedPluralName;
+                ViewBag.CategoryID = id;
 
-            return View("CategoryPage", filters);
+                var filters = _prodRepo.GetFilters(GetISO(), id);
+
+                ViewBag.CategoryID = filters.CategoryID;
+                filters.FilterOptions = filters.FilterOptions.OrderBy(x => x.DisplayOrder).ToList();
+
+                foreach (var item in filters.FilterOptions)
+                {
+                    item.FilterValues = item.FilterValues.OrderBy(x => x.Value).ThenByDescending(x => x.BoolValue).ToList();
+                }
+
+                return View("CategoryPage", filters);
+            }
+            catch (Exception)
+            {
+                ViewBag.Products = null;
+
+                return View("CategoryPage");
+            }            
         }
 
         [HttpPost]
@@ -127,28 +141,14 @@ namespace RudycommerceWeb.Controllers
             return View(filters);
         }
 
-        //[HttpGet]
-        //public ActionResult _FilterOptions(int id)
-        //{
-        //    var filters = _prodRepo.GetFilters(GetISO(), id);
-
-        //    ViewBag.CategoryID = filters.CategoryID;
-        //    filters.FilterOptions = filters.FilterOptions.OrderBy(x => x.DisplayOrder).ToList();
-
-        //    return View(filters);
-        //}
-
-        //[HttpPost]
-        //public ActionResult _FilterOptions(Filters filters)
-        //{
-        //    return RedirectToAction("CategoryPage", "Products", new { id = filters.CategoryID, filter = filters });
-        //}
-
         public ActionResult Details(int ID)
         {
             RudycommerceData.Models.ASPModels.ProductDetailsPageItem details = _prodRepo.GetProductDetails(GetISO(), ID);
 
-            ViewBag.Title = details.ProductInfo.Name;
+            if (details.ProductInfo != null)
+            {
+                ViewBag.Title = details.ProductInfo.Name;
+            }            
 
             return View("Details", details);
         }
@@ -173,13 +173,12 @@ namespace RudycommerceWeb.Controllers
                 }
                 else
                 {
-                    return View("CartOverview");
+                    throw new HttpException(404, "");
                 }
             }
             catch (Exception)
             {
-                // TODO ErrorPage or smth else (as well in the else{} above)
-                return View("CartOverview");
+                throw new HttpException(404, "");
             }
         }
 
@@ -196,20 +195,26 @@ namespace RudycommerceWeb.Controllers
 
         private List<CartOverviewItem> GetCartItemsFromCookie()
         {
-            // TODO Error
-
-            CartFromJSON cart = Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(Request.Cookies[ConstVal.cookieCartName].Value);
-
-            List<int> IDs = new List<int>();
-            foreach (var prod in cart.ProductList)
+            try
             {
-                for (int i = 0; i < prod.Quantity; i++)
-                {
-                    IDs.Add(prod.ID);
-                }
-            }
+                CartFromJSON cart = Newtonsoft.Json.JsonConvert.DeserializeObject<CartFromJSON>(Request.Cookies[ConstVal.cookieCartName].Value);
 
-            return _prodRepo.GetCartOverview(GetISO(), IDs).OrderBy(x => x.ProductName).ToList();
+                List<int> IDs = new List<int>();
+                foreach (var prod in cart.ProductList)
+                {
+                    for (int i = 0; i < prod.Quantity; i++)
+                    {
+                        IDs.Add(prod.ID);
+                    }
+                }
+
+                return _prodRepo.GetCartOverview(GetISO(), IDs).OrderBy(x => x.ProductName).ToList();
+            }
+            catch (Exception)
+            {
+                HttpContext.Response.Cookies[ConstVal.cookieCartName].Expires = DateTime.Now.AddDays(-1);
+                throw new HttpException(404, "");
+            }            
         }
     }
 }

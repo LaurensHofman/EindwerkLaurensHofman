@@ -147,7 +147,7 @@ namespace RudycommerceWeb.Controllers
 
                 if (deliveryOption.OtherAddress)
                 {
-                    int clientID = int.Parse(Request.Cookies[ConstVal.cookieClientIDName].Value);
+                    int clientID = int.Parse(RudycommerceLib.Security.Encryption.DecryptString(Request.Cookies[ConstVal.cookieClientIDName].Value));
 
                     order = new IncomingOrder(deliveryOption)
                     {

@@ -5,20 +5,31 @@
     Layout = null;
 }
 
-@if (Model.Count <= 0)
+@if (Model != null)
+{
+    if (Model.Count <= 0)
+    {
+        <div class="col-12 font-size-2 content-horizontal-center">
+            @Resources.Global.NoProductsFoundFilter
+        </div>
+    }
+    else
+    {
+
+
+        foreach (var product in Model)
+        {
+            @Html.Partial("_ProductCard", product)
+        }
+    }
+}
+else
 {
     <div class="col-12 font-size-2 content-horizontal-center">
         @Resources.Global.NoProductsFoundFilter
     </div>
 }
-else
-{
 
 
-    foreach (var product in Model)
-    {
-        @Html.Partial("_ProductCard", product)
-    }
-}
 
 

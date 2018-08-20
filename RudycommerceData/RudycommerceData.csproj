@@ -271,6 +271,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ASPModels\AddToCartModel.cs" />
+    <Compile Include="Models\ASPModels\CheckoutLayoutArrowModel.cs" />
     <Compile Include="Models\ASPModels\Delivery.cs" />
     <Compile Include="Models\ASPModels\CartFromJSON.cs" />
     <Compile Include="Models\ASPModels\CartItem.cs" />

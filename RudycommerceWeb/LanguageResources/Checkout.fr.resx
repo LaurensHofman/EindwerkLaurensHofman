@@ -133,7 +133,7 @@
     <value>Continuer vers paiement</value>
   </data>
   <data name="ContinueToPersonalInfoForm" xml:space="preserve">
-    <value>Continuer vers l'écran d'information (better wording pls)</value>
+    <value>Continuer vers le formulaire d'informations personnelles</value>
   </data>
   <data name="Delivery" xml:space="preserve">
     <value>Livraison</value>

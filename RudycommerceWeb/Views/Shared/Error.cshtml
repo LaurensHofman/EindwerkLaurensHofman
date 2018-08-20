@@ -1,13 +1,41 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
-</body>
-</html>
+﻿@{
+    ViewBag.Title = Resources.Global.Error;
+}
+
+@section Styles {
+    <style>
+        .circle {
+            width: 100%;
+            border-radius:50%;
+            border: 1px solid black;
+            height:4rem;
+            width:4rem;
+            background-color:lightskyblue;
+        }
+    </style>
+    }
+
+<div class="container">
+    <h1 class="h-page-title text-center">@Resources.Global.ErrorPageTitle</h1>
+    <p>@Resources.Global.ErrorPageContent</p>    
+    <div class="content-vertcen-right">@Html.Partial("_BackToHomepageButton")</div>
+
+    <div class="row">
+
+        <div class="col-6 col-md-4">
+            <img src="~/Images/pacman.png" class="responsive-image" />
+        </div>
+        <div class="col-3 col-md-2 content-center">
+            <span class="circle content-center">@Resources.Global.Error</span>
+        </div>
+        <div class="col-md-2 content-center mobiletablet-hide">
+            <span class="circle content-center">@Resources.Global.Error</span>
+        </div>
+        <div class="col-3 col-md-2 p-top-2 content-center">
+            <img class="responsive-image" src="~/Images/pacmancherry.png"/>
+        </div>
+        <div class="col-md-2 content-center mobiletablet-hide">
+            <span class="circle content-center">@Resources.Global.Error</span>
+        </div>
+    </div>
+</div>

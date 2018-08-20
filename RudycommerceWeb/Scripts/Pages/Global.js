@@ -4,8 +4,11 @@ var cookieCartName = 'shoppingCartRudyCommerce';
 var cartProductsElem = document.querySelector('#cart-products');
 var cartPriceElem = document.querySelector('#cart-total-price');
 var cartPriceSpan = document.querySelector('#totalprice');
+var cartDropdown = document.querySelector('#cart-dropdown');
+
 
 var cartEmptyElem = document.querySelector('#empty-cart');
+var cartFilledElem = document.querySelector('#hide-on-empty');
 
 var cartButton = document.querySelector('#shopping-cart');
 var cartDropdown = document.querySelector('#cart-dropdown');
@@ -16,7 +19,9 @@ var LoadNewDocURL;
 
 var cart = {
     productsElement: cartProductsElem,
+    cartFilledElement: cartFilledElem,
     priceElement: cartPriceElem,
+    dropdownElement: cartDropdown,
     emptyCartElement: cartEmptyElem,
     priceSpanElement: cartPriceSpan,
     currentCartContent: null,
@@ -166,8 +171,9 @@ var cart = {
             });
 
             this.emptyCartElement.classList.add('collapse');
-            this.productsElement.classList.remove('collapse');
-            this.priceElement.classList.remove('collapse');
+            this.cartFilledElement.classList.remove('collapse');
+            //this.productsElement.classList.remove('collapse');
+            //this.priceElement.classList.remove('collapse');
 
             this.clearCartDisplay();
 
@@ -190,8 +196,10 @@ var cart = {
         }
         else {
             this.emptyCartElement.classList.remove('collapse');
-            this.productsElement.classList.add('collapse');
-            this.priceElement.classList.add('collapse');
+            this.cartFilledElement.classList.add('collapse');
+            //this.dropdownElement.classList.add('p-r-15px');
+            //this.productsElement.classList.add('collapse');
+            //this.priceElement.classList.add('collapse');
         }
     },
 

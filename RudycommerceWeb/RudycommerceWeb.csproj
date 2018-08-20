@@ -267,6 +267,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Images\mastercard-icon.png" />
+    <Content Include="Images\pacman.png" />
+    <Content Include="Images\pacmancherry.png" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -369,6 +371,8 @@
     <Content Include="Views\Clients\_Login.cshtml" />
     <Content Include="Views\Products\_ProductCard.cshtml" />
     <Content Include="Views\Shared\_AddToCartButton.cshtml" />
+    <Content Include="Views\Shared\_CheckoutLayoutArrow.cshtml" />
+    <Content Include="Views\Shared\_BackToHomepageButton.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

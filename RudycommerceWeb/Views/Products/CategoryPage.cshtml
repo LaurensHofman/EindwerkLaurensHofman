@@ -120,7 +120,7 @@
     }
     else
     {
-        <div class="col-12" style="text-align:right;">
+        <div class="row"><div class="col-12" style="text-align:right;">
             @Resources.Global.SortingOptions @Resources.Global.NotYetImplemented.ToLower()
         </div>
         <div class="col-12 col-md-3 m-top-1">
@@ -130,7 +130,7 @@
                     <h4 class="text-center">@Resources.Global.Filters</h4>
                     <hr />
 
-                    @Html.Raw("Hier komen de filteropties");
+                    @Html.Raw("Hier komen de filteropties")
 
                 </div>
             </div>
@@ -141,6 +141,7 @@
                 @Html.Partial("_ProductList", (List<RudycommerceData.Models.ASPModels.ProductListItem>)ViewBag.Products)
             </div>
         </div>
+    </div>
     }
 </div>
 
