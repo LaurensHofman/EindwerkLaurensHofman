@@ -39,10 +39,16 @@
     }
 }
 
-@foreach (var lang in Model)
+@if (Model == null)
 {
-        <a class="nav-link languages" href="@Html.Raw("/" + lang.ISO + path )">
+    <div class="content-horizontal-center">@Resources.Global.NoLanguagesFound</div>
+}
+else {
+    foreach (var lang in Model)
+    {
+        <a class="nav-link languages" href="@Html.Raw("/" + lang.ISO + path)">
             @lang.ISO.ToUpper()
         </a>
+    }
 }
 

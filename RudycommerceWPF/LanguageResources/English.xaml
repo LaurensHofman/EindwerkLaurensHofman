@@ -128,4 +128,21 @@
 
     <system:String x:Key="IsSpecNumber">Does the specification have a numerical value?</system:String>
     <system:String x:Key="IsSpecNumberShort">Numerical value?</system:String>
+
+
+
+
+    <system:String x:Key="OrderOverviewTitle">Order overview</system:String>
+    <system:String x:Key="OrderOverviewTabPickingList">Picking List</system:String>
+    <system:String x:Key="OrderOverviewTabToBePickedUp">To be picked up</system:String>
+    <system:String x:Key="OrderOverviewTabUnderWay">Under the way</system:String>
+    <system:String x:Key="OrderOverviewTabDelivered">Delivered</system:String>
+
+    <system:String x:Key="OrderDate">Order date</system:String>
+    <system:String x:Key="Status">Status</system:String>
+    <system:String x:Key="OrderCode">Order code</system:String>
+
+    <system:String x:Key="ShowDetails">Show details</system:String>
+    <system:String x:Key="OrderDetails">Order details</system:String>
+    <system:String x:Key="ReadyForPickup">Ready to be sent</system:String>
 </ResourceDictionary>

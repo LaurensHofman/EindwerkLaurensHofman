@@ -1,0 +1,47 @@
+﻿<base:MultilingualWindow
+    xmlns:base="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Abstracts" x:Class="RudycommerceWPF.WindowsAndUserControls.Orders.OrderDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Orders"
+        mc:Ignorable="d"
+        Background="Beige"
+        Title="{DynamicResource ResourceKey=OrderDetails}" Height="700" Width="1000" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    
+    <StackPanel x:Name="grdOrderDetails">
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel>
+                <Label Style="{StaticResource ResourceKey=TitleLabel}" Content="{DynamicResource ResourceKey=OrderDetails}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel x:Name="stackLeft" Grid.Column="0">
+                        
+                    </StackPanel>
+                    <StackPanel x:Name="stackRight" Grid.Column="1">
+                        
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </ScrollViewer>
+        <WrapPanel HorizontalAlignment="Right">
+            <Button Content="{DynamicResource ResourceKey=Cancel}" Style="{StaticResource ResourceKey=FormCancelLinkButton}" Template="{StaticResource FormCancelLinkButtonTemp}" Click="Cancel"/>
+
+            <Button x:Name="btnSubmitGeneral" Style="{StaticResource ResourceKey=FormSubmitButton}" Click="Submit">
+                <Button.Content>
+                    <TextBlock Text="{DynamicResource ReadyForPickup}"/>
+                </Button.Content>
+            </Button>
+        </WrapPanel>
+    </StackPanel>
+</base:MultilingualWindow>

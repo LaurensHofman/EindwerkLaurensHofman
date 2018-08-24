@@ -29,14 +29,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
     /// </summary>
     public partial class SpecificationForm : FormUserControl
     {
-        //
-        //
-        // ERROR MESSAGE ON SAVE FAILED
-        // INTERFACES
-        //
-        //
-        
-
         public Specification SpecModel { get; set; }
 
         public List<Language> LanguageList { get; set; }
@@ -49,13 +41,17 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
         {
             InitializeComponent();
             
+            // Defines the progressbar and submit button to allow the progressbar methods to work in the FormUserControl(base)
             progressBar = prog;
             submitButton = btnSubmit;
 
-            SpecModel = new Specification();
+            SpecModel = new Specification() { LocalizedSpecifications = new List<LocalizedSpecification>()};
 
-            InitializeForm();
+            _specRepo = new SpecificationRepository();
 
+            InitializeCreateForm();
+
+            // Model binding is not always working for checkboxes, so I'm checking these in code.
             cbIsBool.IsChecked = true;
 
             DataContext = this;
@@ -65,6 +61,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
         {
             InitializeComponent();
 
+            // Defines the progressbar and submit button to allow the progressbar methods to work in the FormUserControl(base)
             progressBar = prog;
             submitButton = btnSubmit;
 
@@ -81,24 +78,24 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
         private async void PrepareUpdate()
         {
-            await InitializeForm();
+            await InitializeCreateForm();
 
             CheckCheckBoxes();
         }
 
-        private async Task InitializeForm()
+        private async Task InitializeCreateForm()
         {
+            // Gets the preferred language and sets the language dictionary for in XAML and Content from Resources files
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
-
             SetLanguageDictionary();
 
             _langRepo = new LanguageRepository();
-            _specRepo = new SpecificationRepository();
+
+            // Gets all the languages
 
             LanguageList = await _langRepo.GetAllAsync();
 
-            SpecModel.LocalizedSpecifications = new List<LocalizedSpecification>();
-
+            // Create a tab for each language
             foreach (Language l in LanguageList)
             {
                 CreateLocalizedTab(l);
@@ -107,6 +104,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             SetTitle();
         }
 
+        /// <summary>
+        /// Checks whether its the first load after an update
+        /// </summary>
         private bool firstUpdateLoad = false;
 
         private void CheckCheckBoxes()
@@ -114,6 +114,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             // for some reason, all the binding is working, except the checkbox binding...
             if (_updatingPage)
             {
+                // Is set to true, so the CheckedEvents know they don't have to clear the values this time
                 firstUpdateLoad = true;
             }
             
@@ -142,15 +143,21 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
         private void CreateLocalizedTab(Language lang)
         {
+            // Creates a tab item
             MetroTabItem tabItem = CreateMetroTabItem(lang);
+            // Creates a grid for under the tab item
             Grid tabGrid = new Grid { Style = Application.Current.Resources["GridBelowTabItem"] as Style };
+
+            // Defines 2 grid Columns so the content can be put into 2 equal columns
             tabGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star)});
             tabGrid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
 
+            // Create a stackpanel for the labels and put it in the left column of the grid
             StackPanel stackPanelLeft = CreateLeftStackPanelForLabels(lang);
             tabGrid.Children.Add(stackPanelLeft);
             Grid.SetColumn(stackPanelLeft, 0);
 
+            // Create a stackpanel for the input fields and put it in the right column of the grid
             StackPanel stackPanelRight = CreateRightStackPanelForInput(lang);
             tabGrid.Children.Add(stackPanelRight);
             Grid.SetColumn(stackPanelRight, 1);
@@ -162,7 +169,10 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
         private StackPanel CreateLeftStackPanelForLabels(Language lang)
         {
+            // Creates a stackpanel
             StackPanel stackLeft = new StackPanel();
+
+            // Creates a label for the Name and AdviceDescription property
             Label labelName = new Label
             {
                 Content = LangResource.Name + " * : ",
@@ -173,7 +183,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
                 Padding = _defaultLabelPadding,
                 HorizontalContentAlignment = HorizontalAlignment.Right
             };
-            Label labelDescription = new Label
+            Label labelAdviceDescription = new Label
             {
                 Content = LangResource.AdviceDescription + " : ",
                 Height = _defaultHeight,
@@ -184,33 +194,38 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
                 HorizontalContentAlignment = HorizontalAlignment.Right
             };
 
+            // Adds the labels to the stackpanel
             stackLeft.Children.Add(labelName);
-            stackLeft.Children.Add(labelDescription);
+            stackLeft.Children.Add(labelAdviceDescription);
 
             return stackLeft;
         }
 
         private StackPanel CreateRightStackPanelForInput(Language lang)
         {
-            LocalizedSpecification locSpec;
+            // Checks if the specification already has a localized specification belonging to the language
+            LocalizedSpecification locSpec = SpecModel.LocalizedSpecifications.FirstOrDefault(x => x.LanguageID == lang.ID);
 
-            if (_updatingPage)
+            // If there is no localized specification yet...
+            if (locSpec == null)
             {
-                locSpec = SpecModel.LocalizedSpecifications.SingleOrDefault(x => x.LanguageID == lang.ID);
-            }
-            else
-            {
+                // ... create a new localized specification and add it to the Model
                 locSpec = new LocalizedSpecification
                 {
-                    LanguageID = lang.ID
+                    LanguageID = lang.ID,
+                    SpecificationID = SpecModel.ID
                 };
+
+                SpecModel.LocalizedSpecifications.Add(locSpec);
             }
 
+            // Creates a stackpanel
             StackPanel stackRight = new StackPanel
             {
                 HorizontalAlignment = HorizontalAlignment.Left
             };
 
+            // Creates a textbox for the name property
             ClickSelectTextBox txtName = new ClickSelectTextBox
             {
                 Height = _defaultHeight,
@@ -218,12 +233,14 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
                 Margin = _defaultMargin,
                 VerticalContentAlignment = VerticalAlignment.Center
             };
+            // Creates a binding to the LookupName property of the localized specification, and adds the binding to the textbox
             Binding nameBinding = new Binding("LookupName")
             {
                 Source = locSpec
             };
             txtName.SetBinding(TextBox.TextProperty, nameBinding);
 
+            // Ditto for the AdviceDescription
             ClickSelectTextBox txtAdviceDescription = new ClickSelectTextBox
             {
                 Height = 300,
@@ -238,16 +255,16 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             };
             txtAdviceDescription.SetBinding(TextBox.TextProperty, descriptionBinding);
 
+            // Adds the textboxes to the stackpanel
             stackRight.Children.Add(txtName);
             stackRight.Children.Add(txtAdviceDescription);
-
-            SpecModel.LocalizedSpecifications.Add(locSpec);
 
             return stackRight;
         }
 
         private MetroTabItem CreateMetroTabItem(Language lang)
         {
+            // Creates a new tab item
             MetroTabItem metroTab = new MetroTabItem
             {
                 Header = lang.LocalName,
@@ -310,6 +327,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
         protected override void SetTitle()
         {
+            // Make the title label its content refer to the localized value in the dictionary
             lblTitle.SetResourceReference(ContentProperty, _updatingPage ? "UpdateSpecificationTitle" : "NewSpecificationTitle");
         }
 
@@ -353,6 +371,11 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
                     _specRepo.Add(SpecModel);
                     await _specRepo.SaveChangesAsync();
+                                        
+                    // Forces the product form and category form to be refreshed the next time they're opened, because the products and categories are dependent on the specifications
+                    var window = (NavigationWindow)GetParentWindow();
+                    window.ccProductForm.Content = null;
+                    window.ccCategoryForm.Content = null;
 
                     TriggerSaveEvent();
                 }
@@ -366,14 +389,20 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
         private void PrepareModelForSave()
         {
+            // If the Specification doesn't have an enumeration for its values...
             if (!SpecModel.IsEnumeration)
             {
-
+                // Currently do nothing
             }
+            // If the Specification does have an enumeration for its values...
             else
             {
+                // Check if Specification is not multilingual
                 if (SpecModel.IsMultilingual == false)
                 {
+                    // If the spec is not multilingual but is an enumeration...
+                    // Put the same value for every language
+
                     SpecModel.Enumerations = SpecificationEnumList.ToList();
 
                     foreach (var enums in SpecModel.Enumerations)
@@ -386,6 +415,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
                 }
                 else
                 {
+                    // If the spec is multilingual, every value will already be filled in, so it's just added to the model
                     SpecModel.Enumerations = SpecificationEnumList.ToList();
                 }
             }
@@ -396,12 +426,15 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             // for some reason, all the bindings are working, except the checkboxes in update mode...
             if (!firstUpdateLoad)
             {
+                // Inverse the value of the IsEnumeration bool
                 SpecModel.IsEnumeration = !SpecModel.IsEnumeration;
             }            
 
+            // Hide the enumeration datagrid (and a button belonging to the datagrid) when the IsEnum bool is false
             dgEnumeration.Visibility = SpecModel.IsEnumeration ? Visibility.Visible : Visibility.Collapsed;
             btnAdd.Visibility = SpecModel.IsEnumeration ? Visibility.Visible : Visibility.Collapsed;
 
+            // Generate the appropriate datagrid for the enum values
             if (SpecModel.IsMultilingual == true)
             {
                 GenerateMultilingualDataGridColumns();
@@ -417,9 +450,11 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             // for some reason, all the bindings are working, except the checkboxes in update mode...
             if (!firstUpdateLoad)
             {
+                // Inverse the boolvalue
                 SpecModel.IsMultilingual = !SpecModel.IsMultilingual;
             }
 
+            // Generate the appropriate datagrid columns, based on whether it's multilingual (column per language) or whether it's not multilingual (1 column)
             if (SpecModel.IsMultilingual == true)
             {
                 GenerateMultilingualDataGridColumns();
@@ -440,6 +475,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
             if (SpecModel.IsBool)
             {
+                // If the specification is bool, it cannot be an enumeration or cannot be multilingual.
+                // Hides the checkboxes and labels of the enum and multilingual bool property
                 cbIsEnum.IsChecked = false;
                 cbIsEnum.Visibility = Visibility.Collapsed;
                 lblIsEnum.Visibility = Visibility.Collapsed;
@@ -450,6 +487,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             }
             else
             {
+                // If the specification is not a bool, it can be an enumeration or can be multilingual
+
                 cbIsEnum.Visibility = Visibility.Visible;
                 lblIsEnum.Visibility = Visibility.Visible;
                 
@@ -460,10 +499,14 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
         
         #region Generating DataGrid for Enumerations
 
+        /// <summary>
+        /// The values that the specification can have, when it's has enumeration values
+        /// </summary>
         public ObservableCollection<SpecificationEnum> SpecificationEnumList { get; set; }
 
         private void Generate1DataGridColumn()
         {
+            // If its the first load in an update, fill the datagrid with the current enumerations
             if (firstUpdateLoad)
             {
                 foreach (var en in SpecModel.Enumerations)
@@ -473,25 +516,31 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
                 SpecificationEnumList = new ObservableCollection<SpecificationEnum>(SpecModel.Enumerations);
             }
+            // If its not the first load in an update, clear the values list
             else
             {
                 SpecificationEnumList = new ObservableCollection<SpecificationEnum>();
             }
 
+            // Binds the datagrid
             dgEnumeration.ItemsSource = SpecificationEnumList;
             dgEnumeration.DataContext = SpecificationEnumList;
 
             dgEnumeration.Columns.Clear();
 
+            // Sets the single column
             SetLanguageDictionary();
             TextBlock header = new TextBlock()
             {
                 Text = LangResource.PotentialValues
             };
 
+            // Creates a binding on the temporary non multilingual value.
+            // Later on this value will be put for each language
             string Bindinglocation = "TemporaryNonMLValue";
             Binding valuesBinding = new Binding(Bindinglocation);
 
+            // Creates a new column and adds the binding
             DataGridTextColumn dgCol = new DataGridTextColumn
             {
                 Header = header,
@@ -503,39 +552,66 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
             if (!firstUpdateLoad)
             {
+                // Adds 1 row per default
                 AddEnumRow(null, null);
             }
         }
 
         private void GenerateMultilingualDataGridColumns()
         {
+            // if it's the first load in an update, gets the specifications from the current model
             if (firstUpdateLoad)
             {
                 SpecificationEnumList = new ObservableCollection<SpecificationEnum>(SpecModel.Enumerations);
             }
+            // else, creates a new list
             else
             {
                 SpecificationEnumList = new ObservableCollection<SpecificationEnum>();
             }
             
+            // Binds the datagrid to the list
             dgEnumeration.ItemsSource = SpecificationEnumList;
             dgEnumeration.DataContext = SpecificationEnumList;
 
             dgEnumeration.Columns.Clear();
 
+            // For each language it will check whether the items exist to bind on, and it will create a binded column
             foreach (var lang in LanguageList)
             {
+                // Checks if each enumeration has a value for the current language
+                foreach (var en in SpecModel.Enumerations)
+                {
+                    // Checks if there is already a localized enumeration value in the list.
+                    var locEnum = en.LocalizedEnumValues.FirstOrDefault(x => x.LanguageID == lang.ID);
+
+                    // If there is not one yet (for example in a create form, or in an update when a language was added)
+                    if (locEnum == null)
+                    {
+                        // Create a new localized enumeration value and adds it to the model
+                        locEnum = new LocalizedEnumValue()
+                        {
+                            LanguageID = lang.ID,
+                            EnumerationID = en.ID
+                        };
+                        en.LocalizedEnumValues.Add(locEnum);
+                    }
+                }
+
+                // Creates a new textblock which will be used as header for the column
                 TextBlock header = new TextBlock
                 {
                     Text = lang.LocalName
                 };
                 header.Typography.Capitals = FontCapitals.SmallCaps;
+                
 
+                // Creates a constant binding location
                 int index = LanguageList.IndexOf(lang);
                 string Bindinglocation = $"LocalizedEnumValues[{index}].Value";
                 Binding valuesBinding = new Binding(Bindinglocation);
 
-
+                // Adds a column and adds a binding based on the matching language
                 DataGridTextColumn dgCol
                     = new DataGridTextColumn
                     {
@@ -548,14 +624,17 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
             if (!firstUpdateLoad)
             {
+                // Add an empty row per default
                 AddEnumRow(null, null);
             }
         }
 
         private void AddEnumRow(object sender, RoutedEventArgs e)
         {
+            // Creates a new specification enum to bind on
             SpecificationEnum newEnum = new SpecificationEnum();
 
+            // Adds a localized enumeration value to the new SpecificationEnum for each language
             foreach (var lang in LanguageList)
             {
                 newEnum.LocalizedEnumValues.Add(
@@ -565,14 +644,12 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
                     });
             }
 
+            // Adds the specificationEnum to the list and refreshes the grid
             SpecificationEnumList.Add(newEnum);
-
             dgEnumeration.ItemsSource = SpecificationEnumList;
             dgEnumeration.DataContext = SpecificationEnumList;
         }
 
-        #endregion
-
-        
+        #endregion        
     }
 }

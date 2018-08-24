@@ -1,4 +1,4 @@
-﻿using RudycommerceData.Entities.DesktopUsers;
+﻿ using RudycommerceData.Entities.DesktopUsers;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
 using RudycommerceLib.Properties;
@@ -36,14 +36,15 @@ namespace RudycommerceWPF.WindowsAndUserControls.Users
         public UserOverview()
         {
             InitializeComponent();
-            InitiliazeContent();
-        }
 
-        private async void InitiliazeContent()
-        {
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
             SetLanguageDictionary();
+            
+            InitializeContent();
+        }
 
+        private async void InitializeContent()
+        {
             DataContext = this;
 
             await LoadData();
@@ -115,9 +116,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Users
             }
             catch (Exception)
             {
-                // TODO ERROR
+                MessageBox.Show(LangResource.ErrUpdateOverviewFailed);
                 MessageBoxManager.Unregister();
-                throw;
             }            
         }
 
@@ -153,9 +153,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Users
             }
             catch (Exception)
             {
-                // TODO ERROR
+                MessageBox.Show(LangResource.ErrUpdateOverviewFailed);
                 MessageBoxManager.Unregister();
-                throw;
             }
         }
 
@@ -193,9 +192,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Users
             }
             catch (Exception)
             {
-                // TODO ERROR
+                MessageBox.Show(LangResource.ErrUpdateOverviewFailed);
                 MessageBoxManager.Unregister();
-                throw;
             }
         }
     }

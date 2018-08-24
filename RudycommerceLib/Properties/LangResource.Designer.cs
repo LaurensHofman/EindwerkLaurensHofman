@@ -61,6 +61,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Het toevoegen van de foto is mislukt. Gelieve opnieuw te proberen. Als het probleem zich blijft voordoen, probeer dan met een andere foto te werken..
+        /// </summary>
+        public static string AddImageFailed {
+            get {
+                return ResourceManager.GetString("AddImageFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hoeveel voorraad is er bijgekomen?.
         /// </summary>
         public static string AddStockTitle {
@@ -138,6 +147,15 @@ namespace RudycommerceLib.Properties {
         public static string ErrSaveFailedTitle {
             get {
                 return ResourceManager.GetString("ErrSaveFailedTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to De wijziging is mislukt. Als het probleem zich blijft voordoen, gelieve de administrator te contacteren..
+        /// </summary>
+        public static string ErrUpdateOverviewFailed {
+            get {
+                return ResourceManager.GetString("ErrUpdateOverviewFailed", resourceCulture);
             }
         }
         
@@ -304,6 +322,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to De beheerder van deze applicatie wordt verwittigd, en zal proberen u zo snel mogelijk toegang te geven tot de applicatie. Als het te lang duurt, gelieve de beheerde te contacteren. Meer informatie vindt u in de mail die we u zonet gestuurd hebben..
+        /// </summary>
+        public static string NewAccountMadeInfo {
+            get {
+                return ResourceManager.GetString("NewAccountMadeInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Nee.
         /// </summary>
         public static string No {
@@ -358,11 +385,29 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to De waarden ingevoerd in de tab &apos;Meertalige specificaties&apos; zijn niet allemaal ingevuld. Gelieve deze aan te vullen vooraleer verder te gaan..
+        /// </summary>
+        public static string ProdFormMLTabInvalid {
+            get {
+                return ResourceManager.GetString("ProdFormMLTabInvalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product.
         /// </summary>
         public static string Product {
             get {
                 return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product code.
+        /// </summary>
+        public static string ProductCode {
+            get {
+                return ResourceManager.GetString("ProductCode", resourceCulture);
             }
         }
         
@@ -435,6 +480,15 @@ namespace RudycommerceLib.Properties {
         public static string TheSpec {
             get {
                 return ResourceManager.GetString("TheSpec", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to De gebruikersnaam is al in gebruik. Gelieve een andere te kiezen.
+        /// </summary>
+        public static string UsernameIsTaken {
+            get {
+                return ResourceManager.GetString("UsernameIsTaken", resourceCulture);
             }
         }
         

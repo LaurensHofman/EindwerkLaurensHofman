@@ -56,7 +56,6 @@ namespace RudycommerceWeb.Controllers
         [IsCartFilledActionFilter]
         public ActionResult PersonalInfoForm()
         {
-            string iso = Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
             //ViewBag.HideCartOverview = true;
 
             Client clientModel = new Client();

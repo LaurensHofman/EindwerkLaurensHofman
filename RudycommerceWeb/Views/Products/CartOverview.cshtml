@@ -14,7 +14,7 @@
 
     @if (Model != null)
     {
-        @using (Html.BeginForm("CartOverview", "Products", FormMethod.Post))
+        using (Html.BeginForm("CartOverview", "Products", FormMethod.Post))
         {
             <div class="well">
                 @{ string hidden = "";}

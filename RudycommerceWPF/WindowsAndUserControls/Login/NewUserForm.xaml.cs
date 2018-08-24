@@ -2,7 +2,9 @@
 using RudycommerceData.Entities.DesktopUsers;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
+using RudycommerceLib.CustomExceptions;
 using RudycommerceLib.Notify;
+using RudycommerceLib.Properties;
 using RudycommerceLib.Security;
 using RudycommerceWPF.WindowsAndUserControls.Abstracts;
 using System;
@@ -40,9 +42,14 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="_prefLanguage">The language selected in the login screen. Can still be changed in the new user form itself</param>
         public NewUserForm(Language _prefLanguage)
         {
             InitializeComponent();
+
             _languageRepo = new LanguageRepository();
             _userRepo = new DesktopUserRepository();
             _notifier = new GmailNotifier();
@@ -54,8 +61,10 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private async void InitializeWindow()
         {
+            // Gets the desktoplanguages
             _languageList = (await _languageRepo.GetAllAsync()).Where(l => l.IsDesktopLanguage == true).ToList();
 
+            // Checks whether the languageList contains the desktopLanguages
             bool listContainsDesktopLanguages = _languageList.Any(l => l.LocalName == "Nederlands") && _languageList.Any(l => l.LocalName == "English");
             
             NewDesktopUser = new DesktopUser()
@@ -65,16 +74,16 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
                 Salt = Encryption.GetNewSalt(32)
             };
 
-            if (listContainsDesktopLanguages)
+            // If the languageList contains the necessary DesktopLanguages, choose dutch per default
+            if (!listContainsDesktopLanguages)
             {
                 rbPreferNL.IsChecked = true;
-            }
-            else
-            {
+                // If it doesnt contain the desktopLanguages, collapse the selector, so the preferredLanguageID will remain null
                 languageSelector.Visibility = Visibility.Collapsed;
                 lblPrefLang.Visibility = Visibility.Collapsed;
             }
 
+            // Selects the radiobutton for the language that the user selected in the login screen
             SelectRadioButtonByLanguage();
 
             DataContext = this;
@@ -82,8 +91,10 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private void SelectRadioButtonByLanguage()
         {
+            // Checks whether any language was received by the login window.
             if (_preferredLanguage != null)
             {
+                // Select the radiobutton according to the previously selected language
                 switch (_preferredLanguage.LocalName)
                 {
                     case "Nederlands":
@@ -101,6 +112,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            // Selects the correct PreferredLanguageID for the new user
             if (rbPreferNL.IsChecked == true)
             {
                 NewDesktopUser.PreferredLanguageID = _languageList.Single(l => l.LocalName == "Nederlands").ID;
@@ -120,8 +132,10 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
         {
             try
             {
+                // Encrypts the user password
                 NewDesktopUser.EncryptedPassword = Encryption.EncryptPassword(NewDesktopUser.Salt, pwdPassword.Password);
 
+                // Create the new user
                 NewDesktopUser = _userRepo.Add(NewDesktopUser);
                 await _userRepo.SaveChangesAsync();
 
@@ -131,21 +145,26 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
                 LoginWindow login = new LoginWindow();
                 login.Show();
 
-                // TODO Message to explain process (instead of e-mail)
+                MessageBox.Show(LangResource.NewAccountMadeInfo);
 
                 this.Close();
             }
+            catch (UsernameTaken)
+            {
+                MessageBox.Show(LangResource.UsernameIsTaken);
+                pwdPassword.Password = null;
+            }
             catch (Exception)
             {
-                // TODO ERROR + Exception when Username is already taken
-
                 pwdPassword.Password = null;
-                throw;
+                MessageBox.Show(LangResource.ErrSaveFailedContent, LangResource.ErrSaveFailedTitle);
             }
         }
 
         private void SendMailToNewUser()
         {
+            // Builds the mail to the new user
+
             DesktopUser user = NewDesktopUser;
             string adminEmail = _userRepo.GetAllQueryable().SingleOrDefault(du => du.IsAdmin == true).Email;
 
@@ -214,6 +233,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private void SendMailToAdmin()
         {
+            // Builds the email to the admin
+
             DesktopUser admin = _userRepo.GetAllQueryable().SingleOrDefault(du => du.IsAdmin == true);
 
             string title = "TODO Title";
@@ -281,6 +302,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private void pwdPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
+            // Makes the hidden textbox have the same content as the password box when changing the content in it
             txtPasswordVisible.Text = pwdPassword.Password;
 
             int start = pwdPassword.Password.Length;
@@ -291,6 +313,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private void txtPasswordVisible_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Makes the passwordbox have the same content
+
             pwdPassword.Password = txtPasswordVisible.Text;
 
             int start = txtPasswordVisible.Text.Length;
@@ -300,6 +324,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private void btnShowHidePwd_Click(object sender, RoutedEventArgs e)
         {
+            // Changes the icon of the toggle button
             btnShowHidePwd.Content =
                 (txtPasswordVisible.Visibility == Visibility.Collapsed) ?
                 FindResource("Hide") : FindResource("Show");
@@ -307,6 +332,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             ToggleShowPassword();
         }
 
+        /// <summary>
+        /// Toggles the visibility of the password and text box
+        /// </summary>
         private void ToggleShowPassword()
         {
             if (txtPasswordVisible.Visibility == Visibility.Collapsed)

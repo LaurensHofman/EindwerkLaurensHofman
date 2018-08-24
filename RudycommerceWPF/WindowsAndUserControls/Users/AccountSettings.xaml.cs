@@ -32,6 +32,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Users
 
         private List<Language> _languageList;
 
+        private bool listContainsDesktopLanguages;
+
         private ILanguageRepository _languageRepo;
         private IDesktopUserRepository _userRepo;
         private DesktopUser _currentUser;
@@ -50,25 +52,34 @@ namespace RudycommerceWPF.WindowsAndUserControls.Users
 
         private async void InitializeUserControl()
         {
+            // Gets the current user
+
             _currentUser = await _userRepo.GetAsync(Properties.Settings.Default.CurrentUser.ID);
 
+            // Puts the current user in a global accessible variable
             Properties.Settings.Default.CurrentUser = _currentUser;
 
+            // Gets all the languages
             _languageList = (await _languageRepo.GetAllAsync()).Where(l => l.IsDesktopLanguage == true).ToList();
 
-            bool listContainsDesktopLanguages = _languageList.Any(l => l.LocalName == "Nederlands") && _languageList.Any(l => l.LocalName == "English");
+            // Checks whether the database already contains the 2 default display languages
+            listContainsDesktopLanguages = _languageList.Any(l => l.LocalName == "Nederlands") && _languageList.Any(l => l.LocalName == "English");
 
+            // If the desktop languages exist yet...
             if (listContainsDesktopLanguages)
             {
+                // ... But the user has no preferred Language yet, select Dutch 
                 if (_currentUser.PreferredLanguageID == null)
                 {
                     rbPreferNL.IsChecked = true;
                 }
+                // ... And the user has a preferred language, select its preferred language
                 else
                 {
                     SelectRadioButtonByLanguage();
                 }
             }
+            // Else, hide the selector
             else
             {
                 languageSelector.Visibility = Visibility.Collapsed;
@@ -104,15 +115,19 @@ namespace RudycommerceWPF.WindowsAndUserControls.Users
                 SetLanguageDictionary();
             }
         }
-
+        
         private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
-            if (_preferredLanguage == null)
+            // If somehow no language was selected, choose dutch
+            if (_preferredLanguage == null && listContainsDesktopLanguages)
             {
                 rbPreferNL.IsChecked = true;
             }
 
+            // Sets the preferred language for the user
             _currentUser.PreferredLanguageID = _preferredLanguage.ID;
+
+            // Update the user and save
             await _userRepo.UpdateAsync(_currentUser);
             await _userRepo.SaveChangesAsync();
             OnAccountSave(_currentUser);

@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Languages"
     xmlns:rudycommercewpf="clr-namespace:RudycommerceWPF"
     mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Background="Beige">
 
     <UserControl.Resources>
         <ResourceDictionary>

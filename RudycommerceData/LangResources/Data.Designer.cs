@@ -61,6 +61,42 @@ namespace LangResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delivered.
+        /// </summary>
+        public static string DeliveryDelivered {
+            get {
+                return ResourceManager.GetString("DeliveryDelivered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ordered.
+        /// </summary>
+        public static string DeliveryOrdered {
+            get {
+                return ResourceManager.GetString("DeliveryOrdered", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready for pickup.
+        /// </summary>
+        public static string DeliveryReadyForPickup {
+            get {
+                return ResourceManager.GetString("DeliveryReadyForPickup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Under way.
+        /// </summary>
+        public static string DeliveryUnderWay {
+            get {
+                return ResourceManager.GetString("DeliveryUnderWay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name: A -&gt; Z.
         /// </summary>
         public static string SortNameAZ {

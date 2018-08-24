@@ -12,6 +12,33 @@ namespace RudycommerceData.Repositories.Repo
 {
     public class LanguageRepository : BaseRepository<Language>, ILanguageRepository
     {
+        public override void Delete(int entityID)
+        {
+            Delete(Get(entityID));
+        }
+
+        public override void Delete(Language entity)
+        {
+            entity.DeletedAt = DateTime.Now;
+
+            Update(entity);
+        }
+
+        public override List<Language> GetAll()
+        {
+            return base.GetAll().Where(x => x.DeletedAt == null).ToList();
+        }
+
+        public async override Task<List<Language>> GetAllAsync()
+        {
+            return (await base.GetAllAsync()).Where(x => x.DeletedAt == null).ToList();
+        }
+
+        public override IQueryable<Language> GetAllQueryable()
+        {
+            return base.GetAllQueryable().Where(x => x.DeletedAt == null).AsQueryable();
+        }
+
         public async Task<Language> MakeNewDefaultLanguage(Language newDefault)
         {
             Language oldDefault = GetAllQueryable().SingleOrDefault(x => x.IsDefault);
@@ -37,7 +64,7 @@ namespace RudycommerceData.Repositories.Repo
         {
             SqlParameter langISO = new SqlParameter("@langISO", iso);
 
-            return _context.Database.SqlQuery<int>("exec dbo.sprocProductListItems @langISO", langISO).First();
+            return _context.Database.SqlQuery<int>("exec dbo.sprocGetLangIDByISO @langISO", langISO).FirstOrDefault();
         }    
     }
 }

@@ -117,6 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DeliveryDelivered" xml:space="preserve">
+    <value>Livré</value>
+  </data>
+  <data name="DeliveryOrdered" xml:space="preserve">
+    <value>Commandé</value>
+  </data>
+  <data name="DeliveryReadyForPickup" xml:space="preserve">
+    <value>Prêt pour le ramassage</value>
+  </data>
+  <data name="DeliveryUnderWay" xml:space="preserve">
+    <value>En cours</value>
+  </data>
   <data name="SortNameAZ" xml:space="preserve">
     <value>Nom: A -&gt; Z</value>
   </data>

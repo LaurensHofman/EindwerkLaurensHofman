@@ -49,6 +49,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
 
             BrandModel = brand;
 
+            // Shows the image belonging to the brand
             ShowImage(brand.LogoURL);
 
             InitializeWindow();
@@ -56,6 +57,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
 
         private void InitializeWindow()
         {
+            // Defines the progress bar and submit button, to allow the ProgressBar methods to work (FormUserControl)
             progressBar = prog;
             submitButton = btnSubmit;
 
@@ -66,7 +68,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
             DataContext = this;
 
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
-
             SetLanguageDictionary();
 
             SetTitle();
@@ -74,26 +75,31 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
 
         protected override void SetTitle()
         {
+            // Sets the content by referencing to the localized string in the dictionary
             lblTitle.SetResourceReference(ContentProperty, _updatingPage ? "UpdateBrandTitle" : "NewBrandTitle");
         }
 
         private void AddRemoveImage(object sender, RoutedEventArgs e)
         {
+            // If the brand has no image yet, open a filedialog to select one
             if (BrandModel.LocalLogoPath == null && BrandModel.LogoURL == null)
             {
                 try
                 {
+                    // Opens a filedialog filtered on image files
                     Microsoft.Win32.OpenFileDialog fileDialog = new Microsoft.Win32.OpenFileDialog
                     {
                         Filter = "Image File (*.jpg; *.png)| *.jpg; *.png"
                     };
 
+                    // Checks if a file was chosen
                     bool? result = fileDialog.ShowDialog();
 
+                    // If a file was chosen
                     if (result == true)
                     {
+                        // Put the file path into the BrandModel
                         string filename = fileDialog.FileName;
-
                         BrandModel.LocalLogoPath = filename;
 
                         ShowImage(filename);
@@ -105,8 +111,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
                 }
                 catch (Exception)
                 {
-                    // TODO
-                    throw;
+                    MessageBox.Show(LangResource.AddImageFailed);
+                    BrandModel.LogoURL = null;
+                    BrandModel.LocalLogoPath = null;
                 }
             }
             else
@@ -115,43 +122,65 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
             }
         }
 
+        /// <summary>
+        /// Hides the image control, and shows an add image button
+        /// </summary>
         private void HideImage()
         {
             BrandModel.LocalLogoPath = null;
             BrandModel.LogoURL = null;
+
+            // Makes the image control empty and hides it
             LogoImage.Source = null;
             LogoImage.Visibility = Visibility.Collapsed;
 
+            // Hides the remove image button
             RemoveImageButton.Visibility = Visibility.Collapsed;
 
+            // Shows the add image button
             AddImageButton.Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Shows the image control, and shows a remove image button
+        /// </summary>
+        /// <param name="filePath"></param>
         private void ShowImage(string filePath)
         {
+            // Shows the image
             LogoImage.Source = new BitmapImage(new Uri(filePath));
             LogoImage.Visibility = Visibility.Visible;
 
+            // Shows the remove image button
             RemoveImageButton.Visibility = Visibility.Visible;
 
+            // Hides the add image button
             AddImageButton.Visibility = Visibility.Collapsed;
         }
 
         private async Task SaveModel()
         {
-            if (_updatingPage)
+            try
             {
-                await _brandRepo.UpdateAsyncWithImage(BrandModel);
-                // TODO WITH IMAGE
-            }
-            else
-            {
-                await _brandRepo.AddAsyncWithImage(BrandModel);
-                Visibility = Visibility.Collapsed;
-            }           
+                if (_updatingPage)
+                {
+                    // Updates the brand, including the image
+                    await _brandRepo.UpdateAsyncWithImage(BrandModel);
+                }
+                else
+                {
+                    // Creates the brand, including the image
+                    await _brandRepo.AddAsyncWithImage(BrandModel);
+                    Visibility = Visibility.Collapsed;
+                }
 
-            await _brandRepo.SaveChangesAsync();
-            TriggerSaveEvent();
+                await _brandRepo.SaveChangesAsync();
+                TriggerSaveEvent();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(LangResource.ErrSaveFailedContent, LangResource.ErrSaveFailedTitle);
+            }            
         }
 
         private bool Validate()

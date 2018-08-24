@@ -1,6 +1,8 @@
-﻿using RudycommerceData.Models.ASPModels;
+﻿using RudycommerceData.Models;
+using RudycommerceData.Models.ASPModels;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +14,28 @@ namespace RudycommerceData.Entities.Orders
         public int ClientID { get; set; }
         public virtual Client Client { get; set; }
 
-        public string Status { get; set; }
+        [NotMapped]
+        public string Status
+        {
+            get
+            {
+                switch (StatusCode)
+                {
+                    case 0:
+                        return LangResources.Data.DeliveryOrdered;
+                    case 1:
+                        return LangResources.Data.DeliveryReadyForPickup;
+                    case 2:
+                        return LangResources.Data.DeliveryUnderWay;
+                    case 3:
+                        return LangResources.Data.DeliveryDelivered;
+                    default:
+                        return LangResources.Data.DeliveryOrdered;
+                }
+            }
+        }
+        
+        public int StatusCode { get; set; }
 
         public string PaymentOption { get; set; }
         public bool PaymentComplete { get; set; }
@@ -26,6 +49,18 @@ namespace RudycommerceData.Entities.Orders
         public Decimal TotalPrice { get; set; }
 
         public virtual ICollection<IncomingOrderLines> IncomingOrderLines { get; set; }
+
+        [NotMapped]
+        public bool OrderGettingLate
+        {
+            get { return (DateTime.Now - this.CreatedAt).TotalDays >= 1; }
+        }
+
+        [NotMapped]
+        public string ClientName { get { return Client.ToString(); } }
+
+
+
 
         public override bool IsNew()
         {

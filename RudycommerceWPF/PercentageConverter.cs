@@ -7,11 +7,14 @@ using System.Windows.Data;
 
 namespace RudycommerceWPF
 {
-    // Can be used to convert values from wpf controls.
-    // For example: If something has a variable width (for example stackpanel)
-    // You can make a Child its width equal to a percentage of the parent's (stackpanel) ActualWidth 
+    /// <summary>
+    /// Can be used to convert values from wpf controls.    
+    /// </summary>
     public class PercentageConverter : IValueConverter
     {
+        // For example: If something has a variable width (for example stackpanel)
+        // You can make a Child its width equal to a percentage of the parent's (stackpanel) ActualWidth (in XAML)
+
         // https://stackoverflow.com/questions/717299/wpf-setting-the-width-and-height-as-a-percentage-value
 
         public object Convert(object value,

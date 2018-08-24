@@ -23,7 +23,7 @@ namespace RudycommerceData.Entities.Products.Products
         public int CurrentStock { get; set; }
 
         [Required]
-        public int MinimumStock { get; set; }
+        public int? MinimumStock { get; set; }
 
         public int CategoryID { get; set; }
         public virtual Category Category { get; set; }

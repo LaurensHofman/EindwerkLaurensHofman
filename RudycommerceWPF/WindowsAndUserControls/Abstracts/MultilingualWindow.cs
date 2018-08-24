@@ -13,11 +13,19 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
 {
     public abstract class MultilingualWindow : MetroWindow
     {
+        /// <summary>
+        /// Defines the user's preferred language
+        /// </summary>
         protected Language _preferredLanguage;
 
+        /// <summary>
+        /// Sets the dictionary and Culture so it can be used by resource files
+        /// </summary>
         protected virtual void SetLanguageDictionary()
         {
             ResourceDictionary dict = new ResourceDictionary();
+
+            // Chooses the correct 
 
             string langDictionary;
 
@@ -38,9 +46,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
 
             dict.Source = new Uri(langDictionary, UriKind.Relative);
 
+            // Adds the dictionary so it can be used as a Resource in XAML
+
             this.Resources.MergedDictionaries.Add(dict);
 
             CultureInfo ci;
+
+            // Gets the culture according to the user's preferred language
 
             switch (_preferredLanguage.LocalName)
             {
@@ -56,6 +68,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
                     ci = CultureInfo.CreateSpecificCulture("nl");
                     break;
             };
+
+            // Sets the culture, so it can be used to get the correct ResourceFiles in C#
 
             Thread.CurrentThread.CurrentUICulture = ci;
             Thread.CurrentThread.CurrentCulture = ci;

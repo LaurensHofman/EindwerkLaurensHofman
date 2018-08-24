@@ -246,4 +246,22 @@
   <data name="NameInLanguageX" xml:space="preserve">
     <value>Naam in het "{0}"</value>
   </data>
+  <data name="ProductCode" xml:space="preserve">
+    <value>Product code</value>
+  </data>
+  <data name="NewAccountMadeInfo" xml:space="preserve">
+    <value>De beheerder van deze applicatie wordt verwittigd, en zal proberen u zo snel mogelijk toegang te geven tot de applicatie. Als het te lang duurt, gelieve de beheerde te contacteren. Meer informatie vindt u in de mail die we u zonet gestuurd hebben.</value>
+  </data>
+  <data name="UsernameIsTaken" xml:space="preserve">
+    <value>De gebruikersnaam is reeds in gebruik. Gelieve een andere te kiezen.</value>
+  </data>
+  <data name="AddImageFailed" xml:space="preserve">
+    <value>Het toevoegen van de foto is mislukt. Gelieve opnieuw te proberen. Als het probleem zich blijft voordoen, probeer dan met een andere foto te werken.</value>
+  </data>
+  <data name="ErrUpdateOverviewFailed" xml:space="preserve">
+    <value>De wijziging is mislukt. Als het probleem zich blijft voordoen, gelieve de administrator te contacteren.</value>
+  </data>
+  <data name="ProdFormMLTabInvalid" xml:space="preserve">
+    <value>De waarden ingevoerd in de tab 'Meertalige specificaties' zijn niet allemaal ingevuld. Gelieve deze aan te vullen vooraleer verder te gaan.</value>
+  </data>
 </root>

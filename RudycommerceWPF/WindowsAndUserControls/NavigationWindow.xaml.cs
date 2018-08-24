@@ -54,22 +54,29 @@ namespace RudycommerceWPF.WindowsAndUserControls
 
             InitializeWindow(userID);
 
-            SetLanguageDictionary();
-
+            // Opens the order overview on load
             menuOrderOverview(null, null);
         }
 
         private void InitializeWindow(int userID)
         {
+            // Gets the user based on the user id sent by the login screen
             _currentUser = _userRepo.Get(userID);
+            // Puts the user in global accessible settings
             Properties.Settings.Default.CurrentUser = _currentUser;
+            // Gets the language based on the preferrence of the user
             _preferredLanguage = _currentUser.PreferredLanguage;
 
+            // Enable the user tab if the current user is the admin
             EnableUserTab();
 
+            // Sets the display language
             SetLanguageDictionary();
         }
 
+        /// <summary>
+        /// Enable the User tab for the admin
+        /// </summary>
         private void EnableUserTab()
         {
             if (_currentUser.IsAdmin)
@@ -79,9 +86,16 @@ namespace RudycommerceWPF.WindowsAndUserControls
                 sepDesktopUser.Visibility = Visibility.Visible;
             }
         }
-       
+
         #region Methods to show the user controls
 
+        /// <summary>
+        /// Shows the user control for a Form
+        /// </summary>
+        /// <typeparam name="formUC">The FormUserControl that you want to show</typeparam>
+        /// <typeparam name="overviewUC">The OverviewUserControl that you want to show on a submit of the form</typeparam>
+        /// <param name="formContentControl">The ContentControl in which the FormUserControl has to be shown</param>
+        /// <param name="overviewContentControl">The ContentControl in which the OverviewUserControl has to be shown</param>
         public void ShowFormUserControl<formUC, overviewUC>(ContentControl formContentControl, ContentControl overviewContentControl)
                                     where formUC : FormUserControl, new()
                                     where overviewUC : OverviewUserControl, new()
@@ -102,7 +116,7 @@ namespace RudycommerceWPF.WindowsAndUserControls
             {
                 formUC _content = new formUC
                 {
-                    thisContentControl = overviewContentControl
+                    OverviewContentControl = overviewContentControl
                 };
 
                 _content.CreateEvent += GoToOverview<overviewUC>;
@@ -115,6 +129,11 @@ namespace RudycommerceWPF.WindowsAndUserControls
             (formContentControl.Content as formUC).Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Shows an overview
+        /// </summary>
+        /// <typeparam name="ToBeShownUC">The OverviewUserControl that you want to show</typeparam>
+        /// <param name="contentControl">The contentControl in which the OverviewUserControl has to be shown</param>
         private void ShowOverviewUserControl<ToBeShownUC>(ContentControl contentControl) where ToBeShownUC : OverviewUserControl, new()
         {
             // Gets the User control (<Type>) that has to be shown, and defines it as a UserControl (inheritence from :LanguageUserControl)
@@ -144,6 +163,11 @@ namespace RudycommerceWPF.WindowsAndUserControls
             (contentControl.Content as ToBeShownUC).Visibility = Visibility.Visible;
         }
 
+        /// <summary>
+        /// Show any UserControl, without any events
+        /// </summary>
+        /// <typeparam name="ToBeShownUC"></typeparam>
+        /// <param name="contentControl"></param>
         private void ShowGeneralUserControl<ToBeShownUC>(ContentControl contentControl) where ToBeShownUC: MultilingualUserControl, new()
         {
             HideAllUserControls();
@@ -159,17 +183,44 @@ namespace RudycommerceWPF.WindowsAndUserControls
             contentControl.Visibility = Visibility.Visible;
             (contentControl.Content as ToBeShownUC).Visibility = Visibility.Visible;
         }
-
+        
+        /// <summary>
+        /// After a form submit, go to the overview user control
+        /// </summary>
+        /// <typeparam name="overviewUC"></typeparam>
+        /// <param name="contentControl"></param>
         private void GoToOverview<overviewUC>(ContentControl contentControl) where overviewUC : OverviewUserControl, new()
         {
             ShowOverviewUserControl<overviewUC>(contentControl);
         }
 
-        private void HideAllUserControls()
+        /// <summary>
+        /// Hide all the user controls, except the Order overview, because that is the default one to always show when others are closed
+        /// </summary>
+        public void HideAllUserControls()
         {
             foreach (ContentControl contentControl in UserControls.Children)
             {
                 contentControl.Visibility = Visibility.Collapsed;
+            }
+
+            ccOrders.Visibility = Visibility.Visible;
+        }
+
+        /// <summary>
+        /// 'Refreshes' all the user controls
+        /// </summary>
+        public void ResetAllUserControls()
+        {
+            // By setting the content control's content to null, the next time you are going to open that contentControl, 
+            // it's going to make a new instance of the UserControl 
+
+            foreach (ContentControl contentControl in UserControls.Children)
+            {
+                if (contentControl.Name != "ccOrders")
+                {
+                    contentControl.Content = null;
+                }                
             }
         }
 
@@ -205,6 +256,8 @@ namespace RudycommerceWPF.WindowsAndUserControls
 
         private async void ApplySettings(DesktopUser desktopUser)
         {
+            // Sets the preferredLanguage based on the one chosen in the settings page
+
             _preferredLanguage = await _langRepo.GetAsync((int)desktopUser.PreferredLanguageID);
 
             SetLanguageDictionary();
@@ -213,6 +266,8 @@ namespace RudycommerceWPF.WindowsAndUserControls
             {
                 contentControl.Content = null;
             }
+
+            menuOrderOverview(null, null);
         }
 
         #endregion

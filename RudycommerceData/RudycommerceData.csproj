@@ -269,6 +269,10 @@
     <Compile Include="Migrations\201808181439418_removedSellingWell.Designer.cs">
       <DependentUpon>201808181439418_removedSellingWell.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808211727125_statuscode.cs" />
+    <Compile Include="Migrations\201808211727125_statuscode.Designer.cs">
+      <DependentUpon>201808211727125_statuscode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ASPModels\AddToCartModel.cs" />
     <Compile Include="Models\ASPModels\CheckoutLayoutArrowModel.cs" />
@@ -290,6 +294,7 @@
     <Compile Include="Models\NecessarySpecification.cs" />
     <Compile Include="Models\ProductOverviewItem.cs" />
     <Compile Include="Models\SpecificationOverviewItem.cs" />
+    <Compile Include="Models\StatusCodesDict.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepo\BaseRepository.cs" />
     <Compile Include="Repositories\BaseRepo\IBaseRepository.cs" />
@@ -492,6 +497,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808181439418_removedSellingWell.resx">
       <DependentUpon>201808181439418_removedSellingWell.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808211727125_statuscode.resx">
+      <DependentUpon>201808211727125_statuscode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Validation\Client.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

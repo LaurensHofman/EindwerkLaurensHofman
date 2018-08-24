@@ -178,27 +178,27 @@
 
 
         <Grid x:Name="UserControls" Grid.Row="1">
-            
-            <ContentControl x:Name="ccOrders" Visibility="Collapsed"/>
-            
-            <ContentControl x:Name="ccProductForm" Visibility="Collapsed"/>
-            <ContentControl x:Name="ccProductOverview" Visibility="Collapsed"/>
 
-            <ContentControl x:Name="ccBrandForm" Visibility="Collapsed"/>
-            <ContentControl x:Name="ccBrandOverview" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccOrders" Panel.ZIndex="0" Visibility="Collapsed"/>
 
-            <ContentControl x:Name="ccCategoryForm" Visibility="Collapsed"/>
-            <ContentControl x:Name="ccCategoryOverview" Visibility="Collapsed"/>
-            
-            <ContentControl x:Name="ccSpecificationForm" Visibility="Collapsed"/>
-            <ContentControl x:Name="ccSpecificationOverview" Visibility="Collapsed"/>
-            
-            <ContentControl x:Name="ccLanguageForm" Visibility="Collapsed"/>
-            <ContentControl x:Name="ccLanguageOverview" Visibility="Collapsed"/>
-            
-            <ContentControl x:Name="ccUsers" Visibility="Collapsed"/>
-            
-            <ContentControl x:Name="ccSettings" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccProductForm" Panel.ZIndex="1" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccProductOverview" Panel.ZIndex="1" Visibility="Collapsed"/>
+
+            <ContentControl x:Name="ccBrandForm" Panel.ZIndex="1" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccBrandOverview" Panel.ZIndex="1" Visibility="Collapsed"/>
+
+            <ContentControl x:Name="ccCategoryForm" Panel.ZIndex="1" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccCategoryOverview" Panel.ZIndex="1" Visibility="Collapsed"/>
+
+            <ContentControl x:Name="ccSpecificationForm" Panel.ZIndex="1" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccSpecificationOverview" Panel.ZIndex="1" Visibility="Collapsed"/>
+
+            <ContentControl x:Name="ccLanguageForm" Panel.ZIndex="1" Visibility="Collapsed"/>
+            <ContentControl x:Name="ccLanguageOverview" Panel.ZIndex="1" Visibility="Collapsed"/>
+
+            <ContentControl x:Name="ccUsers" Panel.ZIndex="1" Visibility="Collapsed"/>
+
+            <ContentControl x:Name="ccSettings" Panel.ZIndex="1" Visibility="Collapsed"/>
 
         </Grid>
     </Grid>

@@ -28,7 +28,14 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
     /// </summary>
     public partial class ProductOverview : OverviewUserControl
     {
+        /// <summary>
+        /// A viewsource can actually refresh on changes, whereas an observable collection will only change on deletes and creates.
+        /// </summary>
         public CollectionViewSource ViewSource { get; set; }
+
+        /// <summary>
+        /// Collection containing all the products
+        /// </summary>
         public ObservableCollection<ProductOverviewItem> ProductList { get; set; }
 
         private IProductRepository _prodRepo;
@@ -47,26 +54,36 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
             DataContext = this;
 
-            LoadDataGridData();
+            await LoadDataGridData();
         }
 
         public override async Task LoadDataGridData()
         {
             _prodRepo = new ProductRepository();
 
+            // gets all the products
             ProductList = new ObservableCollection<ProductOverviewItem>(_prodRepo.GetProductOverview(_preferredLanguage.ID)
                 .OrderBy(x => x.CategoryName)
                 .ThenByDescending(x => x.IsActive)
                 .ThenBy(x => x.ProductName));
 
-            ViewSource = new CollectionViewSource();
-            ViewSource.Source = ProductList;
+            // Creates a viewsource for the product list
+            ViewSource = new CollectionViewSource
+            {
+                Source = ProductList
+            };
+
+            // Binds the datagrid on the viewsource
             dgProductOverview.ItemsSource = ViewSource.View;
             dgProductOverview.DataContext = ProductList;
 
+            // Refreshes the datagrid
             BindData();
         }
 
+        /// <summary>
+        /// Refreshes the DataGrid
+        /// </summary>
         private void BindData()
         {
             ViewSource.View.Refresh();
@@ -76,6 +93,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         {
             try
             {
+                // Gets the product to be deleted
                 ProductOverviewItem ToBeDeleted = ((FrameworkElement)sender).DataContext as ProductOverviewItem;
 
                 string messageboxTitle = String.Format(LangResource.MBTitleDeleteObj, ToBeDeleted.ProductName);
@@ -85,6 +103,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 MessageBoxManager.No = LangResource.No;
                 MessageBoxManager.Register();
 
+                // Shows a messagebox with localized content to propmpt if the user is sure he wants to delete the product
                 if (MessageBox.Show(messageboxContent,
                                     messageboxTitle,
                                     MessageBoxButton.YesNo,
@@ -93,11 +112,12 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 {
                     MessageBoxManager.Unregister();
 
+                    // Delete the product from the database and the ProductList
                     _prodRepo.Delete(ToBeDeleted.ID);
                     ProductList.Remove(ToBeDeleted);
-
                     await _prodRepo.SaveChangesAsync();
 
+                    // Refreshes the grid
                     BindData();
                 }
                 else
@@ -106,7 +126,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             catch (Exception)
             {
                 MessageBoxManager.Unregister();
-                throw;
+                MessageBox.Show(LangResource.ErrUpdateOverviewFailed);
             }
         }
 
@@ -137,6 +157,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         /// </summary>
         private void ToggleVisibilityImages(object sender, RoutedEventArgs e)
         {
+            // Toggles the visibility of the image column and toggles the text in the toggle button
             if (ImageColumn.Visibility == Visibility.Collapsed)
             {
                 ImageColumn.Visibility = Visibility.Visible;
@@ -149,30 +170,21 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             }
         }
 
-        //private async void ToggleProductActive(object sender, RoutedEventArgs e)
-        //{
-        //    // gets the item, changes the IsActive and saves it
-
-        //    ProductOverviewItem item = (ProductOverviewItem)((FrameworkElement)sender).DataContext;
-
-        //    _prodRepo.ToggleProductActive(item.ID);
-        //    await _prodRepo.SaveChangesAsync();
-
-        //    item.IsActive = !item.IsActive;
-
-        //    BindData();
-        //}
-
         /// <summary>
         /// Opens a small window to prompt for the added stock value
         /// </summary>
         private void AddStock(object sender, RoutedEventArgs e)
         {
+            // Creates a new dialig, with custom cancel text, submit text and add stock title text
             var dialog = new MyDialog(LangResource.Cancel, LangResource.Submit, LangResource.AddStockTitle);
+
+            // If the submit buttonn was clicked in the dialog
             if (dialog.ShowDialog() == true)
             {
+                // Try to parse the value to an integer
                 if (int.TryParse(dialog.ResponseText, out int response))
                 {
+                    // If the result is bigger than 0, add the response to the stock of the product, and update the CurrentStock.
                     if (response > 0)
                     {
                         var product = ((FrameworkElement)sender).DataContext as ProductOverviewItem;

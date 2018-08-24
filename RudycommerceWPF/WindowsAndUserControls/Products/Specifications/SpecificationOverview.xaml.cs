@@ -55,16 +55,24 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             DataContext = this;
         }
 
+        /// <summary>
+        /// Refreshes the datagrid
+        /// </summary>
         private void BindData()
         {
             dgSpecificationOverview.ItemsSource = SpecList;
             dgSpecificationOverview.DataContext = SpecList;
         }
 
+        /// <summary>
+        /// Loads the data
+        /// </summary>
+        /// <returns></returns>
         public override async Task LoadDataGridData()
         {
             _specRepo = new SpecificationRepository();
 
+            // Gets all the specifications, and maps it to objects fit to display in the datagrid
             SpecList = new ObservableCollection<SpecificationOverviewItem>
                 (EntitiesMapping.MapToSpecificationOverviewItem(await _specRepo.GetAllAsync(), _preferredLanguage.ID)
                 .OrderBy(x => x.SpecName).ToList()) ;
@@ -77,6 +85,16 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
             SpecificationOverviewItem spec = ((FrameworkElement)sender).DataContext as SpecificationOverviewItem;
 
             ShowUpdateForm<SpecificationForm>(spec.ID);
+        }
+
+        protected override void Updated()
+        {
+            base.Updated();
+
+            // If an update is done, forces the product form and category form to refresh on the next load, because products and categories are dependent on specifications
+            var win = (NavigationWindow)GetParentWindow();
+            win.ccProductForm.Content = null;
+            win.ccCategoryForm.Content = null;
         }
 
         protected override async void Delete(object sender, RoutedEventArgs e)
@@ -111,12 +129,16 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
                 { MessageBoxManager.Unregister(); }
             }
             catch (Exception)
-            {
-
-                throw;
+            { MessageBoxManager.Unregister();
+                MessageBox.Show(LangResource.ErrUpdateOverviewFailed);
             }
         }
 
+        /// <summary>
+        /// Opens a create form in the same window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected override void OpenForm(object sender, RoutedEventArgs e)
         {
             var myWindow = (NavigationWindow)GetParentWindow();

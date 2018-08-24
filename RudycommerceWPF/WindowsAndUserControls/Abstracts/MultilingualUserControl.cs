@@ -18,13 +18,21 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
 
         }
 
+        /// <summary>
+        /// Defines the user's preferred display language
+        /// </summary>
         protected Language _preferredLanguage;
 
+        /// <summary>
+        /// Sets the language Dictionary according to the user's preferred display language
+        /// </summary>
         protected virtual void SetLanguageDictionary()
         {
             ResourceDictionary dict = new ResourceDictionary();
 
             string langDictionary;
+
+            // chooses the correct dictionary for XAML
 
             switch (_preferredLanguage.LocalName)
             {
@@ -43,9 +51,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
 
             dict.Source = new Uri(langDictionary, UriKind.Relative);
 
+            // Adds the dictionary so this one can be used
+
             this.Resources.MergedDictionaries.Add(dict);
 
             CultureInfo ci;
+
+            // Chooses the correct culture according to the preferred display language
 
             switch (_preferredLanguage.LocalName)
             {
@@ -61,6 +73,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
                     ci = CultureInfo.CreateSpecificCulture("nl");
                     break;
             };
+
+            // Sets the culture, so it can be used by resource files in C#
 
             Thread.CurrentThread.CurrentUICulture = ci;
             Thread.CurrentThread.CurrentCulture = ci;

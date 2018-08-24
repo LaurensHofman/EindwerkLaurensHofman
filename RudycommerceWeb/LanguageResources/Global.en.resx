@@ -216,6 +216,12 @@ In the Benelux, if your order is over € 50,00; then we deliver for free.
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="NoCategoriesFound" xml:space="preserve">
+    <value>No categories were found.</value>
+  </data>
+  <data name="NoLanguagesFound" xml:space="preserve">
+    <value>No supported language was found.</value>
+  </data>
   <data name="NoProductsFoundFilter" xml:space="preserve">
     <value>There were no products found that match the chosen filters.</value>
   </data>

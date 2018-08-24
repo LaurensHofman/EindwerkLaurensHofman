@@ -5,11 +5,19 @@
 }
 
 <ul>
-    @foreach (var cat in Model)
+    @if (Model == null)
+    {
+        <li>@Resources.Global.NoCategoriesFound</li>
+    }
+    else
+    {
+
+    foreach (var cat in Model)
     {
         <li>
             @Html.ActionLink(
            cat.LocalizedName, "CategoryPage", "Products", new { id = cat.CategoryID}, null)
         </li>
+    }
     }
 </ul>

@@ -215,6 +215,12 @@
   <data name="No" xml:space="preserve">
     <value>Nee</value>
   </data>
+  <data name="NoCategoriesFound" xml:space="preserve">
+    <value>Er werden geen categorieën gevonden.</value>
+  </data>
+  <data name="NoLanguagesFound" xml:space="preserve">
+    <value>Er werden geen ondersteunde talen gevonden.</value>
+  </data>
   <data name="NoProductsFoundFilter" xml:space="preserve">
     <value>Er zijn geen producten gevonden die voldoen aan de gekozen filters.</value>
   </data>

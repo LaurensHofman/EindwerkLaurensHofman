@@ -25,7 +25,7 @@ namespace RudycommerceWeb.Controllers.Base
         }
 
         protected static string GetISO()
-        {
+        {   
             return Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
         }
     }

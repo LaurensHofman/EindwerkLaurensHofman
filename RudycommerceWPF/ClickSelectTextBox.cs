@@ -10,12 +10,12 @@ using System.Windows.Media;
 
 namespace RudycommerceWPF
 {
+    // https://stackoverflow.com/questions/660554/how-to-automatically-select-all-text-on-focus-in-wpf-textbox
     /// <summary>
     /// A textbox that automatically selects all content on entering
     /// </summary>
     public class ClickSelectTextBox : TextBox
     {
-        // https://stackoverflow.com/questions/660554/how-to-automatically-select-all-text-on-focus-in-wpf-textbox
 
         public ClickSelectTextBox()
         {

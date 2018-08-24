@@ -342,6 +342,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No categories were found..
+        /// </summary>
+        public static string NoCategoriesFound {
+            get {
+                return ResourceManager.GetString("NoCategoriesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No supported language was found..
+        /// </summary>
+        public static string NoLanguagesFound {
+            get {
+                return ResourceManager.GetString("NoLanguagesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to There were no products found that match the chosen filters..
         /// </summary>
         public static string NoProductsFoundFilter {

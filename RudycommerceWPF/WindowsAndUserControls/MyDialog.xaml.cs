@@ -24,6 +24,12 @@ namespace RudycommerceWPF.WindowsAndUserControls
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Opens a dialog window, that has an input field, shows a Label, a Cancel button and a Submit button
+        /// </summary>
+        /// <param name="cancel">Text for the cancel button</param>
+        /// <param name="submit">Text for the submit button</param>
+        /// <param name="title">Text for the title label</param>
         public MyDialog(string cancel, string submit, string title)
         {
             InitializeComponent();
@@ -43,6 +49,8 @@ namespace RudycommerceWPF.WindowsAndUserControls
 
         private void OKButton_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            // When DialogResult is set to True, the caller can use the ResponseText to get the value that was inserted
+
             DialogResult = true;
         }
 

@@ -36,14 +36,21 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
         private ILanguageRepository _langRepo;
         private ISpecificationRepository _specRepo;
 
+        /// <summary>
+        /// List of all the existing specifications, that the user can choose of to add to their category.
+        /// </summary>
         public ObservableCollection<LocalizedSpecification> SelectionSpecList { get; set; }
 
+        /// <summary>
+        /// List of all the languages
+        /// </summary>
         private List<Language> LanguageList;
 
         public CategoryForm()
         {
             InitializeComponent();
 
+            // Creates new category
             CategoryModel = new Category
             {
                 CategorySpecifications = new ObservableCollection<CategorySpecification>(),
@@ -65,6 +72,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
             _categoryRepo = new CategoryRepository();
 
+            // Gets the category from the database
             CategoryModel = _categoryRepo.Get(id);
 
             InitializeWindow();
@@ -74,10 +82,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
         private async void LoadUpdateWindow()
         {
+            // Generate the tabs for each language (to fill in the category name and plural name)
             GenerateTabs();
 
+            // Fills the specification datagrid so you can use which specification you want to add to a category
             await FillSelectionDataGrid();
 
+            // Fill the datagrids based on which specifications were already added
             PrepareDataGrids();
 
             BindCategorySpecificationsGrid();
@@ -85,38 +96,49 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
         private void PrepareDataGrids()
         {
+            // Gets the specifications that were already added to the category
             List<int> specIDs = new List<int>();
-
             foreach (var catSpec in CategoryModel.CategorySpecifications.OrderBy(cs => cs.DisplayOrder))
             {
                 specIDs.Add(catSpec.SpecificationID);
             }
 
+            // Clear the added specifications
             CategoryModel.CategorySpecifications = new ObservableCollection<CategorySpecification>();
 
+            // Add them again to the category. Now they will be correctly removed from the selection datagrid.
             foreach (int id in specIDs)
             {
-                AddPropertyByID(id);
+                AddSpecificationByID(id);
             }
         }
 
-        private void AddPropertyByID(int id)
+        private void AddSpecificationByID(int id)
         {
+            // Gets the specification
             LocalizedSpecification spec = SelectionSpecList.SingleOrDefault(x => x.SpecificationID == id);
+
+            // Adds it to the datagrid with the selected specs
             AddSelectedSpecification(spec);
+
+            // Remove it from the datagrid with the possible specs
             RemoveSelectedSpecificationFromList(spec);
         }
 
+        /// <summary>
+        /// Functionality that has to happen in both the create and update form
+        /// </summary>
         private void InitializeWindow()
         {
+            // Defines the progressBar and SubmitButton to allow the ProgressBar methods to work (see FormUserControl)
             progressBar = prog;
             submitButton = btnSubmit;
 
             _langRepo = new LanguageRepository();
             _specRepo = new SpecificationRepository();
 
+            // Sets display language
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
-
             SetLanguageDictionary();
 
             DataContext = this;
@@ -128,17 +150,18 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
         private async Task FillSelectionDataGrid()
         {
+            // Gets all the specs from the database
             List<Specification> specs = await _specRepo.GetAllAsync();
 
+            // Gets the localized specifications, according to the preferred display language of the user
             List<LocalizedSpecification> locspecs = new List<LocalizedSpecification>();
-
             foreach (var spec in specs)
             {
                 locspecs.Add(spec.LocalizedSpecifications.SingleOrDefault(x => x.LanguageID == _preferredLanguage.ID));
             }
 
+            // Make an observable collection of the localized specifications, so it can be used to display in the datagrid
             SelectionSpecList = new ObservableCollection<LocalizedSpecification>(locspecs);
-
             BindSpecificationSelectionData();
         }
 
@@ -155,10 +178,15 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
                 else
                 {
                     _categoryRepo.Add(CategoryModel);
+
+                    // Force the product form to refresh when the user opens it the next time
+                    var win = (NavigationWindow)GetParentWindow();
+                    win.ccProductForm.Content = null;
                 }
 
                 await _categoryRepo.SaveChangesAsync();
 
+                // Triggers the save event, so this can close and the category overview can be shown.
                 TriggerSaveEvent();
 
                 TurnOffProgressBar();
@@ -174,11 +202,18 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
             }
         }
 
+        /// <summary>
+        /// Sets the content of the title label
+        /// </summary>
         protected override void SetTitle()
         {
+            // Make the content of the title label refer to a localized dictionary value
             lblTitle.SetResourceReference(ContentProperty, _updatingPage ? "UpdateCategoryTitle" : "NewCategoryTitle");
         }
 
+        /// <summary>
+        /// Generate a tab for each language
+        /// </summary>
         private async void GenerateTabs()
         {
             LanguageList = await _langRepo.GetAllAsync();
@@ -198,29 +233,42 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
         private Thickness _defaultLabelPadding = new Thickness { Left = 0, Top = -5, Right = 0, Bottom = -5 };
         private Brush _defaultLabelForeground = Brushes.Black;
 
+        /// <summary>
+        /// Creates a tab for the given language
+        /// </summary>
+        /// <param name="lang"></param>
         private void CreateLocalizedTab(Language lang)
         {
+            // Create a tab item
             MetroTabItem tabItem = CreateMetroTabItem(lang);
+            // Creates a grid for under the tab item, with a style defined in the styles.xaml file
             Grid tabGrid = new Grid { Style = Application.Current.Resources["GridBelowTabItem"] as Style };
 
             //Creates a wrappanel, so the stackpanel with the labels and the stackpanel with the input are nicely next to eachother
             WrapPanel wrapForStacks = new WrapPanel { HorizontalAlignment = HorizontalAlignment.Center };
 
+            // Stackpanel for the labels
             StackPanel stackPanelLeft = CreateLeftStackPanelForLabels(lang);
+            // Stackpanel for the input fields (Name, Plural name)
             StackPanel stackPanelRight = CreateRightStackPanelForInput(lang);
 
+            // Adds the stackpanels to the wrappanel
             wrapForStacks.Children.Add(stackPanelLeft);
             wrapForStacks.Children.Add(stackPanelRight);
 
+            // Adds the wrappanel to the grid
             tabGrid.Children.Add(wrapForStacks);
 
+            // Adds the grid to the tabItem
             tabItem.Content = tabGrid;
 
+            // Adds the tabItem to the tabControl
             TabControlLanguages.Items.Add(tabItem);
         }
 
         private MetroTabItem CreateMetroTabItem(Language lang)
         {
+            // Creates a new metroTabItem, with a header text equal to the language its local name
             MetroTabItem metroTab = new MetroTabItem
             {
                 Header = lang.LocalName,
@@ -233,7 +281,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
             //https://social.msdn.microsoft.com/Forums/vstudio/en-US/ffcd8d49-267c-4ccb-8ceb-b80305447cb4/c-wpf-implementing-style-using-code?forum=wpf
 
             // Creates a new style for the new tabItem
-            Style AutoGeneratedTabItem = new Style
+            Style InCodeGeneratedTabItem = new Style
             {
                 TargetType = typeof(MetroTabItem)
             };
@@ -269,18 +317,21 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
             };
             NotSelectedTrigger.Setters.Add(NotSelectedStyle);
 
-            AutoGeneratedTabItem.Triggers.Add(SelectedTrigger);
-            AutoGeneratedTabItem.Triggers.Add(NotSelectedTrigger);
+            InCodeGeneratedTabItem.Triggers.Add(SelectedTrigger);
+            InCodeGeneratedTabItem.Triggers.Add(NotSelectedTrigger);
 
-            AutoGeneratedTabItem.Setters.Add(new Setter() { Property = ControlsHelper.HeaderFontSizeProperty, Value = 18.0 });
-            metroTab.Style = AutoGeneratedTabItem;
+            InCodeGeneratedTabItem.Setters.Add(new Setter() { Property = ControlsHelper.HeaderFontSizeProperty, Value = 18.0 });
+            metroTab.Style = InCodeGeneratedTabItem;
 
             return metroTab;
         }
 
         private StackPanel CreateLeftStackPanelForLabels(Language lang)
         {
+            // Create a new stackpanel
             StackPanel stackLeft = new StackPanel();
+
+            // Creates a label for the Name property
             Label labelName = new Label
             {
                 Content = LangResource.Name + " * : ",
@@ -291,7 +342,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
                 Padding = _defaultLabelPadding,
                 HorizontalContentAlignment = HorizontalAlignment.Right
             };
-            Label labelDescription = new Label
+
+            // Creates a label for the Plural name property
+            Label labelPluralName = new Label
             {
                 Content = LangResource.PluralName + " * : ",
                 Height = _defaultHeight,
@@ -302,26 +355,33 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
                 HorizontalContentAlignment = HorizontalAlignment.Right
             };
 
+            // Adds the labels to the stackpanel
             stackLeft.Children.Add(labelName);
-            stackLeft.Children.Add(labelDescription);
+            stackLeft.Children.Add(labelPluralName);
 
             return stackLeft;
         }
 
         private StackPanel CreateRightStackPanelForInput(Language lang)
         {
-            LocalizedCategory locCat = CategoryModel.LocalizedCategories.SingleOrDefault(x => x.LanguageID == lang.ID);
+            // Checks if the category already contains a localized category for said language.
+            LocalizedCategory locCat = CategoryModel.LocalizedCategories.FirstOrDefault(x => x.LanguageID == lang.ID);
 
+            // If the category does not contain one yet, 
             if (locCat == null)
             {
+                // Create a new one and add it to the model
                 locCat = new LocalizedCategory
                 {
                     LanguageID = lang.ID
                 };
+                CategoryModel.LocalizedCategories.Add(locCat);
             }
 
+            // Creates a stackpanel
             StackPanel stackRight = new StackPanel();
 
+            // Creates a new textbox for the Name property
             ClickSelectTextBox txtName = new ClickSelectTextBox
             {
                 Height = _defaultHeight,
@@ -329,12 +389,15 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
                 Margin = _defaultMargin,
                 VerticalContentAlignment = VerticalAlignment.Center
             };
+            // Creates a binding with source the localized category and binds it to the Name property
             Binding nameBinding = new Binding("Name")
             {
                 Source = locCat
             };
+            // Adds the binding to the textbox
             txtName.SetBinding(TextBox.TextProperty, nameBinding);
 
+            // Idem for the plural name textbox
             ClickSelectTextBox txtPluralName = new ClickSelectTextBox
             {
                 Height = _defaultHeight,
@@ -348,10 +411,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
             };
             txtPluralName.SetBinding(TextBox.TextProperty, pluralNameBinding);
 
+            // Adds both textboxes to the stackpanels
             stackRight.Children.Add(txtName);
-            stackRight.Children.Add(txtPluralName);
-
-            CategoryModel.LocalizedCategories.Add(locCat);
+            stackRight.Children.Add(txtPluralName);            
 
             return stackRight;
         }
@@ -360,15 +422,24 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
         #region AddProperty
 
-        private void AddProperty(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Adds the specification to the category
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void AddSpecification(object sender, RoutedEventArgs e)
         {
+            // Gets the selected specification
             LocalizedSpecification spec = ((FrameworkElement)sender).DataContext as LocalizedSpecification;
+            // Adds the selected specification to the category
             AddSelectedSpecification(spec);
+            // Remove the specification from the specification selection datagrid
             RemoveSelectedSpecificationFromList(spec);
         }
 
         private void AddSelectedSpecification(LocalizedSpecification spec)
         {
+            // Adds a specification to the category
             CategoryModel.CategorySpecifications.Add(
                 new CategorySpecification
                 {
@@ -377,12 +448,15 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
                     DisplayOrder = CategoryModel.CategorySpecifications.Count()
                 });
 
+            // Refreshes the category specification datagrid
             BindCategorySpecificationsGrid();
         }
 
         private void RemoveSelectedSpecificationFromList(LocalizedSpecification spec)
         {
+            // Removes the specification from the specification selection list
             SelectionSpecList.Remove(spec);
+            // Refreshes the specification selection datagrid
             BindSpecificationSelectionData();
         }
 
@@ -390,29 +464,42 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
         #region RemoveProperty
 
-        private void RemoveProperty(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Removes the specification from the category
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void RemoveSpecification(object sender, RoutedEventArgs e)
         {
+            // Gets the specification
             CategorySpecification catspec = ((FrameworkElement)sender).DataContext as CategorySpecification;
+            // Remove the specification from the category
             RemoveSelectedSpecFromCategory(catspec);
+            // Add the specification back to the selection list
             AddSpecBackToSelectionList(catspec);
         }
 
         private void RemoveSelectedSpecFromCategory(CategorySpecification catspec)
         {
+            // Gets the index of the removed spec
             int removedSpecIndex = CategoryModel.CategorySpecifications.ToList().IndexOf(catspec);
 
+            // Removes the specification from the category
             CategoryModel.CategorySpecifications.Remove(catspec);
 
+            // Every specification coming after the removed one, has its display order reduced by one
             for (int i = removedSpecIndex; i < CategoryModel.CategorySpecifications.Count(); i++)
             {
                 CategoryModel.CategorySpecifications.ToList()[i].DisplayOrder = i;
             }
 
+            // Refresh the category specification grid
             BindCategorySpecificationsGrid();
         }
 
         private void AddSpecBackToSelectionList(CategorySpecification catspec)
         {
+            // Create a specification and add it to the selection list
             SelectionSpecList.Add(
                 new LocalizedSpecification
                 {
@@ -420,17 +507,24 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
                     LookupName = catspec.SpecificationName
                 });
 
+            // Refresh the selection grid
             BindSpecificationSelectionData();
         }
 
         #endregion
 
+        /// <summary>
+        /// Refreshes the specification selection datagrid
+        /// </summary>
         private void BindSpecificationSelectionData()
         {
             dgSelectSpec.ItemsSource = SelectionSpecList.OrderBy(x => x.LookupName);
             dgSelectSpec.DataContext = SelectionSpecList;
         }
 
+        /// <summary>
+        /// Refreshes the category specification datagrid
+        /// </summary>
         private void BindCategorySpecificationsGrid()
         {
             ObservableCollection<CategorySpecification> obsColl = new ObservableCollection<CategorySpecification>(CategoryModel.CategorySpecifications);
@@ -440,42 +534,54 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
         private void MovePropertyUp(object sender, RoutedEventArgs e)
         {
-            // moving property up in the datagrid means the index decreases
+            // Moving property up in the datagrid means the index (and display order) decreases
 
-            CategorySpecification prop = ((FrameworkElement)sender).DataContext as CategorySpecification;
+            // Gets the specification
+            CategorySpecification spec = ((FrameworkElement)sender).DataContext as CategorySpecification;
 
-            int index = CategoryModel.CategorySpecifications.ToList().IndexOf(prop);
+            // Gets the index of the specification
+            int index = CategoryModel.CategorySpecifications.ToList().IndexOf(spec);
 
+            // If its index is 0, then it can't move up
             if (index > 0)
             {
+                // Swaps the display order of the swapped specs
                 CategoryModel.CategorySpecifications.ToList()[index].DisplayOrder = index - 1;
                 CategoryModel.CategorySpecifications.ToList()[index - 1].DisplayOrder = index;
 
+                // Swaps the specs in the list
                 CategoryModel.CategorySpecifications
                     = ListUtilities<CategorySpecification>.Swap
                     (CategoryModel.CategorySpecifications.ToList(), index, index - 1);
 
+                // Refreshes the category specification grid
                 BindCategorySpecificationsGrid();
             }
         }
 
         private void MovePropertyDown(object sender, RoutedEventArgs e)
         {
-            // moving property down in the datagrid means the index increases
+            // Moving property down in the datagrid means the index increases
 
+            // Gets the specification
             CategorySpecification catspec = ((FrameworkElement)sender).DataContext as CategorySpecification;
 
+            // Gets the index of the specification
             int index = CategoryModel.CategorySpecifications.ToList().IndexOf(catspec);
 
+            // If the spec is the last one in the list, it can't move down
             if (index < CategoryModel.CategorySpecifications.Count() - 1)
             {
+                // Swaps the display order of the swapped specs
                 CategoryModel.CategorySpecifications.ToList()[index].DisplayOrder = index + 1;
                 CategoryModel.CategorySpecifications.ToList()[index + 1].DisplayOrder = index;
 
+                // Swaps the 2 specs in the list
                 CategoryModel.CategorySpecifications
                     = ListUtilities<CategorySpecification>.Swap
                     (CategoryModel.CategorySpecifications.ToList(), index, index + 1);
 
+                // Refreshes the grid
                 BindCategorySpecificationsGrid();
             }
         }

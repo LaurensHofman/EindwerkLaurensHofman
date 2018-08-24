@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:RudycommerceWPF.WindowsAndUserControls.Products.Categories"
     xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
     mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"  Background="Beige">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -75,7 +75,7 @@
                                     <DataGridTemplateColumn Width="Auto" MinWidth="30">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Button Click="AddProperty" Padding="0" Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                                                <Button Click="AddSpecification" Padding="0" Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
                                                     <Button.Content>
                                                         <TextBlock Style="{DynamicResource DataGridButtonTextBlock}"
                                                                    FontSize="16">+</TextBlock>
@@ -135,7 +135,7 @@
                                     <DataGridTemplateColumn Width="Auto" MinWidth="30">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Button Click="RemoveProperty" Padding="0" Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                                                <Button Click="RemoveSpecification" Padding="0" Margin="0" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
                                                     <Button.Content>
                                                         <Image Source="pack://application:,,,/Resources/Icons/64_GarbageCanWhite.png" Height="14" Width="14"/>
                                                     </Button.Content>

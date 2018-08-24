@@ -30,12 +30,12 @@ namespace RudycommerceData.Repositories.BaseRepo
             return entity;
         }
 
-        public void Delete(T entity)
+        public virtual void Delete(T entity)
         {
             _context.Set<T>().Remove(entity);
         }
 
-        public void Delete(int entityID)
+        public virtual void Delete(int entityID)
         {
             Delete(Get(entityID));
         }
@@ -58,33 +58,41 @@ namespace RudycommerceData.Repositories.BaseRepo
         public virtual async Task<T> UpdateAsync(T entity)
         {
             entity.ModifiedAt = DateTime.Now;
+            _context.Set<T>().Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
 
-            var original = await GetAsync(entity.ID);
+            return entity;
 
-            if (original != null)
-            {
-                _context.Entry(original).CurrentValues.SetValues(entity);
+            //var original = await GetAsync(entity.ID);
 
-                return entity;
-            }
+            //if (original != null)
+            //{
+            //    _context.Entry(original).CurrentValues.SetValues(entity);
 
-            return null;
+            //    return entity;
+            //}
+
+            //return null;
         }
 
         public virtual T Update(T entity)
         {
             entity.ModifiedAt = DateTime.Now;
 
-            var original = Get(entity.ID);
+            _context.Entry(entity).State = EntityState.Modified;
 
-            if (original != null)
-            {
-                _context.Entry(original).CurrentValues.SetValues(entity);
+            return entity;
 
-                return entity;
-            }
+            //var original = Get(entity.ID);
 
-            return null;
+            //if (original != null)
+            //{
+            //    _context.Entry(original).CurrentValues.SetValues(entity);
+
+            //    return entity;
+            //}
+
+            //return null;
         }
 
         public T[] Update(params T[] entities)

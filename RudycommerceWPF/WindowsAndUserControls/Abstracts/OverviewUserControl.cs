@@ -17,9 +17,17 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
         {
             // https://stackoverflow.com/questions/1852837/is-there-a-generic-constructor-with-parameter-constraint-in-c
 
+            // Creates an instance of the Generic FormUC, using the constructor that accepts an integer as parameter.
+            // Because C# cannot know yet that the UserControls that inherit from FormUC will be able to accept an int as parameter,
+            // I had to create an instance in another than the usual way.
+
             FormUC form = (FormUC)Activator.CreateInstance(typeof(FormUC), (int)ID);
 
+            // Calls the Updated method when the update event is triggered in the form
+
             form.UpdateEvent += Updated;
+
+            // Shows a popup window with the new form loaded.
 
             UpdateFormWindow win = new UpdateFormWindow(form);
             win.Show();
@@ -30,7 +38,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
         /// <summary>
         /// To be called when the Update event gets triggered in an update form, opened from within this Overview
         /// </summary>
-        private void Updated()
+        protected virtual void Updated()
         {
             LoadDataGridData();
         }

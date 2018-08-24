@@ -72,16 +72,22 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
         
         private async void dgLanguageOverview_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
+            // Gets the row, and the language that matches that row
+
             DataGridRow _dgRow = e.Row;
             
             Language _changedValue = _dgRow.DataContext as Language;
 
+            // Validates the change
+
             if (_changedValue.ISO.Length != 2)
             {                
+                // Reload the old values
                 LoadDataGridData();
             }
             else
             {
+                // Make an update
                 await _langRepo.UpdateAsync(_changedValue);
                 await _langRepo.SaveChangesAsync();
             }
@@ -127,15 +133,30 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
         protected override void Update(object sender, RoutedEventArgs e)
         {
+            // Gets the language to update, and shows the updateForm of it
+
             Language lang = ((FrameworkElement)sender).DataContext as Language;
 
             ShowUpdateForm<LanguageForm>(lang.ID);
+        }
+
+        /// <summary>
+        /// Base update method after the UpdateEvent happens in the form + Resets all other user controls so they can use the updated languages
+        /// </summary>
+        protected override void Updated()
+        {
+            base.Updated();
+
+            var win = (NavigationWindow)GetParentWindow();
+            win.ResetAllUserControls();
         }
 
         private async void MakeLangDefault(object sender, RoutedEventArgs e)
         {
             try
             {
+                // Gets the language you want to make default
+
                 Language newDefault = ((FrameworkElement)sender).DataContext as Language;
 
                 string messageboxTitle = String.Format(LangResource.MBTitleMakeLangDefault, newDefault.LocalName);
@@ -145,12 +166,16 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
                 MessageBoxManager.No = LangResource.No;
                 MessageBoxManager.Register();
 
+                // Makes a localized message box
+
                 if (MessageBox.Show(messageboxContent,
                                     messageboxTitle,
                                     MessageBoxButton.YesNo,
                                     MessageBoxImage.Warning)
                     == MessageBoxResult.Yes)
                 {
+                    // If the user wants to make the selected language the new default one, swap the default language with this one
+
                     MessageBoxManager.Unregister();
 
                     await _langRepo.SwapDefaultLanguages(newDefault);
@@ -171,6 +196,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
         protected override void OpenForm(object sender, RoutedEventArgs e)
         {
+            // Shows a create form inside the same window.
+
             var myWindow = (NavigationWindow)GetParentWindow();
 
             ContentControl form = myWindow.ccLanguageForm;

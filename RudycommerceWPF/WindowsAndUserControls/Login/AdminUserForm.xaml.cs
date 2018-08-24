@@ -2,6 +2,7 @@
 using RudycommerceData.Entities.DesktopUsers;
 using RudycommerceData.Repositories.IRepo;
 using RudycommerceData.Repositories.Repo;
+using RudycommerceLib.Properties;
 using RudycommerceLib.Security;
 using RudycommerceWPF.WindowsAndUserControls.Abstracts;
 using System;
@@ -45,21 +46,26 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private async void InitializeWindow()
         {
+            // Gets the desktoplanguages
             _languageList = (await _languageRepo.GetAllAsync()).Where(l => l.IsDesktopLanguage == true).ToList();
 
+            // Checks whether the languageList contains the desktopLanguages.
             bool listContainsDesktopLanguages = _languageList.Any(l => l.LocalName == "Nederlands") && _languageList.Any(l => l.LocalName == "English");
 
+            // If it contains the desktoplanguages, choose dutch as per default
             if (listContainsDesktopLanguages)
             {
                 rbPreferNL.IsChecked = true;
             }
             else
             {
+                // If it doesnt contain the desktopLanguages, collapse the selector, so the preferredLanguageID will remain null
                 languageSelector.Visibility = Visibility.Collapsed;
                 lblPrefLang.Visibility = Visibility.Collapsed;
             }
 
             DataContext = this;
+
             NewDesktopUser = new DesktopUser()
             {
                 IsAdmin = true,
@@ -72,19 +78,23 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
         {
             try
             {
+                // Encrypts the user password
                 NewDesktopUser.EncryptedPassword = Encryption.EncryptPassword(NewDesktopUser.Salt, pwdPassword.Password);
 
                 try
                 {
+                    // Create new user
                     NewDesktopUser = _userRepo.Add(NewDesktopUser);
                     await _userRepo.SaveChangesAsync();
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Save failed");
-                    throw;
+                    MessageBox.Show(LangResource.ErrSaveFailedContent, LangResource.ErrSaveFailedTitle);
+                    NewDesktopUser.EncryptedPassword = null;
+                    pwdPassword.Password = null;
                 }
                 
+                // Opens up the mainwindow
                 NavigationWindow naviWindow = new NavigationWindow(NewDesktopUser.ID);
                 naviWindow.Show();
 
@@ -101,6 +111,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
+            // Selects the correct PreferredLanguageID for the new user
             if (rbPreferNL.IsChecked == true)
             {
                 NewDesktopUser.PreferredLanguageID = _languageList.Single(l => l.LocalName == "Nederlands").ID;
@@ -117,6 +128,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private void pwdPassword_PasswordChanged(object sender, RoutedEventArgs e)
         {
+            // Makes the hidden textbox have the same content as the password box when changing the content in it
+
             txtPasswordVisible.Text = pwdPassword.Password;
 
             int start = pwdPassword.Password.Length;
@@ -127,6 +140,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private void txtPasswordVisible_TextChanged(object sender, TextChangedEventArgs e)
         {
+            // Makes the passwordbox have the same content
+
             pwdPassword.Password = txtPasswordVisible.Text;
 
             int start = txtPasswordVisible.Text.Length;
@@ -136,6 +151,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private void btnShowHidePwd_Click(object sender, RoutedEventArgs e)
         {
+            // Changes the icon of the toggle button
+
             btnShowHidePwd.Content =
                 (txtPasswordVisible.Visibility == Visibility.Collapsed) ?
                 FindResource("Hide") : FindResource("Show");
@@ -143,6 +160,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             ToggleShowPassword();
         }
 
+        /// <summary>
+        /// Toggles the visibility of the password and text box
+        /// </summary>
         private void ToggleShowPassword()
         {
             if (txtPasswordVisible.Visibility == Visibility.Collapsed)

@@ -16,7 +16,7 @@ namespace RudycommerceData.Repositories.Repo
     public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
         public List<CategoryOverviewItem> GetCategoryOverview(int languageID)
-        {            
+        {
             SqlParameter langID = new SqlParameter("@langID", languageID.ToString());
 
             return _context.Database.SqlQuery<CategoryOverviewItem>("exec dbo.sprocGetCategoryOverview @langID", langID).ToList();
@@ -27,7 +27,6 @@ namespace RudycommerceData.Repositories.Repo
             SqlParameter langISO = new SqlParameter("langISO", iso);
 
             List<LocalizedCatListItem> list = _context.Database.SqlQuery<LocalizedCatListItem>("exec dbo.sprocGetLocalizedCategoryList @langISO", langISO).ToList();
-
             return list;
         }
 

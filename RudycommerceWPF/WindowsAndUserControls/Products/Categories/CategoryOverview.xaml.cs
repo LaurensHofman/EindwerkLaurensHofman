@@ -42,6 +42,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
         {
             DataContext = this;
 
+            // Sets the display language
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
             SetLanguageDictionary();
 
@@ -52,6 +53,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
         private void BindData()
         {
+            // Refreshes the datagrid
+
             CategoryList.OrderBy(c => c.LocalizedName);
 
             dgCategoryOverview.ItemsSource = CategoryList;
@@ -60,6 +63,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
         public override async Task LoadDataGridData()
         {
+            // Gets all the categories
+
             _catRepo = new CategoryRepository();
 
             CategoryList = new ObservableCollection<CategoryOverviewItem>(_catRepo.GetCategoryOverview(_preferredLanguage.ID));
@@ -69,6 +74,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
         
         protected override void OpenForm(object sender, RoutedEventArgs e)
         {
+            // Opens opens a Create form within the same window
             var myWindow = (NavigationWindow)GetParentWindow();
 
             ContentControl form = myWindow.ccCategoryForm;
@@ -81,16 +87,30 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
         protected override void Update(object sender, RoutedEventArgs e)
         {
+            // Opens an update form in a popup window
+
             CategoryOverviewItem cat = ((FrameworkElement)sender).DataContext as CategoryOverviewItem;
 
             ShowUpdateForm<CategoryForm>(cat.ID);
+        }
+
+        protected override void Updated()
+        {
+            // After the update event, make the product form refresh (because the product is dependent on categories)
+            base.Updated();
+
+            var win = (NavigationWindow)GetParentWindow();
+            win.ccProductForm.Content = null;
         }
 
         protected override async void Delete(object sender, RoutedEventArgs e)
         {
             try
             {
+                // Gets the item that has to be deleted
                 CategoryOverviewItem ToBeDeleted = ((FrameworkElement)sender).DataContext as CategoryOverviewItem;
+
+                // Create custom message box
 
                 string messageboxTitle = String.Format(LangResource.MBTitleDeleteObj, ToBeDeleted.LocalizedName);
                 string messageboxContent = String.Format(LangResource.MBContentDeleteObj, LangResource.TheCategory.ToLower(), ToBeDeleted.LocalizedName);
@@ -99,6 +119,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
                 MessageBoxManager.No = LangResource.No;
                 MessageBoxManager.Register();
 
+                // If people are sure to delete...
                 if (MessageBox.Show(messageboxContent,
                                     messageboxTitle,
                                     MessageBoxButton.YesNo,
@@ -107,11 +128,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
                 {
                     MessageBoxManager.Unregister();
 
+                    // ... then delete the object
                     _catRepo.Delete(ToBeDeleted.ID);
                     CategoryList.Remove(ToBeDeleted);
 
                     await _catRepo.SaveChangesAsync();
 
+                    // And refresh the datagrid
                     BindData();
                 }
                 else
@@ -119,8 +142,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
             }
             catch (Exception)
             {
-
-                throw;
+                MessageBoxManager.Unregister();
+                MessageBox.Show(LangResource.ErrUpdateOverviewFailed);
             }
         }
     }

@@ -15,15 +15,16 @@ using System.Windows.Shapes;
 namespace RudycommerceWPF.WindowsAndUserControls.Abstracts
 {
     /// <summary>
-    /// Interaction logic for UpdateFormWindow.xaml
+    /// A window specifically made to show update forms as popup
     /// </summary>
     public partial class UpdateFormWindow: MultilingualWindow 
     {
-        public UpdateFormWindow()
-        {
-            InitializeComponent();
-        }
+        //public UpdateFormWindow()
+        //{
+        //    InitializeComponent();
+        //}
 
+        // Gets a form as parameter to show in the window
         public UpdateFormWindow(FormUserControl form)
         {
             InitializeComponent();

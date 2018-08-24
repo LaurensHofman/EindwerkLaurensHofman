@@ -110,6 +110,9 @@
     <Compile Include="WindowsAndUserControls\NavigationWindow.xaml.cs">
       <DependentUpon>NavigationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WindowsAndUserControls\Orders\OrderDetails.xaml.cs">
+      <DependentUpon>OrderDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsAndUserControls\Orders\OrderOverview.xaml.cs">
       <DependentUpon>OrderOverview.xaml</DependentUpon>
     </Compile>
@@ -226,6 +229,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="WindowsAndUserControls\Orders\OrderDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WindowsAndUserControls\Orders\OrderOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -305,9 +312,6 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\64_ArrowDownWhite.png" />
     <Resource Include="Resources\Icons\64_ArrowUpWhite.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\OrdersHereLUL.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

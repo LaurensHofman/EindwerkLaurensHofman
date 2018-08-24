@@ -20,4 +20,9 @@ namespace RudycommerceLib.CustomExceptions
     {
         public SaveFailed() : base("") { }
     }
+
+    public class UsernameTaken : Exception
+    {
+        public UsernameTaken() : base("") { }
+    }
 }

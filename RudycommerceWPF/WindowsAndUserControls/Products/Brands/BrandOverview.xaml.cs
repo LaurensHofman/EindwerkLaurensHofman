@@ -39,6 +39,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
 
         private async void InitializeWindow()
         {
+            // Sets the display language
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
 
             SetLanguageDictionary();
@@ -47,6 +48,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
 
             await LoadDataGridData();
         }
+
 
         public override async Task LoadDataGridData()
         {
@@ -57,8 +59,12 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
             BindData();
         }
 
+        /// <summary>
+        /// Refreshes the datagrid
+        /// </summary>
         private void BindData()
         {
+
             BrandsList = new ObservableCollection<Brand>( BrandsList.OrderBy(x => x.Name)) ;
 
             dgBrandsOverview.ItemsSource = BrandsList;
@@ -69,18 +75,28 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
 
         private async void dgBrandsOverview_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
+            // Gets the row and the corresponding brand
             DataGridRow _dgRow = e.Row;
-
             Brand _changedValue = _dgRow.DataContext as Brand;
-            
-            await _brandRepo.UpdateAsync(_changedValue);
-            await _brandRepo.SaveChangesAsync();
+
+            try
+            {
+                // Updates
+                await _brandRepo.UpdateAsync(_changedValue);
+                await _brandRepo.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show(LangResource.ErrUpdateOverviewFailed);
+            }            
         }
         
         protected override async void Delete(object sender, RoutedEventArgs e)
         {
             try
             {
+                // Gets the brand to delete
+
                 Brand ToBeDeleted = ((FrameworkElement)sender).DataContext as Brand;
 
                 string messageboxTitle = String.Format(LangResource.MBTitleDeleteObj, ToBeDeleted.Name);
@@ -98,11 +114,14 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
                 {
                     MessageBoxManager.Unregister();
 
+                    // Deletes the brand
+
                     _brandRepo.Delete(ToBeDeleted);
                     BrandsList.Remove(ToBeDeleted);
 
                     await _brandRepo.SaveChangesAsync();
 
+                    // Refreshes the datagrid
                     BindData();
                 }
                 else
@@ -110,18 +129,37 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Brands
             }
             catch (Exception)
             {
-
-                throw;
+                MessageBox.Show(LangResource.ErrUpdateOverviewFailed);
+                MessageBoxManager.Unregister();
             }
         }
 
         protected override void Update(object sender, RoutedEventArgs e)
         {
+            // Gets the brand
             Brand brand = ((FrameworkElement)sender).DataContext as Brand;
 
+            // Shows a brand update form in popup
             ShowUpdateForm<BrandForm>(brand.ID);
         }
 
+        /// <summary>
+        /// Method called when the update in the popup has been submitted
+        /// </summary>
+        protected override void Updated()
+        {
+            base.Updated();
+
+            // This makes the productForm refresh (see Navigation window)
+            var win = (NavigationWindow)GetParentWindow();
+            win.ccProductForm.Content = null;
+        }
+
+        /// <summary>
+        /// Opens a create form for a brand in the same window
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected override void OpenForm(object sender, RoutedEventArgs e)
         {
             var myWindow = (NavigationWindow)GetParentWindow();

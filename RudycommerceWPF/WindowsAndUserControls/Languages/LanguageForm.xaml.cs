@@ -27,8 +27,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
     /// </summary>
     public partial class LanguageForm : FormUserControl
     {
-        // TODO Validation (incl. 2 letter ISO)
-
         public Language LanguageModel { get; set; }
         private ILanguageRepository _langRepo;
 
@@ -37,6 +35,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
         public LanguageForm(Language languageModel)
         {
             InitializeComponent();
+
+            _langRepo = new LanguageRepository();
+
             InitializeWindow(languageModel);
         }
 
@@ -53,28 +54,31 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             InitializeWindow(lang);
         }
 
+        /// <summary>
+        /// Initializes everything the window needs, in both the update and create situation
+        /// </summary>
+        /// <param name="languageModel">The entity that will be used as Model for this page</param>
         private void InitializeWindow(Language languageModel)
         {
+            // Define the progressbar and submit button to allow the TurnOn/OffProgressBarMethod to work
             progressBar = prog;
             submitButton = btnSubmit;
 
-            _updatingPage = !languageModel.IsNew();
-
-            _langRepo = new LanguageRepository();
+            _updatingPage = !languageModel.IsNew();            
 
             LanguageModel = languageModel;
 
             DataContext = this;
 
             _preferredLanguage = Properties.Settings.Default.CurrentUser.PreferredLanguage;
-
             SetLanguageDictionary();
 
             SetTitle();
         }
-
+        
         protected override void SetTitle()
         {
+            // Make the title label refer to the correct Resource of the XAML dictionary
             lblTitle.SetResourceReference(ContentProperty, _updatingPage ? "UpdateLanguageTitle" : "NewLanguageTitle");
         }
 
@@ -84,6 +88,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             {
                 TurnOnProgressBar();
 
+                // Makes the language a desktopLanguage in case for some reason it didn't exist yet.
                 if (LanguageModel.LocalName == "Nederlands" || LanguageModel.LocalName == "English")
                 {
                     LanguageModel.IsDesktopLanguage = true;
@@ -93,13 +98,18 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
                 {
                     if (LanguageModel.IsDefault)
                     {
-                        Language lang = _langRepo.GetAllQueryable().SingleOrDefault(x => x.IsDefault);
+                        // If the language is default, check if there is already a default language
 
-                        if (lang != null && lang.ISO != LanguageModel.ISO)
+                        Language defaultLang = _langRepo.GetAllQueryable().SingleOrDefault(x => x.IsDefault);
+
+                        if (defaultLang != null && defaultLang.ISO != LanguageModel.ISO)
                         {
+                            // If there is already a default language, make sure the user wants to make this language the new default one
+
                             if (MessageBox.Show(LangResource.MBContMakeLangDefault, LangResource.MBTitleMakeLangDefault,
                             MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                             {
+                                // Makes the new language default
                                 await _langRepo.MakeNewDefaultLanguage(LanguageModel);
                                 await _langRepo.SaveChangesAsync();
 
@@ -134,6 +144,10 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             }
         }
 
+        /// <summary>
+        /// Saves the model
+        /// </summary>
+        /// <returns></returns>
         private async Task SaveModel()
         {
             if (_updatingPage)
@@ -148,7 +162,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
                 _langRepo.Add(LanguageModel);
                 await _langRepo.SaveChangesAsync();
 
-                Visibility = Visibility.Collapsed;
+                var window = (NavigationWindow)GetParentWindow();
+                window.ResetAllUserControls();
 
                 TriggerSaveEvent();
             }

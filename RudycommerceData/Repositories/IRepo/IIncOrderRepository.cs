@@ -10,6 +10,6 @@ namespace RudycommerceData.Repositories.IRepo
 {
     public interface IIncOrderRepository : IBaseRepository<IncomingOrder>
     {
-
+        Task<IncomingOrder> SetOrderAsReadyForPickup(int id);
     }
 }

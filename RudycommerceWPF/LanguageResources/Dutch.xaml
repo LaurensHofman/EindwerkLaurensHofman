@@ -131,4 +131,18 @@
     <system:String x:Key="IsSpecNumber">Heeft de specificatie een numerieke waarde?</system:String>
     <system:String x:Key="IsSpecNumberShort">Numerieke waarde?</system:String>
 
+
+    <system:String x:Key="OrderOverviewTitle">Overzicht bestellingen</system:String>
+    <system:String x:Key="OrderOverviewTabPickingList">Picklijst</system:String>
+    <system:String x:Key="OrderOverviewTabToBePickedUp">Op te halen</system:String>
+    <system:String x:Key="OrderOverviewTabUnderWay">Onderweg</system:String>
+    <system:String x:Key="OrderOverviewTabDelivered">Geleverd</system:String>
+
+    <system:String x:Key="OrderDate">Besteldatum</system:String>
+    <system:String x:Key="Status">Status</system:String>
+    <system:String x:Key="OrderCode">Bestelcode</system:String>
+
+    <system:String x:Key="ShowDetails">Toon details</system:String>
+    <system:String x:Key="OrderDetails">Details bestelling</system:String>
+    <system:String x:Key="ReadyForPickup">Klaar om te verzenden</system:String>
 </ResourceDictionary>

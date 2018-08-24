@@ -9,11 +9,16 @@
     @Resources.Global.Categories
 </a>
 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-    @foreach (var cat in Model)
+    @if (Model == null)
     {
-        @Html.ActionLink(
-            cat.LocalizedName, "CategoryPage", "Products", new { id = cat.CategoryID }, new { @class = "dropdown-item"})
+        <div class="content-horizontal-center">@Resources.Global.NoCategoriesFound</div>
     }
-
+    else
+    {
+        foreach (var cat in Model)
+        {
+        @Html.ActionLink(
+                     cat.LocalizedName, "CategoryPage", "Products", new { id = cat.CategoryID }, new { @class = "dropdown-item" })
+        }
+    }
 </div>
