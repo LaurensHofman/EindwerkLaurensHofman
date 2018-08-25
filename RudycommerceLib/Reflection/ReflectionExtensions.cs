@@ -33,6 +33,13 @@ namespace RudycommerceLib.Reflection
             return (T)attribute;
         }
 
+        /// <summary>
+        /// Gets the display name of a Property
+        /// Usage: GetPropertyDisplayName<Person>(p => p.Name)
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="propertyExpression">Lambda expression for the property</param>
+        /// <returns></returns>
         public static string GetPropertyDisplayName<T>(Expression<Func<T, object>> propertyExpression)
         {
             var memberInfo = GetPropertyInformation(propertyExpression.Body);

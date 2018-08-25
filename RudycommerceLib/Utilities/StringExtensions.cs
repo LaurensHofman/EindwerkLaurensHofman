@@ -8,6 +8,11 @@ namespace RudycommerceLib.Utilities
 {
     public static class StringExtensions
     {
+        /// <summary>
+        /// Makes the first character of the string uppercase
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static string FirstCharToUpper(string input)
         {
             // https://stackoverflow.com/questions/4135317/make-first-letter-of-a-string-upper-case-with-maximum-performance

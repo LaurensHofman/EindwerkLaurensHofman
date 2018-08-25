@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RudycommerceData.Repositories.Repo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -12,6 +13,8 @@ namespace RudycommerceWeb.LanguageActivator
     {
         // https://www.ryadel.com/en/setup-a-multi-language-website-using-asp-net-mvc/
 
+        private LanguageRepository _langRepo = new LanguageRepository();
+
         private string _DefaultLanguage = "en";
 
         public IController Create(RequestContext requestContext, Type controllerType)
@@ -23,8 +26,16 @@ namespace RudycommerceWeb.LanguageActivator
             {
                 try
                 {
-                    Thread.CurrentThread.CurrentCulture =
-                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(lang);
+                    if (_langRepo.GetAll().Select(x => x.ISO).Contains(lang))
+                    {
+                        Thread.CurrentThread.CurrentCulture =
+                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(lang);
+                    }
+                    else
+                    {
+                        Thread.CurrentThread.CurrentCulture =
+                        Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(_DefaultLanguage);
+                    }
                 }
                 catch (Exception e)
                 {

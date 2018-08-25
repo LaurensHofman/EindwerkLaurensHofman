@@ -15,6 +15,9 @@ namespace RudycommerceData.Repositories.Repo
     {
         private readonly Account MyAccount;
 
+        /// <summary>
+        /// My Cloudinary credentials
+        /// </summary>
         public ImageRepository()
         {
             MyAccount = new Account(
@@ -27,24 +30,27 @@ namespace RudycommerceData.Repositories.Repo
         {
             string path;
 
+            // If the LogoURL is already filled in (for example when it's an existing brand coming from the database), use that path as image.
             if (brand.LogoURL != null)
             {
                 path = brand.LogoURL;
             }
             else
             {
+                // If the image is still locally, use the local path to find the image
                 if (brand.LocalLogoPath != null)
                 {
                     path = brand.LocalLogoPath;
                 }
                 else
                 {
-                    return null;
+                    throw new RudycommerceLib.CustomExceptions.ImagePathToSaveNotFound();
                 }
             }
 
+            // Creates a cloadinary connection based on my credentials
             Cloudinary cloudinary = new Cloudinary(MyAccount);
-
+            
             var uploadParams = new ImageUploadParams()
             {
                 File = new FileDescription(path),
@@ -53,10 +59,13 @@ namespace RudycommerceData.Repositories.Repo
                 Folder = $"Brands/{brand.ID.ToString()}"
             };
 
+            // Uploads the image
             var uploadResult = await cloudinary.UploadAsync(uploadParams);
 
+            // The uploadResult contains the URL to the image
             string url = uploadResult.Uri.ToString();
 
+            // Returns the URL, so it can be added to the Brand model 
             return url;
         }
 
@@ -64,12 +73,14 @@ namespace RudycommerceData.Repositories.Repo
         {
             string path;
 
+            // If the ImageURL is already filled in (for example when it's an existing ProductImage coming from the database), use that path as image.
             if (img.ImageURL != null)
             {
                 path = img.ImageURL;
             }
             else
-            {
+            {               
+                // If the image is still locally, use the local path to find the image
                 if (img.FileLocation != null)
                 {
                     path = img.FileLocation;
@@ -94,6 +105,7 @@ namespace RudycommerceData.Repositories.Repo
 
             string url = uploadResult.Uri.ToString();
 
+            // Return the Image URL so it can be added to the ProductImage model
             return url;
         }
     }

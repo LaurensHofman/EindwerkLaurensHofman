@@ -25,4 +25,14 @@ namespace RudycommerceLib.CustomExceptions
     {
         public UsernameTaken() : base("") { }
     }
+
+    public class UsernameNotUnique:Exception
+    {
+        public UsernameNotUnique() : base("") { }
+    }
+
+    public class ImagePathToSaveNotFound : Exception
+    {
+        public ImagePathToSaveNotFound() : base("") { }
+    }
 }

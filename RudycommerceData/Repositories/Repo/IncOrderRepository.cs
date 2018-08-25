@@ -10,6 +10,11 @@ namespace RudycommerceData.Repositories.Repo
 {
     public class IncOrderRepository: BaseRepo.BaseRepository<IncomingOrder>, IIncOrderRepository
     {
+        /// <summary>
+        /// Gets the Order, changes the status code to 1 and updates the order
+        /// </summary>
+        /// <param name="id">The ID of the Incoming Order</param>
+        /// <returns></returns>
         public async Task<IncomingOrder> SetOrderAsReadyForPickup(int id)
         {
             var order = await GetAsync(id);

@@ -37,7 +37,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         // TODO Changing back and forth between tabs
         // TODO Put similarities constructors in a method
         //
-        
+
         private readonly int _defaultHeight = 30;
         private readonly int _defaultWidth = 300;
         private readonly int _descriptionHeight = 200;
@@ -65,7 +65,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         private IProductRepository _prodRepo;
         private IBrandRepository _brandRepo;
         private ICategoryRepository _catRepo;
-        
+
         public ProductForm()
         {
             InitializeComponent();
@@ -81,7 +81,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             SetLanguageDictionary();
 
             SetTitle();
-            
+
             // Gives the tabs their appropriate colour (XAML didn't update their colours appropriatly)
             TabItemColours();
 
@@ -114,7 +114,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         public ProductForm(int ID)
         {
             InitializeComponent();
-            
+
             // Defines the progress bar and submit button for the ProgressBar methods to work (see FormUserControl)
             progressBar = prog;
             submitButton = btnSubmit;
@@ -137,19 +137,19 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             TabItemColours();
             // Enable all tabs
             EnableTabs(tabItemGeneral, tabItemMultilingualProperties, tabItemNonMultilingualProperties);
-            
+
             _prodRepo = new ProductRepository();
 
             // gets the product
             ProductModel = _prodRepo.Get(ID);
 
             _langRepo = new LanguageRepository();
-            
+
             // Get all the languages in the database
             _languageList = _langRepo.GetAll().OrderByDescending(x => x.IsDefault).ThenByDescending(x => x.IsDesktopLanguage).ToList();
 
             SetTitle();
-            
+
             // Generates the Name input fields and their labels
             GenerateProductNameLabelsAndInputs();
 
@@ -280,9 +280,9 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 Width = _defaultWidth,
                 VerticalContentAlignment = VerticalAlignment.Center,
                 HorizontalAlignment = HorizontalAlignment.Left,
-                Margin = new Thickness(0,20,0,0),
+                Margin = new Thickness(0, 20, 0, 0),
                 Height = _defaultHeight,
-                Padding = new Thickness(0,-5,0,-5)
+                Padding = new Thickness(0, -5, 0, -5)
             };
             // Creates a binding and adds it to the checkbox
             Binding cbBinding = new Binding(bindingLocation)
@@ -293,7 +293,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
             //Adds the checkbox to the parent element
             parentElement.Children.Add(cb);
-            
+
             return cb;
         }
 
@@ -406,7 +406,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 }
                 else
                 {
-                    tab.BorderThickness = new Thickness(1,0,1,0);
+                    tab.BorderThickness = new Thickness(1, 0, 1, 0);
                 }
             }
         }
@@ -558,7 +558,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                         };
                         ProductModel.Images.Add(prdImg);
                     }
-                }                
+                }
             }
 
             catch (Exception)
@@ -670,7 +670,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 brd.BorderThickness = new Thickness((imgPnl.Children.IndexOf(grd) == 0) ? 2 : 0);
             }
         }
-        
+
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             // MouseLeftButtonDown on the image will look for its parent Grid (because the whole grid needs to be moved)
@@ -889,7 +889,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             {
                 Value_ProductSpecification val = ProductModel.Values_ProductSpecifications
                     .SingleOrDefault(x => x.SpecificationID == spec.SpecificationID && x.LanguageID == lang.ID);
-                
+
                 // Checks whether the specification already exists within the product (in case of updating a product)
 
                 if (val == null)
@@ -901,7 +901,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                         LanguageID = lang.ID
                     };
                     ProductModel.Values_ProductSpecifications.Add(val);
-                }                
+                }
 
                 // Adds a textbox because the multilingual inputs will always need a textbox
                 AddBindedTextBox(val, "Value", stackInput);
@@ -917,7 +917,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             // Creates a label for the description property
             Label lblDescription = AddFormLabel(LangResource.Description + " * : ", stackLabels);
             lblDescription.Margin = new Thickness(0, 20, 0, _descriptionHeight - _defaultHeight);
-            
+
             // Creates a label for each specification made in the 'right stackpanel for input'
             foreach (var spec in
                 _necessarySpecList.Where(ns => ns.IsMultilingual == true && ns.IsEnumeration == false).OrderBy(ns => ns.DisplayOrder))
@@ -1049,60 +1049,54 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         #endregion
 
         #region NonMLTab
-        
+
         private void FillNonMultilingualTab()
         {
             // Clears the stackpanels containing the labels and input fields
             NonMLStackLeftLabels.Children.Clear();
             NonMLStackRightInput.Children.Clear();
-            
+
             // Foreach specification that does not require a textbox for different languages, make an appropriate input element and bind it to it.
 
             foreach (var spec in _necessarySpecList.Where(ns => ns.IsMultilingual == false || ns.IsEnumeration == true).OrderBy(x => x.DisplayOrder))
-            {
+            {                
+                // Creates a value for each language
+                foreach (var lang in _languageList)
+                {
+                    Value_ProductSpecification val = ProductModel.Values_ProductSpecifications
+                    .SingleOrDefault(x => x.SpecificationID == spec.SpecificationID && x.LanguageID == lang.ID);
+
+                    if (val == null)
+                    {
+                        val = new Value_ProductSpecification()
+                        {
+                            LanguageID = lang.ID,
+                            SpecificationID = spec.SpecificationID,
+                            ProductID = ProductModel.ID
+                        };
+                        ProductModel.Values_ProductSpecifications.Add(val);
+                    }
+                }
+
                 // Because the properties are not multilingual, the value is going to be binded for the first language.
                 int firstLangID = _languageList.FirstOrDefault().ID;
 
-                // Searches for the value
-                Value_ProductSpecification val = ProductModel.Values_ProductSpecifications
+                Value_ProductSpecification value = ProductModel.Values_ProductSpecifications
                     .SingleOrDefault(x => x.SpecificationID == spec.SpecificationID && x.LanguageID == firstLangID);
-
-                // If the value doesn't exist yet, create a new one and add it to the list.
-                if (val == null)
-                {
-                    // The language ID is set to null, so at the end, we can know if it has to be copied for each language
-                    val = new Value_ProductSpecification
-                    {
-                        SpecificationID = spec.SpecificationID,
-                        LanguageID = null,
-                        TempLangID = null,
-                        BoolValue = null
-                    };
-                    ProductModel.Values_ProductSpecifications.Add(val);
-                }
-                else
-                {
-                    // Else, sets the language ID to null, so at the end we can know if it has to be copied for each language
-                    foreach (var value in ProductModel.Values_ProductSpecifications
-                        .Where(x => x.SpecificationID == spec.SpecificationID && x.LanguageID != firstLangID))
-                    {
-                        value.TempLangID = value.LanguageID;
-                        value.LanguageID = null;
-                    }
-                }
+                value.HoldsValueForOtherNonML = true;
 
                 // If spec is bool...
                 if (spec.IsBool)
                 {
                     // If it's a newly created value (because there is no product id yet), give it a default value of false
-                    if (val.ProductID == 0)
+                    if (value.ProductID == 0)
                     {
-                        val.BoolValue = false;
+                        value.BoolValue = false;
                     }
 
                     // Create a label and a binded checkbox
                     AddFormLabel(spec.LookupName + " * : ", NonMLStackLeftLabels);
-                    AddBindedCheckBox(val, "BoolValue", NonMLStackRightInput);
+                    AddBindedCheckBox(value, "BoolValue", NonMLStackRightInput);
                 }
                 else
                 {
@@ -1114,25 +1108,25 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                         {
                             // Create a binded CombBox and a label
                             AddFormLabel(spec.LookupName + " * : ", NonMLStackLeftLabels);
-                            AddBindedComboBox(val, "SpecificationEnumID", NonMLStackRightInput, val.SpecificationID);
+                            AddBindedComboBox(value, "SpecificationEnumID", NonMLStackRightInput, value.SpecificationID);
                         }
                         // At the moment it still works the same way
                         else
                         {
                             // Create a binded ComboBox and a label
                             AddFormLabel(spec.LookupName + " * : ", NonMLStackLeftLabels);
-                            AddBindedComboBox(val, "SpecificationEnumID", NonMLStackRightInput, val.SpecificationID);
+                            AddBindedComboBox(value, "SpecificationEnumID", NonMLStackRightInput, value.SpecificationID);
                         }
                     }
                     else
                     {
                         // If it's not an enumeration and not a bool, make a textbox
                         AddFormLabel(spec.LookupName + " * : ", NonMLStackLeftLabels);
-                        AddBindedTextBox(val, "Value", NonMLStackRightInput);
+                        AddBindedTextBox(value, "Value", NonMLStackRightInput);
                     }
                 }
             }
-        }        
+        }
 
         private void BackToML(object sender, RoutedEventArgs e)
         {
@@ -1141,7 +1135,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
         #endregion
 
-        protected override async void btnSave_Click(object sender, RoutedEventArgs e) 
+        protected override async void btnSave_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -1187,65 +1181,21 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
 
         private void PrepareModelForUpdate()
         {
-            // For non multilingual values, the first language id was used
-            int firstLangID = _languageList.FirstOrDefault().ID;
-
-            // Gets the values where the language id is null, which means it has to be filled by the value of the firstLang
-            foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.LanguageID == null && x.TempLangID != null))
+            // For every non multilingual spec, give the value to all the specs that were not binded on
+            foreach (var spec in _necessarySpecList.Where(ns => ns.IsMultilingual == false || ns.IsEnumeration == true).OrderBy(x => x.DisplayOrder))
             {
-                val.LanguageID = val.TempLangID;
-                val.Value = ProductModel.Values_ProductSpecifications
-                    .SingleOrDefault(x => x.SpecificationID == val.SpecificationID && x.LanguageID == firstLangID).Value;
-                val.SpecificationEnumID = ProductModel.Values_ProductSpecifications
-                    .SingleOrDefault(x => x.SpecificationID == val.SpecificationID && x.LanguageID == firstLangID).SpecificationEnumID;
-            }
+                Value_ProductSpecification val = ProductModel.Values_ProductSpecifications.FirstOrDefault(x => x.HoldsValueForOtherNonML == true
+                    && x.SpecificationID == spec.SpecificationID);
 
-            // Loops through the boolvalues and gives its value for each language
-            foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.LanguageID == firstLangID && x.BoolValue != null))
-            {
-                foreach (var boolval in ProductModel.Values_ProductSpecifications.Where(x => x.SpecificationID == val.SpecificationID && x.LanguageID != firstLangID))
+                foreach (var value in ProductModel.Values_ProductSpecifications.Where(x => x.SpecificationID == spec.SpecificationID &&
+                        x.HoldsValueForOtherNonML == false))
                 {
-                    boolval.BoolValue = val.BoolValue;
+                    value.Value = val.Value;
+                    value.BoolValue = val.BoolValue;
+                    value.SpecificationEnumID = val.SpecificationEnumID;
                 }
             }
 
-            // Creates values who never had values before (for example because a new language was created or because a new spec was added to the category*)
-            List<Value_ProductSpecification> tempList = new List<Value_ProductSpecification>();
-            foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.LanguageID == null && x.TempLangID == null))
-            {
-                bool isFirstLanguage = true;
-
-                // Takes the value and gives it a language id, and makes copies for the other languages
-                foreach (var lang in _languageList)
-                {
-                    if (isFirstLanguage)
-                    {
-                        val.LanguageID = lang.ID;
-                    }
-                    else
-                    {
-                        tempList.Add(
-                            new Value_ProductSpecification
-                            {
-                                LanguageID = lang.ID,
-                                SpecificationID = val.SpecificationID,
-                                Value = val.Value,
-                                SpecificationEnumID = val.SpecificationEnumID,
-                                BoolValue = val.BoolValue
-                            });
-                    }
-
-                    isFirstLanguage = false;
-                }
-            }
-
-            // Adds the temporary list to the model
-            foreach (var tempItem in tempList)
-            {
-                ProductModel.Values_ProductSpecifications.Add(tempItem);
-            }
-
-            // Orders it for easier visibility
             ProductModel.Values_ProductSpecifications = ProductModel.Values_ProductSpecifications.OrderBy(x => x.SpecificationID).ToList();
         }
 
@@ -1254,41 +1204,56 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
             // Sets the current stock
             ProductModel.CurrentStock = (int)ProductModel.InitialStock;
 
-            List<Value_ProductSpecification> tempList = new List<Value_ProductSpecification>();
-        
-            // For non multilingual values, makes copies for each language
-            foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.LanguageID == null))
+            // For every non multilingual spec, give the value to all the specs that were not binded on
+            foreach (var spec in _necessarySpecList.Where(ns => ns.IsMultilingual == false || ns.IsEnumeration == true).OrderBy(x => x.DisplayOrder))
             {
-                bool isFirstLanguage = true;
+                Value_ProductSpecification val = ProductModel.Values_ProductSpecifications.FirstOrDefault(x => x.HoldsValueForOtherNonML == true
+                    && x.SpecificationID == spec.SpecificationID);
 
-                foreach (var lang in _languageList)
+                foreach (var value in ProductModel.Values_ProductSpecifications.Where(x => x.SpecificationID == spec.SpecificationID &&
+                        x.HoldsValueForOtherNonML == false))
                 {
-                    if (isFirstLanguage)
-                    {
-                        val.LanguageID = lang.ID;
-                    }
-                    else
-                    {
-                        tempList.Add(
-                            new Value_ProductSpecification
-                            {
-                                LanguageID = lang.ID,
-                                SpecificationID = val.SpecificationID,
-                                Value = val.Value,
-                                SpecificationEnumID = val.SpecificationEnumID,
-                                BoolValue = val.BoolValue
-                            });
-                    }
-
-                    isFirstLanguage = false;
+                    value.Value = val.Value;
+                    value.BoolValue = val.BoolValue;
+                    value.SpecificationEnumID = val.SpecificationEnumID;
                 }
             }
 
-            // Adds them to the model
-            foreach (var tempItem in tempList)
-            {
-                ProductModel.Values_ProductSpecifications.Add(tempItem);
-            }
+            //List<Value_ProductSpecification> tempList = new List<Value_ProductSpecification>();
+
+            //// For non multilingual values, makes copies for each language
+            //foreach (var val in ProductModel.Values_ProductSpecifications.Where(x => x.LanguageID == null))
+            //{
+            //    bool isFirstLanguage = true;
+
+            //    foreach (var lang in _languageList)
+            //    {
+            //        if (isFirstLanguage)
+            //        {
+            //            val.LanguageID = lang.ID;
+            //        }
+            //        else
+            //        {
+            //            tempList.Add(
+            //                new Value_ProductSpecification
+            //                {
+            //                    LanguageID = lang.ID,
+            //                    SpecificationID = val.SpecificationID,
+            //                    Value = val.Value,
+            //                    SpecificationEnumID = val.SpecificationEnumID,
+            //                    BoolValue = val.BoolValue
+            //                });
+            //        }
+
+            //        isFirstLanguage = false;
+            //    }
+            //}
+
+            //// Adds them to the model
+            //foreach (var tempItem in tempList)
+            //{
+            //    ProductModel.Values_ProductSpecifications.Add(tempItem);
+            //}
 
             // Orders them for easier visibility
             ProductModel.Values_ProductSpecifications = ProductModel.Values_ProductSpecifications.OrderBy(x => x.SpecificationID).ToList();

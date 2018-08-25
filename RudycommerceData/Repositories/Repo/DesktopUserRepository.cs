@@ -25,6 +25,10 @@ namespace RudycommerceData.Repositories.Repo
             return base.Add(entity);
         }
 
+        /// <summary>
+        /// Makes the selected user the new admin, and makes the old admin lose its rights
+        /// </summary>
+        /// <param name="newAdmin"></param>
         public void AssignNewAdmin(DesktopUser newAdmin)
         {
             DesktopUser oldAdmin = GetAllQueryable().SingleOrDefault(x => x.IsAdmin == true);
@@ -40,7 +44,14 @@ namespace RudycommerceData.Repositories.Repo
 
         public async Task<DesktopUser> FindByUsernameAsync(string username)
         {
-            return await _context.DesktopUsers.SingleOrDefaultAsync(du => du.Username == username);
+            try
+            {
+                return await _context.DesktopUsers.SingleOrDefaultAsync(du => du.Username == username);
+            }
+            catch (Exception)
+            {
+                throw new UsernameNotUnique();
+            }
         }
     }
 }

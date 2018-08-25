@@ -8,13 +8,27 @@ namespace RudycommerceLib.Utilities
 {
     public static class ListUtilities<T>
     {
+        /// <summary>
+        /// Swaps 2 items in a list
+        /// </summary>
+        /// <param name="list"></param>
+        /// <param name="indexA"></param>
+        /// <param name="indexB"></param>
+        /// <returns></returns>
         public static List<T> Swap(List<T> list, int indexA, int indexB)
         {
-            T tmp = list[indexA];
-            list[indexA] = list[indexB];
-            list[indexB] = tmp;
+            if (list.Count <= indexA || list.Count <= indexB)
+            {
+                throw new IndexOutOfRangeException();
+            }
+            else
+            {
+                T tmp = list[indexA];
+                list[indexA] = list[indexB];
+                list[indexB] = tmp;
 
-            return list;
+                return list;
+            }            
         }
     }
 }

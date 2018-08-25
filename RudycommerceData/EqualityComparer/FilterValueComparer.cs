@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace RudycommerceData.EqualityComparer
 {
+    /// <summary>
+    /// Compares whether 2 FilterValues are the same. Can be used in a .Distinct()
+    /// </summary>
     internal class FilterValueComparer : IEqualityComparer<FilterValue>
     {
         public bool Equals(FilterValue x, FilterValue y)

@@ -407,6 +407,21 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Specifications
 
                     foreach (var enums in SpecModel.Enumerations)
                     {
+                        foreach (var lang in LanguageList)
+                        {
+                            LocalizedEnumValue locEnum = enums.LocalizedEnumValues.FirstOrDefault(x => x.LanguageID == lang.ID);
+
+                            if (locEnum == null)
+                            {
+                                locEnum = new LocalizedEnumValue()
+                                {
+                                    LanguageID = lang.ID,
+                                    EnumerationID = enums.ID
+                                };
+                                enums.LocalizedEnumValues.Add(locEnum);
+                            }
+                        }
+
                         foreach (var val in enums.LocalizedEnumValues)
                         {
                             val.Value = enums.TemporaryNonMLValue;

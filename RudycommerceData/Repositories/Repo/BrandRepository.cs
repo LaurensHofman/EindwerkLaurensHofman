@@ -18,14 +18,20 @@ namespace RudycommerceData.Repositories.Repo
             {
                 try
                 {
+                    // Adds the brand
                     _context.Brands.Add(entity);
 
-                    IImageRepository _imgRepo = new ImageRepository();
-
-                    entity.LogoURL = await _imgRepo.SaveImage(entity);
-
+                    // Saves changes, so the brand gets an ID (required to save the give the image name an appropriate name when saved externally)
                     await _context.SaveChangesAsync();
 
+                    // Saves the image
+                    IImageRepository _imgRepo = new ImageRepository();
+                    entity.LogoURL = await _imgRepo.SaveImage(entity);
+
+                    // Saves again, but now the brand has an URL for its logo
+                    await _context.SaveChangesAsync();
+
+                    // Commits the transaction
                     ctxTransaction.Commit();
 
                     return entity;
@@ -33,7 +39,8 @@ namespace RudycommerceData.Repositories.Repo
                 catch (Exception)
                 {
                     ctxTransaction.Rollback();
-                    // TODO
+                    //Resets the logoURL
+                    entity.LogoURL = null;
                     throw;
                 }
             }            
@@ -45,10 +52,11 @@ namespace RudycommerceData.Repositories.Repo
             {
                 try
                 {
+                    // Saves the image
                     IImageRepository _imgRepo = new ImageRepository();
-
                     entity.LogoURL = await _imgRepo.SaveImage(entity);
 
+                    // Updates the brand with the new URL for its logo
                     await UpdateAsync(entity);
 
                     await _context.SaveChangesAsync();
@@ -60,7 +68,6 @@ namespace RudycommerceData.Repositories.Repo
                 catch (Exception)
                 {
                     ctxTransaction.Rollback();
-                    // TODO
                     throw;
                 }
             }

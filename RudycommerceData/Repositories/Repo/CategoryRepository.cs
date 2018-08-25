@@ -15,6 +15,11 @@ namespace RudycommerceData.Repositories.Repo
 {
     public class CategoryRepository : BaseRepository<Category>, ICategoryRepository
     {
+        /// <summary>
+        /// Gets the categories with its most important information, to be shown in a category overview
+        /// </summary>
+        /// <param name="languageID"></param>
+        /// <returns></returns>
         public List<CategoryOverviewItem> GetCategoryOverview(int languageID)
         {
             SqlParameter langID = new SqlParameter("@langID", languageID.ToString());
@@ -22,6 +27,11 @@ namespace RudycommerceData.Repositories.Repo
             return _context.Database.SqlQuery<CategoryOverviewItem>("exec dbo.sprocGetCategoryOverview @langID", langID).ToList();
         }
 
+        /// <summary>
+        /// Gets a list of all the categories, in the selected language.
+        /// </summary>
+        /// <param name="iso"></param>
+        /// <returns></returns>
         public List<LocalizedCatListItem> GetLocalizedCatListItems(string iso)
         {
             SqlParameter langISO = new SqlParameter("langISO", iso);

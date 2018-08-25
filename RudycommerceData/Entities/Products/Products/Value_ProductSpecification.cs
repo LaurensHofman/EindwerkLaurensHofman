@@ -27,7 +27,7 @@ namespace RudycommerceData.Entities.Products.Products
         public string DisplayValue { get; set; }
 
         [NotMapped]
-        public int? TempLangID { get; set; }
+        public bool HoldsValueForOtherNonML { get; set; }
 
         public override string ToString()
         {

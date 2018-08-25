@@ -41,29 +41,47 @@ namespace RudycommerceData.Repositories.Repo
 
         public async Task<Language> MakeNewDefaultLanguage(Language newDefault)
         {
-            Language oldDefault = GetAllQueryable().SingleOrDefault(x => x.IsDefault);
+            try
+            {
+                Language oldDefault = GetAllQueryable().SingleOrDefault(x => x.IsDefault);
 
-            oldDefault.IsDefault = false;
-            await UpdateAsync(oldDefault);
+                oldDefault.IsDefault = false;
+                await UpdateAsync(oldDefault);
 
-            return Add(newDefault);
+                return Add(newDefault);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }            
         }
 
         public async Task<Language> SwapDefaultLanguages(Language newDefault)
         {
-            Language oldDefault = GetAllQueryable().SingleOrDefault(x => x.IsDefault);
+            try
+            {
+                Language oldDefault = GetAllQueryable().SingleOrDefault(x => x.IsDefault);
 
-            oldDefault.IsDefault = false;
-            await UpdateAsync(oldDefault);
+                oldDefault.IsDefault = false;
+                await UpdateAsync(oldDefault);
 
-            newDefault.IsDefault = true;
-            return await UpdateAsync(newDefault);
+                newDefault.IsDefault = true;
+                return await UpdateAsync(newDefault);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }            
         }
 
         public int GetLanguageIDByISO(string iso)
         {
             SqlParameter langISO = new SqlParameter("@langISO", iso);
 
+            // First or default has to be used, because C# doesn't know yet that it will not receive a table.
             return _context.Database.SqlQuery<int>("exec dbo.sprocGetLangIDByISO @langISO", langISO).FirstOrDefault();
         }    
     }
