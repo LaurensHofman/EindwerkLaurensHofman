@@ -39,7 +39,7 @@ namespace RudycommerceData.Repositories.Repo
             return base.GetAllQueryable().Where(x => x.DeletedAt == null).AsQueryable();
         }
 
-        public async Task<Language> MakeNewDefaultLanguage(Language newDefault)
+        public async Task<Language> MakeNewDefaultLanguage(Language newDefault, bool updating)
         {
             try
             {
@@ -48,7 +48,14 @@ namespace RudycommerceData.Repositories.Repo
                 oldDefault.IsDefault = false;
                 await UpdateAsync(oldDefault);
 
-                return Add(newDefault);
+                if (updating)
+                {
+                    return Update(newDefault);
+                }
+                else
+                {
+                    return Add(newDefault);
+                }                
             }
             catch (Exception)
             {

@@ -80,7 +80,7 @@
     <system:String x:Key="SpecificationOverviewTitle">Product specification overview</system:String>
     <system:String x:Key="AddSpecificationToCategory">Add a product specification to the category</system:String>
     <system:String x:Key="PossibleSpecifications">Possible specifications</system:String>
-    <system:String x:Key="CategorySpecifications">Specifications from the category</system:String>
+    <system:String x:Key="CategorySpecifications">Specifications from the category, ordered by importance</system:String>
     <system:String x:Key="AddedSpecificationsToCategory">Specifications, belonging to category</system:String>
 
     <system:String x:Key="UpdateCategoryTitle">Modify category</system:String>

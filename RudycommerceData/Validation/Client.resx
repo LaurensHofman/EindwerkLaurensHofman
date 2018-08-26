@@ -200,7 +200,7 @@
     <value>The street is required to fill in.</value>
   </data>
   <data name="WantsAccountLabel" xml:space="preserve">
-    <value>I would like to make an account to speed up future purchases at Rudycommerce.</value>
+    <value>I would like to make an account to facilitate future purchases at Rudycommerce.</value>
   </data>
   <data name="WantsNewsLetterLabel" xml:space="preserve">
     <value>I would like to subscribe to the Rudycommerce newsletter.</value>

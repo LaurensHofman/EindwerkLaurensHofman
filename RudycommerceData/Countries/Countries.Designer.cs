@@ -97,7 +97,7 @@ namespace RudycommerceData.Countries {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Netherlands.
+        ///   Looks up a localized string similar to Netherlands.
         /// </summary>
         internal static string NL {
             get {

@@ -133,6 +133,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Continue shopping.
+        /// </summary>
+        public static string ContinueShopping {
+            get {
+                return ResourceManager.GetString("ContinueShopping", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continue to delivery options.
         /// </summary>
         public static string ContinueToDelivery {
@@ -277,7 +286,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Login.
+        ///   Looks up a localized string similar to Login with your account.
         /// </summary>
         public static string LoginFormTitle {
             get {
@@ -286,7 +295,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You don&apos;t need an account to make purchases with us. &lt;br/&gt; But if you do want one, you can choose to make one in the next page..
+        ///   Looks up a localized string similar to An account is not required to purchase with us. &lt;br/&gt; Although with an account you can make your future purchases easier. On the next page you can create an account if you desire so..
         /// </summary>
         public static string NoAccountContent {
             get {
@@ -398,7 +407,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Payment with card.
+        ///   Looks up a localized string similar to Payment with credit card.
         /// </summary>
         public static string PaymentWithCard {
             get {
@@ -416,7 +425,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pay using your card.
+        ///   Looks up a localized string similar to Pay using your credit card.
         /// </summary>
         public static string PayUsingCard {
             get {

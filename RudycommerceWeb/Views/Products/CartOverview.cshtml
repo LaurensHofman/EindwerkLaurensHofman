@@ -101,7 +101,7 @@
 
                             <div class="row order">
                                 <div class="col-12 checkout">
-                                    @Html.Partial("_BackToHomepageButton")
+                                    <button type="button" onclick="location.href='@Url.Action("Index", "Products")'" class="btn btn-secondary">@Resources.Checkout.ContinueShopping</button>
                                     <button class="btn btn-success" type="submit">
                                         @Resources.Global.Checkout
                                     </button>

@@ -35,7 +35,7 @@
                     {
                         @(product.TopSpec1Name + ": ")
 
-                        if ((bool)product.Bool1Value)
+                        if (product.Bool1Value == true)
                         {
                             <img alt="@Resources.ImgAltTexts.TrueIcon" class="bool-value" src="~/Images/64_GreenCheck.png" />
                         }
@@ -56,7 +56,7 @@
                     {
                         @(product.TopSpec2Name + ": ")
 
-                        if ((bool)product.Bool2Value)
+                        if (product.Bool2Value == true)
                         {
                             <img alt="@Resources.ImgAltTexts.TrueIcon" class="bool-value" src="~/Images/64_GreenCheck.png" />
                         }

@@ -148,7 +148,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             base.Updated();
 
             var win = (NavigationWindow)GetParentWindow();
-            win.ResetAllUserControls();
+            win.ResetAllUserControls("ccLanguageOverview");
         }
 
         private async void MakeLangDefault(object sender, RoutedEventArgs e)

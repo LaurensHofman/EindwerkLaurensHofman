@@ -79,7 +79,7 @@
     <system:String x:Key="SpecificationOverviewTitle">Overzicht productspecificaties</system:String>
     <system:String x:Key="AddSpecificationToCategory">Productspecificatie toekennen aan categorie</system:String>
     <system:String x:Key="PossibleSpecifications">Mogelijke specificaties</system:String>
-    <system:String x:Key="CategorySpecifications">Specificaties van de categorie</system:String>
+    <system:String x:Key="CategorySpecifications">Specificaties van de categorie, gesorteerd op belangrijkheid</system:String>
     <system:String x:Key="AddedSpecificationsToCategory">Specificaties, horende bij de categorie</system:String>
 
     <system:String x:Key="UpdateCategoryTitle">Categorie wijzigen</system:String>

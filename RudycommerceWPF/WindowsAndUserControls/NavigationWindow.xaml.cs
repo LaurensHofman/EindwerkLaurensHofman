@@ -168,7 +168,7 @@ namespace RudycommerceWPF.WindowsAndUserControls
         /// </summary>
         /// <typeparam name="ToBeShownUC"></typeparam>
         /// <param name="contentControl"></param>
-        private void ShowGeneralUserControl<ToBeShownUC>(ContentControl contentControl) where ToBeShownUC: MultilingualUserControl, new()
+        private void ShowGeneralUserControl<ToBeShownUC>(ContentControl contentControl) where ToBeShownUC : MultilingualUserControl, new()
         {
             HideAllUserControls();
 
@@ -183,7 +183,7 @@ namespace RudycommerceWPF.WindowsAndUserControls
             contentControl.Visibility = Visibility.Visible;
             (contentControl.Content as ToBeShownUC).Visibility = Visibility.Visible;
         }
-        
+
         /// <summary>
         /// After a form submit, go to the overview user control
         /// </summary>
@@ -210,17 +210,17 @@ namespace RudycommerceWPF.WindowsAndUserControls
         /// <summary>
         /// 'Refreshes' all the user controls
         /// </summary>
-        public void ResetAllUserControls()
+        public void ResetAllUserControls(string untouchedContentControlName = "")
         {
             // By setting the content control's content to null, the next time you are going to open that contentControl, 
             // it's going to make a new instance of the UserControl 
 
             foreach (ContentControl contentControl in UserControls.Children)
             {
-                if (contentControl.Name != "ccOrders")
+                if (contentControl.Name != "ccOrders" && contentControl.Name != untouchedContentControlName)
                 {
                     contentControl.Content = null;
-                }                
+                }
             }
         }
 

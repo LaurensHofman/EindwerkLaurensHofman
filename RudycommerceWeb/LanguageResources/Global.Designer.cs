@@ -531,7 +531,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Supported cards.
+        ///   Looks up a localized string similar to Supported credit cards.
         /// </summary>
         public static string SupportedCards {
             get {

@@ -91,6 +91,7 @@
                         </StackPanel>
                         <StackPanel Grid.Column="1">
                             <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="{DynamicResource ResourceKey=CategorySpecifications}" FontSize="18" Height="60" Foreground="Black"/>
+                            
                             <DataGrid x:Name="dgCategorySpecifications" Style="{StaticResource ResourceKey=SmallDataGrid}" CanUserSortColumns="False" CanUserReorderColumns="False" MaxHeight="500" Margin="50,0,50,0">
                                 <DataGrid.Columns>
                                     <DataGridTemplateColumn Width="Auto" MinWidth="30">

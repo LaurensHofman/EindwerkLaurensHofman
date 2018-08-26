@@ -286,7 +286,7 @@ namespace Validation {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to I would like to make an account to speed up future purchases at Rudycommerce..
+        ///   Looks up a localized string similar to I would like to make an account to facilitate future purchases at Rudycommerce..
         /// </summary>
         public static string WantsAccountLabel {
             get {

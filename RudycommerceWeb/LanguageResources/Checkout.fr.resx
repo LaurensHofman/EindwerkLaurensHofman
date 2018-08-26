@@ -133,7 +133,7 @@
     <value>Continuer vers paiement</value>
   </data>
   <data name="ContinueToPersonalInfoForm" xml:space="preserve">
-    <value>Continuer vers le formulaire d'informations personnelles</value>
+    <value>Continuer vers le formulaire de client</value>
   </data>
   <data name="Delivery" xml:space="preserve">
     <value>Livraison</value>
@@ -170,10 +170,10 @@
     <value>Je suis d'accord avec les {0}. *</value>
   </data>
   <data name="LoginFormTitle" xml:space="preserve">
-    <value>Identifier</value>
+    <value>Identifier avec votre account</value>
   </data>
   <data name="NoAccountContent" xml:space="preserve">
-    <value>Vous n'avez pas besoin d'un compte pour faire des achats aves nous. &lt;br/&gt; Mais si vous en voulez un, vous pouvez en choisir un à la page suivante.</value>
+    <value>Pour acheter chez nous, un compte n'est pas requis. &lt;br/&gt; Avec un compte, vous pouvez faciliter vos futurs achats. Sur la page suivante, vous pouvez créer un compte si vous le souhaitez.</value>
     <comment>&lt;br/&gt; for linebreaks</comment>
   </data>
   <data name="NoAccountTitle" xml:space="preserve">
@@ -195,10 +195,10 @@
     <value>Paiement chez Rudycommerce</value>
   </data>
   <data name="PaymentWithCard" xml:space="preserve">
-    <value>Payer avec card</value>
+    <value>Paiement avec card the credit</value>
   </data>
   <data name="PayUsingCard" xml:space="preserve">
-    <value>Pay using your card</value>
+    <value>Payer avec card the credit</value>
   </data>
   <data name="PersonalInfo" xml:space="preserve">
     <value>Information personnelle</value>
@@ -237,7 +237,7 @@
     <value>Oublié mon mot de passe</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>s'Identifier</value>
+    <value>Identifier</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Registrer</value>
@@ -262,5 +262,8 @@ Rudycommerce</value>
   </data>
   <data name="OrderEmailTitle" xml:space="preserve">
     <value>Votre commande chez Rudycommerce a été faite</value>
+  </data>
+  <data name="ContinueShopping" xml:space="preserve">
+    <value>Continuer vos achats</value>
   </data>
 </root>

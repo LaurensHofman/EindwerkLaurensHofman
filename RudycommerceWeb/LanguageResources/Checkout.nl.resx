@@ -133,7 +133,7 @@
     <value>Verdergaan naar betaling</value>
   </data>
   <data name="ContinueToPersonalInfoForm" xml:space="preserve">
-    <value>Verdergaan naar klantformulier</value>
+    <value>Verdergaan naar klantenformulier</value>
   </data>
   <data name="Delivery" xml:space="preserve">
     <value>Levering</value>
@@ -169,10 +169,10 @@
     <value>Ik ga akkoord met de {0}. *</value>
   </data>
   <data name="LoginFormTitle" xml:space="preserve">
-    <value>Aanmelden</value>
+    <value>Aanmelden met uw account</value>
   </data>
   <data name="NoAccountContent" xml:space="preserve">
-    <value>Om bij ons aankopen te doen, heeft u geen account nodig. &lt;br/&gt; Indien u er nog geen heeft, maar er wel graag één zou hebben, kan u op de volgende pagina ervoor kiezen om een account te maken.</value>
+    <value>Om bij ons te kopen is een account niet verplicht. &lt;br/&gt;Met een account maakt u uw toekomstige aankopen wel gemakkelijker. Op de volgende pagina kan u indien gewenst een account aanmaken.</value>
     <comment>&lt;br/&gt; for linebreaks</comment>
   </data>
   <data name="NoAccountTitle" xml:space="preserve">
@@ -194,10 +194,10 @@
     <value>Betaling bij Rudycommerce</value>
   </data>
   <data name="PaymentWithCard" xml:space="preserve">
-    <value>Betalen met kaart</value>
+    <value>Betalen met kredietkaart</value>
   </data>
   <data name="PayUsingCard" xml:space="preserve">
-    <value>Betalen met uw kaart</value>
+    <value>Betalen met uw kredietkaart</value>
   </data>
   <data name="PersonalInfo" xml:space="preserve">
     <value>Persoonlijke info</value>
@@ -256,7 +256,7 @@
     <value>Beste {0}, 
 
 Uw bestelling bij Rudycommerce wordt momenteel verwerkt.
-We zullen er alles aan proberen te doen om uw bestelling zo snel mogelijk klaar te leggen, zodat de koeriersdienst het zo spoedig mogelijk kan leveren.
+We gaan er alles aan doen om uw bestelling zo spoedig mogelijk klaar te leggen, zodat de koerierdienst het zo vlug mogelijk kan leveren.
 
 Uw producten:
 {1}
@@ -270,5 +270,8 @@ Rudycommerce</value>
   </data>
   <data name="OrderEmailTitle" xml:space="preserve">
     <value>Uw bestelling bij Rudycommerce is gemaakt</value>
+  </data>
+  <data name="ContinueShopping" xml:space="preserve">
+    <value>Verder winkelen</value>
   </data>
 </root>

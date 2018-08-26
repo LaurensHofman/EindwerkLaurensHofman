@@ -181,8 +181,10 @@ var cart = {
             // Get the index of the product
             var index = oldCart.productList.findIndex(p => p.id === newID);
 
-            // Update the name (in case language was changed)
-            oldCart.productList[index].name = newName;
+            if (newName) {
+                // Update the name (in case language was changed)
+                oldCart.productList[index].name = newName;
+            }            
 
             // Adds 1 to the quantity
             oldCart.productList[index].quantity += 1;

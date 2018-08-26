@@ -49,8 +49,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
             Language lang = _langRepo.Get(ID);
 
-            btnCancel.Visibility = Visibility.Collapsed;
-
             InitializeWindow(lang);
         }
 
@@ -110,7 +108,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
                             MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                             {
                                 // Makes the new language default
-                                await _langRepo.MakeNewDefaultLanguage(LanguageModel);
+                                await _langRepo.MakeNewDefaultLanguage(LanguageModel, _updatingPage);
                                 await _langRepo.SaveChangesAsync();
 
                                 TriggerSaveEvent();
@@ -163,7 +161,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
                 await _langRepo.SaveChangesAsync();
 
                 var window = (NavigationWindow)GetParentWindow();
-                window.ResetAllUserControls();
+                window.ResetAllUserControls("ccLanguageOverview");
 
                 TriggerSaveEvent();
             }

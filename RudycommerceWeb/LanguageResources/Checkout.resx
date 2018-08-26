@@ -169,10 +169,10 @@
     <value>I agree with the {0}. *</value>
   </data>
   <data name="LoginFormTitle" xml:space="preserve">
-    <value>Login</value>
+    <value>Login with your account</value>
   </data>
   <data name="NoAccountContent" xml:space="preserve">
-    <value>You don't need an account to make purchases with us. &lt;br/&gt; But if you do want one, you can choose to make one in the next page.</value>
+    <value>An account is not required to purchase with us. &lt;br/&gt; Although with an account you can make your future purchases easier. On the next page you can create an account if you desire so.</value>
     <comment>&lt;br/&gt; for linebreaks</comment>
   </data>
   <data name="NoAccountTitle" xml:space="preserve">
@@ -194,10 +194,10 @@
     <value>Payment at Rudycommerce</value>
   </data>
   <data name="PaymentWithCard" xml:space="preserve">
-    <value>Payment with card</value>
+    <value>Payment with credit card</value>
   </data>
   <data name="PayUsingCard" xml:space="preserve">
-    <value>Pay using your card</value>
+    <value>Pay using your credit card</value>
   </data>
   <data name="PersonalInfo" xml:space="preserve">
     <value>Personal info</value>
@@ -263,5 +263,8 @@ Rudycommerce
   </data>
   <data name="OrderEmailTitle" xml:space="preserve">
     <value>Your order at Rudycommerce has been made</value>
+  </data>
+  <data name="ContinueShopping" xml:space="preserve">
+    <value>Continue shopping</value>
   </data>
 </root>

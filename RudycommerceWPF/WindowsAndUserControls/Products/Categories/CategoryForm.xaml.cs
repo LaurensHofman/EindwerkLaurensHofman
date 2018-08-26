@@ -90,7 +90,6 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Categories
 
             // Fill the datagrids based on which specifications were already added
             PrepareDataGrids();
-
             BindCategorySpecificationsGrid();
         }
 
