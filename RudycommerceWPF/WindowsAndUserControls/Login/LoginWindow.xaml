@@ -83,7 +83,7 @@
                         <PasswordBox Height="30" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="222" 
                                      Margin="0,20,0,0" x:Name="pwdPassword" PasswordChanged="pwdPassword_PasswordChanged"/>
                         <TextBox Height="30" VerticalContentAlignment="Center" HorizontalAlignment="Left" Width="222" Margin="0,20,0,0" 
-                                 Visibility="Collapsed" FontSize="18" x:Name="txtPasswordVisible" TextChanged="txtPasswordVisible_TextChanged"/>
+                                 Visibility="Collapsed" x:Name="txtPasswordVisible" TextChanged="txtPasswordVisible_TextChanged"/>
                         <Button x:Name="btnShowHidePwd" Margin="110,-30,-110,30" Background="White" Width="30" Height="30" Click="btnShowHidePwd_Click"
                                 BorderBrush="Black">
                             <DynamicResource ResourceKey="Show"></DynamicResource>
@@ -114,9 +114,9 @@
             </Button>
             <WrapPanel HorizontalAlignment="Right" Margin="0,20,0,0">
                 <Button x:Name="btnExit" Content="{DynamicResource ResourceKey=Cancel}" FontSize="12" Width="120" Click="btnExit_Click"  Margin="20,0,20,0"/>
-                <Button x:Name="btnLogin" Content="{DynamicResource ResourceKey=LoginINF}" FontSize="12" Width="120" Click="btnLogin_Click"  Margin="20,0,20,0"/>
+                <Button x:Name="btnLogin" IsDefault="True" Content="{DynamicResource ResourceKey=LoginINF}" FontSize="12" Width="120" Click="btnLogin_Click"  Margin="20,0,20,0"/>
             </WrapPanel>
-            <Button x:Name="btnLazy" Click="btnLazy_Click" IsDefault="True" HorizontalAlignment="Left" FontSize="12" Content="FOR THE LAZY" Width="120" Margin="20,-27,20,0"/>
+            <!--<Button x:Name="btnLazy" Click="btnLazy_Click" IsDefault="True" HorizontalAlignment="Left" FontSize="12" Content="FOR THE LAZY" Width="120" Margin="20,-27,20,0"/>-->
         </StackPanel>
     </Grid>
 </base:MultilingualWindow>

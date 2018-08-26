@@ -35,4 +35,9 @@ namespace RudycommerceLib.CustomExceptions
     {
         public ImagePathToSaveNotFound() : base("") { }
     }
+
+    public class EmailSentFailed : Exception
+    {
+        public EmailSentFailed(): base("") { }
+    }
 }

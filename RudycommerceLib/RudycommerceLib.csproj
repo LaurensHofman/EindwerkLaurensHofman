@@ -97,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Multilingual\" />
+    <Folder Include="WPF\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\LangResource.en.resx">

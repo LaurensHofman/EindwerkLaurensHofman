@@ -219,6 +219,9 @@ Au Benelux, si votre commande dépasse € 50,00; alors nous livrons gratuitemen
   <data name="NoCategoriesFound" xml:space="preserve">
     <value>Rien de catégories était trouvé.</value>
   </data>
+  <data name="NoFiltersFound" xml:space="preserve">
+    <value>Aucun filtre n'a été trouvé</value>
+  </data>
   <data name="NoLanguagesFound" xml:space="preserve">
     <value>Aucune langue soutenu n'a été trouvée.</value>
   </data>

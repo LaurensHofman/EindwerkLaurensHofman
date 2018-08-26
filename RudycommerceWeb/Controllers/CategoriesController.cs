@@ -19,11 +19,19 @@ namespace RudycommerceWeb.Controllers
             _catRepo = new CategoryRepository();
         }
 
+        /// <summary>
+        /// Gets the list of categories for combobox items, to be used in the Category Dropdown in the Header's navbar
+        /// </summary>
+        /// <returns></returns>
         public ActionResult _CategoryDropdown()
         {
             return View("_CategoryDropdown", _catRepo.GetLocalizedCatListItems(GetISO()));
         }
 
+        /// <summary>
+        /// Gets a list of categories in links
+        /// </summary>
+        /// <returns></returns>
         public ActionResult _CategoryList()
         {
             return View("_CategoryList", _catRepo.GetLocalizedCatListItems(GetISO()));

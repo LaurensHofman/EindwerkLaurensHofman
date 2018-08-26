@@ -16,7 +16,6 @@
         {
             <div class="row">
                 <div class="col-12 content-vertcen-right">
-                    @*@Resources.Global.SortingOptions @Resources.Global.NotYetImplemented.ToLower()*@
 
                     @Html.DropDownList("filters.Sort",
                     new SelectList(Model.SortOptions, "Key", "Value"), new { @class = "form-control width-unset"})
@@ -33,65 +32,73 @@
                             <hr />
                             @Html.Hidden("filters.CategoryID", Model.CategoryID)
 
-                            @for (int i = 0; i < Model.FilterOptions.Count; i++)
+                            @if (Model.FilterOptions == null || Model.FilterOptions.Count <= 0)
                             {
-                                @Html.Hidden($"filters.FilterOptions[{i}].SpecID", Model.FilterOptions[i].SpecID)
-                                if (Model.FilterOptions[i].SpecID == 0)
+                                <div class="text-center m-bot-1">@Resources.Global.NoFiltersFound</div>
+                            }
+                            else
+                            {
+
+
+                                for (int i = 0; i < Model.FilterOptions.Count; i++)
                                 {
-                                    <div><strong>@Resources.Global.Brand</strong></div>
-                                }
-                                else
-                                {
-                                    <div><strong>@Model.FilterOptions[i].SpecName</strong></div>
-                                }
-
-
-                                @Html.Hidden($"filters.FilterOptions[{i}].SpecName", Model.FilterOptions[i].SpecName)
-                                @Html.Hidden($"filters.FilterOptions[{i}].DisplayOrder", Model.FilterOptions[i].DisplayOrder)
-                                @Html.Hidden($"filters.FilterOptions[{i}].IsEnum", Model.FilterOptions[i].IsEnum)
-                                @Html.Hidden($"filters.FilterOptions[{i}].IsBool", Model.FilterOptions[i].IsBool)
-
-                                bool isSpecBool = Model.FilterOptions[i].IsBool;
-
-                                if (isSpecBool)
-                                {
-                                    for (int j = 0; j < Model.FilterOptions[i].FilterValues.Count; j++)
+                                    @Html.Hidden($"filters.FilterOptions[{i}].SpecID", Model.FilterOptions[i].SpecID)
+                                    if (Model.FilterOptions[i].SpecID == 0)
                                     {
-                                        <div>
-                                            @Html.CheckBox($"filters.FilterOptions[{i}].FilterValues[{j}].IsSelected", Model.FilterOptions[i].FilterValues[j].IsSelected)
-
-                                            @if ((bool)Model.FilterOptions[i].FilterValues[j].BoolValue)
-                                            {
-                                                @Html.Hidden($"filters.FilterOptions[{i}].FilterValues[{j}].BoolValue", Model.FilterOptions[i].FilterValues[j].BoolValue)
-                                                <label for="filters_FilterOptions_@(i)__FilterValues_@(j)__IsSelected">
-                                                    @Resources.Global.Yes
-                                                </label>
-                                            }
-                                            else
-                                            {
-                                                @Html.Hidden($"filters.FilterOptions[{i}].FilterValues[{j}].BoolValue", Model.FilterOptions[i].FilterValues[j].BoolValue)
-                                                <label for="filters_FilterOptions_@(i)__FilterValues_@(j)__IsSelected">
-                                                    @Resources.Global.No
-                                                </label>
-                                            }
-                                        </div>
+                                        <div><strong>@Resources.Global.Brand</strong></div>
                                     }
-                                }
-                                else
-                                {
-                                    for (int j = 0; j < Model.FilterOptions[i].FilterValues.Count; j++)
+                                    else
                                     {
-                                        <div>
-                                            @Html.CheckBox($"filters.FilterOptions[{i}].FilterValues[{j}].IsSelected", Model.FilterOptions[i].FilterValues[j].IsSelected)
-                                            @Html.Hidden($"filters.FilterOptions[{i}].FilterValues[{j}].Value", Model.FilterOptions[i].FilterValues[j].Value)
-                                            <label for="filters_FilterOptions_@(i)__FilterValues_@(j)__IsSelected">
-                                                @Model.FilterOptions[i].FilterValues[j].Value
-                                            </label>
-                                        </div>
+                                        <div><strong>@Model.FilterOptions[i].SpecName</strong></div>
+                                    }
+
+
+                                    @Html.Hidden($"filters.FilterOptions[{i}].SpecName", Model.FilterOptions[i].SpecName)
+                                    @Html.Hidden($"filters.FilterOptions[{i}].DisplayOrder", Model.FilterOptions[i].DisplayOrder)
+                                    @Html.Hidden($"filters.FilterOptions[{i}].IsEnum", Model.FilterOptions[i].IsEnum)
+                                    @Html.Hidden($"filters.FilterOptions[{i}].IsBool", Model.FilterOptions[i].IsBool)
+
+                                    bool isSpecBool = Model.FilterOptions[i].IsBool;
+
+                                    if (isSpecBool)
+                                    {
+                                        for (int j = 0; j < Model.FilterOptions[i].FilterValues.Count; j++)
+                                        {
+                                            <div>
+                                                @Html.CheckBox($"filters.FilterOptions[{i}].FilterValues[{j}].IsSelected", Model.FilterOptions[i].FilterValues[j].IsSelected)
+
+                                                @if ((bool)Model.FilterOptions[i].FilterValues[j].BoolValue)
+                                                {
+                                                    @Html.Hidden($"filters.FilterOptions[{i}].FilterValues[{j}].BoolValue", Model.FilterOptions[i].FilterValues[j].BoolValue)
+                                                    <label for="filters_FilterOptions_@(i)__FilterValues_@(j)__IsSelected">
+                                                        @Resources.Global.Yes
+                                                    </label>
+                                                }
+                                                else
+                                                {
+                                                    @Html.Hidden($"filters.FilterOptions[{i}].FilterValues[{j}].BoolValue", Model.FilterOptions[i].FilterValues[j].BoolValue)
+                                                    <label for="filters_FilterOptions_@(i)__FilterValues_@(j)__IsSelected">
+                                                        @Resources.Global.No
+                                                    </label>
+                                                }
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        for (int j = 0; j < Model.FilterOptions[i].FilterValues.Count; j++)
+                                        {
+                                            <div>
+                                                @Html.CheckBox($"filters.FilterOptions[{i}].FilterValues[{j}].IsSelected", Model.FilterOptions[i].FilterValues[j].IsSelected)
+                                                @Html.Hidden($"filters.FilterOptions[{i}].FilterValues[{j}].Value", Model.FilterOptions[i].FilterValues[j].Value)
+                                                <label for="filters_FilterOptions_@(i)__FilterValues_@(j)__IsSelected">
+                                                    @Model.FilterOptions[i].FilterValues[j].Value
+                                                </label>
+                                            </div>
+                                        }
                                     }
                                 }
                             }
-
 
                             <div class="row">
                                 <div class="col-6 content-vertical-center">
@@ -120,28 +127,29 @@
     }
     else
     {
-        <div class="row"><div class="col-12" style="text-align:right;">
-            @Resources.Global.SortingOptions @Resources.Global.NotYetImplemented.ToLower()
-        </div>
-        <div class="col-12 col-md-3 m-top-1">
+        <div class="row">
+            <div class="col-12" style="text-align:right;">
+                @Resources.Global.SortingOptions @Resources.Global.NotYetImplemented.ToLower()
+            </div>
+            <div class="col-12 col-md-3 m-top-1">
 
-            <div class="well">
-                <div class="container">
-                    <h4 class="text-center">@Resources.Global.Filters</h4>
-                    <hr />
+                <div class="well">
+                    <div class="container">
+                        <h4 class="text-center">@Resources.Global.Filters</h4>
+                        <hr />
 
-                    @Html.Raw("Hier komen de filteropties")
+                        @Html.Raw("Hier komen de filteropties")
 
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-9">
+
+                <div class="row">
+                    @Html.Partial("_ProductList", (List<RudycommerceData.Models.ASPModels.ProductListItem>)ViewBag.Products)
                 </div>
             </div>
         </div>
-        <div class="col-12 col-md-9">
-
-            <div class="row">
-                @Html.Partial("_ProductList", (List<RudycommerceData.Models.ASPModels.ProductListItem>)ViewBag.Products)
-            </div>
-        </div>
-    </div>
     }
 </div>
 

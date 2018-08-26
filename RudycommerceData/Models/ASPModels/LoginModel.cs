@@ -24,21 +24,26 @@ namespace RudycommerceData.Models.ASPModels
 
         public async Task<int?> Authenticate(IClientRepository _repo)
         {
+            // Looks for the client
             Client client = await _repo.FindByEmailAsync(this.Email);
 
+            // If the client is null, no client was found
             if (client == null)
             {
                 return null;
             }
 
+            // Encrypts the inserted password in the same way it was encrypted in the database
             string encryptedPassword = Encryption.EncryptPassword(client.Salt, this.Password);
             
+            // If the result is the same, that means the same password was inserted
             if (client.EncryptedPassword == encryptedPassword)
             {
                 return client.ID;
             }
             else
             {
+                // If the result is not the same, that means another password was inserted
                 return null;
             }
         }

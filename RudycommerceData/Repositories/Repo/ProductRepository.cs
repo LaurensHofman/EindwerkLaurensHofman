@@ -166,10 +166,13 @@ namespace RudycommerceData.Repositories.Repo
                 item.FilterValues.RemoveAll(x => x.StringValueIsNumber);
             }
 
-            // Removes all distinct values, so the user doesn't have to see 15 checkboxes for the colour Black
             foreach (var item in filters.FilterOptions)
             {
+                // Removes all distinct values, so the user doesn't have to see 15 checkboxes for the colour Black
                 item.FilterValues = item.FilterValues.Distinct(new FilterValueComparer()).ToList();
+
+                // Removes whitespace values, we want to see those
+                item.FilterValues.RemoveAll(x => String.IsNullOrWhiteSpace(x.Value) && x.BoolValue == null);
             }
 
             // Removes all FilterOptions where there was only 1 filter value anyways

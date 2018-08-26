@@ -242,4 +242,25 @@
   <data name="Register" xml:space="preserve">
     <value>Registrer</value>
   </data>
+  <data name="CheckoutCartListEmpty" xml:space="preserve">
+    <value>Aucun produit n'a été trouvé</value>
+  </data>
+  <data name="OrderEmailContent" xml:space="preserve">
+    <value>Cher {0},
+
+Votre commande chez Rudycommerce est en cours de traitement.
+Nous nous efforcerons de faire tout notre possible pour préparer votre livraison le plus rapidement possible afin que le courrier puisse le livrer le plus rapidement possible.
+
+Vos produits:
+{1}
+Votre addrès:
+{2} {3}
+{4} {5}
+
+Merci de nous choisir comme magasin,
+Rudycommerce</value>
+  </data>
+  <data name="OrderEmailTitle" xml:space="preserve">
+    <value>Votre commande chez Rudycommerce a été faite</value>
+  </data>
 </root>

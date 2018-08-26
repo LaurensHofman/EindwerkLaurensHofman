@@ -55,7 +55,11 @@
         @Html.AntiForgeryToken()
 
         <div class="form-horizontal">
+
+            @*Hides the validation summary, so it's not showing unnecessarily when there are no errors*@
             @{ string valSumClass = (ViewBag.ShowValidationSummary == null) ? "hide" : "";}
+
+
             @Html.ValidationSummary("", new { @class = "alert alert-danger " + valSumClass })
 
             <!--First name and Last name-->
@@ -219,47 +223,64 @@
 
 @section scripts{
     <script>
+        // https://codepen.io/gabrieleromanato/pen/VYmrJV?editors=1010
+
         (function () {
+            // Toggles the visibility of the password in the password input field
+            var PasswordToggler = function (toggleCB, passwordField) {
+                // Defines the toggle checkbox and the password field
+                this.toggleCB = toggleCB;
+                this.passwordField = passwordField;
 
-            var PasswordToggler = function (element, field) {
-                this.element = element;
-                this.field = field;
-
+                // executes the toggle in the PasswordToggler.prototype
                 this.toggle();
             };
 
             PasswordToggler.prototype = {
                 toggle: function () {
+                    // redefines the this to self
                     var self = this;
-                    self.element.addEventListener('change', function () {
-                        if (self.element.checked) {
-                            debugger;
-                            self.field.setAttribute('type', 'text');
+
+                    // Adds an event to the checkbox that executes on change
+                    self.toggleCB.addEventListener('change', function () {
+                        if (self.toggleCB.checked) {
+                            // If the checkbox is checked, set the passwordbox type to text, so the text becomes visible
+                            self.passwordField.setAttribute('type', 'text');
                         } else {
-                            debugger;
-                            self.field.setAttribute('type', 'password');
+                            // If the checkbox is not checked, set the password input back to type password
+                            self.passwordField.setAttribute('type', 'password');
                         }
                     }, false);
                 }
             };
 
+            // Toggles the visibility of the password region, in case the user wants to make an account or not
             var PasswordRegionToggler = function (cb, field, pwd) {
+                // defines the checkbox that toggles the visibility of the region, the region that needs to hide/show and the passwordbox
                 this.cbox = cb;
                 this.region = field;
                 this.password = pwd;
 
+                // Executes the toggle function in the PasswordRegionToggle.prototype
                 this.toggle();
             };
 
             PasswordRegionToggler.prototype = {
                 toggle: function () {
+                    // Redefines this to self
                     var self = this;
+
+                    // Adds an event to the checkbox that triggers on change
                     self.cbox.addEventListener('change', function () {
                         if (self.cbox.checked) {
+                            // If the checkbox is checked ( = user wants account), show the field by removing the hide class
                             self.region.classList.remove('hide');
+                            // Reset the password value
                             self.password.value = '';
                         } else {
+                            // If the checkbox is not checked ( = user doesn't want an account), hide the field
                             self.region.classList.add('hide');
+                            // Reset the password value
                             self.password.value = '';
                         }
                     }, false);
@@ -267,16 +288,25 @@
             };
 
             window.onload = function () {
+                // Toggler for the visibility of the password
+
+                // Define the checkbox that enables toggling the visibility of the password, and defines the password box
                 var pwdCheckbox = document.querySelector('#show-hide'),
                     pwd = document.querySelector('#Password');
 
+                // Creates a new password toggler, giving the checkbox and the password field as parameters
                 var passwordToggler = new PasswordToggler(pwdCheckbox, pwd);
 
-                // do same for show/hide password formgroup
 
+
+                // Toggler for the visibility of the region that shows the password input, label, ...
+
+                // Defines the checkbox that determines if the user wants a account (and thus defining whether the password region should be shown or not)
                 var accountCheckbox = document.querySelector('#AccountUser'),
+                    // Also defines the region that needs to be toggled
                     hideablePasswordRegion = document.querySelector('#pwd-form-group');
 
+                // Creates a new toggler for the password region visibility
                 var passwordRegionToggler = new PasswordRegionToggler(accountCheckbox, hideablePasswordRegion, pwd);
             };
 

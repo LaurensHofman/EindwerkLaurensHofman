@@ -75,76 +75,79 @@
                     @Model.ProductInfo.Description
                 </div>
 
-                <div id="specifications">
-                    <h3>@Resources.Global.Specifications</h3>
+                @if (Model.SpecificationInfoAndValues != null)
+                {
+                    <div id="specifications">
+                        <h3>@Resources.Global.Specifications</h3>
 
-                    @foreach (var spec in Model.SpecificationInfoAndValues)
-                    {
-                        bool valueEmpty;
-                        if (spec.IsBoolValue)
+                        @foreach (var spec in Model.SpecificationInfoAndValues)
                         {
-                            valueEmpty = (spec.BoolValue == null);
-                        }
-                        else
-                        {
-                            valueEmpty = (spec.Value == null);
-                        }
+                            bool valueEmpty;
+                            if (spec.IsBoolValue)
+                            {
+                                valueEmpty = (spec.BoolValue == null);
+                            }
+                            else
+                            {
+                                valueEmpty = (spec.Value == null);
+                            }
 
-                        if (!valueEmpty)
-                        {
-                            <div class="row">
-                                <div class="col-12 col-sm-6 specification-name big-screen">
-                                    @spec.Name :
-                                </div>
-                                @if (spec.AdviceDescription != null)
-                                {
-                                    <div class="col-12 col-sm-6 specification-name small-screen advice" data-toggle="popover"
-                                         data-placement="top" title="@spec.Name"
-                                         data-content="@spec.AdviceDescription.Replace(Environment.NewLine, "<br/>")"
-                                         data-html="true">
-                                        <span class="questionmark">(?)</span><span class="name">@spec.Name :</span>
-                                    </div>
-                                }
-                                else
-                                {
-                                    <div class="col-12 col-sm-6 specification-name small-screen">
+                            if (!valueEmpty)
+                            {
+                                <div class="row">
+                                    <div class="col-12 col-sm-6 specification-name big-screen">
                                         @spec.Name :
-                                    </div>
-                                }
-
-                                <div class="col-12 col-sm-6 specification-value">
-                                    <div class="value">
-                                        @if (!spec.IsBoolValue)
-                                        {
-                                            @Html.Raw(spec.Value);
-                                        }
-                                        else
-                                        {
-                                            if ((bool)spec.BoolValue)
-                                            {
-                                                <img alt="@Resources.ImgAltTexts.TrueIcon" class="bool-value" src="~/Images/64_GreenCheck.png" />
-                                            }
-                                            else
-                                            {
-                                                <img alt="@Resources.ImgAltTexts.FalseIcon" class="bool-value" src="~/Images/64_RedCross.png" />
-                                            }
-                                        }
                                     </div>
                                     @if (spec.AdviceDescription != null)
                                     {
-                                        <button type="button" data-toggle="popover" data-trigger="focus" data-placement="right" title="@spec.Name"
-                                                data-content="@spec.AdviceDescription.Replace(Environment.NewLine, "<br/>")"
-                                                data-html="true" class="specification-help btn btn-primary">
-                                            <div>
-                                                ?
-                                            </div>
-                                        </button>
+                                        <div class="col-12 col-sm-6 specification-name small-screen advice" data-toggle="popover"
+                                             data-placement="top" title="@spec.Name"
+                                             data-content="@spec.AdviceDescription.Replace(Environment.NewLine, "<br/>")"
+                                             data-html="true">
+                                            <span class="questionmark">(?)</span><span class="name">@spec.Name :</span>
+                                        </div>
                                     }
+                                    else
+                                    {
+                                        <div class="col-12 col-sm-6 specification-name small-screen">
+                                            @spec.Name :
+                                        </div>
+                                    }
+
+                                    <div class="col-12 col-sm-6 specification-value">
+                                        <div class="value">
+                                            @if (!spec.IsBoolValue)
+                                            {
+                                                @Html.Raw(spec.Value);
+                                            }
+                                            else
+                                            {
+                                                if ((bool)spec.BoolValue)
+                                                {
+                                                    <img alt="@Resources.ImgAltTexts.TrueIcon" class="bool-value" src="~/Images/64_GreenCheck.png" />
+                                                }
+                                                else
+                                                {
+                                                    <img alt="@Resources.ImgAltTexts.FalseIcon" class="bool-value" src="~/Images/64_RedCross.png" />
+                                                }
+                                            }
+                                        </div>
+                                        @if (spec.AdviceDescription != null)
+                                        {
+                                            <button type="button" data-toggle="popover" data-trigger="focus" data-placement="right" title="@spec.Name"
+                                                    data-content="@spec.AdviceDescription.Replace(Environment.NewLine, "<br/>")"
+                                                    data-html="true" class="specification-help btn btn-primary">
+                                                <div>
+                                                    ?
+                                                </div>
+                                            </button>
+                                        }
+                                    </div>
                                 </div>
-                            </div>
+                            }
                         }
-                    }
-                </div>
+                    </div>
+                }
             </div>
 
             <div id="column-price-cart" class="col-12 col-md-4">
@@ -237,94 +240,119 @@ else
 
 @section scripts{
     <script>
+        // Enables the bootstrap popovers
         $(document).ready(function () {
             $('[data-toggle="popover"]').popover({
                 delay: { show: "0", hide: "0" }
             });
         });
 
+        // Gets all the image thumbnail elements
         let imageElements = document.querySelectorAll('.img-thumbnail img');
 
+        // Adds click events to the thumbnails and the arrow buttons
         function addClickEvents() {
 
-            var i = 0;
-
+            // Foreach thumbnail, add a click event that allows to change to that image
             imageElements.forEach(function (image) {
                 image.addEventListener('click', function () {
                     changeImage(image);
                 });
 
+                // Also gives the click event to the container around the thumbnail
                 image.parentElement.addEventListener('click', function () {
                     changeImage(image);
                 });
             });
 
+            // Gets the left arrow button and adds a click event to it
             var previousButton = document.querySelector('#image-button-previous');
-
             if (previousButton) {
                 previousButton.addEventListener('click', function () {
+                    // Gets the currently selected image thumbnail
                     var currentImage = document.querySelector('.img-current');
 
+                    // Gets the index of the currently selected image thumbnail
                     var index = getIndex(imageElements, currentImage);
 
+                    // If the index is 0 (first thumbnail), make the new index the one of the last image
                     if (index == 0) {
                         index = imageElements.length - 1;
                     }
                     else {
+                        // Else, make the new index the previous one
                         index = index - 1;
                     }
 
+                    // Change the image to the image with the new index
                     changeImage(imageElements[index]);
                 });
 
             }
 
-
+            // Gets the right arrow button and adds a click event to it
             var nextButton = document.querySelector('#image-button-next');
-
             if (nextButton) {
                 nextButton.addEventListener('click', function () {
+                    // Gets the currently selected image thumbnail
                     var currentImage = document.querySelector('.img-current');
 
+                    // Gets the index of the currently selected image thumbnail
                     var index = getIndex(imageElements, currentImage);
 
+                    // If the index is the last one in the list
                     if (index == imageElements.length - 1) {
+                        // Make the new index the first one
                         index = 0
                     }
                     else {
+                        // Else, just make the new index the next image in row
                         index = index + 1;
                     }
 
+                    // Changes the image to the image thumbnail with the new index
                     changeImage(imageElements[index]);
                 });
             }
         };
 
-
+        // Gets the index of an item in the list/array
         var getIndex = function (list, item) {
+            // Loops through the list
             for (var i = 0; i < list.length; i++) {
+                // Checks if the current item in the list equals the item given as parameter
                 if (list[i].src == item.src) {
+                    // If the item is the same, return the index
                     return i;
                 }
             }
         };
 
+        // Changes to the new image
         var changeImage = function (newImage) {
+            // Gets the item that houses the big image
             let bigImg = document.querySelector('#current-img-container');
 
+            // Remove the childs from the big image
             while (bigImg.firstChild) {
                 bigImg.removeChild(bigImg.firstChild);
             }
 
+            // removes the selected image class from the old selected image
             document.querySelector('.selected-img').classList.remove('selected-img');
 
+            // Clones the thumbnail
             var newElement = newImage.cloneNode(true);
-
+            // Adds the class so that it's the current image
             newElement.classList.add('img-current');
+            // Uses the clone for the big image
             bigImg.appendChild(newElement);
 
+            // Adds the selected img class so that it gets a border
             newImage.parentElement.classList.add('selected-img');
         }
+
+        // Adds clickevents to all the elements that need one
         window.onload = addClickEvents;
     </script>
 }

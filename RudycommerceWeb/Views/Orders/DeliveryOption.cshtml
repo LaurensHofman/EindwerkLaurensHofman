@@ -100,22 +100,29 @@
 @section scripts {
 
     <script>
-
+        // Makes a JS object of the current address model. This allows the user to revert to the original value without making a roundtrip
         var homeAddress = @Html.Raw(Json.Encode(Model));
+
+        // Toggler to enable/disable changes to the address fields
         var addressToggler;
         (function () {
 
-            var AddresToggler = function (cb) {
+            // Toggles the enable/disable changes to the address fields
+            var AddresToggler = function (cb, streetandnumber, mailbox, postalcode, city, countrycode) {
+                // Defines the checkbox that toggles the enable/disable of the address fields
                 this.checkbox = cb;
 
-                this.streetandnumber = document.querySelector('#StreetAndNumber');
-                this.mailbox = document.querySelector('#MailBox');
-                this.postalcode = document.querySelector('#PostalCode');
-                this.city = document.querySelector('#City');
-                this.countrycode = document.querySelector('#CountryCode');
+                // Defines the address fields
+                this.streetandnumber = streetandnumber;
+                this.mailbox = mailbox;
+                this.postalcode = postalcode;
+                this.city = city;
+                this.countrycode = countrycode;
 
+                // Array holding all the address fields
                 this.inputElements = [this.streetandnumber, this.mailbox, this.postalcode, this.city, this.countrycode];
 
+                // Executes the toggle function of the AddressToggler.prototype
                 this.toggle();
             };
 
@@ -123,17 +130,19 @@
                 toggle: function () {
                     var self = this;
                     self.checkbox.addEventListener('change', function () {
+                        // If the checkbox is selected ( = user wants to give another address)
                         if (self.checkbox.checked) {
-
+                            // Enable all input fields so the user can make changes
                             self.enableAll();
-
                         }
                         else {
-
+                            // If the checkbox is not selected ( = the user wants to deliver at his own house)
+                            // Disable the input fields
                             self.inputElements.forEach(input => {
                                 input.setAttribute('disabled', 'true');
                             });
 
+                            // And restore the original values
                             self.streetandnumber.value = homeAddress.StreetAndNumber;
                             self.mailbox.value = homeAddress.MailBox;
                             self.postalcode.value = homeAddress.PostalCode;
@@ -144,7 +153,7 @@
                     }, false);
                 },
                 enableAll: function () {
-
+                    // Enables changes to all the input fields
                     var self = this;
 
                     self.inputElements.forEach(input => {
@@ -154,10 +163,22 @@
             };
 
             window.onload = function () {
+                // Gets the checkbox that toggles the enable/disable of the form
                 var toggleCheckbox = document.querySelector('#OtherAddress');
 
-                addressToggler = new AddresToggler(toggleCheckbox);
+                // Defines the address input fields
+                var streetandnumber = document.querySelector('#StreetAndNumber');
+                var mailbox = document.querySelector('#MailBox');
+                var postalcode = document.querySelector('#PostalCode');
+                var city = document.querySelector('#City');
+                var countrycode = document.querySelector('#CountryCode');
 
+                // Creates a toggler for the address fields
+                addressToggler = new AddresToggler(toggleCheckbox, streetandnumber, mailbox, postalcode, city, countrycode);
+
+                // HomeAddress is the JS version of the Model received by the controller.
+                // If the homeAddress = true (which only happens after sending the form, but it got sent back to the client, because of a Validation Error)
+                // Then enable changes to all the fields
                 if (homeAddress.OtherAddress) {
 
                     addressToggler.enableAll();

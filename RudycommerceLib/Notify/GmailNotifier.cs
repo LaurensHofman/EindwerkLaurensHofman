@@ -53,15 +53,22 @@ namespace RudycommerceLib.Notify
         /// <param name="content">Content of the email</param>
         public void Notify(MailAddress toAddress, string title, string content)
         {
-            using (var newMail =
+            try
+            {
+                using (var newMail =
                    new MailMessage(_fromAddress, toAddress)
                    {
-                        Subject = title,
-                        Body = content
+                       Subject = title,
+                       Body = content
                    })
-            {
-                _smtpClient.Send(newMail);
+                {
+                    _smtpClient.Send(newMail);
+                }
             }
+            catch (Exception)
+            {
+                throw new CustomExceptions.EmailSentFailed();
+            }            
         }
     }
 }

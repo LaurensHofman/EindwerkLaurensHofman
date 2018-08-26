@@ -106,6 +106,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No products were found.
+        /// </summary>
+        public static string CheckoutCartListEmpty {
+            get {
+                return ResourceManager.GetString("CheckoutCartListEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deliver to another address than your own?.
         /// </summary>
         public static string ChooseOtherAddressForDelivery {
@@ -291,6 +300,37 @@ namespace Resources {
         public static string NoAccountTitle {
             get {
                 return ResourceManager.GetString("NoAccountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dear {0}, 
+        ///
+        ///Your order at Rudycommerce is currently being processed.
+        ///We will try to do everything we can to prepare your delivery as soon as possible, so that the courrier can deliver it as soon as possible.
+        ///
+        ///Your ordered products:
+        ///{1}
+        ///Your delivery address:
+        ///{2} {3}
+        ///{4} {5} 
+        ///
+        ///Thank you for choosing us as your store,
+        ///Rudycommerce
+        ///.
+        /// </summary>
+        public static string OrderEmailContent {
+            get {
+                return ResourceManager.GetString("OrderEmailContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your order at Rudycommerce has been made.
+        /// </summary>
+        public static string OrderEmailTitle {
+            get {
+                return ResourceManager.GetString("OrderEmailTitle", resourceCulture);
             }
         }
         

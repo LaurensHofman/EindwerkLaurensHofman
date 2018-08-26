@@ -38,6 +38,13 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
         {
             InitializeComponent();
 
+            NewDesktopUser = new DesktopUser()
+            {
+                IsAdmin = true,
+                VerifiedByAdmin = true,
+                Salt = Encryption.GetNewSalt(32)
+            };
+
             _languageRepo = new LanguageRepository();
             _userRepo = new DesktopUserRepository();
 
@@ -64,14 +71,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
                 lblPrefLang.Visibility = Visibility.Collapsed;
             }
 
-            DataContext = this;
-
-            NewDesktopUser = new DesktopUser()
-            {
-                IsAdmin = true,
-                VerifiedByAdmin = true,
-                Salt = Encryption.GetNewSalt(32)
-            };
+            DataContext = this;            
         }
 
         private async void btnSave_Click(object sender, RoutedEventArgs e)

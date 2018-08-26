@@ -83,7 +83,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
             if (_changedValue.ISO.Length != 2)
             {                
                 // Reload the old values
-                LoadDataGridData();
+                await LoadDataGridData();
             }
             else
             {
@@ -182,7 +182,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Languages
 
                     await _langRepo.SaveChangesAsync();
 
-                    LoadDataGridData();
+                    await LoadDataGridData();
                 }
                 else
                 { MessageBoxManager.Unregister(); }

@@ -351,6 +351,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No filters were found.
+        /// </summary>
+        public static string NoFiltersFound {
+            get {
+                return ResourceManager.GetString("NoFiltersFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No supported language was found..
         /// </summary>
         public static string NoLanguagesFound {

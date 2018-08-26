@@ -185,6 +185,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
+            DesktopLogin.Username = txtUsername.Text;
             DesktopLogin.Password = pwdPassword.Password;
 
             int? userID = await DesktopLogin.Authenticate();
@@ -217,17 +218,17 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             pwdPassword.Password = null;
         }
 
-        /// <summary>
-        /// Please delete this
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnLazy_Click(object sender, RoutedEventArgs e)
-        {
-            DesktopLogin.Username = "laurens";
-            DesktopLogin.Password = "laurens";
-            btnLogin_Click(null, null);
-        }
+        ///// <summary>
+        ///// Please delete this
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void btnLazy_Click(object sender, RoutedEventArgs e)
+        //{
+        //    DesktopLogin.Username = "laurens";
+        //    DesktopLogin.Password = "laurens";
+        //    btnLogin_Click(null, null);
+        //}
 
         /// <summary>
         /// Makes the passwordbox have the same content as the textbox

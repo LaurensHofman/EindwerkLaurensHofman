@@ -1081,6 +1081,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
                 // Because the properties are not multilingual, the value is going to be binded for the first language.
                 int firstLangID = _languageList.FirstOrDefault().ID;
 
+                // Define the value that holds the to be saved value for the others
                 Value_ProductSpecification value = ProductModel.Values_ProductSpecifications
                     .SingleOrDefault(x => x.SpecificationID == spec.SpecificationID && x.LanguageID == firstLangID);
                 value.HoldsValueForOtherNonML = true;

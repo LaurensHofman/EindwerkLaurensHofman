@@ -7,34 +7,43 @@
 @using System.Text.RegularExpressions;
 
 @{
+    // Gets the path of the current page you're at eg.: /nl/Products/CategoryPage/4
     string path = HttpContext.Current.Request.Url.PathAndQuery;
 
+    // The path that will be put after the ISO code in the URL
+    string pathAfterISO = "";
+
+    // If the path length equals 3, it means you're probably at the Index page with path /nl
     if (path.Length == 3)
     {
-        string pathStart = path.Substring(0, 3);
-
         Regex r = new Regex("/..");
 
-        bool success = r.Match(pathStart).Success;
+        bool success = r.Match(path).Success;
+
+        // If the path actually starts with ' /.. ' then the new path to put after the ISO code will become empty (= '/' )
 
         if (success)
         {
-            path = "/";
+            pathAfterISO = "/";
         }
     }
 
+    // If the path is longer than 4 characters, it will mean something comes after the 2 letter ISO code
     if (path.Length >= 4)
     {
+        // Gets the 4 first letters
         string pathStart = path.Substring(0, 4);
 
+        // Checks whether it follows the pattern of an ISO code
         Regex r = new Regex("/../");
 
         bool success = r.Match(pathStart).Success;
 
+        // If it starts with an ISO code, substract the iso code and puts it into the pathAfterISO
         if (success)
         {
             string pathEnd = "/" + path.Substring(4, path.Length - 4);
-            path = pathEnd;
+            pathAfterISO = pathEnd;
         }
     }
 }
@@ -46,7 +55,7 @@
 else {
     foreach (var lang in Model)
     {
-        <a class="nav-link languages" href="@Html.Raw("/" + lang.ISO + path)">
+        <a class="nav-link languages" href="@Html.Raw("/" + lang.ISO + pathAfterISO)">
             @lang.ISO.ToUpper()
         </a>
     }

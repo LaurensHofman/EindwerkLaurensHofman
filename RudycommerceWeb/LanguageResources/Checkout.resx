@@ -242,4 +242,26 @@
   <data name="Register" xml:space="preserve">
     <value>No account yet? Register</value>
   </data>
+  <data name="CheckoutCartListEmpty" xml:space="preserve">
+    <value>No products were found</value>
+  </data>
+  <data name="OrderEmailContent" xml:space="preserve">
+    <value>Dear {0}, 
+
+Your order at Rudycommerce is currently being processed.
+We will try to do everything we can to prepare your delivery as soon as possible, so that the courrier can deliver it as soon as possible.
+
+Your ordered products:
+{1}
+Your delivery address:
+{2} {3}
+{4} {5} 
+
+Thank you for choosing us as your store,
+Rudycommerce
+</value>
+  </data>
+  <data name="OrderEmailTitle" xml:space="preserve">
+    <value>Your order at Rudycommerce has been made</value>
+  </data>
 </root>

@@ -110,7 +110,7 @@
                         </div>
                     </div>
                 }
-                <div id="product-overview-empty" class="@hidden">
+                <div id="product-overview-empty" class="@hidden p-top-2">
                     <div class="content-horizontal-center">@Resources.Checkout.CartEmptyLetsFillIt</div>
                     <div class="content-vertcen-right"><button type="button" onclick="location.href='@Url.Action("Index", "Products")'" class="btn btn-secondary">@Resources.Checkout.CartEmptyBackToHomepage</button></div>
                 </div>
@@ -119,9 +119,11 @@
     }
     else
     {
-        <div id="product-overview-empty">
-            <div class="content-horizontal-center">@Resources.Checkout.CartEmptyLetsFillIt</div>
-            <div class="content-vertcen-right"><button type="button" onclick="location.href='@Url.Action("Index", "Products")'" class="btn btn-secondary">@Resources.Checkout.CartEmptyBackToHomepage</button></div>
+        <div class="well">
+            <div id="product-overview-empty" class="p-top-2">
+                <div class="content-horizontal-center">@Resources.Checkout.CartEmptyLetsFillIt</div>
+                <div class="content-vertcen-right"><button type="button" onclick="location.href='@Url.Action("Index", "Products")'" class="btn btn-secondary">@Resources.Checkout.CartEmptyBackToHomepage</button></div>
+            </div>
         </div>
     }
 
@@ -137,81 +139,115 @@
 @section scripts{
 
     <script>
-
+        // Uses functions written in the global.js files
         var cartOverview = {
+            // Deletes a product
             deleteProduct: function (event, deleteID) {
+                // Gets the current cart
                 var cartContent = cart.getCurrentCart();
 
+                // Gets the index of the product you want to delete
                 var index = cartContent.productList.findIndex(p => p.id === deleteID);
+
+                // Removes the product from the cart
                 cart.removeFromCart(event, index);
 
+                // Remove the product from the displayed list
                 this.removeDisplayedProduct(event, deleteID);
 
+                // Updates the totalprice
                 this.updateTotalPrice();
             },
 
             minusProduct: function (event, id) {
+                // Removes one product from the cart
                 var newQuantity = cart.removeOneFromCart(event, id);
 
+                // If the new quantity is 0, that means the product can be wholly deleted
                 if (newQuantity <= 0) {
+                    // Delete the product
                     this.removeDisplayedProduct(event, id);
                 }
                 else {
+                    // Gets the index of the product
                     var prodIndex = cart.currentCartContent.productList.findIndex(p => p.id == id);
+                    // Gets the (updated) product
                     var prod = cart.currentCartContent.productList[prodIndex];
 
+                    // Gets the html item that shows the quantity and show the new quantity
                     var quantityID = '#quantity' + id;
                     document.querySelector(quantityID).innerHTML = prod.quantity;
 
+                    // Gets the html element that shows the price and show the updated price for that 1 product
                     var priceID = '#price' + id;
                     document.querySelector(priceID).innerHTML = '€ ' + ((prod.price.replace(',', '.')) * prod.quantity).toFixed(2).replace('.', ',');
                 }
 
+                // Update the total price
                 this.updateTotalPrice();
             },
 
             plusProduct: function (event, id) {
+                // Adds 1 quantity to a product
+
+                // Calls the add to cart function from the main cart (will also update the cartContent and the cookie)
                 cart.addToCart(event, id);
 
+                // Gets the index of the product
                 var prodIndex = cart.currentCartContent.productList.findIndex(p => p.id == id);
+                // Gets the updated product
                 var prod = cart.currentCartContent.productList[prodIndex];
 
+                // Gets the html element that shows the quantity for that 1 product and updates the quantity
                 var quantityID = '#quantity' + id;
                 document.querySelector(quantityID).innerHTML = prod.quantity;
 
+                // Gets the html element that shows the price for that 1 product and updates the price
                 var priceID = '#price' + id;
                 document.querySelector(priceID).innerHTML = '€ ' + ((prod.price.replace(',', '.')) * prod.quantity).toFixed(2).replace('.', ',');
 
+                // Updates the total price
                 this.updateTotalPrice();
             },
 
+            // Remove the product from the cart overview page
             removeDisplayedProduct: function (event, id) {
+                // Gets the row that needs to be removed
                 var rowID = '#overviewrow' + id;
                 var toBeRemovedRowItem = document.querySelector(rowID);
+
+                // Remove the row
                 toBeRemovedRowItem.parentNode.removeChild(toBeRemovedRowItem);
 
+                // Update the totalprice
                 this.updateTotalPrice();
             },
 
             updateTotalPrice: function () {
+                // Gets the cart content
                 var cartContent = cart.getCurrentCart();
 
+                // If there are products in the cart
                 if (cartContent) {
                     var totalPrice = 0;
 
+                    // Loop through all the products and make the sum of their (price * quantity)
                     cartContent.productList.forEach(prod => {
                         totalPrice += ((prod.price.replace(',', '.')) * prod.quantity);
                     });
 
+                    // gets the html element that shows the total price and make its content the updated totalprice
                     document.querySelector('#totalpriceoverview').innerHTML = '€ ' + totalPrice.toFixed(2).replace('.', ',');
                 }
                 else {
+                    // If the cart is empty, show the div that houses a message that the cart is empty
+                    // And hides the div that shows the cart overview
                     document.querySelector('#product-overview-filled').classList.add('hide');
                     document.querySelector('#product-overview-empty').classList.remove('hide');
                 }
-
             }
         }
+
 
         window.onload = cart.clearCartDisplay();
 

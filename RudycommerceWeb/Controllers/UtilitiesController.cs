@@ -10,6 +10,7 @@ namespace RudycommerceWeb.Controllers
     {
         public ActionResult TermsAndConditions(bool popup = false)
         {
+            // Allows the terms and conditions to be shown in a popup window
             ViewBag.PopupWindow = popup;
 
             return View();

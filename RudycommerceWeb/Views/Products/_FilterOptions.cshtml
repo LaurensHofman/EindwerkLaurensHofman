@@ -2,6 +2,8 @@
 
 @model RudycommerceData.Models.ASPModels.Filters
 
+@*Model binding wasn't working appropriatly, so I manually gave the html elements a name that MVC's model binder understands*@
+
 @using (Html.BeginForm("CategoryPage", "Products", FormMethod.Post))
 {
     @Html.Hidden("filters.CategoryID", Model.CategoryID)

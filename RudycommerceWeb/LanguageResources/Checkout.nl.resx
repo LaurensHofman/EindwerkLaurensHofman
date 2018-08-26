@@ -148,13 +148,13 @@
     <value>De Haan</value>
   </data>
   <data name="ExampleEmail" xml:space="preserve">
-    <value>lorenz.höfmann@rudycommerce.be</value>
+    <value>laurens.hofman@rudcommerce.be</value>
   </data>
   <data name="ExampleFirstName" xml:space="preserve">
-    <value>Lorenz</value>
+    <value>Laurens</value>
   </data>
   <data name="ExampleLastName" xml:space="preserve">
-    <value>Höfmann</value>
+    <value>Hofman</value>
   </data>
   <data name="ExamplePostalCode" xml:space="preserve">
     <value>8420</value>
@@ -248,5 +248,27 @@
   </data>
   <data name="Register" xml:space="preserve">
     <value>Nog geen account? Registreer</value>
+  </data>
+  <data name="CheckoutCartListEmpty" xml:space="preserve">
+    <value>Er werden geen producten gevonden</value>
+  </data>
+  <data name="OrderEmailContent" xml:space="preserve">
+    <value>Beste {0}, 
+
+Uw bestelling bij Rudycommerce wordt momenteel verwerkt.
+We zullen er alles aan proberen te doen om uw bestelling zo snel mogelijk klaar te leggen, zodat de koeriersdienst het zo spoedig mogelijk kan leveren.
+
+Uw producten:
+{1}
+Uw leveradres:
+{2} {3}
+{4} {5}
+
+Dank u om voor uw aankoop Rudycommerce te kiezen,
+Met dank van de gehele crew,
+Rudycommerce</value>
+  </data>
+  <data name="OrderEmailTitle" xml:space="preserve">
+    <value>Uw bestelling bij Rudycommerce is gemaakt</value>
   </data>
 </root>

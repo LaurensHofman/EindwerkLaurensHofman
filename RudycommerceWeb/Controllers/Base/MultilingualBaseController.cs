@@ -19,11 +19,19 @@ namespace RudycommerceWeb.Controllers.Base
             _langRepo = new LanguageRepository();
         }
 
+        /// <summary>
+        /// Gets the languageID from the currently selected language.
+        /// </summary>
+        /// <returns></returns>
         protected int GetLangID()
         {
             return _langRepo.GetLanguageIDByISO(GetISO());
         }
 
+        /// <summary>
+        /// Gets the 2 letter ISO code from the currently selected language.
+        /// </summary>
+        /// <returns></returns>
         protected static string GetISO()
         {   
             return Thread.CurrentThread.CurrentUICulture.TwoLetterISOLanguageName;
