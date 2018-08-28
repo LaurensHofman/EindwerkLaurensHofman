@@ -540,7 +540,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Don&apos;t buy products from a site with a shitty tagline..
+        ///   Looks up a localized string similar to Don&apos;t buy products from a site with a crappy tagline..
         /// </summary>
         public static string Tagline {
             get {

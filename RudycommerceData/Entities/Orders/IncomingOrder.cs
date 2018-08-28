@@ -60,6 +60,13 @@ namespace RudycommerceData.Entities.Orders
         public string ClientName { get { return Client.ToString(); } }
 
 
+        public string FullAddress
+        {
+            get
+            {
+                return $"{AddrStreetAndNumber} {AddrMailBox}, {AddrPostalCode} {AddrCity}, {AddrCountry}";
+            }
+        }
 
 
         public override bool IsNew()

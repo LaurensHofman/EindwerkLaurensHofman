@@ -185,6 +185,12 @@
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
 
+                        <DataGridTextColumn Width="Auto" Binding="{Binding FullAddress}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource Address}" VerticalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
                         <DataGridTemplateColumn Width="Auto">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

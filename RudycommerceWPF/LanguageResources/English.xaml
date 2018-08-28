@@ -148,4 +148,6 @@
 
     <system:String x:Key="OrderPickedUp">Picked up</system:String>
     <system:String x:Key="OrderArrived">Order delivered</system:String>
+
+    <system:String x:Key="Address">Address</system:String>
 </ResourceDictionary>

@@ -148,4 +148,5 @@
 
     <system:String x:Key="OrderPickedUp">Bestelling opgehaald</system:String>
     <system:String x:Key="OrderArrived">Bestelling aangekomen</system:String>
+    <system:String x:Key="Address">Adres</system:String>
 </ResourceDictionary>
