@@ -115,7 +115,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Deliver to another address than your own?.
+        ///   Looks up a localized string similar to Deliver to another address than your billing address?.
         /// </summary>
         public static string ChooseOtherAddressForDelivery {
             get {
@@ -358,6 +358,15 @@ namespace Resources {
         public static string OrderFinishedThankYouText {
             get {
                 return ResourceManager.GetString("OrderFinishedThankYouText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can choose another address than your billing address to deliver your order to. If you want your products delivered at your billing address, you just can continue to the next page..
+        /// </summary>
+        public static string OtherDeliveryAddressExplanation {
+            get {
+                return ResourceManager.GetString("OtherDeliveryAddressExplanation", resourceCulture);
             }
         }
         

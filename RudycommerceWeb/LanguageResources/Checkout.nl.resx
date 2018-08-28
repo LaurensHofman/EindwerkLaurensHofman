@@ -274,4 +274,7 @@ Rudycommerce</value>
   <data name="ContinueShopping" xml:space="preserve">
     <value>Verder winkelen</value>
   </data>
+  <data name="OtherDeliveryAddressExplanation" xml:space="preserve">
+    <value>U kan een ander adres kiezen om naartoe te leveren dan uw eigen adres. Indien u wenst uw producten te ontvangen op uw eigen adres, hoeft u gewoon verder te gaan naar de volgende pagina.</value>
+  </data>
 </root>

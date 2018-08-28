@@ -13,7 +13,7 @@ namespace RudycommerceData.Entities.Products.Specifications
 
         public Specification Specification { get; set; }
 
-        public int SpecificationID { get; set; }
+        public int? SpecificationID { get; set; }
 
         [NotMapped]
         public string TemporaryNonMLValue { get; set; }

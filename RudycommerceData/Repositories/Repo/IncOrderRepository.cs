@@ -28,5 +28,33 @@ namespace RudycommerceData.Repositories.Repo
 
             return order;
         }
+
+        public async Task<IncomingOrder> SetOrderAsPickedUp(int id)
+        {
+            var order = await GetAsync(id);
+
+            if (order.StatusCode == 1)
+            {
+                order.StatusCode = 2;
+
+                await UpdateAsync(order);
+            }
+
+            return order;
+        }
+
+        public async Task<IncomingOrder> SetOrderAsDelivered(int id)
+        {
+            var order = await GetAsync(id);
+
+            if (order.StatusCode == 2)
+            {
+                order.StatusCode = 3;
+
+                await UpdateAsync(order);
+            }
+
+            return order;
+        }
     }
 }

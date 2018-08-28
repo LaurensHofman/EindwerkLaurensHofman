@@ -248,6 +248,8 @@ var cart = {
 
                 // Counts how many products are in the cart (to display as a badge above the button)
                 amountOfProducts += prod.quantity;
+
+                counter += 1;
             });
 
             // Shows the amount of products above the cart dropdown button

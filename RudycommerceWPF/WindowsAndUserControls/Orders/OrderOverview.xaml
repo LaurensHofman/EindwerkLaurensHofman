@@ -185,6 +185,17 @@
                             </DataGridTextColumn.Header>
                         </DataGridTextColumn>
 
+                        <DataGridTemplateColumn Width="Auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="OrderPickedUp">
+                                        <Button.Content>
+                                            <TextBlock Text="{DynamicResource OrderPickedUp}" Style="{DynamicResource DataGridButtonTextBlock}"></TextBlock>
+                                        </Button.Content>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
 
 
@@ -194,21 +205,101 @@
                 <TabItem.Header>
                     <TextBlock FontSize="22" Text="{DynamicResource OrderOverviewTabUnderWay}"/>
                 </TabItem.Header>
-                <Grid>
-                    <WrapPanel HorizontalAlignment="Center">
-                        <TextBlock>TODO</TextBlock>
-                    </WrapPanel>
-                </Grid>
+                <DataGrid x:Name="dgOrderUnderWay" Style="{StaticResource ResourceKey=OverviewDataGrid}" Height="Auto"
+                  VerticalAlignment="Top" ItemsSource="{Binding Path=IncOrderList}" IsReadOnly="True">
+
+                    <DataGrid.Columns>
+
+
+                        <DataGridTextColumn Width="Auto" Binding="{Binding ID}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource OrderCode}" VerticalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="Auto" Binding="{Binding Client}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource Name}" VerticalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="Auto" Binding="{Binding TotalPrice, StringFormat='{}{0:C}', ConverterCulture='nl-BE'}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource Price}" VerticalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="Auto" Binding="{Binding Status}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource Status}" VerticalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="Auto" Binding="{Binding CreatedAt, StringFormat='{}{0:dd/MM/yyyy}'}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource OrderDate}" VerticalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn Width="Auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Click="OrderDelivered">
+                                        <Button.Content>
+                                            <TextBlock Text="{DynamicResource OrderArrived}" Style="{DynamicResource DataGridButtonTextBlock}"></TextBlock>
+                                        </Button.Content>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+
+
+                </DataGrid>
             </TabItem>
             <TabItem x:Name="tabItemDelivered" Controls:ControlsHelper.HeaderFontSize="22" IsEnabled="True">
                 <TabItem.Header>
                     <TextBlock FontSize="22" Text="{DynamicResource OrderOverviewTabDelivered}"/>
                 </TabItem.Header>
-                <Grid>
-                    <WrapPanel HorizontalAlignment="Center">
-                        <TextBlock>TODO</TextBlock>
-                    </WrapPanel>
-                </Grid>
+                <DataGrid x:Name="dgOrderDelivered" Style="{StaticResource ResourceKey=OverviewDataGrid}" Height="Auto"
+                  VerticalAlignment="Top" ItemsSource="{Binding Path=IncOrderList}" IsReadOnly="True">
+
+                    <DataGrid.Columns>
+
+
+                        <DataGridTextColumn Width="Auto" Binding="{Binding ID}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource OrderCode}" VerticalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="Auto" Binding="{Binding Client}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource Name}" VerticalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="Auto" Binding="{Binding TotalPrice, StringFormat='{}{0:C}', ConverterCulture='nl-BE'}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource Price}" VerticalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="Auto" Binding="{Binding Status}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource Status}" VerticalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                        <DataGridTextColumn Width="Auto" Binding="{Binding CreatedAt, StringFormat='{}{0:dd/MM/yyyy}'}">
+                            <DataGridTextColumn.Header>
+                                <TextBlock Text="{DynamicResource OrderDate}" VerticalAlignment="Center"/>
+                            </DataGridTextColumn.Header>
+                        </DataGridTextColumn>
+
+                    </DataGrid.Columns>
+
+
+                </DataGrid>
             </TabItem>
         </Controls:MetroAnimatedSingleRowTabControl>
     </Grid>

@@ -189,9 +189,9 @@ namespace RudycommerceData.Data
             #region Spec - Enum
 
             modelBuilder.Entity<SpecificationEnum>()
-                .HasRequired<Specification>(enums => enums.Specification)
+                .HasOptional<Specification>(enums => enums.Specification)
                 .WithMany(spp => spp.Enumerations)
-                .HasForeignKey<int>(enums => enums.SpecificationID);
+                .HasForeignKey(enums => enums.SpecificationID);
 
             #endregion
 

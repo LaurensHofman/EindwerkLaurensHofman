@@ -19,78 +19,80 @@
             <label class="control-label" for="OtherAddress">@Resources.Checkout.ChooseOtherAddressForDelivery</label>
             @Html.ValidationMessageFor(model => model.OtherAddress, "", new { @class = "text-danger" })
         </div>
+        <div class="row">
+            <div class="col-12 col-md-8 m-bot-2">
+                @{ string inputClass = (Model.OtherAddress) ? "" : "hide";
+                    string addresInfoClass = (Model.OtherAddress) ? "hide" : ""; }
 
-        <div @*class="well"*@>
+                <div id="input-region" class="form-horizontal @inputClass">
+                    @{ string valSumClass = (ViewBag.ShowValidationSummary == null) ? "hide" : "";}
+                    @Html.ValidationSummary("", new { @class = "alert alert-danger " + valSumClass })
 
-            <div id="input-region" class="form-horizontal">
-                @{ string valSumClass = (ViewBag.ShowValidationSummary == null) ? "hide" : "";}
-                @Html.ValidationSummary("", new { @class = "alert alert-danger " + valSumClass })
+                    <!--Street and Number-->
+                    <div class="row">
+                        <div class="col-12 col-md-9">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.StreetAndNumber, htmlAttributes: new { @class = "control-label col-12" })
+                                <div class="col-12">
+                                    @Html.EditorFor(model => model.StreetAndNumber, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Checkout.ForExampleABBR + " " + Resources.Checkout.ExampleStreetAndNumber } })
+                                    @Html.ValidationMessageFor(model => model.StreetAndNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
 
-                <!--Street and Number-->
-                <div class="row">
-                    <div class="col-12 col-md-9">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.StreetAndNumber, htmlAttributes: new { @class = "control-label col-12" })
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.StreetAndNumber, new { htmlAttributes = new { @class = "form-control", disabled = "true", placeholder = Resources.Checkout.ForExampleABBR + " " + Resources.Checkout.ExampleStreetAndNumber } })
-                                @Html.ValidationMessageFor(model => model.StreetAndNumber, "", new { @class = "text-danger" })
+                        <div class="col-6 col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MailBox, htmlAttributes: new { @class = "control-label col-12" })
+                                <div class="col-12">
+                                    @Html.EditorFor(model => model.MailBox, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MailBox, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-6 col-md-3">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.MailBox, htmlAttributes: new { @class = "control-label col-12" })
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.MailBox, new { htmlAttributes = new { @class = "form-control", disabled = "true" } })
-                                @Html.ValidationMessageFor(model => model.MailBox, "", new { @class = "text-danger" })
+                    <!--Postal code and City-->
+                    <div class="row">
+                        <div class="col-6 col-md-3">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "control-label col-12" })
+                                <div class="col-12">
+                                    @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Checkout.ForExampleABBR + " " + Resources.Checkout.ExamplePostalCode } })
+                                    @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-md-9">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-12" })
+                                <div class="col-12">
+                                    @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", placeholder = Resources.Checkout.ForExampleABBR + " " + Resources.Checkout.ExampleCity } })
+                                    @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
                     </div>
+
+                    <!--Country-->
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CountryCode, htmlAttributes: new { @class = "control-label col-12" })
+                                <div class="col-12">
+                                    @Html.DropDownListFor(model => model.CountryCode, new SelectList(Model.CountriesByCode, "Key", "Value"), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
-
-                <!--Postal code and City-->
-                <div class="row">
-                    <div class="col-6 col-md-3">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.PostalCode, htmlAttributes: new { @class = "control-label col-12" })
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control", disabled = "true", placeholder = Resources.Checkout.ForExampleABBR + " " + Resources.Checkout.ExamplePostalCode } })
-                                @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-md-9">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-12" })
-                            <div class="col-12">
-                                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", disabled = "true", placeholder = Resources.Checkout.ForExampleABBR + " " + Resources.Checkout.ExampleCity } })
-                                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Country-->
-                <div class="row">
-                    <div class="col-12 col-md-6">
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.CountryCode, htmlAttributes: new { @class = "control-label col-12" })
-                            <div class="col-12">
-                                @Html.DropDownListFor(model => model.CountryCode, new SelectList(Model.CountriesByCode, "Key", "Value"), new { @class = "form-control", disabled = "true" })
-                                @Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <div id="other-billing-addres-info" class="@addresInfoClass">@Resources.Checkout.OtherDeliveryAddressExplanation</div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-12 content-vertcen-right">
-                <input type="submit" onclick="addressToggler.enableAll();" value="@Resources.Checkout.ContinueToPayment" class="btn btn-secondary" />
+            <div class="col-12 col-md-4 content-vertbot-right">
+                    <input type="submit" value="@Resources.Checkout.ContinueToPayment" class="btn btn-secondary" />
             </div>
         </div>
     }
@@ -100,29 +102,22 @@
 @section scripts {
 
     <script>
-        // Makes a JS object of the current address model. This allows the user to revert to the original value without making a roundtrip
-        var homeAddress = @Html.Raw(Json.Encode(Model));
+        // https://codepen.io/gabrieleromanato/pen/VYmrJV?editors=1010
 
         // Toggler to enable/disable changes to the address fields
         var addressToggler;
         (function () {
 
-            // Toggles the enable/disable changes to the address fields
-            var AddresToggler = function (cb, streetandnumber, mailbox, postalcode, city, countrycode) {
-                // Defines the checkbox that toggles the enable/disable of the address fields
+            // Toggles the visibility of the address fields
+            var AddresToggler = function (cb, inputreg, billingaddrinfo) {
+                // Defines the checkbox that toggles the visibility of the address fields
                 this.checkbox = cb;
 
-                // Defines the address fields
-                this.streetandnumber = streetandnumber;
-                this.mailbox = mailbox;
-                this.postalcode = postalcode;
-                this.city = city;
-                this.countrycode = countrycode;
+                // Define the input region that needs to be collapsed/shown
+                this.inputregion = inputreg;
+                // Define the information text that needs to be collapsed/shown
+                this.billingaddressinfo = billingaddrinfo;
 
-                // Array holding all the address fields
-                this.inputElements = [this.streetandnumber, this.mailbox, this.postalcode, this.city, this.countrycode];
-
-                // Executes the toggle function of the AddressToggler.prototype
                 this.toggle();
             };
 
@@ -130,35 +125,16 @@
                 toggle: function () {
                     var self = this;
                     self.checkbox.addEventListener('change', function () {
-                        // If the checkbox is selected ( = user wants to give another address)
+
                         if (self.checkbox.checked) {
-                            // Enable all input fields so the user can make changes
-                            self.enableAll();
+                            self.inputregion.classList.remove('hide');
+                            self.billingaddressinfo.classList.add('hide');
                         }
                         else {
-                            // If the checkbox is not selected ( = the user wants to deliver at his own house)
-                            // Disable the input fields
-                            self.inputElements.forEach(input => {
-                                input.setAttribute('disabled', 'true');
-                            });
-
-                            // And restore the original values
-                            self.streetandnumber.value = homeAddress.StreetAndNumber;
-                            self.mailbox.value = homeAddress.MailBox;
-                            self.postalcode.value = homeAddress.PostalCode;
-                            self.city.value = homeAddress.City;
-                            self.countrycode.value = homeAddress.CountryCode;
-
+                            self.inputregion.classList.add('hide');
+                            self.billingaddressinfo.classList.remove('hide');
                         }
                     }, false);
-                },
-                enableAll: function () {
-                    // Enables changes to all the input fields
-                    var self = this;
-
-                    self.inputElements.forEach(input => {
-                        input.removeAttribute('disabled');
-                    });
                 }
             };
 
@@ -166,24 +142,10 @@
                 // Gets the checkbox that toggles the enable/disable of the form
                 var toggleCheckbox = document.querySelector('#OtherAddress');
 
-                // Defines the address input fields
-                var streetandnumber = document.querySelector('#StreetAndNumber');
-                var mailbox = document.querySelector('#MailBox');
-                var postalcode = document.querySelector('#PostalCode');
-                var city = document.querySelector('#City');
-                var countrycode = document.querySelector('#CountryCode');
+                var inputregion = document.querySelector('#input-region');
+                var othbilladdrinfo = document.querySelector('#other-billing-addres-info');
 
-                // Creates a toggler for the address fields
-                addressToggler = new AddresToggler(toggleCheckbox, streetandnumber, mailbox, postalcode, city, countrycode);
-
-                // HomeAddress is the JS version of the Model received by the controller.
-                // If the homeAddress = true (which only happens after sending the form, but it got sent back to the client, because of a Validation Error)
-                // Then enable changes to all the fields
-                if (homeAddress.OtherAddress) {
-
-                    addressToggler.enableAll();
-
-                }
+                var addressToggler = new AddresToggler(toggleCheckbox, inputregion, othbilladdrinfo);
             };
         })();
 

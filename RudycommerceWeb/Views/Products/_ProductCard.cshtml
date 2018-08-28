@@ -21,51 +21,84 @@
                 <li class="list-group-item name-li">
                     <h4 class="card-text product-name">
                         @Html.ActionLink(product.Name, "Details",
-                      new { ID = product.ProductID })
+                        new { ID = product.ProductID })
                     </h4>
                 </li>
-                <li class="list-group-item">
-                    @if (!product.TopSpec1IsBool)
-                    {
-                        <div class="top-spec">
-                            @product.TopSpec1
-                        </div>
-                    }
-                    else
-                    {
-                        @(product.TopSpec1Name + ": ")
+                @{bool value1Empty;
+                }
 
-                        if (product.Bool1Value == true)
+                @if (product.TopSpec1IsBool)
+                {
+                    value1Empty = (product.Bool1Value == null);
+                }
+                else
+                {
+                    value1Empty = (product.TopSpec1Value == null);
+                }
+
+                @if (!value1Empty)
+                {
+                    <li class="list-group-item">
+
+                        @if (!product.TopSpec1IsBool)
                         {
-                            <img alt="@Resources.ImgAltTexts.TrueIcon" class="bool-value" src="~/Images/64_GreenCheck.png" />
+                            <div class="top-spec">
+                                @product.TopSpec1
+                            </div>
                         }
                         else
                         {
-                            <img alt="@Resources.ImgAltTexts.FalseIcon" class="bool-value" src="~/Images/64_RedCross.png" />
-                        }
-                    }
-                </li>
-                <li class="list-group-item">
-                    @if (!product.TopSpec2IsBool)
-                    {
-                        <div class="top-spec">
-                            @product.TopSpec2
-                        </div>
-                    }
-                    else
-                    {
-                        @(product.TopSpec2Name + ": ")
+                            @(product.TopSpec1Name + ": ")
 
-                        if (product.Bool2Value == true)
+                            if (product.Bool1Value == true)
+                            {
+                                <img alt="@Resources.ImgAltTexts.TrueIcon" class="bool-value" src="~/Images/64_GreenCheck.png" />
+                            }
+                            else
+                            {
+                                <img alt="@Resources.ImgAltTexts.FalseIcon" class="bool-value" src="~/Images/64_RedCross.png" />
+                            }
+                        }
+                    </li>
+                }
+
+                @{bool value2Empty;
+                }
+                
+                @if (product.TopSpec2IsBool)
+                {
+                    value2Empty = (product.Bool2Value == null);
+                }
+                else
+                {
+                    value2Empty = (product.TopSpec2Value == null);
+                }
+
+                @if (!value2Empty)
+                {
+                    <li class="list-group-item">
+                        @if (!product.TopSpec2IsBool)
                         {
-                            <img alt="@Resources.ImgAltTexts.TrueIcon" class="bool-value" src="~/Images/64_GreenCheck.png" />
+                            <div class="top-spec">
+                                @product.TopSpec2
+                            </div>
                         }
                         else
                         {
-                            <img alt="@Resources.ImgAltTexts.FalseIcon" class="bool-value" src="~/Images/64_RedCross.png" />
+                            @(product.TopSpec2Name + ": ")
+
+                            if (product.Bool2Value == true)
+                            {
+                                <img alt="@Resources.ImgAltTexts.TrueIcon" class="bool-value" src="~/Images/64_GreenCheck.png" />
+                            }
+                            else
+                            {
+                                <img alt="@Resources.ImgAltTexts.FalseIcon" class="bool-value" src="~/Images/64_RedCross.png" />
+                            }
                         }
-                    }
-                </li>
+                    </li>
+                }
+
             </ul>
 
             <div class="card-footer container">

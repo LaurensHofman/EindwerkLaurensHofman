@@ -145,4 +145,7 @@
     <system:String x:Key="ShowDetails">Toon details</system:String>
     <system:String x:Key="OrderDetails">Details bestelling</system:String>
     <system:String x:Key="ReadyForPickup">Klaar om te verzenden</system:String>
+
+    <system:String x:Key="OrderPickedUp">Bestelling opgehaald</system:String>
+    <system:String x:Key="OrderArrived">Bestelling aangekomen</system:String>
 </ResourceDictionary>

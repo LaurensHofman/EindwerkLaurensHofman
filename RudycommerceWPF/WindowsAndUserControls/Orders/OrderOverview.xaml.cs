@@ -37,6 +37,14 @@ namespace RudycommerceWPF.WindowsAndUserControls.Orders
         /// ViewSource for the Orders who are ready to be picked up by the courrier
         /// </summary>
         public CollectionViewSource ViewSourceToBePickedUp { get; set; }
+        /// <summary>
+        /// ViewSource for the Orders under way
+        /// </summary>
+        public CollectionViewSource ViewSourceUnderWay { get; set; }
+        /// <summary>
+        /// ViewSource for the delivered orders
+        /// </summary>
+        public CollectionViewSource ViewSourceDelivered { get; set; }
 
         public ObservableCollection<RudycommerceData.Entities.Orders.IncomingOrder> IncOrderList { get; set; }
 
@@ -85,6 +93,22 @@ namespace RudycommerceWPF.WindowsAndUserControls.Orders
             dgOrderOverviewToBePickedUp.ItemsSource = ViewSourceToBePickedUp.View;
             dgOrderOverviewToBePickedUp.DataContext = IncOrderList;
 
+            // Instanciate the ViewSource of the picking list datagrid
+            ViewSourceUnderWay = new CollectionViewSource()
+            {
+                Source = IncOrderList.Where(x => x.StatusCode == 2)
+            };
+            dgOrderUnderWay.ItemsSource = ViewSourceUnderWay.View;
+            dgOrderUnderWay.DataContext = IncOrderList;
+
+            // Instanciate the ViewSource of the ready to be picked up orders datagrid
+            ViewSourceDelivered = new CollectionViewSource()
+            {
+                Source = IncOrderList.Where(x => x.StatusCode == 3)
+            };
+            dgOrderDelivered.ItemsSource = ViewSourceDelivered.View;
+            dgOrderDelivered.DataContext = IncOrderList;
+
             BindData();
         }
 
@@ -95,6 +119,8 @@ namespace RudycommerceWPF.WindowsAndUserControls.Orders
         {
             ViewSourcePickingList.View.Refresh();
             ViewSourceToBePickedUp.View.Refresh();
+            ViewSourceUnderWay.View.Refresh();
+            ViewSourceDelivered.View.Refresh();
         }
 
         /// <summary>
@@ -167,6 +193,34 @@ namespace RudycommerceWPF.WindowsAndUserControls.Orders
             if (order != null)
             {
                 order = await _orderRepo.SetOrderAsReadyForPickup(id);
+
+                await _orderRepo.SaveChangesAsync();
+
+                BindData();
+            }
+        }
+
+        private async void OrderPickedUp(object sender, RoutedEventArgs e)
+        {
+            var order = (((FrameworkElement)sender).DataContext as IncomingOrder);
+
+            if (order != null)
+            {
+                order = await _orderRepo.SetOrderAsPickedUp(order.ID);
+
+                await _orderRepo.SaveChangesAsync();
+
+                BindData();
+            }
+        }
+
+        private async void OrderDelivered(object sender, RoutedEventArgs e)
+        {
+            var order = (((FrameworkElement)sender).DataContext as IncomingOrder);
+
+            if (order != null)
+            {
+                order = await _orderRepo.SetOrderAsDelivered(order.ID);
 
                 await _orderRepo.SaveChangesAsync();
 

@@ -113,8 +113,10 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             }
             catch (Exception)
             {
-                // TODO
-                throw;
+                //// TODO
+                //throw;
+                MessageBox.Show(LangResource.ConnectionToDatabaseFailed);
+                this.Close();
             }
         }
         

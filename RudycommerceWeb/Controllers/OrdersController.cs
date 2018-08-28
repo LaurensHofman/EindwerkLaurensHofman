@@ -82,7 +82,7 @@ namespace RudycommerceWeb.Controllers
 
             ViewBag.CheckoutProgress = 2;
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid || !delivery.OtherAddress)
             {
                 // If the model has no errors
                 // Parse the selected delivery option to JSON

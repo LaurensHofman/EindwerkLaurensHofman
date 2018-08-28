@@ -115,6 +115,15 @@ namespace RudycommerceLib.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connectie met de databank mislukt..
+        /// </summary>
+        public static string ConnectionToDatabaseFailed {
+            get {
+                return ResourceManager.GetString("ConnectionToDatabaseFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Beschrijving.
         /// </summary>
         public static string Description {

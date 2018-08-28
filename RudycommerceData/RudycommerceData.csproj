@@ -273,6 +273,22 @@
     <Compile Include="Migrations\201808211727125_statuscode.Designer.cs">
       <DependentUpon>201808211727125_statuscode.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808281106534_test1.cs" />
+    <Compile Include="Migrations\201808281106534_test1.Designer.cs">
+      <DependentUpon>201808281106534_test1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808281108035_test2.cs" />
+    <Compile Include="Migrations\201808281108035_test2.Designer.cs">
+      <DependentUpon>201808281108035_test2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808281112416_testspecIDnullab.cs" />
+    <Compile Include="Migrations\201808281112416_testspecIDnullab.Designer.cs">
+      <DependentUpon>201808281112416_testspecIDnullab.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808281113202_testspecIDnullab1.cs" />
+    <Compile Include="Migrations\201808281113202_testspecIDnullab1.Designer.cs">
+      <DependentUpon>201808281113202_testspecIDnullab1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ASPModels\AddToCartModel.cs" />
     <Compile Include="Models\ASPModels\CheckoutLayoutArrowModel.cs" />
@@ -291,6 +307,7 @@
     <Compile Include="Models\CategoryOverviewItem.cs" />
     <Compile Include="Models\DesktopLogin.cs" />
     <Compile Include="Models\ASPModels\LocalizedCatListItem.cs" />
+    <Compile Include="Models\IDandQuant.cs" />
     <Compile Include="Models\NecessarySpecification.cs" />
     <Compile Include="Models\ProductOverviewItem.cs" />
     <Compile Include="Models\SpecificationOverviewItem.cs" />
@@ -500,6 +517,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808211727125_statuscode.resx">
       <DependentUpon>201808211727125_statuscode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281106534_test1.resx">
+      <DependentUpon>201808281106534_test1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281108035_test2.resx">
+      <DependentUpon>201808281108035_test2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281112416_testspecIDnullab.resx">
+      <DependentUpon>201808281112416_testspecIDnullab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808281113202_testspecIDnullab1.resx">
+      <DependentUpon>201808281113202_testspecIDnullab1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Validation\Client.en.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

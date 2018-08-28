@@ -314,16 +314,19 @@ namespace RudycommerceData.Repositories.Repo
         /// <returns></returns>
         public Decimal GetTotalPrice(List<int> IDs)
         {
-            string IDString = string.Join(",", IDs);
+            Decimal returnDecimal = 0;
 
-            return GetTotalPrice(IDString);
-        }
+            // Gets the products that match the given IDs
+            var prods = GetAllQueryable().Where(p => IDs.Contains(p.ID));
 
-        public Decimal GetTotalPrice(string IDs)
-        {
-            SqlParameter idstring = new SqlParameter("@idstring", IDs);
+            // Loops through the products
+            foreach (var prod in prods)
+            {
+                // Adds the UnitPrice of the product multiplied by the times the ID appeared (quantity)
+                returnDecimal += (Decimal)prod.UnitPrice * IDs.Count(i => i == prod.ID); 
+            }
 
-            return _context.Database.SqlQuery<Decimal>("exec dbo.sprocGetTotalPrice @idstring", idstring).FirstOrDefault();
+            return returnDecimal;
         }
 
         #region Private methods for GetProductDetails(...)

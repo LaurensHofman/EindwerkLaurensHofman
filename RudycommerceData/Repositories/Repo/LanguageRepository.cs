@@ -86,10 +86,19 @@ namespace RudycommerceData.Repositories.Repo
 
         public int GetLanguageIDByISO(string iso)
         {
-            SqlParameter langISO = new SqlParameter("@langISO", iso);
+            var lang = GetAllQueryable().FirstOrDefault(l => l.ISO == iso);
 
-            // First or default has to be used, because C# doesn't know yet that it will not receive a table.
-            return _context.Database.SqlQuery<int>("exec dbo.sprocGetLangIDByISO @langISO", langISO).FirstOrDefault();
+            if (lang == null)
+            {
+                lang = GetAllQueryable().FirstOrDefault(l => l.ISO == "en");
+            }
+
+            return lang.ID;
+
+            //SqlParameter langISO = new SqlParameter("@langISO", iso);
+
+            //// First or default has to be used, because C# doesn't know yet that it will not receive a table.
+            //return _context.Database.SqlQuery<int>("exec dbo.sprocGetLangIDByISO @langISO", langISO).FirstOrDefault();
         }    
     }
 }

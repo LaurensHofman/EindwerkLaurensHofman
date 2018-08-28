@@ -35,7 +35,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Products.Products
         //
         // TODO Messagebox on changing category in update/create
         // TODO Changing back and forth between tabs
-        // TODO Put similarities constructors in a method
+        // TODO Put similarities constructors and preparing methods in a method
         //
 
         private readonly int _defaultHeight = 30;

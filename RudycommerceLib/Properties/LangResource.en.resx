@@ -264,4 +264,7 @@
   <data name="ProdFormMLTabInvalid" xml:space="preserve">
     <value>De values filled in the 'Multilingual specifications' tab aren't all filled in. Please correct these to continue.</value>
   </data>
+  <data name="ConnectionToDatabaseFailed" xml:space="preserve">
+    <value>Connection with the database failed.</value>
+  </data>
 </root>

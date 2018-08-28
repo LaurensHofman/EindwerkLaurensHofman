@@ -180,6 +180,12 @@ hr.hr80 {
     align-items: center;
 }
 
+.content-vertbot-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
 .content-horizontal-center{
     display:flex;
     justify-content:center;

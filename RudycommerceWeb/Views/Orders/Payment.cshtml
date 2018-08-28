@@ -29,7 +29,7 @@
     <div class="col-12 col-md-6">
         <div class="row m-bot-2">
             <div class="col-12">
-                <input class="radio" checked="checked" type="radio" id="radio-card" name="radio-card" />
+                <input class="radio" checked="checked" type="radio" id="radio-card" name="payment" />
                 <label class="control-label" for="radio-card">@Resources.Checkout.PaymentWithCard</label>
             </div>
             <div class="col-1"></div>
@@ -37,8 +37,8 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <input class="radio" disabled checked="checked" type="radio" id="radio-paypal" name="radio-paypal" />
-                <label class="control-label" for="radio-paypal">@Resources.Checkout.PaymentWithPaypal (@Resources.Global.NotYetImplemented)</label>
+                <input class="radio" onclick="revertToCard(event, '@Resources.Global.NotYetImplemented');" type="radio" id="radio-paypal" name="payment" />
+                <label class="control-label" for="radio-paypal">@Resources.Checkout.PaymentWithPaypal</label>
             </div>
         </div>
     </div>
@@ -69,3 +69,16 @@
         </div>
     }
 </div>
+
+@section Scripts {
+    <script>
+
+        function revertToCard(event, alertString) {
+            var radiocard = document.querySelector('#radio-card');
+            radiocard.checked = true;
+            alert(alertString);
+        }
+
+    </script>
+    
+    }

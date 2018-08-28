@@ -80,6 +80,7 @@ namespace RudycommerceWeb.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> PersonalInfoForm(Client client)
         {
             Client clientEntity = client;

@@ -266,4 +266,7 @@ Rudycommerce</value>
   <data name="ContinueShopping" xml:space="preserve">
     <value>Continuer vos achats</value>
   </data>
+  <data name="OtherDeliveryAddressExplanation" xml:space="preserve">
+    <value>Vous pouvez choisir une autre adresse que votre adresse de facturation pour livrer votre commande. Si vous souhaitez que vos produits soient livrés à votre adresse de facturation, vous pouvez simplement passer à la page suivante.</value>
+  </data>
 </root>

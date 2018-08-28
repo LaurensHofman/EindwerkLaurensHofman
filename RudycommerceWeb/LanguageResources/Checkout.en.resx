@@ -124,7 +124,7 @@
     <value>Cart overview</value>
   </data>
   <data name="ChooseOtherAddressForDelivery" xml:space="preserve">
-    <value>Deliver to another address than your own?</value>
+    <value>Deliver to another address than your billing address?</value>
   </data>
   <data name="ContinueToDelivery" xml:space="preserve">
     <value>Continue to delivery options</value>
@@ -265,5 +265,8 @@ Rudycommerce</value>
   </data>
   <data name="ContinueShopping" xml:space="preserve">
     <value>Continue shopping</value>
+  </data>
+  <data name="OtherDeliveryAddressExplanation" xml:space="preserve">
+    <value>You can choose another address than your billing address to deliver your order to. If you want your products delivered at your billing address, you just can continue to the next page.</value>
   </data>
 </root>

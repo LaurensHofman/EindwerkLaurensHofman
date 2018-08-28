@@ -11,5 +11,9 @@ namespace RudycommerceData.Repositories.IRepo
     public interface IIncOrderRepository : IBaseRepository<IncomingOrder>
     {
         Task<IncomingOrder> SetOrderAsReadyForPickup(int id);
+
+        Task<IncomingOrder> SetOrderAsDelivered(int id);
+
+        Task<IncomingOrder> SetOrderAsPickedUp(int id);
     }
 }

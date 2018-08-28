@@ -245,7 +245,8 @@ namespace RudycommerceWeb.Controllers
                     }
                 }
 
-                return _prodRepo.GetCartOverview(GetISO(), IDs).OrderBy(x => x.ProductName).ToList();
+                var xy = _prodRepo.GetCartOverview(GetISO(), IDs).OrderBy(x => x.ProductName).ToList();
+                return xy;
             }
             catch (Exception)
             {

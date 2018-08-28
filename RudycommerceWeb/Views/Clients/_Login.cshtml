@@ -16,15 +16,19 @@
         @Html.EditorFor(model => Model.Password, new { htmlAttributes = new { @class = "form-control col-12" } })
     </div>
     <div class="content-center m-bot-1">
-        <a href="@Url.Action("PersonalInfoChoice", "Clients")" class="disabled-link text-center">
+        @*<a href="@Url.Action("PersonalInfoChoice", "Clients")" class="disabled-link text-center">
             @Resources.Checkout.ForgotPassword <br/> @Resources.Global.NotYetImplemented
-        </a>
+        </a>*@
+
+        <a href="#" class="text-center" onclick="false;alert('@Resources.Global.NotYetImplemented');">@Resources.Checkout.ForgotPassword</a>
     </div>
 
     <div class="content-center text-center m-bot-1">
-        <a href="@Url.Action("PersonalInfoChoice", "Clients")" class="disabled-link text-center">
+        @*<a href="@Url.Action("PersonalInfoChoice", "Clients")" class="disabled-link text-center">
             @Resources.Checkout.Register <br /> @Resources.Global.NotYetImplemented
-        </a>
+        </a>*@
+
+        <a href="#" class="text-center" onclick="false;alert('@Resources.Global.NotYetImplemented');">@Resources.Checkout.Register</a>
     </div>
     <div class="content-vertcen-right">
         <button type="submit" class="btn btn-secondary">@Resources.Checkout.Login</button>

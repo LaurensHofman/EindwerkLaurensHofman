@@ -145,4 +145,7 @@
     <system:String x:Key="ShowDetails">Show details</system:String>
     <system:String x:Key="OrderDetails">Order details</system:String>
     <system:String x:Key="ReadyForPickup">Ready to be sent</system:String>
+
+    <system:String x:Key="OrderPickedUp">Picked up</system:String>
+    <system:String x:Key="OrderArrived">Order delivered</system:String>
 </ResourceDictionary>
