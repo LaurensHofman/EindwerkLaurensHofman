@@ -31,7 +31,7 @@ namespace RudycommerceWPF
             object parameter,
             System.Globalization.CultureInfo culture)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("");
         }
     }
 }
