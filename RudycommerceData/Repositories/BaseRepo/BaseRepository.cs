@@ -105,7 +105,7 @@ namespace RudycommerceData.Repositories.BaseRepo
             return entities;
         }
 
-        public async Task<bool> AnyAsync()
+        public virtual async Task<bool> AnyAsync()
         {
             return await _context.Set<T>().AnyAsync();
         }

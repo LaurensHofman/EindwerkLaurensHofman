@@ -62,24 +62,33 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
 
         private async void InitializeWindow()
         {
-            // Opens another window to create an admin account if there are no desktop users yet.
-            AnyDesktopUser();
-
-            // Gets all the languages
-            _languageList = (await _languageRepo.GetAllAsync()).Where(l => l.IsDesktopLanguage == true).ToList() ;
-
-            // Checks whether the necessary desktop languages are already in the database
-            bool listContainsDesktopLanguages = _languageList.Any(l => l.LocalName == "Nederlands") && _languageList.Any(l => l.LocalName == "English");
-
-            // If they the necessary desktop languages exist, select dutch as default.
-            if (listContainsDesktopLanguages)
+            try
             {
-                rbPreferNL.IsChecked = true;
+                // Opens another window to create an admin account if there are no desktop users yet.
+                AnyDesktopUser();
+
+                // Gets all the languages
+                _languageList = (await _languageRepo.GetAllAsync()).Where(l => l.IsDesktopLanguage == true).ToList();
+
+                // Checks whether the necessary desktop languages are already in the database
+                bool listContainsDesktopLanguages = _languageList.Any(l => l.LocalName == "Nederlands") && _languageList.Any(l => l.LocalName == "English");
+
+                // If they the necessary desktop languages exist, select dutch as default.
+                if (listContainsDesktopLanguages)
+                {
+                    rbPreferNL.IsChecked = true;
+                }
+                // Otherwise hide the language selector
+                else
+                {
+                    languageSelector.Visibility = Visibility.Collapsed;
+                }
             }
-            // Otherwise hide the language selector
-            else
+            catch (Exception)
             {
-                languageSelector.Visibility = Visibility.Collapsed;
+                MessageBox.Show(LangResource.ConnectionToDatabaseFailed);
+                newWindow = true;
+                this.Close();
             }
         }
 
@@ -90,7 +99,7 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
         {
             try
             {
-                bool anyDesktopUser; 
+                bool anyDesktopUser;
 
                 anyDesktopUser = await _desktopUserRepo.AnyAsync();
 
@@ -113,18 +122,15 @@ namespace RudycommerceWPF.WindowsAndUserControls.Login
             }
             catch (Exception)
             {
-                //// TODO
-                //throw;
-                MessageBox.Show(LangResource.ConnectionToDatabaseFailed);
-                this.Close();
+                throw;
             }
         }
-        
+
         protected override void SetLanguageDictionary()
         {
             base.SetLanguageDictionary();
 
-            CultureInfo cult;            
+            CultureInfo cult;
 
             switch (_preferredLanguage.LocalName)
             {
